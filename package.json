@@ -3,9 +3,9 @@
   "version": "0.0.3",
   "description": "Contains reusable utilities for all ArcGIS Instant apps",
   "main": "",
-  "types": "./dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
-    "./dist"
+    "dist/*"
   ],
   "scripts": {
     "build": "tsc && npm run generateTypes",
