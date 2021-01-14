@@ -6,6 +6,12 @@ This library contains reusable utilities for use in any ArcGIS Instant app
 * ConfigSettingsBase - Class to handle configurable properties
 * basemapToggleUtils - Functions for 4.x BasemapToggle functionality
 
+## Folder Structure
+* `baseClasses` - Classes that can be extended
+* `functionality` - Reusable modules that implement specific functionality (especially relating to Config Panel integration code)
+* `interfaces` - Common Interfaces, Enums, Types... etc
+* `structuralFunctionality` - Reusable modules that implement functionality that is foundational to the inner workings of a template app (ex: t9n, a11y, telemetry... etc) 
+
 ## Instructions
 
 1. npm install the published package

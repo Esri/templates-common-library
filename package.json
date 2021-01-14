@@ -1,6 +1,6 @@
 {
   "name": "templates-common-library",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Contains reusable utilities for all ArcGIS Instant apps",
   "main": "",
   "types": "dist/index.d.ts",
