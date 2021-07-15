@@ -1,4 +1,4 @@
-import jsonUtils = require("esri/geometry/support/jsonUtils");
+import jsonUtils from "esri/geometry/support/jsonUtils";
 import { ApplicationConfig } from "../../interfaces/applicationBase";
 
 /**

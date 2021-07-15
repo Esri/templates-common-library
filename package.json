@@ -2,12 +2,6 @@
   "name": "templates-common-library",
   "version": "0.0.6",
   "description": "Contains reusable utilities for all ArcGIS Instant apps",
-  "main": "",
-  "type": "module",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist/*"
-  ],
   "scripts": {
     "build:amd": "tsc && npm run generateTypes:amd",
     "build:esm": "tsc -p ./tsconfig.esm.json && node ./esmBuild.js",

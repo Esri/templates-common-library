@@ -1,7 +1,7 @@
-import path from "path";
-import fse from "fs-extra";
-import fs from "fs";
-import { map, replace } from "ramda";
+const path = require("path");
+const fse = require("fs-extra");
+const fs  = require( "fs");
+const { map, replace }  = require( "ramda");
 
 /** Recursively get all files within a directory */
 const readDirR = (dir) => {
@@ -27,6 +27,6 @@ const updateFiles = (files) => {
 };
 
 const files = readDirR("./distESM"); 
-await updateFiles(files);
-
-console.log("ESM string replacement finished");
+updateFiles(files).then(()=>{
+  console.log("ESM string replacement finished");
+});

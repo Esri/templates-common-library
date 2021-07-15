@@ -5,7 +5,7 @@ import { property } from 'esri/core/accessorSupport/decorators'
  * Base Class for all instant app's ConfigurationSettings classes. Handles
  * communication with the Config Panel for live updates during the configuration experience.
  */
-class ConfigurationSettingsBase extends Accessor {
+export default class ConfigurationSettingsBase extends Accessor {
   /** Determines if the App is being run within the Config Panel's IFrame */
   @property()
   withinConfigurationExperience: boolean = this._isWithinConfigurationExperience();
@@ -61,4 +61,3 @@ class ConfigurationSettingsBase extends Accessor {
             location.hostname === "127.0.0.1");
   }
 }
-export = ConfigurationSettingsBase;

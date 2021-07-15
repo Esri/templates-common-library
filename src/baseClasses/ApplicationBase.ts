@@ -50,7 +50,7 @@ const defaultSettings = {
   webScene: {}
 };
 
-class ApplicationBase {
+export default class ApplicationBase {
   //--------------------------------------------------------------------------
   //
   //  Lifecycle
@@ -760,5 +760,3 @@ class ApplicationBase {
   }
 
 }
-
-export = ApplicationBase;
