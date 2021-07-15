@@ -1,10 +1,10 @@
-import Portal = require("esri/portal/Portal");
-import PortalItem = require("esri/portal/PortalItem");
-import PortalQueryResult = require("esri/portal/PortalQueryResult");
-import PortalQueryParams = require("esri/portal/PortalQueryParams");
+import Portal from "esri/portal/Portal";
+import PortalItem from "esri/portal/PortalItem";
+import PortalQueryResult from "esri/portal/PortalQueryResult";
+import PortalQueryParams from "esri/portal/PortalQueryParams";
 
-import WebMap = require("esri/WebMap");
-import WebScene = require("esri/WebScene");
+import WebMap from "esri/WebMap";
+import WebScene from "esri/WebScene";
 
 export type Direction = "ltr" | "rtl";
 

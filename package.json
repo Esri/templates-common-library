@@ -2,16 +2,11 @@
   "name": "templates-common-library",
   "version": "0.0.6",
   "description": "Contains reusable utilities for all ArcGIS Instant apps",
-  "main": "",
-  "type": "module",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist/*"
-  ],
   "scripts": {
-    "build:amd": "tsc",
+    "build:amd": "tsc && npm run generateTypes:amd",
     "build:esm": "tsc -p ./tsconfig.esm.json && node ./esmBuild.js",
     "prepare": "npm run build:amd && npm run build:esm",
+    "generateTypes:amd": "dts-generator --prefix TemplatesCommonLib --project ./ --out ./dist/index.d.ts",
     "test": "jest --coverage"
   },
   "author": "Cameron Smith (c.smith@esri.com)",
@@ -19,6 +14,7 @@
   "devDependencies": {
     "@types/arcgis-js-api": "^4.18.0",
     "@types/jest": "^26.0.19",
+    "dts-generator": "^3.0.0",
     "fs-extra": "^10.0.0",
     "jest": "^26.6.3",
     "ramda": "^0.27.1",

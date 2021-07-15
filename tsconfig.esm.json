@@ -1,8 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "amd",
+    "module": "esnext",
     "outDir": "./distESM",
-    "target": "es6"
+    "target": "es6",
+    "declaration": true
   }
 }

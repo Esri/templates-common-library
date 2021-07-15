@@ -6,7 +6,7 @@
         "dom",
         "scripthost"
       ],
-      "declaration": true,
+      "declaration": false,
       "noImplicitAny": false,
       "module": "amd",
       "target": "es5",
@@ -25,7 +25,8 @@
     ],
     "exclude": [
       "./node_modules",
-      "./dist"
+      "./dist",
+      "./distESM"
     ],
     "files": [
       "./node_modules/@types/arcgis-js-api/index.d.ts"
