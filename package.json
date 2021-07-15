@@ -1,6 +1,6 @@
 {
   "name": "templates-common-library",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Contains reusable utilities for all ArcGIS Instant apps",
   "scripts": {
     "build:amd": "tsc && npm run generateTypes:amd",
