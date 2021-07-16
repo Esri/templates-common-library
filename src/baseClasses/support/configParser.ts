@@ -1,4 +1,4 @@
-import jsonUtils from "esri/geometry/support/jsonUtils";
+import { fromJSON } from "esri/geometry/support/jsonUtils";
 import { ApplicationConfig } from "../../interfaces/applicationBase";
 
 /**
@@ -78,7 +78,7 @@ export function _extentSelectorConfigValidate(extentSelectorConfig: IExtentSelec
 
         if(extentSelectorConfig?.constraints?.geometry != null){
 
-            const geom = jsonUtils.fromJSON(extentSelectorConfig.constraints.geometry);
+            const geom = fromJSON(extentSelectorConfig.constraints.geometry);
             if(geom?.type === "polygon"){
                 extentSelectorConfig.constraints.geometry = 
                     (geom as __esri.Polygon).rings.length > 0 ? 
