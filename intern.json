@@ -1,0 +1,64 @@
+{
+  "loader": {
+    "script": "dojo",
+    "options": {
+      "packages": [
+        { "name": "dojo", "location": "node_modules/dojo" },
+        { "name": "@dojo", "location": "node_modules/@dojo" },
+        { "name": "dijit", "location": "node_modules/dijit" },
+        { "name": "dojox", "location": "node_modules/dojox" },
+        {
+          "name": "dgrid",
+          "location": "node_modules/dgrid"
+        },
+        { "name": "esri", "location": "node_modules/arcgis-js-api" },
+        {
+          "name": "tslib",
+          "location": "node_modules/tslib",
+          "main": "tslib"
+        },
+        {
+          "name": "maquette",
+          "location": "node_modules/maquette/dist",
+          "main": "maquette.umd"
+        },
+        {
+          "name": "maquette-css-transitions",
+          "location": "node_modules/maquette-css-transitions/dist",
+          "main": "maquette-css-transitions.umd"
+        },
+
+        {
+          "name": "maquette-jsx",
+          "location": "node_modules/maquette-jsx/dist",
+          "main": "maquette-jsx.umd"
+        },
+        {
+          "name": "maquette-query",
+          "location": "tests/node_modules/maquette-query/dist",
+          "main": "index"
+        },
+        {
+          "name": "q",
+          "location": "node_modules/q",
+          "main": "q"
+        },
+        {
+          "name": "AGOWebWorkerInterface",
+          "location": "dist/ago-globalnav-resources/dist",
+          "main": "AGOWebWorkerInterface"
+        },
+        {
+          "name": "moment",
+          "location": "node_modules/moment"
+        },
+        { "name": "baseClasses", "location": "dist/baseClasses" },
+        { "name": "functionality", "location": "dist/functionality" },
+        { "name": "interfaces", "location": "dist/interfaces" },
+        { "name": "structuralFunctionality", "location": "dist/structuralFunctionality" }
+      ]
+    }
+  },
+  "suites": "tests/dist/all",
+  "environments": ["chrome", "node"]
+}

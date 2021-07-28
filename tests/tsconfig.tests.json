@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "baseUrl": "tests",
+    "sourceMap": false,
+    "lib": [
+      "es6",
+      "dom",
+      "scripthost"
+    ],
+    "declaration": false,
+    "noImplicitAny": false,
+    "module": "amd",
+    "moduleResolution": "node",
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "dist",
+    "target": "es5",
+    "strictNullChecks": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "types": [
+      "intern"
+    ]
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "src/"
+  ],
+  "files": [
+    "../node_modules/@types/arcgis-js-api/index.d.ts"
+  ]
+}

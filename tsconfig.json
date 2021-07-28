@@ -16,9 +16,6 @@
       "experimentalDecorators": true,
       "jsx": "react",
       "jsxFactory": "tsx",
-      "types": [
-        "jest"
-      ]
     },
     "include": [
       "./src/**/*.ts"
@@ -26,7 +23,8 @@
     "exclude": [
       "./node_modules",
       "./dist",
-      "./distESM"
+      "./distESM",
+      "./tests"
     ],
     "files": [
       "./node_modules/@types/arcgis-js-api/index.d.ts"

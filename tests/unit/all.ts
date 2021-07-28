@@ -1,0 +1,3 @@
+define([
+  "./baseClasses/all",
+], function() {});
