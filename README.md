@@ -27,7 +27,7 @@ We publish this library in two forms: AMD and ESM. We do this so that you can ma
 - If you are using the [AMD JS API](https://developers.arcgis.com/javascript/latest/get-started/#1-install-and-set-up), then you should use the AMD templates-common-library version. 
    - This version is published to npm with normal version numbering: ex: "1.0.1" 
 - If you are using the [ESM JS API](https://developers.arcgis.com/javascript/latest/es-modules/#introduction), then you should use the ESM templates-common-library version.
-   - This version is published to npm with normal version numbering but also has a -esm on the end: ex: "1.0.1-esm"
+   - This version is published to npm with normal version numbering but also has a -esm on the end: ex: "1.0.1-esm". Note: In your package.json, you need to strip the caret "^" off the beginning of the version number for this package, or else the AMD version will be installed when `npm install` is run.
 
 For each version of this library, both an AMD and an ESM style version with be published. For example, both version "1.1.7" and "1.1.7-esm" will be published.
 
