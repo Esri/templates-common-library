@@ -8,6 +8,7 @@ export type ResourceForCheck = __esri.WebMap | __esri.WebScene | "group";
 export enum EAppTemplateType {
   ThreeDViewer = "/apps/instant/3dviewer/index.html",
   AttachmentViewer = "/apps/instant/attachmentviewer/index.html",
+  Basic = "/apps/instant/basic/index.html",
   CategoryGallery = "/apps/instant/filtergallery/index.html",
   Charts = "/apps/instant/charts/index.html",
   Countdown = "/apps/instant/countdown/index.html",
@@ -17,6 +18,7 @@ export enum EAppTemplateType {
   Minimalist = "/apps/instant/minimalist/index.html",
   Nearby = "/apps/instant/nearby/index.html",
   Portfolio = "/apps/instant/portfolio/index.html",
+  Sidebar = "/apps/instant/sidebar/index.html",
   Slider = "/apps/instant/slider/index.html",
   ZoneLookup = "/apps/instant/lookup/index.html"
 }
@@ -51,13 +53,15 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.ImageryApp, 
     EAppTemplateType.InteractiveLegend, 
     EAppTemplateType.Media, 
-    EAppTemplateType.Minimalist, 
+    EAppTemplateType.Minimalist,
     EAppTemplateType.Nearby,
+    EAppTemplateType.Sidebar,
     EAppTemplateType.Slider, 
     EAppTemplateType.ZoneLookup
   ],
   [EResourceType.Group]: [
     EAppTemplateType.AttachmentViewer,
+    EAppTemplateType.Basic,
     EAppTemplateType.Charts,
     EAppTemplateType.Countdown,
     EAppTemplateType.ImageryApp, 
@@ -66,6 +70,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Minimalist, 
     EAppTemplateType.Nearby, 
     EAppTemplateType.Portfolio,
+    EAppTemplateType.Sidebar,
     EAppTemplateType.Slider,
     EAppTemplateType.ThreeDViewer,
     EAppTemplateType.ZoneLookup
@@ -131,6 +136,7 @@ export class CompatibilityChecker {
 
     this._resourceMessagesMap = {
       [EAppTemplateType.AttachmentViewer]:  resourceMessages.Webmap,
+      [EAppTemplateType.Basic]:             resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.CategoryGallery]:   resourceMessages.Group,
       [EAppTemplateType.Charts]:            resourceMessages.Webmap,
       [EAppTemplateType.Countdown]:         resourceMessages.Webmap,
@@ -140,6 +146,7 @@ export class CompatibilityChecker {
       [EAppTemplateType.Minimalist]:        resourceMessages.Webmap,
       [EAppTemplateType.Nearby]:            resourceMessages.Webmap,
       [EAppTemplateType.Portfolio]:         resourceMessages.WebmapOrWebscene,
+      [EAppTemplateType.Sidebar]:           resourceMessages.Webmap,
       [EAppTemplateType.Slider]:            resourceMessages.Webmap,
       [EAppTemplateType.ThreeDViewer]:      resourceMessages.Webscene,
       [EAppTemplateType.ZoneLookup]:        resourceMessages.Webmap
@@ -157,6 +164,7 @@ export class CompatibilityChecker {
     
     const resultMap = new Map();
     resultMap.set(EAppTemplateType.AttachmentViewer,  await this.checkSpecificTemplate(resource, EAppTemplateType.AttachmentViewer, resourceType));
+    resultMap.set(EAppTemplateType.Basic,             await this.checkSpecificTemplate(resource, EAppTemplateType.Basic, resourceType));
     resultMap.set(EAppTemplateType.CategoryGallery,   await this.checkSpecificTemplate(resource, EAppTemplateType.CategoryGallery, resourceType));
     resultMap.set(EAppTemplateType.Charts,            await this.checkSpecificTemplate(resource, EAppTemplateType.Charts, resourceType));
     resultMap.set(EAppTemplateType.Countdown,         await this.checkSpecificTemplate(resource, EAppTemplateType.Countdown, resourceType));
@@ -166,6 +174,7 @@ export class CompatibilityChecker {
     resultMap.set(EAppTemplateType.Minimalist,        await this.checkSpecificTemplate(resource, EAppTemplateType.Minimalist, resourceType));
     resultMap.set(EAppTemplateType.Nearby,            await this.checkSpecificTemplate(resource, EAppTemplateType.Nearby, resourceType));
     resultMap.set(EAppTemplateType.Portfolio,         await this.checkSpecificTemplate(resource, EAppTemplateType.Portfolio, resourceType));
+    resultMap.set(EAppTemplateType.Sidebar,           await this.checkSpecificTemplate(resource, EAppTemplateType.Sidebar, resourceType));
     resultMap.set(EAppTemplateType.Slider,            await this.checkSpecificTemplate(resource, EAppTemplateType.Slider, resourceType));
     resultMap.set(EAppTemplateType.ThreeDViewer,      await this.checkSpecificTemplate(resource, EAppTemplateType.ThreeDViewer, resourceType));
     resultMap.set(EAppTemplateType.ZoneLookup,        await this.checkSpecificTemplate(resource, EAppTemplateType.ZoneLookup, resourceType));
