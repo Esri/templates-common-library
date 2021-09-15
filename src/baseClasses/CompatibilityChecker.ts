@@ -49,7 +49,6 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.AttachmentViewer,
     EAppTemplateType.CategoryGallery,
     EAppTemplateType.Charts,
-    EAppTemplateType.Countdown,
     EAppTemplateType.ImageryApp, 
     EAppTemplateType.InteractiveLegend, 
     EAppTemplateType.Media, 
@@ -139,7 +138,7 @@ export class CompatibilityChecker {
       [EAppTemplateType.Basic]:             resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.CategoryGallery]:   resourceMessages.Group,
       [EAppTemplateType.Charts]:            resourceMessages.Webmap,
-      [EAppTemplateType.Countdown]:         resourceMessages.Webmap,
+      [EAppTemplateType.Countdown]:         resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.ImageryApp]:        resourceMessages.Webmap,
       [EAppTemplateType.InteractiveLegend]: resourceMessages.Webmap,
       [EAppTemplateType.Media]:             resourceMessages.Webmap,
@@ -162,23 +161,16 @@ export class CompatibilityChecker {
   async checkAllTemplates(resource: ResourceForCheck): Promise<Map<EAppTemplateType, string>>{
     const resourceType: EResourceType = await this._identifyResource(resource);
     
+    const appTemplateTypeKeys = Object.keys(EAppTemplateType);
+    const checkPromises = appTemplateTypeKeys.map((key: string)=>{ 
+      return this.checkSpecificTemplate(resource, EAppTemplateType[key], resourceType);
+    });
+    const checkResults = await Promise.all(checkPromises);
+    
     const resultMap = new Map();
-    resultMap.set(EAppTemplateType.AttachmentViewer,  await this.checkSpecificTemplate(resource, EAppTemplateType.AttachmentViewer, resourceType));
-    resultMap.set(EAppTemplateType.Basic,             await this.checkSpecificTemplate(resource, EAppTemplateType.Basic, resourceType));
-    resultMap.set(EAppTemplateType.CategoryGallery,   await this.checkSpecificTemplate(resource, EAppTemplateType.CategoryGallery, resourceType));
-    resultMap.set(EAppTemplateType.Charts,            await this.checkSpecificTemplate(resource, EAppTemplateType.Charts, resourceType));
-    resultMap.set(EAppTemplateType.Countdown,         await this.checkSpecificTemplate(resource, EAppTemplateType.Countdown, resourceType));
-    resultMap.set(EAppTemplateType.ImageryApp,        await this.checkSpecificTemplate(resource, EAppTemplateType.ImageryApp, resourceType));
-    resultMap.set(EAppTemplateType.InteractiveLegend, await this.checkSpecificTemplate(resource, EAppTemplateType.InteractiveLegend, resourceType));
-    resultMap.set(EAppTemplateType.Media,             await this.checkSpecificTemplate(resource, EAppTemplateType.Media, resourceType));
-    resultMap.set(EAppTemplateType.Minimalist,        await this.checkSpecificTemplate(resource, EAppTemplateType.Minimalist, resourceType));
-    resultMap.set(EAppTemplateType.Nearby,            await this.checkSpecificTemplate(resource, EAppTemplateType.Nearby, resourceType));
-    resultMap.set(EAppTemplateType.Portfolio,         await this.checkSpecificTemplate(resource, EAppTemplateType.Portfolio, resourceType));
-    resultMap.set(EAppTemplateType.Sidebar,           await this.checkSpecificTemplate(resource, EAppTemplateType.Sidebar, resourceType));
-    resultMap.set(EAppTemplateType.Slider,            await this.checkSpecificTemplate(resource, EAppTemplateType.Slider, resourceType));
-    resultMap.set(EAppTemplateType.ThreeDViewer,      await this.checkSpecificTemplate(resource, EAppTemplateType.ThreeDViewer, resourceType));
-    resultMap.set(EAppTemplateType.ZoneLookup,        await this.checkSpecificTemplate(resource, EAppTemplateType.ZoneLookup, resourceType));
-  
+    appTemplateTypeKeys.forEach((key, index)=>{
+      resultMap.set(EAppTemplateType[key], checkResults[index]);
+    });
     return resultMap;
   }
   
