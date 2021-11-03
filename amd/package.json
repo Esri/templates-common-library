@@ -1,12 +1,10 @@
-
 {
   "name": "templates-common-library",
-  "version": "0.0.14",
+  "version": "0.0.18ååå",
   "files": [
-  "/*"
+    "/*"
   ],
   "description": "Contains reusable utilities for all ArcGIS Instant apps",
   "author": "Cameron Smith (c.smith@esri.com)",
   "license": "ISC"
 }
- 
