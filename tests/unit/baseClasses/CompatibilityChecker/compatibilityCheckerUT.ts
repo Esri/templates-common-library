@@ -34,17 +34,18 @@ class CompatibilityCheckerUT {
 
       suite("WebMap: https://catsqa.mapsdevext.arcgis.com/home/item.html?id=20ddfc08d0a24dcd8d10cb7c4aefc01e", () => {
         test("checkAllTemplates", async () => {
-          const result:Map<CompatibilityChecker.EAppTemplateType, string> = await compatibilityChecker.checkAllTemplates(new WebMap({ 
-            portalItem:{ 
-              id: "20ddfc08d0a24dcd8d10cb7c4aefc01e", 
-              portal: new Portal({url: "https://catsqa.mapsdevext.arcgis.com/"}) 
-            } 
+          const result:Map<CompatibilityChecker.EAppTemplateType, string> = await compatibilityChecker.checkAllTemplates(new WebMap({
+            portalItem:{
+              id: "20ddfc08d0a24dcd8d10cb7c4aefc01e",
+              portal: new Portal({url: "https://catsqa.mapsdevext.arcgis.com/"})
+            }
           }));
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.AttachmentViewer), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Basic), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.CategoryGallery), "This app requires a group");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Charts), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Countdown), null);
+          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Exhibit), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ImageryApp), "This app requires an imagery layer");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.InteractiveLegend), "This app requires a feature layer with a supported drawing style");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Media), null);
@@ -60,17 +61,18 @@ class CompatibilityCheckerUT {
 
       suite("WebScene: https://catsqa.mapsdevext.arcgis.com/home/item.html?id=9c2abe9b33bd44fba4f6443ec67ef7cf", () => {
         test("checkAllTemplates", async () => {
-          const result:Map<CompatibilityChecker.EAppTemplateType, string> = await compatibilityChecker.checkAllTemplates(new WebScene({ 
-            portalItem:{ 
-              id: "9c2abe9b33bd44fba4f6443ec67ef7cf", 
-              portal: new Portal({url: "https://catsqa.mapsdevext.arcgis.com/"}) 
-            } 
+          const result:Map<CompatibilityChecker.EAppTemplateType, string> = await compatibilityChecker.checkAllTemplates(new WebScene({
+            portalItem:{
+              id: "9c2abe9b33bd44fba4f6443ec67ef7cf",
+              portal: new Portal({url: "https://catsqa.mapsdevext.arcgis.com/"})
+            }
           }));
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.AttachmentViewer), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Basic), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.CategoryGallery), "This app requires a group");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Charts), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Countdown), null);
+          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Exhibit), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ImageryApp), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.InteractiveLegend), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Media), "This app requires a webmap");
@@ -92,6 +94,7 @@ class CompatibilityCheckerUT {
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.CategoryGallery), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Charts), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Countdown), "This app requires a webmap or a webscene");
+          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Exhibit), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ImageryApp), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.InteractiveLegend), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Media), "This app requires a webmap");
