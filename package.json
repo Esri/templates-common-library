@@ -4,11 +4,13 @@
   "scripts": {
     "build:amd": "tsc && npm run generateTypes:amd && npm run filesCopy:amd",
     "build:esm": "tsc -p ./tsconfig.esm.json && node ./esmBuild.js && npm run filesCopy:esm",
+    "build:test": "tsc -p ./tests/tsconfig.tests.json",
     "watch:amd": "tsc --watch",
     "watch:tests": "tsc -p ./tests/tsconfig.tests.json --watch",
     "prepare": "npm run build:amd && npm run build:esm",
     "generateTypes:amd": "dts-generator --prefix TemplatesCommonLib --project ./ --out ./dist/index.d.ts",
-    "test": "npx intern serveOnly",
+    "run:test": "npx intern serveOnly",
+    "build:run:test": "npm run build:test && npm run run:test",
     "filesCopy:amd": "npx cpy ./amd/package.json ./dist && npx cpy ./README.md ./dist",
     "filesCopy:esm": "npx cpy ./esm/package.json ./distESM && npx cpy ./README.md ./distESM"
   },
