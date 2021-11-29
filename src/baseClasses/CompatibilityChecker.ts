@@ -1,8 +1,8 @@
 import Collection from 'esri/core/Collection';
 import { eachAlways } from 'esri/core/promiseUtils';
 
-export type ResourceForCheck = __esri.WebMap | __esri.WebScene | "group";
 // Note: "group" is good enough because there are no Requirements to check for any app templates that function with groups
+export type ResourceForCheck = __esri.WebMap | __esri.WebScene | "group";
 
 /** Identifies all Instant App Templates by url (We use url because it is the same between locales) */
 export enum EAppTemplateType {
@@ -37,7 +37,8 @@ enum ERequirementType {
   UnsupportedRenderers_Renderer,
   PopupDisabled,
   ImageryCondition,
-  AttachmentsCondition
+  AttachmentsCondition,
+  ChartsCondition
 }
 
 /** Mapping of all Resource Types to the Templates that they're not compatible with */
@@ -83,6 +84,7 @@ const EResourceType_to_AppType_Mapping = {
 export interface ICompatibilityCheckerProperties {
   requirementsMessages: {
     AttachmentViewer: string;
+    ChartViewer: string;
     ImageryViewer: string;
     InteractiveLegend: string;
     Nearby: string;
@@ -100,7 +102,7 @@ export interface ICompatibilityCheckerProperties {
 
 /**
 * Contains methods for determining if a resource is compatible with a template app.
-* If resource is not compatible with template app type, Will return the string that indicates why
+* If resource is not compatible with template app type, will return the string that indicates why
 * it is not compatible.
 *
 * Because of Localization, we must pass in the "not compatible" strings that get returned
@@ -111,11 +113,12 @@ export interface ICompatibilityCheckerProperties {
 * });
 *
 * // usage example
-* compatChecks.checkSpecificTemplates(webmap, EAppType.AV ---> (or just pass in the urlFragment))
+* compatChecks.checkSpecificTemplates(webmap, EAppType.AttachmentViewer ---> (or just pass in the urlFragment(ex: "/apps/instant/3dviewer/index.html")))
 */
 export class CompatibilityChecker {
   private _Template_to_Function_Map = {
     [EAppTemplateType.AttachmentViewer]:  this._testAttachmentsCondition,
+    [EAppTemplateType.Charts]:            this._testChartsCondition,
     [EAppTemplateType.ImageryApp]:        this._testImageryCondition,
     [EAppTemplateType.InteractiveLegend]: this._testUnsupportedRenderers,
     [EAppTemplateType.Nearby]:            this._testPopupDisabled,
@@ -130,6 +133,7 @@ export class CompatibilityChecker {
 
     this._requirementsMessagesMap = {
       [ERequirementType.AttachmentsCondition]:                requirementsMessages.AttachmentViewer,
+      [ERequirementType.ChartsCondition]:                     requirementsMessages.ChartViewer,
       [ERequirementType.ImageryCondition]:                    requirementsMessages.ImageryViewer,
       [ERequirementType.UnsupportedRenderers_FeatureLayer]:   requirementsMessages.InteractiveLegend,
       [ERequirementType.UnsupportedRenderers_Renderer]:       requirementsMessages.InteractiveLegend,
@@ -357,6 +361,24 @@ export class CompatibilityChecker {
         }
       });
     });
+  }
+
+  private _testChartsCondition(webmap: __esri.WebMap): ERequirementType | null {
+    const chartsAvailable =
+      webmap?.layers
+        .filter(layer => layer.type === "feature")
+        .some((flayer: __esri.FeatureLayer) => {
+          const flayerWithCharts = flayer.get("charts");
+          return flayerWithCharts;
+        }) ||
+      webmap?.allTables
+        .filter(table => table.type === "feature")
+        .some((featureTable: any) => {
+          const fTableWithCharts = featureTable?.charts;
+          return fTableWithCharts;
+        });
+
+    return !chartsAvailable ? ERequirementType.ChartsCondition : null;
   }
 
   /**
