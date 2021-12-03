@@ -1,8 +1,5 @@
 import { toJSON, fromJSON } from "esri/layers/effects/jsonUtils";
-
-interface FeatureLayerFeatureEffect extends __esri.FeatureLayer {
-  featureEffect: __esri.FeatureEffect;
-}
+import { FeatureLayerFeatureEffect } from "../interfaces/commonInterfaces";
 
 export function getMergedEffect(
   presetLayerEffect: string,
