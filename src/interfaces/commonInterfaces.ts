@@ -4,3 +4,7 @@ export interface esriWidgetProps extends __esri.WidgetProperties {
     portal?: __esri.Portal;
     propertyName?: string;
 }
+
+export interface FeatureLayerFeatureEffect extends __esri.FeatureLayer {
+    featureEffect: __esri.FeatureEffect;
+}

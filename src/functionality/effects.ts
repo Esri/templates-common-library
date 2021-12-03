@@ -1,11 +1,22 @@
 import { toJSON, fromJSON } from "esri/layers/effects/jsonUtils";
+import { FeatureLayerFeatureEffect } from "../interfaces/commonInterfaces";
 
 export function getMergedEffect(
   presetLayerEffect: string,
-  featureLayerView: __esri.FeatureLayerView
+  featureLayerView: __esri.FeatureLayerView,
+  type: "includedEffect" | "excludedEffect"
 ) {
+  const layer = featureLayerView?.layer as FeatureLayerFeatureEffect;
   if (!presetLayerEffect) {
-    return null;
+    if (layer?.effect) {
+      return layer.effect;
+    } else if (layer?.featureEffect) {
+      return type === "includedEffect"
+        ? layer.featureEffect.includedEffect
+        : layer.featureEffect.excludedEffect;
+    } else {
+      return null;
+    }
   }
 
   // CONVERT EXISTING EFFECT AND PRESET LAYER EFFECT TO JSON
@@ -33,7 +44,6 @@ export function getMergedEffect(
           }
           // OTHERWISE MODIFY EXISTING EFFECT
           else {
-            
             const notMerged = !existingEffectToUseItem.value.find(
               existingEffectItemToMerge =>
                 existingEffectItemToMerge.type === presetLayerEffectJSON[0].type
