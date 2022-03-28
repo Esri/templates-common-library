@@ -39,7 +39,8 @@ import {
   parseExtent,
   parseMarker,
   parseCenter,
-  parseLevel
+  parseLevel,
+  parseBasemap
 } from "./urlUtils";
 import esri = __esri;
 //--------------------------------------------------------------------------
@@ -136,6 +137,18 @@ export function getItemTitle(item: PortalItem): string {
   }
 }
 
+export async function setBasemap(
+  basemapUrl: string,
+  basemapReferenceUrl: string,
+  view: esri.MapView | esri.SceneView
+): Promise<any> {
+  if (!basemapUrl || !view) {
+    return resolve();
+  }
+  const basemap = await parseBasemap(basemapUrl, basemapReferenceUrl) as __esri.Basemap;
+  await view.when();
+  view.map.basemap = basemap;
+}
 export async function goToMarker(
   marker: string,
   view: esri.MapView | esri.SceneView
