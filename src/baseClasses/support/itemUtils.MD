@@ -39,6 +39,8 @@ Returns the title of the `PortalItem`.
 
 Adds a `Graphic` marker and animates the view to its location if a `marker` string is defined.
 
+### setBasemap(basemapUrl:string, basemapReferenceUrl:string,view: MapView | SceneView):Promise&lt;any&gt;
+Create a basemap from the provided basemapUrl and basemapReferenceUrl url parameters and add it to the view. 
 
 ### findQuery(query: string, view: MapView | SceneView): Promise&lt;any&gt;
 

@@ -29,6 +29,8 @@ import Point from "esri/geometry/Point";
 import { PictureMarkerSymbol, SimpleMarkerSymbol } from "esri/symbols";
 import { eachAlways } from "esri/core/promiseUtils";
 import esri = __esri;
+import Basemap from "esri/Basemap";
+
 interface CameraProperties {
   heading?: number;
   position?: Point;
@@ -215,6 +217,14 @@ export async function parseMarker(marker: string): Promise<esri.Graphic | {}> {
   return graphic as esri.Graphic;
 }
 
+export function parseBasemap(basemapUrl, basemapReferenceUrl) {
+  if (!basemapUrl) {
+    return;
+  }
+  return _getBasemap(basemapUrl, basemapReferenceUrl).then(basemap => {
+    return basemap;
+  })
+}
 //--------------------------------------------------------------------------
 //
 //  Private Methods
@@ -271,6 +281,51 @@ function _getHeadingAndTilt(headingAndTilt: string): CameraProperties {
       tilt: parseFloat(tiltHeadingArray[1])
     }
     : null;
+}
+function _getBasemap(basemapUrl, basemapReferenceUrl): Promise<Basemap> {
+
+  // ?basemapUrl=https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer&basemapReferenceUrl=http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer
+  if (!basemapUrl) {
+    return;
+  }
+  return eachAlways([import("esri/layers/Layer"), import("esri/Basemap")]).then((modules) => {
+    modules = modules.map((module) => module.value);
+    const [Layer, Basemap] = modules;
+
+    const getBaseLayer = Layer.default.fromArcGISServerUrl({ url: basemapUrl });
+
+    const getReferenceLayer = basemapReferenceUrl
+      ? Layer.default.fromArcGISServerUrl({
+        url: basemapReferenceUrl
+      })
+      : Promise.resolve();
+
+    const getBaseLayers = eachAlways({ baseLayer: getBaseLayer, referenceLayer: getReferenceLayer });
+
+    return getBaseLayers.then(async (response) => {
+      const error = response?.baseLayer?.error || response?.referenceLayer?.error;
+      if (error) {
+        return Promise.reject(error);
+      } else {
+        const baseLayer = response.baseLayer;
+        const referenceLayer = response.referenceLayer;
+        const basemapOptions = {
+          baseLayers: [baseLayer.value],
+          referenceLayers: referenceLayer.value ? [referenceLayer.value] : []
+        };
+        const basemap = new Basemap.default(basemapOptions);
+        await basemap.loadAll();
+        return basemap;
+      }
+    });
+  });
+
+
+
+
+
+
+
 }
 
 function _getCameraProperties(
