@@ -283,9 +283,14 @@ export default class ApplicationBase {
 
         // Detect IE 11 and older 
         this.isIE = this._detectIE();
-        // Update the culture if there is a url param 
-        this.locale = this.config?.locale || getLocale();
+        // config.locale is the URL param this will 
+        // overwrite any other locale settings
+        this.locale = this.config?.locale;
+        if (!this.locale) {
+          this.locale = this._calculateLocale(this?.portal);
+        }
         setLocale(this.locale);
+        document?.documentElement?.setAttribute("lang", this.locale);
         this.direction = prefersRTL(this.locale) ? "rtl" : "ltr";
 
         this.units = this._getUnits(portal);
@@ -758,5 +763,33 @@ export default class ApplicationBase {
       (location.hostname === "localhost" ||
         location.hostname === "127.0.0.1");
   }
+  private _calculateLocale(portal) {
+    const cookie = this._getCookie("arcgisLocale") || this._getCookie("esri_locale");
+    // Use cookie if one exists 
+    if (cookie) { return cookie; } else {
+      // if org use org culture
+      const isOrg = portal?.isOrganization;
+      if (isOrg) {
+        if (portal?.culture)
+          return portal.culture;
+      } else {
+        // not org use user locale if defined 
+        if (portal?.user?.culture) {
+          return portal.user.culture;
+        }
+      }
+      // Fallback get the base locale 
+      return getLocale();
+    }
 
+  }
+  private _getCookie(name: string): string {
+    const cookie = document.cookie;
+    const cookieNameRE = new RegExp(`(?:^|; )${ApplicationBase._escapeRegExp(name)}=([^;]*)`);
+    const matchedCookies = cookie.match(cookieNameRE);
+    return matchedCookies ? decodeURIComponent(matchedCookies[1]) : undefined;
+  }
+  private static _escapeRegExp(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+  }
 }
