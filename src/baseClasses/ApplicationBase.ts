@@ -18,11 +18,10 @@ import {
   ApplicationBaseResults,
   ApplicationBaseSettings,
   ApplicationConfig,
-  ApplicationConfigs,
-  Direction
+  ApplicationConfigs
 } from "../interfaces/applicationBase";
 import { parseConfig } from "./support/configParser";
-import { eachAlways, reject, resolve } from "esri/core/promiseUtils";
+import { eachAlways } from "esri/core/promiseUtils";
 
 import IdentityManager from "esri/identity/IdentityManager";
 import OAuthInfo from "esri/identity/OAuthInfo";
@@ -30,7 +29,8 @@ import Portal from "esri/portal/Portal";
 import PortalItem from "esri/portal/PortalItem";
 import PortalQueryParams from "esri/portal/PortalQueryParams";
 import esriConfig from "esri/config";
-import { getLocale, setLocale, prefersRTL } from "esri/intl";
+import { defineLocale } from "../functionality/locale";
+
 
 const defaultConfig = {
   portalUrl: "https://www.arcgis.com",
@@ -113,15 +113,12 @@ export default class ApplicationBase {
   //----------------------------------
   portal: Portal = null;
 
-  //----------------------------------
-  //  direction
-  //----------------------------------
-  direction: Direction = null;
+
 
   //----------------------------------
   //  locale
   //----------------------------------
-  locale: string = getLocale();
+  locale: string;
 
   //----------------------------------
   //  Detect IE
@@ -200,7 +197,7 @@ export default class ApplicationBase {
     this._registerOauthInfos(oauthappid, portalUrl);
     const sharingUrl = `${portalUrl}/sharing`;
 
-    const loadApplicationItem = appid ? this._loadItem(appid) : resolve();
+    const loadApplicationItem = appid ? this._loadItem(appid) : Promise.resolve();
     const checkAppAccess = IdentityManager.checkAppAccess(
       sharingUrl,
       oauthappid
@@ -216,8 +213,8 @@ export default class ApplicationBase {
           ? itemInfo.fetchData()
           : undefined;
       })
-      : resolve();
-    const loadPortal = portalSettings.fetch ? new Portal().load() : resolve();
+      : Promise.resolve();
+    const loadPortal = portalSettings.fetch ? new Portal().load() : Promise.resolve();
 
     return eachAlways([
       loadApplicationItem,
@@ -256,10 +253,10 @@ export default class ApplicationBase {
             appAccess.name === "identity-manager:not-authorized"
           ) {
             //identity-manager:not-authorized, identity-manager:not-authenticated, identity-manager:invalid-request
-            return reject(appAccess.name);
+            return Promise.reject(appAccess.name);
           }
         } else if (applicationItemResponse.error) {
-          return reject(applicationItemResponse.error);
+          return Promise.reject(applicationItemResponse.error);
         }
         // user not signed in and contentOrigin is other. 
         // If app is within an iframe ignore all of this 
@@ -283,15 +280,7 @@ export default class ApplicationBase {
 
         // Detect IE 11 and older 
         this.isIE = this._detectIE();
-        // config.locale is the URL param this will 
-        // overwrite any other locale settings
-        this.locale = this.config?.locale;
-        if (!this.locale) {
-          this.locale = this._calculateLocale(this?.portal);
-        }
-        setLocale(this.locale);
-        document?.documentElement?.setAttribute("lang", this.locale);
-        this.direction = prefersRTL(this.locale) ? "rtl" : "ltr";
+        this.locale = defineLocale({ portal, config: this.config });
 
         this.units = this._getUnits(portal);
 
@@ -376,14 +365,14 @@ export default class ApplicationBase {
         }
 
         const promises: ApplicationBaseItemPromises = {
-          webMap: webMapPromises ? eachAlways(webMapPromises) : resolve(),
-          webScene: webScenePromises ? eachAlways(webScenePromises) : resolve(),
+          webMap: webMapPromises ? eachAlways(webMapPromises) : Promise.resolve(),
+          webScene: webScenePromises ? eachAlways(webScenePromises) : Promise.resolve(),
           groupInfo: groupInfoPromises
             ? eachAlways(groupInfoPromises)
-            : resolve(),
+            : Promise.resolve(),
           groupItems: groupItemsPromises
             ? eachAlways(groupItemsPromises)
-            : resolve()
+            : Promise.resolve()
         };
 
         return eachAlways(promises)
@@ -404,7 +393,7 @@ export default class ApplicationBase {
             this.results.groupItems = groupItemsResponses;
             // Check and see if we need to evaluate group,maps,scenes
             if (!appAccess?.credential && this.invalidContentOrigin) {
-              return reject({
+              return Promise.reject({
                 appUrl: this._getAppUrl(),
                 error: "application:origin-other"
               });
@@ -763,33 +752,5 @@ export default class ApplicationBase {
       (location.hostname === "localhost" ||
         location.hostname === "127.0.0.1");
   }
-  private _calculateLocale(portal) {
-    const cookie = this._getCookie("arcgisLocale") || this._getCookie("esri_locale");
-    // Use cookie if one exists 
-    if (cookie) { return cookie; } else {
-      // if org use org culture
-      const isOrg = portal?.isOrganization;
-      if (isOrg) {
-        if (portal?.culture)
-          return portal.culture;
-      } else {
-        // not org use user locale if defined 
-        if (portal?.user?.culture) {
-          return portal.user.culture;
-        }
-      }
-      // Fallback get the base locale 
-      return getLocale();
-    }
 
-  }
-  private _getCookie(name: string): string {
-    const cookie = document.cookie;
-    const cookieNameRE = new RegExp(`(?:^|; )${ApplicationBase._escapeRegExp(name)}=([^;]*)`);
-    const matchedCookies = cookie.match(cookieNameRE);
-    return matchedCookies ? decodeURIComponent(matchedCookies[1]) : undefined;
-  }
-  private static _escapeRegExp(str: string): string {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
-  }
 }
