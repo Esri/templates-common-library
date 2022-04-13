@@ -142,7 +142,7 @@ export async function setBasemap(
   view: esri.MapView | esri.SceneView
 ): Promise<any> {
   if (!basemapUrl || !view) {
-    return resolve();
+    return Promise.resolve();
   }
   const basemap = await parseBasemap(basemapUrl, basemapReferenceUrl) as __esri.Basemap;
   await view.when();
