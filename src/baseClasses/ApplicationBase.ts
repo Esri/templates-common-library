@@ -29,7 +29,7 @@ import Portal from "esri/portal/Portal";
 import PortalItem from "esri/portal/PortalItem";
 import PortalQueryParams from "esri/portal/PortalQueryParams";
 import esriConfig from "esri/config";
-import { defineLocale } from "../functionality/locale";
+import { defineLocale } from "../structuralFunctionality/locale";
 
 
 const defaultConfig = {
