@@ -18,7 +18,8 @@ import {
   ApplicationBaseResults,
   ApplicationBaseSettings,
   ApplicationConfig,
-  ApplicationConfigs
+  ApplicationConfigs,
+  Direction
 } from "../interfaces/applicationBase";
 import { parseConfig } from "./support/configParser";
 import { eachAlways } from "esri/core/promiseUtils";
@@ -30,6 +31,7 @@ import PortalItem from "esri/portal/PortalItem";
 import PortalQueryParams from "esri/portal/PortalQueryParams";
 import esriConfig from "esri/config";
 import { defineLocale } from "../structuralFunctionality/locale";
+import { prefersRTL } from "esri/intl";
 
 
 const defaultConfig = {
@@ -119,6 +121,11 @@ export default class ApplicationBase {
   //  locale
   //----------------------------------
   locale: string;
+
+  // --------------------------------
+  // direction
+  //--------------------------------
+  direction: Direction = null;
 
   //----------------------------------
   //  Detect IE
@@ -281,6 +288,7 @@ export default class ApplicationBase {
         // Detect IE 11 and older 
         this.isIE = this._detectIE();
         this.locale = defineLocale({ portal, config: this.config });
+        this.direction = prefersRTL(this.locale) ? "rtl" : "ltr";
 
         this.units = this._getUnits(portal);
 
