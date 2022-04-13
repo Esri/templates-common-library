@@ -19,7 +19,6 @@
 
   limitations under the License.​
 */
-import { reject, resolve } from "esri/core/promiseUtils";
 import { whenFalseOnce } from "esri/core/watchUtils";
 
 import MapView from "esri/views/MapView";
@@ -72,14 +71,14 @@ export async function createView(properties: any): Promise<esri.MapView | esri.S
   const { map } = properties;
 
   if (!map) {
-    return reject(`properties does not contain a "map"`);
+    return Promise.reject(`properties does not contain a "map"`);
   }
 
   const isWebMap = map.declaredClass === "esri.WebMap";
   const isWebScene = map.declaredClass === "esri.WebScene";
 
   if (!isWebMap && !isWebScene) {
-    return reject(`map is not a "WebMap" or "WebScene"`);
+    return Promise.reject(`map is not a "WebMap" or "WebScene"`);
   }
 
   return isWebMap ? new MapView(properties) : new SceneView(properties);
@@ -94,7 +93,7 @@ export function createMapFromItem(
   const isWebScene = item.type === "Web Scene";
 
   if (!isWebMap && !isWebScene) {
-    return reject();
+    return Promise.reject();
   }
 
   return isWebMap
@@ -154,7 +153,7 @@ export async function goToMarker(
   view: esri.MapView | esri.SceneView
 ): Promise<any> {
   if (!marker || !view) {
-    return resolve();
+    return Promise.resolve();
   }
   const graphic = await parseMarker(marker);
   await view.when();
@@ -171,7 +170,7 @@ export async function findQuery(
 ): Promise<any> {
   // ?find=redlands, ca
   if (!query || !view) {
-    return resolve();
+    return Promise.resolve();
   }
 
   const Search = await import("esri/widgets/Search");

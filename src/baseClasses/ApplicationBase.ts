@@ -22,7 +22,7 @@ import {
   Direction
 } from "../interfaces/applicationBase";
 import { parseConfig } from "./support/configParser";
-import { eachAlways, reject, resolve } from "esri/core/promiseUtils";
+import { eachAlways } from "esri/core/promiseUtils";
 
 import IdentityManager from "esri/identity/IdentityManager";
 import OAuthInfo from "esri/identity/OAuthInfo";
@@ -30,7 +30,9 @@ import Portal from "esri/portal/Portal";
 import PortalItem from "esri/portal/PortalItem";
 import PortalQueryParams from "esri/portal/PortalQueryParams";
 import esriConfig from "esri/config";
-import { getLocale, setLocale, prefersRTL } from "esri/intl";
+import { defineLocale } from "../structuralFunctionality/locale";
+import { prefersRTL } from "esri/intl";
+
 
 const defaultConfig = {
   portalUrl: "https://www.arcgis.com",
@@ -113,15 +115,17 @@ export default class ApplicationBase {
   //----------------------------------
   portal: Portal = null;
 
-  //----------------------------------
-  //  direction
-  //----------------------------------
-  direction: Direction = null;
+
 
   //----------------------------------
   //  locale
   //----------------------------------
-  locale: string = getLocale();
+  locale: string;
+
+  // --------------------------------
+  // direction
+  //--------------------------------
+  direction: Direction = null;
 
   //----------------------------------
   //  Detect IE
@@ -200,7 +204,7 @@ export default class ApplicationBase {
     this._registerOauthInfos(oauthappid, portalUrl);
     const sharingUrl = `${portalUrl}/sharing`;
 
-    const loadApplicationItem = appid ? this._loadItem(appid) : resolve();
+    const loadApplicationItem = appid ? this._loadItem(appid) : Promise.resolve();
     const checkAppAccess = IdentityManager.checkAppAccess(
       sharingUrl,
       oauthappid
@@ -216,8 +220,8 @@ export default class ApplicationBase {
           ? itemInfo.fetchData()
           : undefined;
       })
-      : resolve();
-    const loadPortal = portalSettings.fetch ? new Portal().load() : resolve();
+      : Promise.resolve();
+    const loadPortal = portalSettings.fetch ? new Portal().load() : Promise.resolve();
 
     return eachAlways([
       loadApplicationItem,
@@ -256,10 +260,10 @@ export default class ApplicationBase {
             appAccess.name === "identity-manager:not-authorized"
           ) {
             //identity-manager:not-authorized, identity-manager:not-authenticated, identity-manager:invalid-request
-            return reject(appAccess.name);
+            return Promise.reject(appAccess.name);
           }
         } else if (applicationItemResponse.error) {
-          return reject(applicationItemResponse.error);
+          return Promise.reject(applicationItemResponse.error);
         }
         // user not signed in and contentOrigin is other. 
         // If app is within an iframe ignore all of this 
@@ -283,9 +287,7 @@ export default class ApplicationBase {
 
         // Detect IE 11 and older 
         this.isIE = this._detectIE();
-        // Update the culture if there is a url param 
-        this.locale = this.config?.locale || getLocale();
-        setLocale(this.locale);
+        this.locale = defineLocale({ portal, config: this.config });
         this.direction = prefersRTL(this.locale) ? "rtl" : "ltr";
 
         this.units = this._getUnits(portal);
@@ -371,14 +373,14 @@ export default class ApplicationBase {
         }
 
         const promises: ApplicationBaseItemPromises = {
-          webMap: webMapPromises ? eachAlways(webMapPromises) : resolve(),
-          webScene: webScenePromises ? eachAlways(webScenePromises) : resolve(),
+          webMap: webMapPromises ? eachAlways(webMapPromises) : Promise.resolve(),
+          webScene: webScenePromises ? eachAlways(webScenePromises) : Promise.resolve(),
           groupInfo: groupInfoPromises
             ? eachAlways(groupInfoPromises)
-            : resolve(),
+            : Promise.resolve(),
           groupItems: groupItemsPromises
             ? eachAlways(groupItemsPromises)
-            : resolve()
+            : Promise.resolve()
         };
 
         return eachAlways(promises)
@@ -399,7 +401,7 @@ export default class ApplicationBase {
             this.results.groupItems = groupItemsResponses;
             // Check and see if we need to evaluate group,maps,scenes
             if (!appAccess?.credential && this.invalidContentOrigin) {
-              return reject({
+              return Promise.reject({
                 appUrl: this._getAppUrl(),
                 error: "application:origin-other"
               });
