@@ -184,7 +184,37 @@ export async function findQuery(
   });
   return result;
 }
+export function setHiddenLayers(hiddenLayers: string,
+  view: __esri.MapView | __esri.SceneView) {
+  if (hiddenLayers) {
+    view.map.allLayers.forEach((layer: __esri.Layer) => {
+      if (hiddenLayers.indexOf(layer.id) !== -1) {
+        layer.visible = false;
+        return;
+      }
+      layer.visible = true;
+    });
+  }
+}
+export async function findSelectedFeature(
+  selectedFeature: string,
+  view: __esri.MapView | __esri.SceneView
+): Promise<any> {
+  const vals = selectedFeature?.split(";")
+  const layerId = vals[0];
+  const oid = parseInt(vals[1]);
+  const layer = view.map.allLayers.find(
+    layer => layerId === layer.id
+  ) as __esri.FeatureLayer;
 
+  if (!layer) return;
+  const query = layer.createQuery();
+  query.objectIds = [oid];
+  query.returnGeometry = true;
+  const featuresRes = await layer.queryFeatures(query);
+  const feature = featuresRes.features[0];
+  view.popup.open({ features: [feature] });
+}
 //--------------------------------------------------------------------------
 //
 //  Private Methods
