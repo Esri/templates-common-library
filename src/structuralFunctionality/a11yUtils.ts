@@ -33,8 +33,13 @@ export function postToLiveRegion(message: string, id?: string) {
         region.textContent = message;
     }
 }
+export function prefersReducedMotion(): boolean {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    return mediaQuery.matches ? true : false;
+}
 
 export default {
     setupLiveRegion,
-    postToLiveRegion
+    postToLiveRegion,
+    prefersReducedMotion
 };
