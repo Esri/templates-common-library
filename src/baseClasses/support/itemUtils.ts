@@ -25,6 +25,7 @@ import MapView from "esri/views/MapView";
 import SceneView from "esri/views/SceneView";
 
 import PortalItem from "esri/portal/PortalItem";
+import * as projection from "esri/geometry/projection";
 
 import {
   CreateMapFromItemOptions,
@@ -211,9 +212,14 @@ export async function findSelectedFeature(
   const query = layer.createQuery();
   query.objectIds = [oid];
   query.returnGeometry = true;
-  const featuresRes = await layer.queryFeatures(query);
-  const feature = featuresRes.features[0];
-  view.popup.open({ features: [feature] });
+  const response = await layer.queryFeatures(query);
+
+  const options = { features: response?.features };
+  // projection needs to be loaded for some maps and scenes
+  await projection?.load();
+
+  view.popup.open(options);
+
 }
 //--------------------------------------------------------------------------
 //
