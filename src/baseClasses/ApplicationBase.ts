@@ -202,7 +202,7 @@ export default class ApplicationBase {
     this._registerOauthInfos(oauthappid, portalUrl);
     const sharingUrl = `${portalUrl}/sharing`;
 
-    const loadApplicationItem = appid ? this._loadItem(appid) : Promise.resolve();
+    const loadApplicationItem = appid ? this._loadItem(appid) : Promise.resolve(null);
     const checkAppAccess = IdentityManager.checkAppAccess(
       sharingUrl,
       oauthappid
