@@ -217,6 +217,17 @@ export async function parseMarker(marker: string): Promise<esri.Graphic | {}> {
   return graphic as esri.Graphic;
 }
 
+export function parsePopup(popupFixed, popupFixedPosition) {
+  return {
+    "popup": {
+      dockEnabled: popupFixed,
+      "dockOptions": {
+        breakpoint: !popupFixed,
+        position: popupFixed ? popupFixedPosition : "auto"
+      }
+    }
+  }
+}
 export function parseBasemap(basemapUrl, basemapReferenceUrl) {
   if (!basemapUrl) {
     return;
