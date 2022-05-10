@@ -36,6 +36,7 @@ import {
 import {
   parseViewpoint,
   parseViewComponents,
+  parsePopup,
   parseExtent,
   parseMarker,
   parseCenter,
@@ -50,7 +51,7 @@ import esri = __esri;
 //--------------------------------------------------------------------------
 
 export function getConfigViewProperties(config: ApplicationConfig): any {
-  const { center, components, extent, level, viewpoint } = config;
+  const { center, components, extent, level, viewpoint, popupFixed, popupFixedPosition } = config;
   const ui = components
     ? { ui: { components: parseViewComponents(components) } }
     : null;
@@ -58,13 +59,14 @@ export function getConfigViewProperties(config: ApplicationConfig): any {
   const centerProps = center ? { center: parseCenter(center) } : null;
   const zoomProps = level ? { zoom: parseLevel(level) } : null;
   const extentProps = extent ? { extent: parseExtent(extent) } : null;
-
+  const popupProps = popupFixed ? parsePopup(popupFixed, popupFixedPosition) : null;
   return {
     ...ui,
     ...cameraProps,
     ...centerProps,
     ...zoomProps,
-    ...extentProps
+    ...extentProps,
+    ...popupProps
   };
 }
 
