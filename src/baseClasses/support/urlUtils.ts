@@ -22,8 +22,6 @@
 
 import Camera from "esri/Camera";
 
-import { reject } from "esri/core/promiseUtils";
-
 import Extent from "esri/geometry/Extent";
 import Point from "esri/geometry/Point";
 import { PictureMarkerSymbol, SimpleMarkerSymbol } from "esri/symbols";
@@ -159,14 +157,14 @@ export async function parseMarker(marker: string): Promise<esri.Graphic | {}> {
   // ?marker=10406557.402,6590748.134,2526
 
   if (!marker) {
-    return reject();
+    return Promise.reject();
   }
 
   const markerArray = _splitURLString(marker);
   const markerLength = markerArray.length;
 
   if (markerLength < 2) {
-    return reject();
+    return Promise.reject();
   }
 
   const modules = await eachAlways([import("esri/Graphic"), import("esri/PopupTemplate"), import("esri/symbols/PictureMarkerSymbol"), import("esri/symbols/SimpleMarkerSymbol")]);
