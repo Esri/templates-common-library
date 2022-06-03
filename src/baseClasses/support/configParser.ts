@@ -16,13 +16,15 @@ import { ApplicationConfig } from "../../interfaces/applicationBase";
  * ****
  * @param config - App Config
  */
-export function parseConfig(config: ApplicationConfig): ApplicationConfig{
+export function parseConfig(config: ApplicationConfig): ApplicationConfig {
 
-    if(config?.extentSelectorConfig != null){
+    if (config?.extentSelectorConfig != null) {
         config.extentSelectorConfig = _extentSelectorConfigConvert(config.extentSelectorConfig);
         config.extentSelectorConfig = _extentSelectorConfigValidate(config.extentSelectorConfig);
     }
-
+    if (config?.searchConfiguration?.sources?.length > 0) {
+        config.searchConfiguration.sources = _searchSourcesValidate(config.searchConfiguration.sources);
+    }
     return config;
 }
 
@@ -31,10 +33,10 @@ export function parseConfig(config: ApplicationConfig): ApplicationConfig{
 export interface IExtentSelectorOutput {
     constraints: __esri.MapViewConstraints;
     mapRotation: number;
-  }
+}
 
-  const MIN_SCALE_DEFAULT = 591657528;
-  const MAX_SCALE_DEFAULT = 100;
+const MIN_SCALE_DEFAULT = 591657528;
+const MAX_SCALE_DEFAULT = 100;
 
 
 
@@ -44,26 +46,26 @@ export interface IExtentSelectorOutput {
  * // new (extentSelectorConfig === IExtentSelectorOutput)
  * @param config 
  */
-export function _extentSelectorConfigConvert(extentSelectorConfig: any): IExtentSelectorOutput{
-    if(extentSelectorConfig && (
+export function _extentSelectorConfigConvert(extentSelectorConfig: any): IExtentSelectorOutput {
+    if (extentSelectorConfig && (
         extentSelectorConfig.geometry != null ||
         extentSelectorConfig.maxScale != null ||
         extentSelectorConfig.minScale != null
-    )){ // old
+    )) { // old
         return {
             constraints: extentSelectorConfig,
             mapRotation: 0
         };
-    }else{ // new
+    } else { // new
         return extentSelectorConfig;
     }
 }
 
 
-export function _extentSelectorConfigValidate(extentSelectorConfig: IExtentSelectorOutput): IExtentSelectorOutput{
-    if(extentSelectorConfig){
+export function _extentSelectorConfigValidate(extentSelectorConfig: IExtentSelectorOutput): IExtentSelectorOutput {
+    if (extentSelectorConfig) {
 
-        if(typeof extentSelectorConfig === "object" && Object.keys(extentSelectorConfig)?.length === 0){
+        if (typeof extentSelectorConfig === "object" && Object.keys(extentSelectorConfig)?.length === 0) {
             return {
                 constraints: {
                     geometry: null,
@@ -76,28 +78,28 @@ export function _extentSelectorConfigValidate(extentSelectorConfig: IExtentSelec
         }
 
 
-        if(extentSelectorConfig?.constraints?.geometry != null){
+        if (extentSelectorConfig?.constraints?.geometry != null) {
 
             const geom = fromJSON(extentSelectorConfig.constraints.geometry);
-            if(geom?.type === "polygon"){
-                extentSelectorConfig.constraints.geometry = 
-                    (geom as __esri.Polygon).rings.length > 0 ? 
-                        extentSelectorConfig.constraints.geometry : 
+            if (geom?.type === "polygon") {
+                extentSelectorConfig.constraints.geometry =
+                    (geom as __esri.Polygon).rings.length > 0 ?
+                        extentSelectorConfig.constraints.geometry :
                         null;
-            }else if (geom?.type === "extent"){
-                extentSelectorConfig.constraints.geometry = 
+            } else if (geom?.type === "extent") {
+                extentSelectorConfig.constraints.geometry =
                     (geom as __esri.Extent).width != null && (geom as __esri.Extent).height != null ?
-                        extentSelectorConfig.constraints.geometry : 
+                        extentSelectorConfig.constraints.geometry :
                         null;
-            }else {
+            } else {
                 extentSelectorConfig.constraints.geometry = null;
             }
         }
 
-        if(extentSelectorConfig?.constraints && extentSelectorConfig.constraints?.minScale == null){
+        if (extentSelectorConfig?.constraints && extentSelectorConfig.constraints?.minScale == null) {
             extentSelectorConfig.constraints.minScale = MIN_SCALE_DEFAULT;
         }
-        if(extentSelectorConfig?.constraints && extentSelectorConfig.constraints?.maxScale == null){
+        if (extentSelectorConfig?.constraints && extentSelectorConfig.constraints?.maxScale == null) {
             extentSelectorConfig.constraints.maxScale = MAX_SCALE_DEFAULT;
         }
 
@@ -106,3 +108,13 @@ export function _extentSelectorConfigValidate(extentSelectorConfig: IExtentSelec
     return extentSelectorConfig;
 
 }
+
+export function _searchSourcesValidate(sources) {
+    sources?.forEach(source => {
+        if (source?.locator?.url && !source?.url) {
+            source.url = source.locator.url;
+        }
+    });
+    return sources;
+}
+// todo update locally and test 
