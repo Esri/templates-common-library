@@ -214,13 +214,17 @@ export async function findSelectedFeature(
   const query = layer.createQuery();
   query.objectIds = [oid];
   query.returnGeometry = true;
-  const response = await layer.queryFeatures(query);
+  try {
+    const response = await layer.queryFeatures(query);
+    const options = { features: response?.features };
+    // projection needs to be loaded for some maps and scenes
+    await projection?.load();
 
-  const options = { features: response?.features };
-  // projection needs to be loaded for some maps and scenes
-  await projection?.load();
+    view.popup.open(options);
+  } catch (error) {
 
-  view.popup.open(options);
+  }
+
 
 }
 //--------------------------------------------------------------------------
