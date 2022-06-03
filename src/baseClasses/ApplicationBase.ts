@@ -290,10 +290,6 @@ export default class ApplicationBase {
 
         this.units = this._getUnits(portal);
 
-        // Update google analytics if euei is disabled 
-        if (applicationConfig?.googleAnalytics && !this.portal?.eueiEnabled) {
-          applicationConfig.googleAnalytics = false;
-        }
         this.config = this._mixinAllConfigs({
           config: this.config,
           url: urlParams,
