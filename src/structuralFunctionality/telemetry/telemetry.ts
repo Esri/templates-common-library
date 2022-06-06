@@ -24,7 +24,6 @@
 
 import Accessor from 'esri/core/Accessor';
 import {property, subclass} from 'esri/core/accessorSupport/decorators';
-import { create } from 'esri/core/promiseUtils';
 import { whenDefinedOnce} from 'esri/core/watchUtils';
 import Alert from './Alert';
 import ArcGISTelemetry from "./telemetry.dojo.min";
@@ -289,7 +288,7 @@ export default class Telemetry extends Accessor {
     }
     private async _loadGoogleAnalytics(settings: any) {
 
-        return create(async (resolve, reject) => {
+        return new Promise<void>(async (resolve, reject) => {
             const { googleAnalyticsKey } = settings?.config;
 
             const enableGoogle = this._isGoogleEnabled(settings);
@@ -348,7 +347,7 @@ export default class Telemetry extends Accessor {
     }
     private async _loadAdobeAnalytics(settings: any) {
 
-        return create(async (resolve, reject) => {
+        return new Promise<void>(async (resolve, reject) => {
 
             const { 
                 adobeLaunchAnalyticsReportSuiteId, 
@@ -369,7 +368,7 @@ export default class Telemetry extends Accessor {
                 if(adobeLaunchAnalyticsScriptTag == null || adobeLaunchAnalyticsReportSuiteId == null){
                     resolve();
                     return;
-                }          
+                }        
                 
                 const adScript0 = document.createElement('script');
                 const url = `//assets.adobedtm.com/${adobeLaunchAnalyticsScriptTag}`;
