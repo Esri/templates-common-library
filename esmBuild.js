@@ -13,12 +13,15 @@ const readDirR = (dir) => {
 
 /** "Import" string replacement for ESM */
 const importReplace = replace(/esri\//g, "@arcgis/core/");
+/** Replace telemetry.js resource Url */
+const telemetryResourceReplace = replace("\"./telemetry.dojo.min\"", "\"./telemetry.min\"");
 
 const updateFiles = (files) => {
   const updateFiles = map(filePath => {
     return fse.readFile(filePath, "utf-8")
       .then(fileTxt => {
-        const updatedFile = importReplace(fileTxt);
+        let updatedFile = importReplace(fileTxt);
+        updatedFile = telemetryResourceReplace(updatedFile);
         return fse.writeFile(filePath, updatedFile);
       });
   });

@@ -141,8 +141,15 @@ export default class Telemetry extends Accessor {
     private settings: TelemetrySettings;
 
     get isConsentGiven(){
-        const storageValue = localStorage.getItem(`analytics-opt-in-${this.appName}`);
+        const storageValue = localStorage.getItem(this.optInStorageKey);
         return storageValue != null && storageValue !== "false";
+    }
+
+    /** Tied to the appid in the URL. This is what allows us to keep track of opt-ins on an individual app basis */
+    get optInStorageKey(): string {
+        const urlParams = new URLSearchParams(window.location.search);
+        const appId: string = urlParams.get("appid");
+        return `analytics-opt-in-${appId != null ? appId : this.settings.appName}`
     }
 
     constructor(settings: TelemetrySettings) {
@@ -193,7 +200,7 @@ export default class Telemetry extends Accessor {
         this.consentAlert = new Alert({
           container: alertContainer,
           config: this.settings.config,
-          appName: this.settings.appName
+          appName: this.optInStorageKey
         });
     }
 
@@ -245,7 +252,7 @@ export default class Telemetry extends Accessor {
         
         // Check to see if GA is enabled
         let enabled = googleAnalytics;
-        let optInKey = `analytics-opt-in-${telemetry.name}`
+        let optInKey = this.optInStorageKey;
         if (enabled && googleAnalyticsConsent) {
             const localSaved = localStorage.getItem(optInKey);
             enabled = localSaved != null;
@@ -261,7 +268,7 @@ export default class Telemetry extends Accessor {
         }
 
         let enabled = adobeLaunchAnalytics;
-        let optInKey = `analytics-opt-in-${telemetry.name}`
+        let optInKey = this.optInStorageKey;
         if (enabled && googleAnalyticsConsent) {
             const localSaved = localStorage.getItem(optInKey);
             enabled = localSaved != null;

@@ -83,12 +83,12 @@ export default class Alert extends Widget {
   }
 
   handleClick() {
-    localStorage.setItem(`analytics-opt-in-${this.appName}`, "true");
+    localStorage.setItem(`${this.appName}`, "true");
     this.state = "consentGiven";
   }
 
   handleClose(){
-    localStorage.setItem(`analytics-opt-in-${this.appName}`, "false");
+    localStorage.setItem(`${this.appName}`, "false");
     this.state = "consentNotGiven";
   }
 }
