@@ -452,7 +452,7 @@ class AdobeWrapper implements TelemetryInstance  {
 
     logPageView: (page?: string) => void = (page?: string, options?: any)=>{
         if (this._adobeTracker == null) {
-            console.error(`this._adobeTracker function is undefined. Something went wrong with AdobeLaunch Instantiation`)
+            console.error(`this._adobeTracker function is undefined. Something went wrong with AdobeLaunch Instantiation`);
         }
         const telemetryPayload = this.createPageView({
                 page,
@@ -463,18 +463,18 @@ class AdobeWrapper implements TelemetryInstance  {
             false
         )
         
-        this._adobeTracker.t(telemetryPayload);
+        this?._adobeTracker?.t(telemetryPayload);
         
-        this._wrappedTelemInstance.logPageView(page);
+        this?._wrappedTelemInstance?.logPageView(page);
     };
     logEvent: (payload: EventPayload) => boolean = (payload: EventPayload)=>{
         if (this._adobeTracker == null) {
             console.error(`this._adobeTracker function is undefined. Something went wrong with AdobeLaunch Instantiation`)
         }
         const telemetryPayload = this.createEventLog(payload, {}, false, {});
-        this._adobeTracker.tl(true, "o", "Custom Event", telemetryPayload);
+        this?._adobeTracker?.tl(true, "o", "Custom Event", telemetryPayload);
 
-        return this._wrappedTelemInstance.logEvent(telemetryPayload);
+        return this?._wrappedTelemInstance?.logEvent(telemetryPayload);
     };
     
     ///////////////////////////
