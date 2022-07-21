@@ -1,0 +1,736 @@
+{
+  "config": [
+    {
+      "type": "section",
+      "id": "map"
+    },
+    {
+      "type": "section",
+      "id": "slider",
+      "content": [
+        {
+          "type": "setting",
+          "id": "sliderBranchingConditional",
+          "express": true,
+          "config": {
+            "branches": [
+              [
+                "numericFieldSelector",
+                "dataSliderRange",
+                "dataSliderLoop",
+                "dataSliderExcludedEffect",
+                "dataSliderIncludedEffect",
+                "dataSliderNumericModes",
+                "numericSliderSpeed",
+                "dataSliderMinLabelAlias",
+                "dataSliderMaxLabelAlias",
+                "dataSliderCurrentValueAppend"
+              ],
+              [
+                "timeLoop",
+                "dataSliderExcludedEffect",
+                "dataSliderIncludedEffect",
+                "dataSliderSpeed",
+                "timeVisible",
+                "dataSliderTimeModes",
+                "liveData"
+              ]
+            ]
+          },
+          "content": [
+            {
+              "type": "setting",
+              "id": "numericFieldSelector",
+              "express": true,
+              "config": {
+                "layerSelectionMode": "single",
+                "supportedLayerTypes": "*",
+                "supportedGeometryTypes": "*",
+                "supportsFieldSelection": true,
+                "isFieldSelectionRequired": true,
+                "fieldSelectionMode": "single",
+                "supportedFieldTypes": [
+                  "long",
+                  "double",
+                  "single",
+                  "integer",
+                  "small-integer"
+                ]
+              },
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderExcludedEffect",
+              "express": true,
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderRange",
+              "express": true,
+              "config": {
+                "defaultMinVal": 1,
+                "defaultMaxVal": 100,
+                "defaultDefaultVal": 1,
+                "absoluteMinVal": 1,
+                "includeDefaultValInput": true,
+                "layerAndFieldSelectorToWatch": "numericFieldSelector"
+              },
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderLoop",
+              "express": true,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderNumericModes",
+              "express": true,
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "numericSliderSpeed",
+              "express": true,
+              "config": {
+                "branches": [
+                  ["numericSliderSpeedControl"],
+                  ["divisionSections", "dataSliderSpeed"]
+                ]
+              },
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "numericSliderSpeedControl",
+                  "express": true,
+                  "defaultValue": [2]
+                },
+                {
+                  "type": "setting",
+                  "id": "divisionSections",
+                  "express": true,
+                  "defaultValue": 5
+                },
+                {
+                  "type": "setting",
+                  "id": "dataSliderSpeed",
+                  "express": true,
+                  "defaultValue": [2]
+                }
+              ],
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderMinLabelAlias",
+              "express": false,
+              "defaultValue": ""
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderMaxLabelAlias",
+              "express": false,
+              "defaultValue": ""
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderCurrentValueAppend",
+              "express": false,
+              "defaultValue": ""
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderSpeed",
+              "express": true,
+              "defaultValue": [2]
+            },
+            {
+              "type": "setting",
+              "id": "timePosition",
+              "defaultValue": {
+                "position": "bottom-left",
+                "index": 0
+              }
+            },
+            {
+              "type": "setting",
+              "id": "timeLoop",
+              "express": true,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderIncludedEffect",
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "timeVisible",
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "liveData",
+              "defaultValue": false,
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "durationTime",
+                  "express": true,
+                  "defaultValue": 1,
+                  "min": 0
+                },
+                {
+                  "type": "setting",
+                  "id": "snapTime",
+                  "express": true,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "durationPeriod",
+                  "express": true,
+                  "defaultValue": "weeks"
+                },
+                {
+                  "type": "setting",
+                  "id": "timeInterval",
+                  "express": true,
+                  "defaultValue": 1,
+                  "min": 0
+                },
+                {
+                  "type": "setting",
+                  "id": "timeIntervalUnits",
+                  "express": true,
+                  "defaultValue": "days"
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderTimeModes",
+              "defaultValue": null,
+              "express": true
+            }
+          ],
+          "defaultValue": null
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "about",
+      "content": [
+        {
+          "type": "subsection",
+          "id": "appComprehension",
+          "content": [
+            {
+              "type": "group",
+              "id": "appComprehension",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "header",
+                  "express": true,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "title",
+                      "express": true,
+                      "defaultValue": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "splash",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "splashButtonPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashOnStart",
+                      "defaultValue": true
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashTitle",
+                      "express": true,
+                      "defaultValue": "Splash title"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashContent",
+                      "express": true,
+                      "defaultValue": "Splash content"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashButtonText",
+                      "defaultValue": "Okay"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "coverPage",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "coverPageConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "title": "Title",
+                        "titleColor": "#ffffff",
+                        "subtitle": "Subtitle",
+                        "subtitleColor": "#ffffff",
+                        "textPosition": "center-leading",
+                        "buttonText": "Explore",
+                        "buttonTextColor": "#ffffff",
+                        "background": {
+                          "backgroundType": "color",
+                          "backgroundImage": null,
+                          "backgroundColor": "#0079c1"
+                        }
+                      }
+                    }
+                  ],
+                  "defaultValue": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "featureComprehension",
+          "content": [
+            {
+              "type": "group",
+              "id": "featureComprehension",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "popupFixed",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "popupFixedPosition",
+                      "express": true,
+                      "defaultValue": "bottom-right"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "popupHover",
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "legend",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "legendConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "style": {
+                          "type": "classic",
+                          "layout": "stack"
+                        }
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "legendPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "legendOpenAtStart",
+                      "defaultValue": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "interactivity",
+      "content": [
+        {
+          "type": "subsection",
+          "id": "exploreNavigate",
+          "content": [
+            {
+              "type": "group",
+              "id": "exploreNavigate",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "home",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "homePosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "mapZoom",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "mapZoomPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "bookmarks",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "bookmarksPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "locateWidget",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "locateWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 4
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "scalebar",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "scalebarPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "fullScreen",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "fullScreenPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "disableScroll",
+                  "defaultValue": false,
+                  "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "extentSelector",
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "extentSelectorConfig",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "defaultValue": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "modify",
+          "content": [
+            {
+              "type": "group",
+              "id": "modify",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "layerList",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "layerListPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListOpenAtStart",
+                      "express": false,
+                      "defaultValue": false
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "basemapToggle",
+                  "defaultValue": false,
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "basemapTogglePosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "basemapSelector",
+                      "defaultValue": "streets-vector"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "share",
+          "content": [
+            {
+              "type": "group",
+              "id": "share",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "share",
+                  "defaultValue": false,
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "sharePosition",
+                      "defaultValue": "top-right"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "screenshot",
+                  "defaultValue": false,
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "screenshotPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "search",
+          "content": [
+            {
+              "type": "group",
+              "id": "search",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "search",
+                  "express": true,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "searchOpenAtStart",
+                      "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "searchPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 1
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "searchConfiguration",
+                      "express": true,
+                      "defaultValue": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "themeLayout",
+      "content": [
+        {
+          "type": "subsection",
+          "id": "theme",
+          "content": [
+            {
+              "type": "setting",
+              "id": "theme",
+              "express": true,
+              "defaultValue": "light"
+            },
+            {
+              "type": "group",
+              "id": "sliderTheme",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "dataSliderTheme",
+                  "express": true,
+                  "defaultValue": "light"
+                },
+                {
+                  "type": "setting",
+                  "id": "dataSliderOpacityToggle",
+                  "express": true,
+                  "defaultValue": false
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "headerTheme",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customTheme",
+                  "express": true,
+                  "config": {
+                    "numOfSections": 1,
+                    "headerOnly": true
+                  },
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "additionalOptions",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customCSS",
+                  "defaultValue": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "positionManager",
+          "content": [
+            {
+              "type": "setting",
+              "id": "dataSliderPositionOptions",
+              "express": true,
+              "defaultValue": "bottom"
+            },
+            {
+              "type": "setting",
+              "id": "positionManagerDataSlider",
+              "express": true,
+              "config": {
+                "disabledDependentField": "dataSliderPositionOptions"
+              },
+              "defaultValue": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
