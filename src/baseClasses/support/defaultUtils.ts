@@ -1,4 +1,4 @@
-export function getDefaultValues(configParamsObj) {
+export function generateDefaultValuesObj(configParamsObj) {
   // Create initial object to return
   const defaultValues = {};
   const { config } = configParamsObj;
