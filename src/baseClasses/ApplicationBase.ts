@@ -33,6 +33,8 @@ import esriConfig from "esri/config";
 import { defineLocale } from "../structuralFunctionality/locale";
 import { prefersRTL } from "esri/intl";
 
+import { generateDefaultValuesObj, getConfigParams } from "./support/configParamsUtils";
+
 
 const defaultConfig = {
   portalUrl: "https://www.arcgis.com",
@@ -295,6 +297,24 @@ export default class ApplicationBase {
           url: urlParams,
           application: applicationConfig
         });
+
+        // DEFAULT VALUES WORK STARTS HERE
+        
+        // GET CONFIG PARAMS JSON BASED ON APP TEMPLATE TYPE
+        const configParamsJSON = getConfigParams(`/apps/instant/${this.config.instantAppType}/index.html`);
+
+        // GET DEFAULT VALES OBJECT DEFINED IN CONFIG PARAMS JSON
+        const defaultValues = generateDefaultValuesObj(configParamsJSON);
+
+        this.config = {
+          ...this.config, // Current config object
+          ...defaultValues, // default values from config params JSON
+          ...this.results.applicationData, // configured vales from template app data
+          ...this.config.localDefaultValues, // developer defined defaults from locally hosted app
+          ...urlParams // values defined from URL params
+        };
+
+        delete this.config.localDefaultValues;
 
         this._setGeometryService(this.config, portal);
 
