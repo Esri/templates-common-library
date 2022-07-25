@@ -1,7 +1,7 @@
 const path = require("path");
 const fse = require("fs-extra");
 const fs  = require( "fs");
-const { map, replace }  = require( "ramda");
+const { map, replace }  = require("ramda");
 
 /** Recursively get all files within a directory */
 const readDirR = (dir) => {
@@ -11,17 +11,13 @@ const readDirR = (dir) => {
     : dir;
 };
 
-/** "Import" string replacement for ESM */
-const importReplace = replace(/esri\//g, "@arcgis/core/");
-/** Replace telemetry.js resource Url */
-const telemetryResourceReplace = replace("\"./telemetry.dojo.min\"", "\"./telemetry.min\"");
-
 const updateFiles = (files) => {
   const updateFiles = map(filePath => {
     return fse.readFile(filePath, "utf-8")
       .then(fileTxt => {
-        let updatedFile = importReplace(fileTxt);
-        updatedFile = telemetryResourceReplace(updatedFile);
+        let updatedFile = fileTxt.replaceAll(/esri\//g, "@arcgis/core/");
+        updatedFile = updatedFile.replaceAll("\"./telemetry.dojo.min\"", "\"./telemetry.min\"");
+        updatedFile = updatedFile.replaceAll("dojo/text!", "");
         return fse.writeFile(filePath, updatedFile);
       });
   });
