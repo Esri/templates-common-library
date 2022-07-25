@@ -309,8 +309,8 @@ export default class ApplicationBase {
         this.config = {
           ...this.config, // Current config object
           ...defaultValues, // default values from config params JSON
-          ...this.results.applicationData, // configured vales from template app data
           ...this.config.localDefaultValues, // developer defined defaults from locally hosted app
+          ...this.results.applicationData, // configured vales from template app data
           ...urlParams // values defined from URL params
         };
 
