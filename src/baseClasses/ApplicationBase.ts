@@ -34,6 +34,7 @@ import { defineLocale } from "../structuralFunctionality/locale";
 import { prefersRTL } from "esri/intl";
 
 import { generateDefaultValuesObj, getConfigParams } from "./support/configParamsUtils";
+import { EAppTemplateType } from "./CompatibilityChecker";
 
 
 const defaultConfig = {
@@ -170,7 +171,7 @@ export default class ApplicationBase {
     return result as __esri.PortalQueryResult;
   }
 
-  async load(): Promise<ApplicationBase> {
+  async load(template: EAppTemplateType): Promise<ApplicationBase> {
     const { settings } = this;
     const {
       group: groupSettings,
@@ -301,7 +302,7 @@ export default class ApplicationBase {
         // DEFAULT VALUES WORK STARTS HERE
         
         // GET CONFIG PARAMS JSON BASED ON APP TEMPLATE TYPE
-        const configParamsJSON = getConfigParams(`/apps/instant/${this.config.instantAppType}/index.html`);
+        const configParamsJSON = getConfigParams(template);
 
         // GET DEFAULT VALES OBJECT DEFINED IN CONFIG PARAMS JSON
         const defaultValues = generateDefaultValuesObj(configParamsJSON);

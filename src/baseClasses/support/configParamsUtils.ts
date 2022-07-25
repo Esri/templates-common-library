@@ -36,8 +36,8 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Exhibit]: Exhibit
 };
 
-export function getConfigParams(templateUrl: string) {
-  return JSON.parse(INSTANT_APPS_CONFIG_PARAMS_MAP[templateUrl]);
+export function getConfigParams(template: EAppTemplateType) {
+  return JSON.parse(INSTANT_APPS_CONFIG_PARAMS_MAP[template]);
 }
 
 export function generateDefaultValuesObj(configParamsObj) {
