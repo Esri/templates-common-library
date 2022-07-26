@@ -63,7 +63,6 @@ function handleConfigContent(configObj, defaultValues) {
   content.forEach(contentItem => {
     const { type, id, defaultValue } = contentItem;
 
-    // Write a function to automate the process to merge defaultValues from preset config settings to config params JSON IF a defaultValue does not exist in the settings object
     if (type === "setting" && defaultValue === undefined)
       console.warn(`${id} does not have a default value defined.`);
 
