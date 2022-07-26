@@ -11,8 +11,8 @@
     "generateTypes:amd": "dts-generator --prefix TemplatesCommonLib --project ./ --out ./dist/index.d.ts",
     "run:test": "npx intern serveOnly",
     "build:run:test": "npm run build:test && npm run run:test",
-    "filesCopy:amd": "npx cpy ./amd/package.json ./dist && npx cpy ./README.md ./dist && npx cpy ./src/structuralFunctionality/telemetry/telemetry.dojo.min.js ./dist/structuralFunctionality/telemetry",
-    "filesCopy:esm": "npx cpy ./esm/package.json ./distESM && npx cpy ./README.md ./distESM  && npx cpy ./src/structuralFunctionality/telemetry/telemetry.min.js ./distESM/structuralFunctionality/telemetry"
+    "filesCopy:amd": "npx cpy ./amd/package.json ./dist && npx cpy ./README.md ./dist && npx cpy ./src/structuralFunctionality/telemetry/telemetry.dojo.min.js ./dist/structuralFunctionality/telemetry && npx cpy ./src/configParamsJSON ./dist/configParamsJSON",
+    "filesCopy:esm": "npx cpy ./esm/package.json ./distESM && npx cpy ./README.md ./distESM  && npx cpy ./src/structuralFunctionality/telemetry/telemetry.min.js ./distESM/structuralFunctionality/telemetry && npx cpy ./src/configParamsJSON ./distESM/configParamsJSON"
   },
   "author": "Cameron Smith (c.smith@esri.com)",
   "license": "ISC",
