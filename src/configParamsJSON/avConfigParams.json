@@ -1,0 +1,359 @@
+{
+  "config": [
+    {
+      "type": "section",
+      "id": "map",
+      "config": {
+        "conditions": ["attachments"]
+      }
+    },
+    {
+      "type": "section",
+      "id": "about",
+      "content": [
+        {
+          "type": "group",
+          "id": "appComprehension",
+          "content": [
+            {
+              "type": "setting",
+              "id": "title",
+              "express": true,
+              "defaultValue": ""
+            },
+            {
+              "type": "setting",
+              "id": "onboarding",
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "showOnboardingOnStart",
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "onboardingButtonText",
+                  "defaultValue": "Okay"
+                },
+                {
+                  "type": "setting",
+                  "id": "onboardingImage",
+                  "defaultValue": ""
+                },
+                {
+                  "type": "setting",
+                  "id": "customOnboarding",
+                  "defaultValue": false,
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "customOnboardingHTML",
+                      "defaultValue": "<h2><span style='color:#0079c1'>Welcome!</span></h2><p>View a location&rsquo;s attachments:</p><p>In addition to browsing through location details and attachments, use the following methods to explore the map:</p><ul><li>Select a feature on the map</li><li>If a search box is available, search for a specific feature</li></ul>",
+                      "express": true
+                    }
+                  ]
+                }
+              ],
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "legend",
+              "defaultValue": false,
+              "express": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "attachments",
+      "content": [
+        {
+          "type": "group",
+          "id": "attachments",
+          "content": [
+            {
+              "type": "setting",
+              "id": "appLayout",
+              "express": true,
+              "config": {
+                "branches": [
+                  [],
+                  ["thumbnailFormat", "thumbnailHeight", "mapCentricTooltip"]
+                ]
+              },
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "thumbnailFormat",
+                  "defaultValue": "stretch"
+                },
+                {
+                  "type": "setting",
+                  "id": "thumbnailHeight",
+                  "config": {
+                    "min": 100,
+                    "max": 500
+                  },
+                  "defaultValue": 200
+                },
+                {
+                  "type": "setting",
+                  "id": "mapCentricTooltip",
+                  "defaultValue": false
+                }
+              ],
+              "defaultValue": {
+                "branchValue": "photo-centric",
+                "branchOptionsFieldNames": []
+              }
+            },
+            {
+              "type": "setting",
+              "id": "imageDirection",
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "address",
+              "defaultValue": false,
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "onlyDisplayFeaturesWithAttachments",
+              "defaultValue": false,
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "applyEffectToNonActiveLayers",
+              "defaultValue": false,
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "nonActiveLayerEffects",
+                  "express": false,
+                  "defaultValue": {
+                    "id": "muted-blur",
+                    "data": {
+                      "includedEffect": "",
+                      "excludedEffect": "blur(3px) opacity(50%)"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "order",
+              "defaultValue": "ASC"
+            },
+            {
+              "type": "setting",
+              "id": "attachmentLayers",
+              "config": {
+                "layerSelectionMode": "multiple",
+                "supportedLayerTypes": "*",
+                "supportedGeometryTypes": "*",
+                "supportsFieldSelection": true,
+                "fieldSelectionMode": "single",
+                "supportedFieldTypes": "*"
+              },
+              "defaultValue": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "interactivity",
+      "content": [
+        {
+          "type": "subsection",
+          "id": "exploreNavigate",
+          "content": [
+            {
+              "type": "group",
+              "id": "explore",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "home",
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "mapZoom",
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "fullScreen",
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "zoomLevel",
+                  "defaultValue": 10000
+                },
+                {
+                  "type": "setting",
+                  "id": "imagePanZoom",
+                  "express": true,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "locateWidget",
+                  "express": false,
+                  "defaultValue": false
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "navigate",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "extentSelector",
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "extentSelectorConfig",
+                      "defaultValue": null
+                    }
+                  ],
+                  "defaultValue": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "modify",
+          "content": [
+            {
+              "type": "group",
+              "id": "modify",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "layerList",
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "selectFeatures",
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "attributeEditing",
+                  "defaultValue": false,
+                  "express": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "share",
+          "content": [
+            {
+              "type": "group",
+              "id": "share",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "share",
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "download",
+                  "defaultValue": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "search",
+          "content": [
+            {
+              "type": "setting",
+              "id": "search",
+              "express": true,
+              "defaultValue": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "searchOpenAtStart",
+                  "express": true,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "searchConfiguration",
+                  "express": true,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "themeLayout",
+      "content": [
+        {
+          "type": "group",
+          "id": "theme",
+          "content": [
+            {
+              "type": "setting",
+              "id": "theme",
+              "express": true,
+              "defaultValue": "light"
+            },
+            {
+              "type": "setting",
+              "id": "customTheme",
+              "express": true,
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "customCSS",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "layout",
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapToolsExpanded",
+              "defaultValue": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

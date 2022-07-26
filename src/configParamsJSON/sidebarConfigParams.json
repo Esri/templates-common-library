@@ -1,0 +1,572 @@
+{
+  "config": [
+    {
+      "type": "section",
+      "id": "map",
+      "content": [
+        {
+          "type": "setting",
+          "id": "keyboardShortcuts",
+          "express": true,
+          "defaultValue": false
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "about",
+      "content": [
+        {
+          "type": "setting",
+          "id": "header",
+          "defaultValue": true,
+          "express": true,
+          "content": [
+            {
+              "type": "setting",
+              "id": "title",
+              "defaultValue": "",
+              "express": true
+            }
+          ]
+        },
+        {
+          "type": "setting",
+          "id": "splash",
+          "express": true,
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "splashButtonPosition",
+              "defaultValue": {
+                "position": "top-right",
+                "index": 0
+              }
+            },
+            {
+              "type": "setting",
+              "id": "splashOnStart",
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "splashTitle",
+              "express": true,
+              "defaultValue": "Splash title"
+            },
+            {
+              "type": "setting",
+              "id": "splashContent",
+              "express": true,
+              "defaultValue": "Splash content"
+            },
+            {
+              "type": "setting",
+              "id": "splashButtonText",
+              "defaultValue": "Okay"
+            }
+          ]
+        },
+        {
+          "type": "setting",
+          "id": "coverPage",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "coverPageConfig",
+              "express": false,
+              "defaultValue": {
+                "title": "Title",
+                "titleColor": "#ffffff",
+                "subtitle": "Subtitle",
+                "subtitleColor": "#ffffff",
+                "textPosition": "center-leading",
+                "buttonText": "Explore",
+                "buttonTextColor": "#ffffff",
+                "background": {
+                  "backgroundType": "color",
+                  "backgroundImage": null,
+                  "backgroundColor": "#0079c1"
+                }
+              }
+            }
+          ],
+          "defaultValue": false
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "sidebar",
+      "content": [
+        {
+          "type": "setting",
+          "id": "sidebarPosition",
+          "express": false,
+          "defaultValue": "start"
+        },
+        {
+          "type": "setting",
+          "id": "sidebarExpanded",
+          "express": false,
+          "defaultValue": false
+        },
+        {
+          "type": "group",
+          "id": "activePanel",
+          "content": [
+            {
+              "type": "setting",
+              "id": "activePanel",
+              "defaultValue": "legendPanel",
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "legendPanel",
+                  "defaultValue": true,
+                  "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "layerListPanel",
+                  "defaultValue": false,
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "selectedLayers",
+                      "express": true,
+                      "config": {
+                        "layerSelectionMode": "multiple",
+                        "supportedLayerTypes": "*",
+                        "supportedGeometryTypes": "*",
+                        "supportsFieldSelection": false
+                      },
+                      "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListConfig",
+                      "express": false,
+                      "config": {
+                        "supportedLayerTypes": [
+                          "map-image",
+                          "feature",
+                          "imagery",
+                          "group"
+                        ],
+                        "sections": ["addLegend", "addTable", "addZoom"]
+                      },
+                      "defaultValue": null
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "bookmarksPanel",
+                  "express": true,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "popupPanel",
+                  "defaultValue": true,
+                  "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "layerEditPanel",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "utilityNetwork",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "details",
+                  "defaultValue": true,
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "detailsContent",
+                      "express": true,
+                      "defaultValue": null
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "filterPanel",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "expandFilters",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "filterConfig",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "basemapGallery",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "basemapGalleryConfig",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "interactivity",
+      "content": [
+        {
+          "type": "subsection",
+          "id": "exploreNavigate",
+          "content": [
+            {
+              "type": "group",
+              "id": "explore",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "popupHover",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "home",
+                  "defaultValue": true,
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "homePosition",
+                      "express": false,
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "locateWidget",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "locateWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "mapZoom",
+                  "defaultValue": true,
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "mapZoomPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "measure",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "measurePosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureOpenAtStart",
+                      "express": false,
+                      "defaultValue": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "navigate",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "disableScroll",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "scalebar",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "scalebarPosition",
+                      "defaultValue": {
+                        "position": "bottom-left",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "extentSelector",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "extentSelectorConfig",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "modify",
+          "content": [
+            {
+              "type": "setting",
+              "id": "basemapToggle",
+              "defaultValue": false,
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "basemapTogglePosition",
+                  "defaultValue": {
+                    "position": "bottom-right",
+                    "index": 0
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "basemapSelector",
+                  "express": false,
+                  "defaultValue": "streets-vector"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "share",
+          "content": [
+            {
+              "type": "setting",
+              "id": "screenshot",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "screenshotPosition",
+                  "defaultValue": {
+                    "position": "top-left",
+                    "index": 0
+                  }
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "exportToPDF",
+              "express": false,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "share",
+              "express": false,
+              "defaultValue": true
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "search",
+          "content": [
+            {
+              "type": "setting",
+              "id": "search",
+              "express": true,
+              "defaultValue": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "searchPosition",
+                  "defaultValue": {
+                    "position": "top-right",
+                    "index": 1
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "searchOpenAtStart",
+                  "express": true,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "searchConfiguration",
+                  "express": true,
+                  "config": {
+                    "includeDefaultLocators": false
+                  },
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "customURLParams",
+          "content": [
+            {
+              "type": "group",
+              "id": "customURLParams",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customURLParamName",
+                  "express": false,
+                  "defaultValue": ""
+                },
+                {
+                  "type": "setting",
+                  "id": "customUrlParam",
+                  "express": false,
+                  "config": {
+                    "layerSelectionMode": "single",
+                    "supportedLayerTypes": "*",
+                    "supportedGeometryTypes": "*",
+                    "supportsFieldSelection": true,
+                    "fieldSelectionMode": "single",
+                    "supportedFieldTypes": "*"
+                  },
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "themeLayout",
+      "content": [
+        {
+          "type": "subsection",
+          "id": "layout",
+          "content": [
+            {
+              "type": "setting",
+              "id": "panelSize",
+              "express": false,
+              "defaultValue": "m"
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "theme",
+          "content": [
+            {
+              "type": "group",
+              "id": "theme",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "theme",
+                  "defaultValue": "dark",
+                  "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "customTheme",
+                  "express": true,
+                  "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "customCSS",
+                  "defaultValue": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "positionManager",
+          "content": [
+            {
+              "type": "setting",
+              "id": "positionManager",
+              "express": true,
+              "defaultValue": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
