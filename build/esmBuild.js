@@ -34,5 +34,3 @@ const files = readDirR("./distESM");
 updateFiles(files).then(()=>{
   console.log("ESM string replacement finished");
 });
-
-module.exports.readDirR = readDirR;
