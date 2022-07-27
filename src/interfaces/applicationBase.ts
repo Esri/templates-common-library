@@ -16,6 +16,7 @@ export interface ApplicationBaseItemPromises {
 }
 
 export interface ApplicationConfigs {
+  defaultValues?:ApplicationConfig;
   application?: ApplicationConfig;
   config: ApplicationConfig;
   local?: ApplicationConfig;
