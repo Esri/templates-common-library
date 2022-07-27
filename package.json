@@ -3,11 +3,11 @@
   "description": "Contains reusable utilities for all ArcGIS Instant apps",
   "scripts": {
     "build:amd": "tsc && npm run generateTypes:amd && npm run filesCopy:amd",
-    "build:esm": "tsc -p ./tsconfig.esm.json && node .build/esmBuild.js && npm run filesCopy:esm",
+    "build:esm": "tsc -p ./tsconfig.esm.json && node ./build/esmBuild.js && npm run filesCopy:esm",
     "build:test": "tsc -p ./tests/tsconfig.tests.json",
     "watch:amd": "tsc --watch",
     "watch:tests": "tsc -p ./tests/tsconfig.tests.json --watch",
-    "version:update": "node .build/versionAutoUpdate.js",
+    "version:update": "node ./build/versionAutoUpdate.js",
     "prepare": "npm run version:update && npm run build:amd && npm run build:esm",
     "generateTypes:amd": "dts-generator --prefix TemplatesCommonLib --project ./ --out ./dist/index.d.ts",
     "run:test": "npx intern serveOnly",
