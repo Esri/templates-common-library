@@ -5,7 +5,6 @@
  // * 3. updates both package.json files (AMD and ESM) with the new version number, so the repo is now ready for publishing
  //
 
-const { readDirR } = require("./esmBuild");
 const axios = require('axios');
 
 const fse = require("fs-extra");
@@ -56,4 +55,12 @@ const updatePackageJson = (files, version, type) => {
   });
 
   return Promise.all(updateFiles(files));
+};
+
+/** Recursively get all files within a directory */
+const readDirR = (dir) => {
+  const recur = map(f => readDirR(path.join(dir, f)));
+  return fs.statSync(dir).isDirectory()
+    ? Array.prototype.concat(...recur(fs.readdirSync(dir)))
+    : dir;
 };
