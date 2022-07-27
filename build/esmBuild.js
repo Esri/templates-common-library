@@ -1,7 +1,7 @@
 const path = require("path");
 const fse = require("fs-extra");
-const fs  = require( "fs");
-const { map, replace }  = require("ramda");
+const fs  = require("fs");
+const { map }  = require("ramda");
 
 /** Recursively get all files within a directory */
 const readDirR = (dir) => {
@@ -34,3 +34,5 @@ const files = readDirR("./distESM");
 updateFiles(files).then(()=>{
   console.log("ESM string replacement finished");
 });
+
+module.exports.readDirR = readDirR;
