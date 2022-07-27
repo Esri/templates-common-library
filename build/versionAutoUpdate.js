@@ -7,7 +7,9 @@
 
 const axios = require('axios');
 
+const path = require("path");
 const fse = require("fs-extra");
+const fs  = require("fs");
 const { map }  = require("ramda");
 
 const url = "https://registry.npmjs.org/templates-common-library";
