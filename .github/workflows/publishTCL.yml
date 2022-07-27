@@ -18,10 +18,11 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: ls
-      - run: cd dist
-      - run: npm publish
-      - run: cd ../distESM
-      - run: npm publish --tag esm
+      - name: Publish TCL (AMD)
+        working-directory: ./dist
+        run: npm publish
+      - name: Publish TCL (ESM)
+        working-directory: ./distESM
+        run: npm publish --tag esm
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
