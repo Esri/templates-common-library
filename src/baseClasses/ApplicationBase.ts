@@ -307,13 +307,12 @@ export default class ApplicationBase {
         // GET DEFAULT VALES OBJECT DEFINED IN CONFIG PARAMS JSON
         const defaultValues = generateDefaultValuesObj(configParamsJSON);
 
-        this.config = {
-          ...this.config, // Current config object
-          ...defaultValues, // default values from config params JSON
-          ...this.config.localDefaultValues, // developer defined defaults from locally hosted app
-          ...this.results.applicationData, // configured vales from template app data
-          ...urlParams // values defined from URL params
-        };
+        this.config = this._mixinAllConfigs({
+          config: this.config,
+          defaultValues,
+          url: urlParams,
+          application: applicationConfig
+        });
 
         delete this.config.localDefaultValues;
 
@@ -625,14 +624,15 @@ export default class ApplicationBase {
 
   private _mixinAllConfigs(params: ApplicationConfigs): ApplicationConfig {
     const config = params.config || null;
+    const defaultValues = params.defaultValues || null;
     const appConfig = params.application || null;
-    const localConfig = params.local || null;
     const urlConfig = params.url || null;
 
     return {
       ...config,
+      ...defaultValues,
+      ...this.config?.localDefaultValues,
       ...appConfig,
-      ...localConfig,
       ...urlConfig
     };
   }
