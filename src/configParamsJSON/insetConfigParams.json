@@ -2,22 +2,19 @@
   "config": [
     {
       "type": "section",
-      "id": "map",
-      "config": {
-        "itemTypes": ["2d", "3d"]
-      }
+      "id": "map"
     },
     {
       "type": "section",
-      "id": "exhibit",
+      "id": "insets",
       "content": [
         {
           "type": "group",
-          "id": "exhibit",
+          "id": "insets",
           "content": [
             {
               "type": "setting",
-              "id": "exhibitConfig",
+              "id": "insetsConfig",
               "express": true,
               "defaultValue": null
             }
@@ -45,9 +42,15 @@
                   "content": [
                     {
                       "type": "setting",
-                      "id": "alignHeader",
-                      "defaultValue": "left",
-                      "express": false
+                      "id": "title",
+                      "defaultValue": "",
+                      "express": true
+                    },
+                    {
+                      "type": "setting",
+                      "id": "titleLink",
+                      "defaultValue": "",
+                      "express": true
                     }
                   ]
                 },
@@ -137,7 +140,7 @@
                 {
                   "type": "setting",
                   "id": "legend",
-                  "defaultValue": true,
+                  "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
@@ -153,6 +156,12 @@
                       "defaultValue": false
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "popupFixedPosition",
+                  "express": true,
+                  "defaultValue": "top-right"
                 }
               ]
             }
@@ -183,6 +192,38 @@
                       "id": "mapZoomPosition",
                       "defaultValue": {
                         "position": "top-left",
+                        "index": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "home",
+                  "express": true,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "homePosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "locateWidget",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "locateWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-right",
                         "index": 0
                       }
                     }
@@ -195,8 +236,7 @@
                   "content": [
                     {
                       "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "defaultValue": null
+                      "id": "extentSelectorConfig"
                     }
                   ]
                 }
@@ -206,71 +246,66 @@
         },
         {
           "type": "subsection",
-          "id": "controlPanelOptions",
+          "id": "modify",
           "content": [
             {
-              "type": "group",
-              "id": "controlPanelOptions",
+              "type": "setting",
+              "id": "layerList",
+              "defaultValue": false,
               "content": [
                 {
                   "type": "setting",
-                  "id": "autoPlay",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "enableAutoPlay",
-                      "defaultValue": false,
-                      "express": false
-                    },
-                    {
-                      "type": "setting",
-                      "id": "autoPlayDuration",
-                      "express": false,
-                      "defaultValue": 5
-                    }
-                  ]
+                  "id": "layerListPosition",
+                  "defaultValue": {
+                    "position": "bottom-right",
+                    "index": 0
+                  }
                 },
                 {
                   "type": "setting",
-                  "id": "tableOfContents",
-                  "defaultValue": true
+                  "id": "layerListOpenAtStart",
+                  "express": false,
+                  "defaultValue": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "share",
+          "content": [
+            {
+              "type": "group",
+              "id": "share",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "exportToPDF",
+                  "defaultValue": false,
+                  "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "exportToPDFPosition",
+                  "defaultValue": {
+                    "position": "top-right",
+                    "index": 1
+                  }
                 },
                 {
                   "type": "setting",
                   "id": "share",
-                  "express": true,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "express": false
                 },
                 {
                   "type": "setting",
-                  "id": "exportToPDF",
-                  "defaultValue": false
-                }
-              ]
-            },
-            {
-              "type": "group",
-              "id": "general",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "home",
-                  "express": true,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "measure",
-                  "express": true,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "locateWidget",
-                  "express": true,
-                  "defaultValue": false
+                  "id": "sharePosition",
+                  "defaultValue": {
+                    "position": "top-right",
+                    "index": 2
+                  }
                 }
               ]
             }
@@ -294,7 +329,7 @@
                       "type": "setting",
                       "id": "searchPosition",
                       "defaultValue": {
-                        "position": "top-left",
+                        "position": "top-right",
                         "index": 1
                       }
                     },
@@ -356,6 +391,18 @@
         },
         {
           "type": "subsection",
+          "id": "insetStyle",
+          "content": [
+            {
+              "type": "setting",
+              "id": "insetStyle",
+              "defaultValue": null,
+              "express": true
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "positionManager",
           "content": [
             {
@@ -366,7 +413,31 @@
             },
             {
               "type": "setting",
-              "id": "controlPanelPosition",
+              "id": "inset1Position",
+              "defaultValue": {
+                "position": "bottom-left",
+                "index": 0
+              }
+            },
+            {
+              "type": "setting",
+              "id": "inset2Position",
+              "defaultValue": {
+                "position": "bottom-right",
+                "index": 0
+              }
+            },
+            {
+              "type": "setting",
+              "id": "inset3Position",
+              "defaultValue": {
+                "position": "top-left",
+                "index": 0
+              }
+            },
+            {
+              "type": "setting",
+              "id": "inset4Position",
               "defaultValue": {
                 "position": "top-right",
                 "index": 0
