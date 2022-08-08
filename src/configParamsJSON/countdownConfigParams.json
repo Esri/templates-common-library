@@ -20,7 +20,56 @@
               "type": "setting",
               "id": "countdownSectionsConfig",
               "express": true,
-              "defaultValue": null
+              "defaultValue": [
+                {
+                  "type": "details",
+                  "enabled": true,
+                  "title": "Details",
+                  "content":
+                    "Welcome to the Countdown App! Start exploring the data in this app by using the countdown section to page through each location. While paging through the locations in the countdown section, the map will focus on the extent that showcases that feature. Use the pin to compare feature to identify relationships among the locations in the map. Click the button below to get started.",
+                  "navTitle": "Details",
+                  "icon": "text-paragraph-large"
+                },
+                {
+                  "type": "countdown",
+                  "enabled": true,
+                  "order": "DESC",
+                  "featuresDisplayed": 10,
+                  "pagingLabel": "Page {current} of {total}",
+                  "zoomScale": 5000000,
+                  "navTitle": "Countdown",
+                  "icon": "caret-double-horizontal",
+                  "buttonText": "Next: {nextSection}",
+                  "highlight": false,
+                  "enableFilterField": false,
+                  "presetLayerEffects": {
+                    "id": "muted-blur",
+                    "data": {
+                      "includedEffect": "",
+                      "excludedEffect": "blur(3px) opacity(50%)"
+                    }
+                  }
+                },
+                {
+                  "type": "leaderboard",
+                  "enabled": true,
+                  "order": "DESC",
+                  "featuresDisplayed": 10,
+                  "zoomScale": 5000000,
+                  "navTitle": "Leaderboard",
+                  "icon": "caret-double-horizontal",
+                  "buttonText": "Next: {nextSection}",
+                  "highlight": false,
+                  "enableFilterField": false,
+                  "presetLayerEffects": {
+                    "id": "muted-blur",
+                    "data": {
+                      "includedEffect": "",
+                      "excludedEffect": "blur(3px) opacity(50%)"
+                    }
+                  }
+                }
+              ]
             }
           ]
         }
