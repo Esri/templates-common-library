@@ -109,7 +109,7 @@
                       "id": "coverPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "title": "Exhibit",
+                        "title": "Inset",
                         "titleColor": "#ffffff",
                         "subtitle": "",
                         "subtitleColor": "#ffffff",
@@ -236,7 +236,8 @@
                   "content": [
                     {
                       "type": "setting",
-                      "id": "extentSelectorConfig"
+                      "id": "extentSelectorConfig",
+                      "defaultValue": null
                     }
                   ]
                 }
@@ -396,7 +397,11 @@
             {
               "type": "setting",
               "id": "insetStyle",
-              "defaultValue": null,
+              "defaultValue": {
+                "style": "square",
+                "outline": "1px",
+                "dropShadow": true
+              },
               "express": true
             }
           ]
