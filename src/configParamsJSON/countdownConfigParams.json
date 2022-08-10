@@ -99,7 +99,7 @@
                   "type": "setting",
                   "id": "titleLink",
                   "defaultValue": "",
-                  "express": true
+                  "express": false
                 }
               ]
             }

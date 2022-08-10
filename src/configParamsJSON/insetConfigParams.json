@@ -36,23 +36,15 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "header",
-                  "defaultValue": true,
-                  "express": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "title",
-                      "defaultValue": "",
-                      "express": true
-                    },
-                    {
-                      "type": "setting",
-                      "id": "titleLink",
-                      "defaultValue": "",
-                      "express": true
-                    }
-                  ]
+                  "id": "title",
+                  "defaultValue": "",
+                  "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "titleLink",
+                  "defaultValue": "",
+                  "express": false
                 },
                 {
                   "type": "setting",
@@ -201,33 +193,13 @@
                   "type": "setting",
                   "id": "home",
                   "express": true,
-                  "defaultValue": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "homePosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 1
-                      }
-                    }
-                  ]
+                  "defaultValue": true
                 },
                 {
                   "type": "setting",
                   "id": "locateWidget",
                   "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "locateWidgetPosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
-                      }
-                    }
-                  ]
+                  "defaultValue": false
                 },
                 {
                   "type": "setting",
@@ -288,25 +260,9 @@
                 },
                 {
                   "type": "setting",
-                  "id": "exportToPDFPosition",
-                  "defaultValue": {
-                    "position": "top-right",
-                    "index": 1
-                  }
-                },
-                {
-                  "type": "setting",
                   "id": "share",
                   "defaultValue": false,
                   "express": false
-                },
-                {
-                  "type": "setting",
-                  "id": "sharePosition",
-                  "defaultValue": {
-                    "position": "top-right",
-                    "index": 2
-                  }
                 }
               ]
             }
