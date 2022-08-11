@@ -183,6 +183,12 @@
                     }
                   ],
                   "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "showSectionNavigationButtons",
+                  "express": false,
+                  "defaultValue": true
                 }
               ]
             }
