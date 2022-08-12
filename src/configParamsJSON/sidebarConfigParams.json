@@ -330,11 +330,6 @@
                       "defaultValue": false
                     },{
                       "type":"setting",
-                      "id":"measureIncludeCoordinates",
-                      "express":false,
-                      "defaultValue":false
-                    },{
-                      "type":"setting",
                       "id":"measureAreaUnit",
                       "express":false,
                       "defaultValue":"metric"
