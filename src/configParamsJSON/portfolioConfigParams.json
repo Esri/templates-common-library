@@ -460,6 +460,11 @@
                   "id": "customTheme",
                   "express": true,
                   "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "customCSS",
+                  "defaultValue": ""
                 }
               ]
             }
