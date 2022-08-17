@@ -338,7 +338,14 @@
                       "id":"measureLinearUnit",
                       "express":false,
                       "defaultValue":"metric"
+                    },
+                    {
+                      "type":"setting",
+                      "id":"coordinateFormat",
+                      "express":false,
+                      "defaultValue":"xy"
                     }
+
                   ]
                 }
               ]
