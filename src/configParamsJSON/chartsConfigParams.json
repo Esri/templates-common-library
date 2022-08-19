@@ -295,6 +295,22 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "mapChartFeatureSelection",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "mapChartFeatureSelectionPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 5
+                      }
+                    }
+                  ]
                 }
               ]
             },
