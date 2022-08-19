@@ -233,7 +233,7 @@
                   "type": "setting",
                   "id": "groupResultsByLayer",
                   "express": false,
-                  "defaultValue": true
+                  "defaultValue": false
                 },
                 {
                   "type": "setting",
