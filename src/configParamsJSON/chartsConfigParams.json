@@ -295,6 +295,12 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "mapChartFeatureSelection",
+                  "express": false,
+                  "defaultValue": true
                 }
               ]
             },
