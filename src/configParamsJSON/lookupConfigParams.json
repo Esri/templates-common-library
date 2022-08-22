@@ -283,7 +283,14 @@
                   "type": "setting",
                   "id": "interactiveResults",
                   "express": false,
-                  "defaultValue": true
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type":"setting",
+                      "id":"showSelectedOnly",
+                      "defaultValue":false,
+                      "express":false
+                    }]
                 }
               ]
             }
