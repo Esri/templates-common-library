@@ -132,7 +132,7 @@
               "config": {
                 "branches": [
                   ["zoneLookupLayers"],
-                  ["searchLayer", "lookupLayers", "showDirections","spatialRelationship"]
+                  ["searchLayer", "lookupLayers", "showDirections"]
                 ]
               },
               "content": [
@@ -147,11 +147,6 @@
                     "supportsFieldSelection": false
                   },
                   "defaultValue": null
-                },{
-                  "type":"setting",
-                  "id":"spatialRelationship",
-                  "express":false,
-                  "defaultValue":"intersects"
                 },
                 {
                   "type": "setting",
