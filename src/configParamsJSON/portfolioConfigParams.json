@@ -177,6 +177,12 @@
                   "content": [
                     {
                       "type": "setting",
+                      "id": "enableAutoPlay",
+                      "express": false,
+                      "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
                       "id": "autoPlayDuration",
                       "express": false,
                       "defaultValue": 5
