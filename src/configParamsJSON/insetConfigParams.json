@@ -139,7 +139,7 @@
                       "id": "legendPosition",
                       "defaultValue": {
                         "position": "bottom-left",
-                        "index": 0
+                        "index": 1
                       }
                     },
                     {
