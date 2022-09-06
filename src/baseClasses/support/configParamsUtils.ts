@@ -14,7 +14,7 @@ import Slider from "dojo/text!../../configParamsJSON/dataSliderConfigParams.json
 import ThreeDViewer from "dojo/text!../../configParamsJSON/3dViewerConfigParams.json";
 import ZoneLookup from "dojo/text!../../configParamsJSON/lookupConfigParams.json";
 import Exhibit from "dojo/text!../../configParamsJSON/exhibitConfigParams.json";
-import Inset from "dojo/text!../../configParamsJSON/insetConfigParams.json";
+import Insets from "dojo/text!../../configParamsJSON/insetConfigParams.json";
 
 import { EAppTemplateType } from "../CompatibilityChecker";
 
@@ -35,7 +35,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.ThreeDViewer]: ThreeDViewer,
   [EAppTemplateType.ZoneLookup]: ZoneLookup,
   [EAppTemplateType.Exhibit]: Exhibit,
-  [EAppTemplateType.Inset]: Inset
+  [EAppTemplateType.Insets]: Insets
 };
 
 export function getConfigParams(template: EAppTemplateType) {

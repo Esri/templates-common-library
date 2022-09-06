@@ -149,7 +149,7 @@ export class CompatibilityChecker {
       [EAppTemplateType.Countdown]:         resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.Exhibit]:           resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.ImageryApp]:        resourceMessages.Webmap,
-      [EAppTemplateType.Insets]:             resourceMessages.Webmap,
+      [EAppTemplateType.Insets]:            resourceMessages.Webmap,
       [EAppTemplateType.InteractiveLegend]: resourceMessages.Webmap,
       [EAppTemplateType.Media]:             resourceMessages.Webmap,
       [EAppTemplateType.Minimalist]:        resourceMessages.Webmap,
