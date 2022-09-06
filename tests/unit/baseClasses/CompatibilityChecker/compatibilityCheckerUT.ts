@@ -48,7 +48,7 @@ class CompatibilityCheckerUT {
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Countdown), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Exhibit), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ImageryApp), "This app requires an imagery layer");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Inset), null);
+          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Insets), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.InteractiveLegend), "This app requires a feature layer with a supported drawing style");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Media), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Minimalist), null);
@@ -76,7 +76,7 @@ class CompatibilityCheckerUT {
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Countdown), null);
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Exhibit), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ImageryApp), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Inset), "This app requires a webmap");
+          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Insets), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.InteractiveLegend), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Media), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Minimalist), "This app requires a webmap");
@@ -99,7 +99,7 @@ class CompatibilityCheckerUT {
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Countdown), "This app requires a webmap or a webscene");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Exhibit), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ImageryApp), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Inset), "This app requires a webmap");
+          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Insets), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.InteractiveLegend), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Media), "This app requires a webmap");
           assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Minimalist), "This app requires a webmap");
