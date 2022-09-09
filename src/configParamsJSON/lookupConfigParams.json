@@ -635,7 +635,8 @@
                   "id": "customTheme",
                   "express": true,
                   "config": {
-                    "numOfSections": 3
+                    "numOfSections": 3,
+                    "singleFont": true
                   },
                   "defaultValue": null
                 },

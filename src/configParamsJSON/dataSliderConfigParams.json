@@ -690,7 +690,8 @@
                   "express": true,
                   "config": {
                     "numOfSections": 1,
-                    "headerOnly": true
+                    "headerOnly": true,
+                    "singleFont": true
                   },
                   "defaultValue": null
                 }
