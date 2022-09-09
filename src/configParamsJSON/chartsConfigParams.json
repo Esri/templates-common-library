@@ -461,7 +461,8 @@
                   "id": "customTheme",
                   "express": true,
                   "config": {
-                    "numOfSections": 1
+                    "numOfSections": 1,
+                    "singleFont": true
                   },
                   "defaultValue": null
                 },

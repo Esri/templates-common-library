@@ -465,7 +465,10 @@
                   "type": "setting",
                   "id": "customTheme",
                   "express": true,
-                  "defaultValue": null
+                  "defaultValue": null,
+                  "config": {
+                    "singleFont": true
+                  }
                 },
                 {
                   "type": "setting",

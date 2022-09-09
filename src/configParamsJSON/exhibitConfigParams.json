@@ -347,7 +347,8 @@
                   "config": {
                     "numOfSections": 1,
                     "headerOnly": true,
-                    "fontAlwaysEditable": true
+                    "fontAlwaysEditable": true,
+                    "singleFont": true
                   }
                 }
               ]
