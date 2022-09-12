@@ -206,7 +206,7 @@
                   "id": "sharePosition",
                   "defaultValue": {
                     "position": "top-right",
-                    "index": 0
+                    "index": 1
                   }
                 }
               ]
@@ -252,6 +252,14 @@
               "id": "positionManager",
               "express": true,
               "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "controlPanelPosition",
+              "defaultValue": {
+                "position": "top-right",
+                "index": 0
+              }
             }
           ]
         }
