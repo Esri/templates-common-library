@@ -346,7 +346,7 @@
                   "config": {
                     "numOfSections": 1,
                     "headerOnly": true,
-                    "singleFont": true
+                    "singleFont": false
                   },
                   "defaultValue": null
                 }
