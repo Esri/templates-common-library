@@ -1,5 +1,5 @@
-import Search = require("esri/widgets/Search");
-import FeatureLayer = require("esri/layers/FeatureLayer");
+import Search from "esri/widgets/Search";
+import FeatureLayer from "esri/layers/FeatureLayer";
 
 interface SearchSourceConfigItem {
   maxResults: number;
@@ -40,9 +40,9 @@ interface SearchConfiguration {
 }
 
 export function createSearch(
-  searchConfiguration: SearchConfiguration,
   view: __esri.MapView,
-  portal: __esri.Portal
+  portal: __esri.Portal,
+  searchConfiguration: SearchConfiguration
 ): Search {
   const sources = searchConfiguration?.sources;
   if (sources) {
