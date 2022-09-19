@@ -527,7 +527,11 @@ export default class ApplicationBase {
   }
 
   private async _isPortalServer(): Promise<boolean> {
-    const testingUrl: string = `${this._getEsriEnvironmentPortalUrl()}/sharing/rest/info`;
+    const esriUrl = this._getEsriEnvironmentPortalUrl();
+    if(esriUrl == null){
+      return false;
+    }
+    const testingUrl: string = `${esriUrl}/sharing/rest/info`;
     try {
       const res: Response = await fetch(testingUrl, {
         method: 'HEAD'
