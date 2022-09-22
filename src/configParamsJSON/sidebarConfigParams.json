@@ -185,7 +185,7 @@
                 {
                   "type": "setting",
                   "id": "utilityNetwork",
-                  "express": true,
+                  "express": false,
                   "defaultValue": false
                 },
                 {
@@ -562,7 +562,7 @@
                   "express": true,
                   "defaultValue": null,
                   "config": {
-                    "singleFont": true
+                    "singleFont": false
                   }
                 },
                 {
