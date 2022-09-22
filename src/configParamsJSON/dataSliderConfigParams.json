@@ -712,6 +712,24 @@
         },
         {
           "type": "subsection",
+          "id": "branding",
+          "content": [
+            {
+              "type": "group",
+              "id": "branding",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "branding",
+                  "express": true,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "positionManager",
           "content": [
             {

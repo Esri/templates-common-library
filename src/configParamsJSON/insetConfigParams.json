@@ -219,33 +219,6 @@
         },
         {
           "type": "subsection",
-          "id": "modify",
-          "content": [
-            {
-              "type": "setting",
-              "id": "layerList",
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "layerListPosition",
-                  "defaultValue": {
-                    "position": "bottom-right",
-                    "index": 0
-                  }
-                },
-                {
-                  "type": "setting",
-                  "id": "layerListOpenAtStart",
-                  "express": false,
-                  "defaultValue": false
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "subsection",
           "id": "share",
           "content": [
             {
@@ -349,6 +322,24 @@
         },
         {
           "type": "subsection",
+          "id": "branding",
+          "content": [
+            {
+              "type": "group",
+              "id": "branding",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "branding",
+                  "express": true,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "insetStyle",
           "content": [
             {
@@ -393,7 +384,7 @@
               "type": "setting",
               "id": "inset3Position",
               "defaultValue": {
-                "position": "top-left",
+                "position": "top-right",
                 "index": 0
               }
             },
@@ -401,7 +392,7 @@
               "type": "setting",
               "id": "inset4Position",
               "defaultValue": {
-                "position": "top-right",
+                "position": "top-left",
                 "index": 0
               }
             }
