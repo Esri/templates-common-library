@@ -320,7 +320,7 @@
       "id": "themeLayout",
       "content": [
         {
-          "type": "group",
+          "type": "subsection",
           "id": "theme",
           "content": [
             {
@@ -342,17 +342,35 @@
               "type": "setting",
               "id": "customCSS",
               "defaultValue": ""
+            },
+            {
+              "type": "group",
+              "id": "layout",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapToolsExpanded",
+                  "defaultValue": true
+                }
+              ]
             }
           ]
         },
         {
-          "type": "group",
-          "id": "layout",
+          "type": "subsection",
+          "id": "branding",
           "content": [
             {
-              "type": "setting",
-              "id": "mapToolsExpanded",
-              "defaultValue": true
+              "type": "group",
+              "id": "branding",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "branding",
+                  "express": true,
+                  "defaultValue": null
+                }
+              ]
             }
           ]
         }
