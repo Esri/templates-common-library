@@ -180,7 +180,15 @@
                   "type": "setting",
                   "id": "layerEditPanel",
                   "express": false,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "enableSnap",
+                      "express": false,
+                      "defaultValue": true
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
