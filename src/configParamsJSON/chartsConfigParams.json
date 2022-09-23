@@ -299,7 +299,7 @@
                 {
                   "type": "setting",
                   "id": "mapChartFeatureSelection",
-                  "express": false,
+                  "express": true,
                   "defaultValue": true,
                   "content": [
                     {
