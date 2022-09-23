@@ -33,6 +33,7 @@
                 "dataSliderSpeed",
                 "timeVisible",
                 "dataSliderTimeModes",
+                "dataSliderHideTicks",
                 "liveData"
               ]
             ]
@@ -216,6 +217,11 @@
               "id": "dataSliderTimeModes",
               "defaultValue": null,
               "express": true
+            },
+            {
+              "type": "setting",
+              "id": "dataSliderHideTicks",
+              "defaultValue": false
             }
           ],
           "defaultValue": null
