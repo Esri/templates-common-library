@@ -44,7 +44,7 @@
               "id": "numericFieldSelector",
               "express": true,
               "config": {
-                "layerSelectionMode": "single",
+                "layerSelectionMode": "multiple",
                 "supportedLayerTypes": "*",
                 "supportedGeometryTypes": "*",
                 "supportsFieldSelection": true,
