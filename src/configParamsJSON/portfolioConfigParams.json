@@ -467,7 +467,7 @@
                   "express": true,
                   "defaultValue": null,
                   "config": {
-                    "singleFont": true
+                    "singleFont": false
                   }
                 },
                 {
