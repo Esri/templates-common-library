@@ -462,7 +462,7 @@
                   "express": true,
                   "config": {
                     "numOfSections": 1,
-                    "singleFont": true
+                    "singleFont": false
                   },
                   "defaultValue": null
                 },
