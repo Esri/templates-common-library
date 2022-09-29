@@ -21,33 +21,6 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "coverPage",
-                  "express": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "coverPageConfig",
-                      "express": false,
-                      "defaultValue": {
-                        "title": "Title",
-                        "titleColor": "#ffffff",
-                        "subtitle": "Subtitle",
-                        "subtitleColor": "#ffffff",
-                        "textPosition": "center-leading",
-                        "buttonText": "Explore",
-                        "buttonTextColor": "#ffffff",
-                        "background": {
-                          "backgroundType": "color",
-                          "backgroundImage": null,
-                          "backgroundColor": "#0079c1"
-                        }
-                      }
-                    }
-                  ],
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
                   "id": "splash",
                   "express": false,
                   "defaultValue": false,
@@ -119,6 +92,45 @@
                 {
                   "type": "setting",
                   "id": "customHeaderPositionedAtBottom",
+                  "defaultValue": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "coverPageSettings",
+          "content": [
+            {
+              "type": "group",
+              "id": "coverPage",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "coverPage",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "coverPageConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "title": "Title",
+                        "titleColor": "#ffffff",
+                        "subtitle": "Explore",
+                        "subtitleColor": "#ffffff",
+                        "textPosition": "center-leading",
+                        "buttonText": "Explore",
+                        "buttonTextColor": "#ffffff",
+                        "background": {
+                          "backgroundType": "color",
+                          "backgroundImage": null,
+                          "backgroundColor": "#0079c1"
+                        }
+                      }
+                    }
+                  ],
                   "defaultValue": false
                 }
               ]

@@ -222,20 +222,6 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "enableSearchScale",
-                  "express": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "searchScale",
-                      "express": false,
-                      "defaultValue": 10000
-                    }
-                  ],
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
                   "id": "groupResultsByLayer",
                   "express": false,
                   "defaultValue": false
@@ -257,50 +243,80 @@
                   "id": "exportCSV",
                   "express": false,
                   "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "applyLayerEffects",
-                  "express": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "presetLayerEffects",
-                      "express": true,
-                      "defaultValue": {
-                        "id": "lift-1",
-                        "data": {
-                          "includedEffect": "drop-shadow(4px, 4px, 4px, #000000)",
-                          "excludedEffect": ""
-                        }
-                      }
-                    }
-                  ],
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "hideLayers",
-                  "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "interactiveResults",
-                  "express": false,
-                  "defaultValue": true,
-                  "content": [
-                    {
-                      "type":"setting",
-                      "id":"showSelectedOnly",
-                      "defaultValue":false,
-                      "express":false
-                    }]
                 }
               ]
             }
           ]
-        },
+        },        {
+          "type": "subsection",
+          "id": "resultsMap",
+          "content": [
+            {
+              "type":"setting",
+              "id":"highlightColor",
+              "express":false,
+              "defaultValue":"#00FFFF"
+            },
+            {
+              "type":"setting",
+              "id":"highlightHaloColor",
+              "express":false,
+              "defaultValue":"#00FFFF"
+            },
+            {
+              "type": "setting",
+              "id": "applyLayerEffects",
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "presetLayerEffects",
+                  "express": true,
+                  "defaultValue": {
+                    "id": "lift-1",
+                    "data": {
+                      "includedEffect": "drop-shadow(4px, 4px, 4px, #000000)",
+                      "excludedEffect": ""
+                    }
+                  }
+                }
+              ],
+              "defaultValue": false
+            },   
+            {
+              "type": "setting",
+              "id": "enableSearchScale",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "searchScale",
+                  "express": false,
+                  "defaultValue": 10000
+                }
+              ],
+              "defaultValue": false
+            },   {
+              "type": "setting",
+              "id": "hideLayers",
+              "express": false,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "interactiveResults",
+              "express": false,
+              "defaultValue": true,
+              "content": [
+                {
+                  "type":"setting",
+                  "id":"showSelectedOnly",
+                  "defaultValue":false,
+                  "express":false
+                }]
+            }
+  
+          ]},
         {
           "type": "subsection",
           "id": "resultsGraphics",
