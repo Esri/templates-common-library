@@ -133,9 +133,9 @@
                       "id": "coverPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "title": "Nearby",
+                        "title": "Title",
                         "titleColor": "#ffffff",
-                        "subtitle": "Find nearby locations",
+                        "subtitle": "subtitle",
                         "subtitleColor": "#ffffff",
                         "textPosition": "center-leading",
                         "buttonText": "Explore",
