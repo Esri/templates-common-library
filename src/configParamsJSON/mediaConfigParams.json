@@ -5,6 +5,18 @@
       "id": "map",
       "content": [
         {
+          "type":"setting",
+          "id":"highlightColor",
+          "express":false,
+          "defaultValue":"#00FFFF"
+        },
+        {
+          "type":"setting",
+          "id":"highlightHaloColor",
+          "express":false,
+          "defaultValue":"#00FFFF"
+        },
+        {
           "type": "setting",
           "id": "keyboardShortcuts",
           "express": true,
@@ -79,6 +91,11 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "title",
+                  "defaultValue": ""
+                },
+                {
+                  "type": "setting",
                   "id": "customHeader",
                   "defaultValue": false,
                   "content": [
@@ -92,6 +109,45 @@
                 {
                   "type": "setting",
                   "id": "customHeaderPositionedAtBottom",
+                  "defaultValue": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "coverPageSettings",
+          "content": [
+            {
+              "type": "group",
+              "id": "coverPage",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "coverPage",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "coverPageConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "title": "Nearby",
+                        "titleColor": "#ffffff",
+                        "subtitle": "Find nearby locations",
+                        "subtitleColor": "#ffffff",
+                        "textPosition": "center-leading",
+                        "buttonText": "Explore",
+                        "buttonTextColor": "#ffffff",
+                        "background": {
+                          "backgroundType": "color",
+                          "backgroundImage": null,
+                          "backgroundColor": "#0079c1"
+                        }
+                      }
+                    }
+                  ],
                   "defaultValue": false
                 }
               ]
