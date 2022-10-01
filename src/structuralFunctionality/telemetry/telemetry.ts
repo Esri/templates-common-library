@@ -24,7 +24,8 @@
 
 import Accessor from 'esri/core/Accessor';
 import {property, subclass} from 'esri/core/accessorSupport/decorators';
-import { whenDefinedOnce} from 'esri/core/watchUtils';
+
+import {whenOnce} from "esri/core/reactiveUtils";
 import Alert from './Alert';
 import ArcGISTelemetry from "./telemetry.dojo.min";
 
@@ -160,15 +161,16 @@ export default class Telemetry extends Accessor {
     initialize(){
         
         this.runInit();
-        
-        whenDefinedOnce(this, "consentAlert", ()=>{
-            this.consentAlert.watch("state", (state: any)=>{
-                if(state === "consentGiven"){
-                    this.runInit();
-                }
-            })
-        });
 
+        whenOnce(
+            () => this?.consentAlert !== undefined)
+            .then(() => {
+                this.consentAlert.watch("state", (state: any)=>{
+                    if(state === "consentGiven"){
+                        this.runInit();
+                    }
+                })
+            });
         // Note: Going to exclude this logic for now. It's not important to react to settings changes in the config panel. 
         //          And leaving this in is bug prone.
         // watch(
