@@ -366,24 +366,6 @@
                 },
                 {
                   "type": "setting",
-                  "id": "shareSelected",
-                  "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "exportToPDF",
-                  "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "exportCSV",
-                  "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
                   "id": "showElevationProfile",
                   "express": false,
                   "defaultValue": false
@@ -444,6 +426,28 @@
               ]
             }
           ]
+        },
+        {
+          "type":"subsection",
+          "id":"exportShareResults",
+          "content":[                {
+            "type": "setting",
+            "id": "shareSelected",
+            "express": false,
+            "defaultValue": false
+          },
+          {
+            "type": "setting",
+            "id": "exportToPDF",
+            "express": false,
+            "defaultValue": false
+          },
+          {
+            "type": "setting",
+            "id": "exportCSV",
+            "express": false,
+            "defaultValue": false
+          }]
         },
         {
           "type": "subsection",
