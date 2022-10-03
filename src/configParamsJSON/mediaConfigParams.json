@@ -80,6 +80,7 @@
                 {
                   "type": "setting",
                   "id": "title",
+                  "express":true,
                   "defaultValue": ""
                 },
                 {
