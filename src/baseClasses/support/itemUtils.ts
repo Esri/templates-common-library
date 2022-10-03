@@ -19,7 +19,8 @@
 
   limitations under the License.​
 */
-import { whenFalseOnce } from "esri/core/watchUtils";
+
+import {whenOnce} from "esri/core/reactiveUtils";
 
 import MapView from "esri/views/MapView";
 import SceneView from "esri/views/SceneView";
@@ -182,9 +183,11 @@ export async function findQuery(
     view
   });
   const result = await search.search(query);
-  whenFalseOnce(view, "popup.visible", () => {
-    search.destroy();
-  });
+  whenOnce(
+    () => !view.popup?.visible)
+    .then(() => {
+      search.destroy();
+    });
   return result;
 }
 export function setHiddenLayers(hiddenLayers: string,
