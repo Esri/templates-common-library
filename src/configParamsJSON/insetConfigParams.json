@@ -200,18 +200,6 @@
                   "id": "locateWidget",
                   "express": true,
                   "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "defaultValue": null
-                    }
-                  ]
                 }
               ]
             }
