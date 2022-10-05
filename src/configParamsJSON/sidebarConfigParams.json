@@ -384,7 +384,7 @@
                     },
                     {
                       "type":"setting",
-                      "id":"coordinateFormat",
+                      "id":"coordinateFormats",
                       "express":false,
                       "defaultValue":"xy"
                     }
