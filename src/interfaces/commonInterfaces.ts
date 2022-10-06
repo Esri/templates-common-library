@@ -53,3 +53,11 @@ export interface ICustomTheme {
     accent?: ITheme;
   };
 }
+
+// Highlight
+export interface HighlightConfig {
+  enableHighlightColor: boolean;
+  highlightColor: string;
+  enableHighlightHaloColor: boolean;
+  highlightHaloColor: string;
+}
