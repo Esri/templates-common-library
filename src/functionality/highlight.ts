@@ -26,9 +26,10 @@ export function handleHighlightColors(
       ? highlightHaloColor
       : highlightOptions.haloColor;
 
+  // https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#highlightOptions
   view.highlightOptions = {
     ...highlightOptions,
-    color: new Color(color),
-    haloColor: new Color(haloColor)
+    color: new Color(color), // jsapi default value is `#00ffff`
+    haloColor: haloColor ? new Color(haloColor) : null // jsapi default value is `null`, which sets halo to default Cyan color (#00ffff)
   };
 }
