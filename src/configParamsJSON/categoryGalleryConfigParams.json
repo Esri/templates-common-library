@@ -140,14 +140,20 @@
                 },
                 {
                   "type": "setting",
-                  "id": "showItemToolTip",
-                  "express": true,
-                  "defaultValue": true
-                },
-                {
-                  "type": "setting",
-                  "id": "itemSummaryMaxChar",
-                  "defaultValue": 250
+                  "id": "itemSummary",
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "showItemToolTip",
+                      "defaultValue": true
+                    },
+                    {
+                      "type": "setting",
+                      "id": "itemSummaryMaxChar",
+                      "defaultValue": 250
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
