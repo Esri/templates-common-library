@@ -480,6 +480,12 @@
                   "express": false,
                   "defaultValue": false
                 },
+             {
+              "type":"setting",
+              "id":"insetShowMarker",
+              "express":false,
+              "defaultValue":true,
+              "content":[
                 {
                   "type": "setting",
                   "id": "insetMapMarkerOutlineColor",
@@ -491,8 +497,10 @@
                   "id": "insetMapMarkerColor",
                   "express": false,
                   "defaultValue": "#fff"
-                },
-                {
+                }
+              ]
+             },
+             {
                   "type": "setting",
                   "id": "insetOverviewMapPosition",
                   "defaultValue": {
