@@ -76,7 +76,7 @@
                 ]
               }]
           }]
-      },   
+      },
        {
         "type": "subsection",
         "id": "coverPageSettings",
@@ -643,15 +643,15 @@
         },
         {
           "type": "subsection",
-          "id": "branding",
+          "id": "logo",
           "content": [
             {
               "type": "group",
-              "id": "branding",
+              "id": "logo",
               "content": [
                 {
                   "type": "setting",
-                  "id": "branding",
+                  "id": "logo",
                   "express": true,
                   "defaultValue": null
                 }

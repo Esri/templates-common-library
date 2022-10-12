@@ -251,7 +251,7 @@
           "type": "subsection",
           "id": "resultsMap",
           "content": [
-  
+
            {
               "type": "setting",
               "id": "applyLayerEffects",
@@ -271,7 +271,7 @@
                 }
               ],
               "defaultValue": false
-            },   
+            },
             {
               "type": "setting",
               "id": "enableSearchScale",
@@ -304,7 +304,7 @@
                   "express":false
                 }]
             }
-  
+
           ]},
         {
           "type": "subsection",
@@ -680,15 +680,15 @@
         },
         {
           "type": "subsection",
-          "id": "branding",
+          "id": "logo",
           "content": [
             {
               "type": "group",
-              "id": "branding",
+              "id": "logo",
               "content": [
                 {
                   "type": "setting",
-                  "id": "branding",
+                  "id": "logo",
                   "express": true,
                   "defaultValue": null
                 }
