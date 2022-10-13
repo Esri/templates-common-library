@@ -538,7 +538,7 @@
                 {
                   "type": "setting",
                   "id": "logo",
-                  "express": true,
+                  "express": false,
                   "defaultValue": null
                 }
               ]
