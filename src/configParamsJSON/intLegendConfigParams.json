@@ -328,6 +328,32 @@
                       "defaultValue": null
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "enableHighlightColor",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "highlightColor",
+                      "express": false,
+                      "defaultValue": "#00FFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "enableHighlightHaloColor",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "highlightHaloColor",
+                      "express": false,
+                      "defaultValue": "#00FFFF"
+                    }
+                  ]
                 }
               ]
             }
