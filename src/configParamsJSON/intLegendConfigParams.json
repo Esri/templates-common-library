@@ -501,9 +501,18 @@
                 },
                 {
                   "type": "setting",
-                  "id": "applySharedTheme",
+                  "id": "customTheme",
                   "express": true,
-                  "defaultValue": true
+                  "config": {
+                    "numOfSections": 1,
+                    "singleFont": false
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "customCSS",
+                  "defaultValue": ""
                 },
                 {
                   "type": "setting",
@@ -513,11 +522,24 @@
                     "position": "bottom-left",
                     "index": 0
                   }
-                },
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "logo",
+          "content": [
+            {
+              "type": "group",
+              "id": "logo",
+              "content": [
                 {
                   "type": "setting",
-                  "id": "customCSS",
-                  "defaultValue": ""
+                  "id": "logo",
+                  "express": false,
+                  "defaultValue": null
                 }
               ]
             }
