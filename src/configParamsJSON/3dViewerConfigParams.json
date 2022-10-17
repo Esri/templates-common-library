@@ -698,23 +698,6 @@
                 },
                 {
                   "type": "setting",
-                  "id": "timeEffect",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "excludedEffect",
-                      "defaultValue": null
-                    },
-                    {
-                      "type": "setting",
-                      "id": "includedEffect",
-                      "defaultValue": null
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
                   "id": "liveData",
                   "defaultValue": false,
                   "content": [
