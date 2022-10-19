@@ -82,11 +82,16 @@
               "express": true,
               "config": {
                 "branches": [
-                  [],
+                  ["hideAttributePanel"],
                   ["thumbnailFormat", "thumbnailHeight", "mapCentricTooltip"]
                 ]
               },
               "content": [
+                {
+                  "type": "setting",
+                  "id": "hideAttributePanel",
+                  "defaultValue": false
+                },
                 {
                   "type": "setting",
                   "id": "thumbnailFormat",
