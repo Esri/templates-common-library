@@ -51,12 +51,6 @@
             },
             {
               "type": "setting",
-              "id": "popupHover",
-              "express": true,
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
               "id": "popupFixed",
               "express": true,
               "defaultValue": false,
