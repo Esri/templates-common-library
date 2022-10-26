@@ -737,7 +737,8 @@
                   "express": true,
                   "config": {
                     "numOfSections": 3,
-                    "singleFont": true
+                    "singleFont": true,
+                    "hideLogoScale": true
                   },
                   "defaultValue": null
                 },
