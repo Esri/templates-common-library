@@ -15,7 +15,7 @@
       "esModuleInterop": true,
       "experimentalDecorators": true,
       "jsx": "react",
-      "jsxFactory": "tsx",
+      "jsxFactory": "tsx"
     },
     "include": [
       "./src/**/*.ts"
