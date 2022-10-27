@@ -17,6 +17,8 @@ const updateFiles = (files) => {
       .then(fileTxt => {
         // esm uses @arcgis/core package for JS API and the references are different
         let updatedFile = fileTxt.replaceAll(/esri\//g, "@arcgis/core/");
+        // the previous line messes up "@esri/" imports. revert those back specifically
+        updatedFile = updatedFile.replaceAll("@@arcgis/core/", "@esri/");
         // esm needs different telemetry file
         updatedFile = updatedFile.replaceAll("\"./telemetry.dojo.min\"", "\"./telemetry.min\"");
         // Takes out the dojo logic for injecting json file info
