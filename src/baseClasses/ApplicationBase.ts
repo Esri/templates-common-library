@@ -682,10 +682,12 @@ export default class ApplicationBase {
     if (!appId) {
       return;
     }
-
+    const popup = this._isEmbedded() ? true : false;
     const info = new OAuthInfo({
       appId,
-      portalUrl
+      popup,
+      popupCallbackUrl: popup ? "../oauth-callback.html" : null,
+      portalUrl,
     });
 
     if (!info) {
@@ -779,5 +781,8 @@ export default class ApplicationBase {
       (location.hostname === "localhost" ||
         location.hostname === "127.0.0.1");
   }
-
+  private _isEmbedded(): boolean {
+    const { frameElement } = window;
+    return frameElement ? true : false;
+  }
 }
