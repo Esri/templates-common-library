@@ -1,11 +1,12 @@
-import Sanitizer from "@esri/arcgis-html-sanitizer";
-
 /** 
  * Creates new instance of @esri/arcgis-html-sanitizer 
  * with appropriate whitelist values
  */
-export function createSanitizerInstance(): Sanitizer{
-  return new Sanitizer(
+export function createSanitizerInstance(sanitizerConstructor: any): any | null{
+  if(sanitizerConstructor == null || typeof sanitizerConstructor !== "function"){
+    return null;
+  }
+  return new sanitizerConstructor(
     {
       whiteList: {
         h1: ["style"],
