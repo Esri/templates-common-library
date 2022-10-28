@@ -22,7 +22,7 @@
     "@types/jest": "^26.0.19",
     "arcgis-js-api": "^4.24",
     "axios": "^0.21.1",
-    "cpy-cli": "^3.1.1",
+    "cpy-cli": "^4.2.0",
     "dgrid": "^1.3.3",
     "dijit": "^1.16.3",
     "dojo": "^1.16.3",
@@ -35,8 +35,5 @@
     "ramda": "^0.27.1",
     "tslint": "^6.1.3",
     "typescript": "^4.1.3"
-  },
-  "peerDependencies": {
-    "@esri/arcgis-html-sanitizer": "^3.0.0"
   }
 }

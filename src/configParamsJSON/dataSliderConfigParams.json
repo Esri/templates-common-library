@@ -291,7 +291,19 @@
                       "defaultValue": "Okay"
                     }
                   ]
-                },
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "coverPageSettings",
+          "content": [
+            {
+              "type": "group",
+              "id": "coverPage",
+              "content": [
                 {
                   "type": "setting",
                   "id": "coverPage",
