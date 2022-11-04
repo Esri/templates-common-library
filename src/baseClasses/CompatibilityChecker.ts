@@ -53,6 +53,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.CategoryGallery,
     EAppTemplateType.Charts,
     EAppTemplateType.ImageryApp,
+    EAppTemplateType.Insets,
     EAppTemplateType.InteractiveLegend,
     EAppTemplateType.Media,
     EAppTemplateType.Minimalist,
