@@ -371,16 +371,6 @@
                       "id": "measureOpenAtStart",
                       "express": false,
                       "defaultValue": false
-                    },{
-                      "type":"setting",
-                      "id":"measureAreaUnit",
-                      "express":false,
-                      "defaultValue":"metric"
-                    },{
-                      "type":"setting",
-                      "id":"measureLinearUnit",
-                      "express":false,
-                      "defaultValue":"metric"
                     },
                     {
                       "type":"setting",
