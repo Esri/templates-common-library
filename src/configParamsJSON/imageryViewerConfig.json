@@ -340,7 +340,7 @@
                   "express": false,
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": ["imagery"],
+                    "supportedLayerTypes": ["imagery", "imagery-tile"],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "single",
@@ -374,7 +374,7 @@
                       "express": true,
                       "config": {
                         "layerSelectionMode": "single",
-                        "supportedLayerTypes": ["imagery"],
+                        "supportedLayerTypes": ["imagery", "imagery-tile"],
                         "supportedGeometryTypes": "*",
                         "supportsFieldSelection": false
                       },
@@ -386,7 +386,7 @@
                       "express": true,
                       "config": {
                         "layerSelectionMode": "single",
-                        "supportedLayerTypes": ["imagery"],
+                        "supportedLayerTypes": ["imagery", "imagery-tile"],
                         "supportedGeometryTypes": "*",
                         "supportsFieldSelection": false
                       },
