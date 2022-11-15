@@ -218,6 +218,12 @@
                   "id": "share",
                   "defaultValue": false,
                   "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "exportToPDF",
+                  "defaultValue": false,
+                  "express": false
                 }
               ]
             }
