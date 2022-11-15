@@ -41,7 +41,8 @@ export default class Alert extends Widget {
   appName: string;
 
   @property()
-  state: "consentGiven" | "consentNotGiven" | "nothingDoneYet" = "nothingDoneYet";
+  state: "consentGiven" | "consentNotGiven" | "nothingDoneYet" =
+    "nothingDoneYet";
 
   @property()
   config: any;
@@ -58,14 +59,18 @@ export default class Alert extends Widget {
           bind={this}
           data-node-ref="_alertNode"
           oncalciteAlertClose={this.handleClose.bind(this)}
-            // T9N - HARDCODED EN STRING
+          // T9N - HARDCODED EN STRING
           intl-close={"Close"}
           scale="s"
           active={true}
+          open={true}
           class={CSS.base}
           theme={this.config?.theme === "dark" ? "dark" : "light"}
         >
-          <div slot="message" innerHTML={this?.config?.googleAnalyticsConsentMsg}></div>
+          <div
+            slot="message"
+            innerHTML={this?.config?.googleAnalyticsConsentMsg}
+          ></div>
           <calcite-button
             scale="s"
             slot="link"
@@ -87,7 +92,7 @@ export default class Alert extends Widget {
     this.state = "consentGiven";
   }
 
-  handleClose(){
+  handleClose() {
     localStorage.setItem(`${this.appName}`, "false");
     this.state = "consentNotGiven";
   }
