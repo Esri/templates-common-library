@@ -153,7 +153,7 @@
               "express": true,
               "config": {
                 "layerSelectionMode": "multiple",
-                "supportedLayerTypes": ["map-image", "feature", "group"],
+                "supportedLayerTypes": ["map-image", "feature", "group", "csv", "geojson"],
                 "supportedGeometryTypes": "*",
                 "supportsFieldSelection": false
               },
@@ -388,7 +388,9 @@
                         "supportedLayerTypes": [
                           "map-image",
                           "feature",
-                          "group"
+                          "group", 
+                          "csv", 
+                          "geojson"
                         ],
                         "supportedGeometryTypes": ["esriGeometryPoint"],
                         "supportsFieldSelection": false
