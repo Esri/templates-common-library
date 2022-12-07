@@ -2,3 +2,4 @@ dist
 distESM
 node_modules
 coverage
+.vscode
