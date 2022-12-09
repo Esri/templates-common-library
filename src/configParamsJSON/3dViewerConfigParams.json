@@ -563,12 +563,50 @@
                 },
                 {
                   "type": "setting",
+                  "id": "shadowCast",
+                  "defaultValue": false,
+                  "express":false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "shadowCastPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "shadowCastOpenAtStart",
+                      "express": false,
+                      "defaultValue": false
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "showWeather",
                   "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
                       "id": "weatherPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "floorFilter",
+                  "defaultValue": false,
+                  "express":false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "floorFilterPosition",
                       "defaultValue": {
                         "position": "top-right",
                         "index": 0
