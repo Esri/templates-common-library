@@ -1,0 +1,7 @@
+*.js
+tests
+esm
+dist
+distESM
+build
+amd

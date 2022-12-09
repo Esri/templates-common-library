@@ -13,13 +13,16 @@
     "run:test": "npx intern serveOnly",
     "build:run:test": "npm run build:test && npm run run:test",
     "filesCopy:amd": "npx cpy ./amd/package.json ./dist --flat && npx cpy ./README.md ./dist && npx cpy ./src/structuralFunctionality/telemetry/telemetry.dojo.min.js ./dist/structuralFunctionality/telemetry --flat && npx cpy ./src/configParamsJSON ./dist/configParamsJSON --flat",
-    "filesCopy:esm": "npx cpy ./esm/package.json ./distESM --flat && npx cpy ./README.md ./distESM  && npx cpy ./src/structuralFunctionality/telemetry/telemetry.min.js ./distESM/structuralFunctionality/telemetry --flat && npx cpy ./src/configParamsJSON ./distESM/configParamsJSON --flat"
+    "filesCopy:esm": "npx cpy ./esm/package.json ./distESM --flat && npx cpy ./README.md ./distESM  && npx cpy ./src/structuralFunctionality/telemetry/telemetry.min.js ./distESM/structuralFunctionality/telemetry --flat && npx cpy ./src/configParamsJSON ./distESM/configParamsJSON --flat",
+    "fix:prettier": "prettier --write 'src'",
+    "check:prettier": "prettier --check 'src'"
   },
   "author": "Cameron Smith (c.smith@esri.com)",
   "license": "ISC",
   "devDependencies": {
     "@types/arcgis-js-api": "^4.24",
     "@types/jest": "^26.0.19",
+    "@typescript-eslint/parser": "^5.45.0",
     "arcgis-js-api": "^4.24",
     "axios": "^0.21.1",
     "cpy-cli": "^4.2.0",
@@ -29,9 +32,12 @@
     "dojo-typings": "^1.11.9",
     "dojox": "^1.16.3",
     "dts-generator": "^3.0.0",
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
     "fs-extra": "^10.0.0",
     "intern": "^4.10.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.1",
     "ramda": "^0.27.1",
     "tslint": "^6.1.3",
     "typescript": "^4.1.3"
