@@ -7,6 +7,7 @@ export type ResourceForCheck = __esri.WebMap | __esri.WebScene | "group";
 /** Identifies all Instant App Templates by url (We use url because it is the same between locales) */
 export enum EAppTemplateType {
   ThreeDViewer = "/apps/instant/3dviewer/index.html",
+  Atlas = "/apps/instant/atlas/index.html",
   AttachmentViewer = "/apps/instant/attachmentviewer/index.html",
   Basic = "/apps/instant/basic/index.html",
   CategoryGallery = "/apps/instant/filtergallery/index.html",
@@ -19,6 +20,7 @@ export enum EAppTemplateType {
   Media = "/apps/instant/media/index.html",
   Minimalist = "/apps/instant/minimalist/index.html",
   Nearby = "/apps/instant/nearby/index.html",
+  Notify = "/apps/instant/notify/index.html",
   Portfolio = "/apps/instant/portfolio/index.html",
   Sidebar = "/apps/instant/sidebar/index.html",
   Slider = "/apps/instant/slider/index.html",
@@ -46,10 +48,12 @@ enum ERequirementType {
 const EResourceType_to_AppType_Mapping = {
   [EResourceType.Webmap]: [
     EAppTemplateType.ThreeDViewer,
+    EAppTemplateType.Atlas,
     EAppTemplateType.CategoryGallery
   ],
   [EResourceType.Webscene]: [
     EAppTemplateType.AttachmentViewer,
+    EAppTemplateType.Atlas,
     EAppTemplateType.CategoryGallery,
     EAppTemplateType.Charts,
     EAppTemplateType.ImageryApp,
@@ -58,6 +62,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Media,
     EAppTemplateType.Minimalist,
     EAppTemplateType.Nearby,
+    EAppTemplateType.Notify,
     EAppTemplateType.Sidebar,
     EAppTemplateType.Slider,
     EAppTemplateType.ZoneLookup
@@ -74,6 +79,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Media,
     EAppTemplateType.Minimalist,
     EAppTemplateType.Nearby,
+    EAppTemplateType.Notify,
     EAppTemplateType.Portfolio,
     EAppTemplateType.Sidebar,
     EAppTemplateType.Slider,
@@ -144,6 +150,7 @@ export class CompatibilityChecker {
 
     this._resourceMessagesMap = {
       [EAppTemplateType.AttachmentViewer]:  resourceMessages.Webmap,
+      [EAppTemplateType.Atlas]:             resourceMessages.Group,
       [EAppTemplateType.Basic]:             resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.CategoryGallery]:   resourceMessages.Group,
       [EAppTemplateType.Charts]:            resourceMessages.Webmap,
@@ -155,6 +162,7 @@ export class CompatibilityChecker {
       [EAppTemplateType.Media]:             resourceMessages.Webmap,
       [EAppTemplateType.Minimalist]:        resourceMessages.Webmap,
       [EAppTemplateType.Nearby]:            resourceMessages.Webmap,
+      [EAppTemplateType.Notify]:            resourceMessages.Webmap,
       [EAppTemplateType.Portfolio]:         resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.Sidebar]:           resourceMessages.Webmap,
       [EAppTemplateType.Slider]:            resourceMessages.Webmap,
