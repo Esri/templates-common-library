@@ -228,6 +228,12 @@
                 },
                 {
                   "type": "setting",
+                  "id": "collapseIndividualResults",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
                   "id": "relatedRecords",
                   "express": false,
                   "defaultValue": null
