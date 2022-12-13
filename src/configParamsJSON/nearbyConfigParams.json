@@ -68,48 +68,6 @@
               ]
             },
             {
-              "type": "setting",
-              "id": "layerList",
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "layerListConfig",
-                  "express": false,
-                  "config": {
-                    "supportedLayerTypes": [
-                      "map-image",
-                      "feature",
-                      "imagery",
-                      "group"
-                    ],
-                    "sections": ["addLegend"]
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "type": "setting",
-                  "id": "layerListPosition",
-                  "defaultValue": {
-                    "position": "bottom-right",
-                    "index": 0
-                  }
-                },
-                {
-                  "type": "setting",
-                  "id": "layerListOpenAtStart",
-                  "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "layerListAddTable",
-                  "express": false,
-                  "defaultValue": false
-                }
-              ]
-            },
-            {
               "type": "group",
               "id": "appComprehension",
               "content": [
@@ -680,6 +638,48 @@
                     "defaultValue":"#00FFFF"
                   }
                 ]},
+                {
+              "type": "setting",
+              "id": "layerList",
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "layerListConfig",
+                  "express": false,
+                  "config": {
+                    "supportedLayerTypes": [
+                      "map-image",
+                      "feature",
+                      "imagery",
+                      "group"
+                    ],
+                    "sections": ["addLegend"]
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "layerListPosition",
+                  "defaultValue": {
+                    "position": "bottom-right",
+                    "index": 0
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "layerListOpenAtStart",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "layerListAddTable",
+                  "express": false,
+                  "defaultValue": false
+                }
+              ]
+            },
                 {
                   "type": "setting",
                   "id": "basemapToggle",
