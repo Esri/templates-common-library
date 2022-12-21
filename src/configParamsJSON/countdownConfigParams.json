@@ -25,8 +25,7 @@
                   "type": "details",
                   "enabled": true,
                   "title": "Details",
-                  "content":
-                    "Welcome to the Countdown App! Start exploring the data in this app by using the countdown section to page through each location. While paging through the locations in the countdown section, the map will focus on the extent that showcases that feature. Use the pin to compare feature to identify relationships among the locations in the map. Click the button below to get started.",
+                  "content": "Welcome to the Countdown App! Start exploring the data in this app by using the countdown section to page through each location. While paging through the locations in the countdown section, the map will focus on the extent that showcases that feature. Use the pin to compare feature to identify relationships among the locations in the map. Click the button below to get started.",
                   "navTitle": "Details",
                   "icon": "text-paragraph-large"
                 },
@@ -68,6 +67,51 @@
                       "excludedEffect": "blur(3px) opacity(50%)"
                     }
                   }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "mapFilter",
+          "content": [
+            {
+              "type": "setting",
+              "id": "enableMapFilter",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "globalFilter",
+                  "express": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "play",
+          "content": [
+            {
+              "type": "setting",
+              "id": "autoPlay",
+              "express": true,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "enableAutoPlay",
+                  "defaultValue": false,
+                  "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "autoPlayDuration",
+                  "express": false,
+                  "defaultValue": 5
                 }
               ]
             }
@@ -178,28 +222,28 @@
           "id": "modify",
           "content": [
             {
-              "type":"setting",
-              "id":"enableHighlightColor",
-              "express":false,
+              "type": "setting",
+              "id": "enableHighlightColor",
+              "express": false,
               "content": [
                 {
-                  "type":"setting",
-                  "id":"highlightColor",
-                  "express":false,
-                  "defaultValue":"#00FFFF"
+                  "type": "setting",
+                  "id": "highlightColor",
+                  "express": false,
+                  "defaultValue": "#00FFFF"
                 }
               ]
             },
             {
-              "type":"setting",
-              "id":"enableHighlightHaloColor",
-              "express":false,
+              "type": "setting",
+              "id": "enableHighlightHaloColor",
+              "express": false,
               "content": [
                 {
-                  "type":"setting",
-                  "id":"highlightHaloColor",
-                  "express":false,
-                  "defaultValue":"#00FFFF"
+                  "type": "setting",
+                  "id": "highlightHaloColor",
+                  "express": false,
+                  "defaultValue": "#00FFFF"
                 }
               ]
             }
