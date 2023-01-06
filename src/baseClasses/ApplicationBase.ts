@@ -19,7 +19,7 @@ import {
   ApplicationBaseSettings,
   ApplicationConfig,
   ApplicationConfigs,
-  Direction
+  Direction,
 } from "../interfaces/applicationBase";
 import { parseConfig } from "./support/configParser";
 import { eachAlways } from "esri/core/promiseUtils";
@@ -33,9 +33,11 @@ import esriConfig from "esri/config";
 import { defineLocale } from "../structuralFunctionality/locale";
 import { prefersRTL } from "esri/intl";
 
-import { generateDefaultValuesObj, getConfigParams } from "./support/configParamsUtils";
+import {
+  generateDefaultValuesObj,
+  getConfigParams,
+} from "./support/configParamsUtils";
 import { EAppTemplateType } from "./CompatibilityChecker";
-
 
 const defaultConfig = {
   portalUrl: "https://www.arcgis.com",
@@ -43,8 +45,8 @@ const defaultConfig = {
     geometry: {},
     printTask: {},
     elevationSync: {},
-    geocode: []
-  }
+    geocode: [],
+  },
 };
 
 const defaultSettings = {
@@ -52,7 +54,7 @@ const defaultSettings = {
   portal: {},
   urlParams: [],
   webMap: {},
-  webScene: {}
+  webScene: {},
 };
 
 export default class ApplicationBase {
@@ -77,19 +79,18 @@ export default class ApplicationBase {
 
     const configMixin = {
       ...defaultConfig,
-      ...applicationConfig
+      ...applicationConfig,
     };
 
     const settingsMixin = {
       ...defaultSettings,
-      ...applicationBaseSettings
+      ...applicationBaseSettings,
     };
 
     this._mixinSettingsDefaults(settingsMixin);
 
     this.config = parseConfig(configMixin);
     this.settings = settingsMixin;
-
   }
 
   //--------------------------------------------------------------------------
@@ -163,7 +164,7 @@ export default class ApplicationBase {
       sortOrder: "desc",
       num: 9,
       start: 1,
-      ...itemParams
+      ...itemParams,
     };
 
     const params = new PortalQueryParams(paramOptions);
@@ -178,9 +179,8 @@ export default class ApplicationBase {
       portal: portalSettings,
       webMap: webMapSettings,
       webScene: websceneSettings,
-      urlParams: urlParamsSettings
+      urlParams: urlParamsSettings,
     } = settings;
-
 
     const isEsri = await this._isEnvironmentEsri();
     const urlParams = parseConfig(this._getUrlParamValues(urlParamsSettings));
@@ -188,7 +188,7 @@ export default class ApplicationBase {
 
     this.config = this._mixinAllConfigs({
       config: this.config,
-      url: urlParams
+      url: urlParams,
     });
 
     if (isEsri) {
@@ -205,38 +205,42 @@ export default class ApplicationBase {
     this._registerOauthInfos(oauthappid, portalUrl);
     const sharingUrl = `${portalUrl}/sharing`;
 
-    const loadApplicationItem = appid ? this._loadItem(appid) : Promise.resolve(null);
+    const loadApplicationItem = appid
+      ? this._loadItem(appid)
+      : Promise.resolve(null);
     const checkAppAccess = IdentityManager.checkAppAccess(
       sharingUrl,
       oauthappid
     )
-      .catch(response => response)
-      .then(response => {
+      .catch((response) => response)
+      .then((response) => {
         return response;
       });
 
     const fetchApplicationData = appid
-      ? loadApplicationItem.then(itemInfo => {
-        return itemInfo instanceof PortalItem
-          ? itemInfo.fetchData()
-          : undefined;
-      })
+      ? loadApplicationItem.then((itemInfo) => {
+          return itemInfo instanceof PortalItem
+            ? itemInfo.fetchData()
+            : undefined;
+        })
       : Promise.resolve();
-    const loadPortal = portalSettings.fetch ? new Portal().load() : Promise.resolve();
+    const loadPortal = portalSettings.fetch
+      ? new Portal().load()
+      : Promise.resolve();
 
     return eachAlways([
       loadApplicationItem,
       fetchApplicationData,
       loadPortal,
-      checkAppAccess
+      checkAppAccess,
     ])
-      .catch(applicationArgs => applicationArgs)
-      .then(applicationArgs => {
+      .catch((applicationArgs) => applicationArgs)
+      .then((applicationArgs) => {
         const [
           applicationItemResponse,
           applicationDataResponse,
           portalResponse,
-          checkAppAccessResponse
+          checkAppAccessResponse,
         ] = applicationArgs;
         const applicationItem = applicationItemResponse
           ? applicationItemResponse.value
@@ -266,10 +270,13 @@ export default class ApplicationBase {
         } else if (applicationItemResponse.error) {
           return Promise.reject(applicationItemResponse.error);
         }
-        // user not signed in and contentOrigin is other. 
-        // If app is within an iframe ignore all of this 
+        // user not signed in and contentOrigin is other.
+        // If app is within an iframe ignore all of this
         const withinFrame = window.location !== window.parent.location;
-        if (applicationItem?.sourceJSON?.contentOrigin === "other" && !withinFrame) {
+        if (
+          applicationItem?.sourceJSON?.contentOrigin === "other" &&
+          !withinFrame
+        ) {
           if (appAccess?.credential === undefined) {
             this.invalidContentOrigin = true;
           }
@@ -278,15 +285,13 @@ export default class ApplicationBase {
         this.results.applicationData = applicationDataResponse;
 
         const applicationConfig = parseConfig(
-          applicationData
-            ? applicationData.values as ApplicationConfig
-            : null
+          applicationData ? (applicationData.values as ApplicationConfig) : null
         );
 
         const portal = portalResponse ? portalResponse.value : null;
         this.portal = portal;
 
-        // Detect IE 11 and older 
+        // Detect IE 11 and older
         this.isIE = this._detectIE();
         this.locale = defineLocale({ portal, config: this.config });
         this.direction = prefersRTL(this.locale) ? "rtl" : "ltr";
@@ -296,11 +301,11 @@ export default class ApplicationBase {
         this.config = this._mixinAllConfigs({
           config: this.config,
           url: urlParams,
-          application: applicationConfig
+          application: applicationConfig,
         });
 
         // DEFAULT VALUES WORK STARTS HERE
-        
+
         // GET CONFIG PARAMS JSON BASED ON APP TEMPLATE TYPE
         const configParamsJSON = getConfigParams(template);
 
@@ -311,7 +316,7 @@ export default class ApplicationBase {
           config: this.config,
           defaultValues,
           url: urlParams,
-          application: applicationConfig
+          application: applicationConfig,
         });
 
         delete this.config.localDefaultValues;
@@ -338,40 +343,49 @@ export default class ApplicationBase {
         const fetchMultipleGroups = groupSettings.fetchMultiple;
         const withinConfigExperience = this._isWithinConfigurationExperience();
         if (isWebMapEnabled) {
-          const maps = (withinConfigExperience && draft?.webmap) ? [draft.webmap, webmap] : webmap;
+          const maps =
+            withinConfigExperience && draft?.webmap
+              ? [draft.webmap, webmap]
+              : webmap;
           const webMaps = this._getPropertyArray(maps);
 
           const allowedWebmaps = this._limitItemSize(
             webMaps,
             fetchMultipleWebmaps
           );
-          allowedWebmaps.forEach(id => {
+          allowedWebmaps.forEach((id) => {
             const webMapId = this._getDefaultId(id, defaultWebMap);
             webMapPromises.push(this._loadItem(webMapId));
           });
         }
 
         if (isWebSceneEnabled) {
-          const scenes = withinConfigExperience && draft?.webscene ? [draft.webscene, webscene] : webscene;
+          const scenes =
+            withinConfigExperience && draft?.webscene
+              ? [draft.webscene, webscene]
+              : webscene;
           const webScenes = this._getPropertyArray(scenes);
           const allowedWebsenes = this._limitItemSize(
             webScenes,
             fetchMultipleWebscenes
           );
-          allowedWebsenes.forEach(id => {
+          allowedWebsenes.forEach((id) => {
             const webSceneId = this._getDefaultId(id, defaultWebScene);
             webScenePromises.push(this._loadItem(webSceneId));
           });
         }
 
         if (isGroupInfoEnabled) {
-          const draftGroups = withinConfigExperience && draft?.group ? [draft.group, group] : group;
+          const draftGroups =
+            withinConfigExperience && draft?.group
+              ? [draft.group, group]
+              : group;
           const groups = this._getPropertyArray(draftGroups);
           const allowedGroups = this._limitItemSize(
             groups,
             fetchMultipleGroups
           );
-          allowedGroups.forEach(id => {
+          allowedGroups.forEach((id) => {
             const groupId = this._getDefaultId(id, defaultGroup);
             groupInfoPromises.push(this._queryGroupInfo(groupId, portal));
           });
@@ -379,7 +393,7 @@ export default class ApplicationBase {
 
         if (isGroupItemsEnabled) {
           const groups = this._getPropertyArray(group);
-          groups.forEach(id => {
+          groups.forEach((id) => {
             groupItemsPromises.push(
               this.queryGroupItems(id, itemParams, portal)
             );
@@ -387,19 +401,23 @@ export default class ApplicationBase {
         }
 
         const promises: ApplicationBaseItemPromises = {
-          webMap: webMapPromises ? eachAlways(webMapPromises) : Promise.resolve(),
-          webScene: webScenePromises ? eachAlways(webScenePromises) : Promise.resolve(),
+          webMap: webMapPromises
+            ? eachAlways(webMapPromises)
+            : Promise.resolve(),
+          webScene: webScenePromises
+            ? eachAlways(webScenePromises)
+            : Promise.resolve(),
           groupInfo: groupInfoPromises
             ? eachAlways(groupInfoPromises)
             : Promise.resolve(),
           groupItems: groupItemsPromises
             ? eachAlways(groupItemsPromises)
-            : Promise.resolve()
+            : Promise.resolve(),
         };
 
         return eachAlways(promises)
-          .catch(itemArgs => itemArgs)
-          .then(itemArgs => {
+          .catch((itemArgs) => itemArgs)
+          .then((itemArgs) => {
             const webMapResponses = itemArgs.webMap.value;
             const webSceneResponses = itemArgs.webScene.value;
             const groupInfoResponses = itemArgs.groupInfo.value;
@@ -417,7 +435,7 @@ export default class ApplicationBase {
             if (!appAccess?.credential && this.invalidContentOrigin) {
               return Promise.reject({
                 appUrl: this._getAppUrl(),
-                error: "application:origin-other"
+                error: "application:origin-other",
               });
             }
             return this;
@@ -441,7 +459,7 @@ export default class ApplicationBase {
       sortField: "modified",
       sortOrder: "desc",
       num: 9,
-      start: 0
+      start: 0,
     } as PortalQueryParams;
 
     settings.group = {
@@ -450,26 +468,26 @@ export default class ApplicationBase {
       fetchItems: true,
       fetchMultiple: true,
       itemParams: itemParams,
-      ...userGroupSettings
+      ...userGroupSettings,
     };
 
     settings.portal = {
       fetch: true,
-      ...userPortalSettings
+      ...userPortalSettings,
     };
 
     settings.webMap = {
       default: "1970c1995b8f44749f4b9b6e81b5ba45",
       fetch: true,
       fetchMultiple: true,
-      ...userWebmapSettings
+      ...userWebmapSettings,
     };
 
     settings.webScene = {
       default: "e8f078ba0c1546b6a6e0727f877742a5",
       fetch: true,
       fetchMultiple: true,
-      ...userWebsceneSettings
+      ...userWebsceneSettings,
     };
   }
 
@@ -501,8 +519,8 @@ export default class ApplicationBase {
     const appLocationIndex = isEsriAppsPath
       ? esriAppsPathIndex
       : isEsriHomePath
-        ? esriHomePathIndex
-        : undefined;
+      ? esriHomePathIndex
+      : undefined;
 
     if (appLocationIndex === undefined) {
       return;
@@ -523,18 +541,20 @@ export default class ApplicationBase {
 
   private async _isEnvironmentEsri(): Promise<boolean> {
     const urlBase: string = window.location.origin;
-    return urlBase.indexOf("arcgis.com") !== -1 || await this._isPortalServer(); // AGO || ArcGIS Portal
+    return (
+      urlBase.indexOf("arcgis.com") !== -1 || (await this._isPortalServer())
+    ); // AGO || ArcGIS Portal
   }
 
   private async _isPortalServer(): Promise<boolean> {
     const esriUrl = this._getEsriEnvironmentPortalUrl();
-    if(esriUrl == null){
+    if (esriUrl == null) {
       return false;
     }
     const testingUrl: string = `${esriUrl}/sharing/rest/info`;
     try {
       const res: Response = await fetch(testingUrl, {
-        method: 'HEAD'
+        method: "HEAD",
       });
       return res.ok;
     } catch (err) {
@@ -560,16 +580,15 @@ export default class ApplicationBase {
     const units = userUnits
       ? userUnits
       : responseUnits
-        ? responseUnits
-        : isEnglishUnits
-          ? "english"
-          : "metric";
+      ? responseUnits
+      : isEnglishUnits
+      ? "english"
+      : "metric";
     return units;
   }
 
   private _detectIE() {
-    return /*@cc_on!@*/false || !!document['documentMode'];
-
+    return /*@cc_on!@*/ false || !!document["documentMode"];
   }
 
   private async _queryGroupInfo(
@@ -577,14 +596,14 @@ export default class ApplicationBase {
     portal: Portal
   ): Promise<__esri.PortalQueryResult> {
     const params = new PortalQueryParams({
-      query: `id:"${groupId}"`
+      query: `id:"${groupId}"`,
     });
     return (await portal.queryGroups(params)) as __esri.PortalQueryResult;
   }
 
   private _loadItem(id: string): IPromise<PortalItem> {
     const item = new PortalItem({
-      id
+      id,
     });
     return item.load();
   }
@@ -597,7 +616,7 @@ export default class ApplicationBase {
       return;
     }
 
-    responses.forEach(response => {
+    responses.forEach((response) => {
       const { value } = response;
       if (value) {
         this._overwriteItemExtent(value, applicationItem);
@@ -637,7 +656,7 @@ export default class ApplicationBase {
       ...defaultValues,
       ...this.config?.localDefaultValues,
       ...appConfig,
-      ...urlConfig
+      ...urlConfig,
     };
   }
 
@@ -682,10 +701,13 @@ export default class ApplicationBase {
     if (!appId) {
       return;
     }
-
     const info = new OAuthInfo({
       appId,
-      portalUrl
+      portalUrl,
+      popup:
+        this._isEmbedded() && !this._isWithinConfigurationExperience()
+          ? true
+          : false,
     });
 
     if (!info) {
@@ -703,7 +725,7 @@ export default class ApplicationBase {
       return;
     }
 
-    urlParams.forEach(param => {
+    urlParams.forEach((param) => {
       const urlParamValue = urlObject[param];
       if (urlParamValue) {
         formattedUrlObject[param] = this._formatUrlParamValue(urlParamValue);
@@ -751,9 +773,9 @@ export default class ApplicationBase {
     const hostname = location.hostname;
     let newOrigin = "//www.arcgis.com";
     if (hostname.indexOf("devext.arcgis.com") !== -1) {
-      newOrigin = "//devext.arcgis.com"
+      newOrigin = "//devext.arcgis.com";
     } else if (hostname.indexOf("qaext.arcgis.com") !== -1) {
-      newOrigin = "//qaext.arcgis.com"
+      newOrigin = "//qaext.arcgis.com";
     }
     let appurl = `${location.protocol}${newOrigin}${location.pathname}`;
     if (location?.search) {
@@ -766,18 +788,20 @@ export default class ApplicationBase {
     // If frameElement is null, origins between parent and child do not match
     return frameElement
       ? // If origins match, check if parent iframe has data-embed-type="instant-config"
-      frameElement.getAttribute("data-embed-type") === "instant-config"
+        frameElement.getAttribute("data-embed-type") === "instant-config"
         ? // If so, app is within config experience - use draft values
-        true
+          true
         : // Otherwise, it is not within config experience - use publish values
-        false
+          false
       : // Origins do not match
-      // IF TRUE - If parent and child locations do not match, and the location hostnames are local host.
-      // Use draft values for locally hosted config panel testing
-      // IF FALSE - template app is embedded on hosted page - use publish values.
-      location !== parent.location &&
-      (location.hostname === "localhost" ||
-        location.hostname === "127.0.0.1");
+        // IF TRUE - If parent and child locations do not match, and the location hostnames are local host.
+        // Use draft values for locally hosted config panel testing
+        // IF FALSE - template app is embedded on hosted page - use publish values.
+        location !== parent.location &&
+          (location.hostname === "localhost" ||
+            location.hostname === "127.0.0.1");
   }
-
+  private _isEmbedded(): boolean {
+    return window.location !== window.parent.location;
+  }
 }
