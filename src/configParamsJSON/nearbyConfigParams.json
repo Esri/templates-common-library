@@ -90,6 +90,16 @@
                       "config": {
                         "imageUpload": true
                       }
+                    },{
+                      "type":"setting",
+                      "id":"infoAsModal",
+                      "express":false,
+                      "defaultValue":false
+                    },{
+                      "type":"setting",
+                      "id":"infoIncludeLocation",
+                      "express":false,
+                      "defaultValue":false
                     }
                   ],
                   "defaultValue": true
@@ -173,7 +183,7 @@
                     "enableBufferColor",
                     "enableSearchScale"
                   ],
-                  []
+                  ["showAll"]
                 ]
               },
               "content": [
@@ -229,6 +239,11 @@
                       "id": "bufferTransparency",
                       "express": false,
                       "defaultValue": 30
+                    },{
+                      "type":"setting",
+                      "id":"showAll",
+                      "express":false,
+                      "defaultValue":false
                     }
                   ]
                 },
