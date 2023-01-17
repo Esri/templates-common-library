@@ -73,6 +73,16 @@
               "config": {
                 "imageUpload": true
               }
+            },{
+              "type":"setting",
+              "id":"infoAsModal",
+              "express":false,
+              "defaultValue":false
+            },{
+              "type":"setting",
+              "id":"infoIncludeLocation",
+              "express":false,
+              "defaultValue":false
             }
           ]
         },
