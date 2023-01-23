@@ -15,16 +15,7 @@
           "config": {
             "branches": [
               [
-                "numericFieldSelector",
-                "dataSliderRange",
-                "dataSliderLoop",
-                "dataSliderExcludedEffect",
-                "dataSliderIncludedEffect",
-                "dataSliderNumericModes",
-                "numericSliderSpeed",
-                "dataSliderMinLabelAlias",
-                "dataSliderMaxLabelAlias",
-                "dataSliderCurrentValueAppend"
+                "numericSliderConfig"
               ],
               [
                 "timeLoop",
@@ -63,6 +54,12 @@
             {
               "type": "setting",
               "id": "dataSliderExcludedEffect",
+              "express": true,
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "numericSliderConfig",
               "express": true,
               "defaultValue": null
             },
