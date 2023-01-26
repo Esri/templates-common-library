@@ -107,10 +107,31 @@
       "content": [
         {
           "type": "setting",
-          "id": "interactiveLegendOpenAtStart",
+          "id": "interactiveLegendStyle",
           "express": true,
-          "defaultValue": true
+          "config": {
+            "branches": [["interactiveLegendOpenAtStart"], ["interactiveLegendPanelLocation"]]
+          },
+          "content": [
+            {
+              "type": "setting",
+              "id": "interactiveLegendOpenAtStart",
+              "express": true,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "interactiveLegendPanelLocation",
+              "express": true,
+              "defaultValue": true
+            }
+          ],
+          "defaultValue": {
+            "branchValue": "floating",
+            "branchOptionsFieldNames": []
+          }
         },
+
         {
           "type": "setting",
           "id": "updateExtent",
@@ -145,9 +166,18 @@
         },
         {
           "type": "setting",
-          "id": "showInteractiveLegendOnboarding",
-          "express": false,
-          "defaultValue": true
+          "id": "infoPanel",
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "infoPanelPosition",
+              "defaultValue": {
+                "position": "top-left",
+                "index": 2
+              }
+            }
+          ]
         }
       ]
     },
@@ -189,21 +219,6 @@
                       "defaultValue": {
                         "position": "top-left",
                         "index": 1
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "infoPanel",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "infoPanelPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 2
                       }
                     }
                   ]
