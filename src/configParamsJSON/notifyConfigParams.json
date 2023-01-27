@@ -5,7 +5,15 @@
       "id": "map",
       "config": {
         "itemTypes": ["2d"]
-      }
+      },
+      "content": [
+        {
+          "type": "setting",
+          "id": "keyboardShortcuts",
+          "express": false,
+          "defaultValue": false
+        }
+      ]
     },
     {
       "type": "section",
@@ -42,7 +50,7 @@
             {
               "type": "setting",
               "id": "legend",
-              "defaultValue": false,
+              "defaultValue": true,
               "content": [
                 {
                   "type": "setting",
@@ -84,7 +92,7 @@
                       }
                     }
                   ],
-                  "defaultValue": true
+                  "defaultValue": false
                 }
               ]
             }
@@ -160,6 +168,7 @@
            {
             "type":"group",
             "id":"selectionLayers",
+            "express":false,
             "content":[
               {
                 "type": "setting",
@@ -256,13 +265,13 @@
               {
                 "type":"setting",
                 "id":"exportCSV",
-                "defaultValue":false,
+                "defaultValue":true,
                 "express":false
               },
               {
                 "type":"setting",
                 "id":"exportPDF",
-                "defaultValue":false,
+                "defaultValue":true,
                 "express":false
               }
             ]}
@@ -475,7 +484,8 @@
                       "defaultValue": "top-right"
                     }
                   ],
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "express":true
                 }
               ]
             }
