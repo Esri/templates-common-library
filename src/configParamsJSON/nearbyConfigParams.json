@@ -239,11 +239,6 @@
                       "id": "bufferTransparency",
                       "express": false,
                       "defaultValue": 30
-                    },{
-                      "type":"setting",
-                      "id":"showAll",
-                      "express":false,
-                      "defaultValue":false
                     }
                   ]
                 },
@@ -260,6 +255,11 @@
                     }
                   ],
                   "defaultValue": false
+                },{
+                  "type":"setting",
+                  "id":"showAll",
+                  "express":false,
+                  "defaultValue":false
                 }
               ],
               "defaultValue": {
