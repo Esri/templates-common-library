@@ -255,27 +255,6 @@
           }
            
           ]
-        },      {
-          "type":"subsection",
-          "id":"notification",
-          "content":[{
-            "type":"group",
-            "id":"exportOptions",
-            "content":[
-              {
-                "type":"setting",
-                "id":"exportCSV",
-                "defaultValue":true,
-                "express":false
-              },
-              {
-                "type":"setting",
-                "id":"exportPDF",
-                "defaultValue":true,
-                "express":false
-              }
-            ]}
-          ]
         }
        ]
     },
@@ -363,12 +342,6 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "disableScroll",
-                  "defaultValue": false,
-                  "express": true
-                },
-                {
-                  "type": "setting",
                   "id": "scalebar",
                   "express": false,
                   "defaultValue": false,
@@ -451,25 +424,6 @@
           "type": "subsection",
           "id": "share",
           "content": [
-            {
-              "type": "group",
-              "id": "screenshot",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "screenshot",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "screenshotPosition",
-                      "defaultValue": "top-left"
-                    }
-                  ]
-                }
-              ]
-            },
             {
               "type": "group",
               "id": "share",
