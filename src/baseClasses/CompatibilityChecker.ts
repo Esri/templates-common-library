@@ -20,7 +20,7 @@ export enum EAppTemplateType {
   Media = "/apps/instant/media/index.html",
   Minimalist = "/apps/instant/minimalist/index.html",
   Nearby = "/apps/instant/nearby/index.html",
-  Notify = "/apps/instant/notify/index.html",
+  Notify = "/apps/instant/notification/index.html",
   Portfolio = "/apps/instant/portfolio/index.html",
   Sidebar = "/apps/instant/sidebar/index.html",
   Slider = "/apps/instant/slider/index.html",
