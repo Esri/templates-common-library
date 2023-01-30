@@ -32,27 +32,6 @@
           "content": [
             {
               "type": "setting",
-              "id": "numericFieldSelector",
-              "express": true,
-              "config": {
-                "layerSelectionMode": "multiple",
-                "supportedLayerTypes": "*",
-                "supportedGeometryTypes": "*",
-                "supportsFieldSelection": true,
-                "isFieldSelectionRequired": true,
-                "fieldSelectionMode": "single",
-                "supportedFieldTypes": [
-                  "long",
-                  "double",
-                  "single",
-                  "integer",
-                  "small-integer"
-                ]
-              },
-              "defaultValue": null
-            },
-            {
-              "type": "setting",
               "id": "dataSliderExcludedEffect",
               "express": true,
               "defaultValue": null
@@ -62,82 +41,6 @@
               "id": "numericSliderConfig",
               "express": true,
               "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "dataSliderRange",
-              "express": true,
-              "config": {
-                "defaultMinVal": 1,
-                "defaultMaxVal": 100,
-                "defaultDefaultVal": 1,
-                "absoluteMinVal": 1,
-                "includeDefaultValInput": true,
-                "layerAndFieldSelectorToWatch": "numericFieldSelector"
-              },
-              "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "dataSliderLoop",
-              "express": true,
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
-              "id": "dataSliderNumericModes",
-              "express": true,
-              "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "numericSliderSpeed",
-              "express": true,
-              "config": {
-                "branches": [
-                  ["numericSliderSpeedControl"],
-                  ["divisionSections", "dataSliderSpeed"]
-                ]
-              },
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "numericSliderSpeedControl",
-                  "express": true,
-                  "defaultValue": [2]
-                },
-                {
-                  "type": "setting",
-                  "id": "divisionSections",
-                  "express": true,
-                  "defaultValue": 5
-                },
-                {
-                  "type": "setting",
-                  "id": "dataSliderSpeed",
-                  "express": true,
-                  "defaultValue": [2]
-                }
-              ],
-              "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "dataSliderMinLabelAlias",
-              "express": false,
-              "defaultValue": ""
-            },
-            {
-              "type": "setting",
-              "id": "dataSliderMaxLabelAlias",
-              "express": false,
-              "defaultValue": ""
-            },
-            {
-              "type": "setting",
-              "id": "dataSliderCurrentValueAppend",
-              "express": false,
-              "defaultValue": ""
             },
             {
               "type": "setting",
