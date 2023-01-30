@@ -56,7 +56,7 @@
                   "featuresDisplayed": 10,
                   "zoomScale": 5000000,
                   "navTitle": "Leaderboard",
-                  "icon": "caret-double-horizontal",
+                  "icon": "list-number",
                   "buttonText": "Next: {nextSection}",
                   "highlight": false,
                   "enableFilterField": false,
