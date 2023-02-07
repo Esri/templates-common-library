@@ -273,8 +273,8 @@
                 {
                   "type": "setting",
                   "id": "bookmarks",
-                  "defaultValue": true,
-                  "express": false,
+                  "defaultValue": false,
+                  "express": true,
                   "content": [
                     {
                       "type": "setting",
