@@ -52,6 +52,11 @@ export default class Alert extends Widget {
   // messages = null;
 
   render() {
+    const theme =
+      this.config?.theme === "dark"
+        ? "calcite-mode-dark"
+        : "calcite-mode-light";
+
     return (
       <div bind={this}>
         <calcite-alert
@@ -59,19 +64,19 @@ export default class Alert extends Widget {
           bind={this}
           data-node-ref="_alertNode"
           oncalciteAlertClose={this.handleClose.bind(this)}
-          // T9N - HARDCODED EN STRING
-          intl-close={"Close"}
           scale="s"
           active={true}
           open={true}
-          class={CSS.base}
-          theme={this.config?.theme === "dark" ? "dark" : "light"}
+          class={this.classes(CSS.base, theme)}
         >
           <div slot="message">
             <div>
-              <span style="padding:0 5px;">
-                {this?.config?.googleAnalyticsConsentMsg}
-              </span>
+              <span
+                style="padding:0 5px;"
+                afterCreate={(container) => {
+                  container.innerHTML = this?.config?.googleAnalyticsConsentMsg;
+                }}
+              ></span>
               <calcite-button
                 scale="s"
                 slot="link"
