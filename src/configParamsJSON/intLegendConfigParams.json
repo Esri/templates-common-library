@@ -168,11 +168,13 @@
           "type": "setting",
           "id": "infoPanel",
           "defaultValue": false,
+          "express": true,
           "content": [
             {
               "type": "setting",
               "id": "infoPanelOpenAtStart",
-              "defaultValue": false
+              "defaultValue": false,
+              "express": true
             },
             {
               "type": "setting",
