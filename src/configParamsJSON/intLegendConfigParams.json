@@ -123,7 +123,7 @@
               "type": "setting",
               "id": "interactiveLegendPanelLocation",
               "express": true,
-              "defaultValue": true
+              "defaultValue": "left"
             }
           ],
           "defaultValue": {
@@ -169,6 +169,11 @@
           "id": "infoPanel",
           "defaultValue": false,
           "content": [
+            {
+              "type": "setting",
+              "id": "infoPanelOpenAtStart",
+              "defaultValue": false
+            },
             {
               "type": "setting",
               "id": "infoPanelPosition",
