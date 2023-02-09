@@ -234,10 +234,6 @@
             "type":"group",
             "id":"searchOptions",
             "content":[
-              {
-                "type":"setting",
-                "id":"searchDistance",
-                "content":[
                   {
                     "type": "setting",
                     "id": "defaultDistance",
@@ -249,8 +245,6 @@
                     "id": "searchUnits",
                     "defaultValue": "kilometers"
                   }
-                ]
-              }
             ]
           }
            
