@@ -451,12 +451,6 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "searchPosition",
-                  "defaultValue": "top-right",
-                  "express": true
-                },
-                {
-                  "type": "setting",
                   "id": "searchConfiguration",
                   "express": true,
                   "defaultValue": null
