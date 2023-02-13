@@ -1,5 +1,8 @@
 import Search from "esri/widgets/Search";
 import FeatureLayer from "esri/layers/FeatureLayer";
+import MapView from "esri/views/MapView";
+import SceneView from "esri/views/SceneView";
+import Portal from "esri/portal/Portal";
 
 interface SearchSourceConfigItem {
   maxResults: number;
@@ -40,8 +43,8 @@ interface SearchConfiguration {
 }
 
 export function createSearch(
-  view: __esri.MapView,
-  portal: __esri.Portal,
+  view: MapView | SceneView,
+  portal: Portal,
   searchConfiguration: SearchConfiguration
 ): Search {
   const sources = searchConfiguration?.sources;
@@ -73,6 +76,7 @@ export function createSearch(
   return new Search({
     view,
     portal,
-    ...searchConfiguration
+    ...searchConfiguration,
+    includeDefaultSources: true
   });
 }
