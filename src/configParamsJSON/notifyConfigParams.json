@@ -445,17 +445,9 @@
           "content": [
             {
               "type": "setting",
-              "id": "search",
+              "id": "searchConfiguration",
               "express": true,
-              "defaultValue": true,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "searchConfiguration",
-                  "express": true,
-                  "defaultValue": null
-                }
-              ]
+              "defaultValue": null
             }
           ]
         }
