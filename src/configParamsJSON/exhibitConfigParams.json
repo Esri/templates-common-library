@@ -308,7 +308,10 @@
                       "type": "setting",
                       "id": "searchConfiguration",
                       "express": true,
-                      "defaultValue": null
+                      "defaultValue": null,
+                      "config": {
+                        "includeDefaultLocators": false
+                      }
                     }
                   ]
                 }

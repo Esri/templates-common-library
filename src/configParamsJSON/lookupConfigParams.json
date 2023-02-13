@@ -690,6 +690,9 @@
               "type": "setting",
               "id": "searchConfiguration",
               "express": true,
+              "config": {
+                "includeDefaultLocators": false
+              },
               "defaultValue": null
             }
           ]
