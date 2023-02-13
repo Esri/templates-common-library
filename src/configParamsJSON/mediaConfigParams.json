@@ -686,10 +686,7 @@
                 {
                   "type": "setting",
                   "id": "searchConfiguration",
-                  "express": true,
-                  "config": {
-                    "includeDefaultLocators": false
-                  },
+                  "express": true
                   "defaultValue": null
                 }
               ]
