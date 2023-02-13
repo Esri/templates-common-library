@@ -686,7 +686,7 @@
                 {
                   "type": "setting",
                   "id": "searchConfiguration",
-                  "express": true
+                  "express": true,
                   "defaultValue": null
                 }
               ]
