@@ -13,6 +13,7 @@ interface SearchSourceConfigItem {
   placeholder: string;
   withinViewEnabled: boolean;
   zoomScale: number;
+  outFields?: string[];
 }
 
 interface LocatorSourceConfigItem extends SearchSourceConfigItem {
@@ -42,41 +43,49 @@ interface SearchConfiguration {
   sources: Array<LocatorSourceConfigItem | LayerSourceConfigItem>;
 }
 
-export function createSearch(
-  view: MapView | SceneView,
-  portal: Portal,
-  searchConfiguration: SearchConfiguration
-): Search {
+export function createSearch(view: MapView | SceneView, portal: Portal, searchConfiguration: SearchConfiguration): Search {
+  const INCLUDE_DEFAULT_SOURCES = "includeDefaultSources";
   const sources = searchConfiguration?.sources;
-  if (sources) {
-    sources.forEach(source => {
+
+  if (sources?.length > 0) {
+    searchConfiguration[INCLUDE_DEFAULT_SOURCES] = false;
+
+    sources.forEach((source) => {
       const isLayerSource = source.hasOwnProperty("layer");
       if (isLayerSource) {
         const layerSource = source as LayerSourceConfigItem;
-        const layerFromMap = layerSource.layer?.id
-          ? view.map.findLayerById(layerSource.layer.id)
-          : null;
+        const layerId = layerSource.layer?.id;
+        const layerFromMap = layerId ? view.map.findLayerById(layerId) : null;
+        const layerUrl = layerSource?.layer?.url;
         if (layerFromMap) {
           layerSource.layer = layerFromMap as FeatureLayer;
-        } else if (layerSource?.layer?.url) {
-          layerSource.layer = new FeatureLayer(layerSource?.layer?.url as any);
+        } else if (layerUrl) {
+          layerSource.layer = new FeatureLayer(layerUrl as any);
         }
       }
     });
+
+    sources?.forEach((source) => {
+      const isLocatorSource = source.hasOwnProperty("locator");
+      if (isLocatorSource) {
+        const locatorSource = (source as LocatorSourceConfigItem);
+        if (locatorSource?.name === "ArcGIS World Geocoding Service") {
+          const outFields = locatorSource.outFields || ["Addr_type", "Match_addr", "StAddr", "City"];
+          locatorSource.outFields = outFields;
+          locatorSource.singleLineFieldName = "SingleLine";
+        }
+
+        locatorSource.url = locatorSource.url;
+        delete locatorSource.url;
+      }
+    });
+  } else {
+    searchConfiguration[INCLUDE_DEFAULT_SOURCES] = true;
   }
-  searchConfiguration?.sources?.forEach(source => {
-    const isLocatorSource = source.hasOwnProperty("locator");
-    if (isLocatorSource) {
-      const locatorSource = source as LocatorSourceConfigItem;
-      locatorSource.url = locatorSource.url;
-      delete locatorSource.url;
-    }
-  });
 
   return new Search({
     view,
     portal,
-    ...searchConfiguration,
-    includeDefaultSources: true
+    ...searchConfiguration
   });
 }
