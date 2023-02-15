@@ -40,7 +40,7 @@ interface SearchConfiguration {
   allPlaceholder?: string;
   includeDefaultSources?: boolean;
   searchAllEnabled?: boolean;
-  sources: Array<LocatorSourceConfigItem | LayerSourceConfigItem>;
+  sources?: Array<LocatorSourceConfigItem | LayerSourceConfigItem>;
 }
 
 export function createSearch(view: MapView | SceneView, portal: Portal, searchConfiguration: SearchConfiguration): Search {
@@ -80,7 +80,10 @@ export function createSearch(view: MapView | SceneView, portal: Portal, searchCo
       }
     });
   } else {
-    searchConfiguration[INCLUDE_DEFAULT_SOURCES] = true;
+    searchConfiguration = {
+      ...searchConfiguration,
+      includeDefaultSources: true
+    }
   }
 
   return new Search({
