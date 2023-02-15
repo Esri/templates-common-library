@@ -11,7 +11,15 @@
           "type": "setting",
           "id": "keyboardShortcuts",
           "express": false,
-          "defaultValue": false
+          "defaultValue": false,
+          "content":[    {
+            "type": "setting",
+            "id": "keyboardShortcutsPosition",
+            "defaultValue": {
+              "position": "top-left",
+              "index": 0
+            }
+          }]
         }
       ]
     },
