@@ -53,3 +53,20 @@ export function getSharedTheme(
 
   return sharedTheme;
 }
+
+//----------------------------------
+//  updateViewsCalciteMode
+//----------------------------------
+
+/**
+ * Update view's calcite-mode class when theme is updated
+ */
+
+export function updateViewsCalciteMode(theme: "light" | "dark"): void {
+  const prevCalciteTheme = theme === "light" ? "calcite-mode-dark" : "calcite-mode-light";
+  const calciteTheme = theme === "light" ? "calcite-mode-light" : "calcite-mode-dark";
+  const uiContainers = document.querySelectorAll(`.esri-ui.${prevCalciteTheme}`);
+  for (let i = 0; i < uiContainers.length; i++) {
+    uiContainers[i].className = uiContainers[i].className.replace(prevCalciteTheme, calciteTheme);
+  }
+}
