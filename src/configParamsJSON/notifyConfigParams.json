@@ -206,26 +206,6 @@
             "id":"refineResults",
             "content":[
               {
-                "type": "setting",
-                "id": "featureEffect",
-                "express": false,
-                "content": [
-                  {
-                    "type": "setting",
-                    "id": "presetLayerEffects",
-                    "express": true,
-                    "defaultValue": {
-                      "id": "lift-1",
-                      "data": {
-                        "includedEffect": "drop-shadow(4px, 4px, 4px, #000000)",
-                        "excludedEffect": ""
-                      }
-                    }
-                  }
-                ],
-                "defaultValue": false
-              },
-              {
                 "type":"setting",
                 "id":"refineSelection",
                 "express":false,
