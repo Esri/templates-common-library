@@ -68,18 +68,26 @@
           ]
         },
         {
-          "type": "group",
-          "id": "customHeader",
+          "type": "setting",
+          "id": "header",
+          "defaultValue": true,
+          "express": true,
           "content": [
             {
-              "type": "setting",
+              "type": "group",
               "id": "customHeader",
-              "defaultValue": false,
               "content": [
                 {
                   "type": "setting",
-                  "id": "customHeaderHTML",
-                  "defaultValue": ""
+                  "id": "customHeader",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "customHeaderHTML",
+                      "defaultValue": ""
+                    }
+                  ]
                 }
               ]
             }
