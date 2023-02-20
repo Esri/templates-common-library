@@ -30,9 +30,17 @@
         },
         {
           "type": "setting",
-          "id": "basemapSelector",
+          "id": "changeDefaultBasemapCond",
+          "defaultValue": false,
           "express": true,
-          "defaultValue": "streets-vector"
+          "content": [
+            {
+              "type": "setting",
+              "id": "changeDefaultBasemap",
+              "express": true,
+              "defaultValue": "streets-vector"
+            }
+          ]
         }
       ]
     },
@@ -52,30 +60,6 @@
               "defaultValue": "Atlas"
             }
           ]
-        },
-        {
-          "type": "setting",
-          "id": "splash",
-          "express": true,
-          "defaultValue": false,
-          "content": [
-            {
-              "type": "setting",
-              "id": "splashTitle",
-              "defaultValue": "Welcome to Atlas"
-            },
-            {
-              "type": "setting",
-              "id": "splashContent",
-              "defaultValue": "Explore available geographic content. Click Details to learn more about the data. Click View to add data to the map."
-            },
-            {
-              "type": "setting",
-              "id": "splashButtonText",
-              "defaultValue": "Get Started"
-            }
-
-          ]
         }
       ]
     },
@@ -87,25 +71,7 @@
           "type": "setting",
           "id": "search",
           "express": true,
-          "defaultValue": true,
-          "content": [
-
-            {
-              "type": "setting",
-              "id": "searchOpenAtStart",
-              "express": true,
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
-              "id": "searchConfiguration",
-              "express": true,
-              "config": {
-                "includeDefaultLocators": false
-              },
-              "defaultValue": null
-            }
-          ]
+          "defaultValue": true
         }
       ]
     },
@@ -117,12 +83,6 @@
           "type": "subsection",
           "id": "theme",
           "content": [
-            {
-              "type": "setting",
-              "id": "theme",
-              "defaultValue": "light",
-              "express": true
-            },
             {
               "type": "group",
               "id": "headerTheme",
