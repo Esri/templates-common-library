@@ -63,9 +63,7 @@ export function createSearch(view: MapView | SceneView, portal: Portal, searchCo
           layerSource.layer = new FeatureLayer(layerUrl as any);
         }
       }
-    });
 
-    sources?.forEach((source) => {
       const isLocatorSource = source.hasOwnProperty("locator");
       if (isLocatorSource) {
         const locatorSource = (source as LocatorSourceConfigItem);
@@ -74,8 +72,6 @@ export function createSearch(view: MapView | SceneView, portal: Portal, searchCo
           locatorSource.outFields = outFields;
           locatorSource.singleLineFieldName = "SingleLine";
         }
-
-        locatorSource.url = locatorSource.url;
         delete locatorSource.url;
       }
     });
