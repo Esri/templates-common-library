@@ -70,13 +70,13 @@ export function createSearch(view: MapView | SceneView, portal: Portal, searchCo
       if (isLocatorSource) {
         const locatorSource = (source as LocatorSourceConfigItem);
         if (locatorSource?.name === "ArcGIS World Geocoding Service") {
+          if (!locatorSource?.placeholder) locatorSource.placeholder = "Find address or place";
           const outFields = locatorSource.outFields || ["Addr_type", "Match_addr", "StAddr", "City"];
           locatorSource.outFields = outFields;
           locatorSource.singleLineFieldName = "SingleLine";
         }
 
         locatorSource.url = locatorSource.url;
-        delete locatorSource.url;
       }
     });
   } else {
