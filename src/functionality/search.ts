@@ -17,6 +17,7 @@ interface SearchSourceConfigItem {
 }
 
 interface LocatorSourceConfigItem extends SearchSourceConfigItem {
+  locator?: { url: string; }
   url: string;
   singleLineFieldName: string;
   countryCode: string;
@@ -62,21 +63,16 @@ export function createSearch(view: MapView | SceneView, portal: Portal, searchCo
         } else if (layerUrl) {
           layerSource.layer = new FeatureLayer(layerUrl as any);
         }
-      }
-    });
-
-    sources?.forEach((source) => {
-      const isLocatorSource = source.hasOwnProperty("locator");
-      if (isLocatorSource) {
-        const locatorSource = (source as LocatorSourceConfigItem);
+      } else {
+         const locatorSource = (source as LocatorSourceConfigItem);
         if (locatorSource?.name === "ArcGIS World Geocoding Service") {
+          if (!locatorSource?.placeholder) locatorSource.placeholder = "Find address or place";
           const outFields = locatorSource.outFields || ["Addr_type", "Match_addr", "StAddr", "City"];
           locatorSource.outFields = outFields;
           locatorSource.singleLineFieldName = "SingleLine";
         }
 
-        locatorSource.url = locatorSource.url;
-        delete locatorSource.url;
+        if (locatorSource?.locator?.url) locatorSource.url = locatorSource.locator.url;
       }
     });
   } else {
