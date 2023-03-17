@@ -21,6 +21,7 @@ export enum EAppTemplateType {
   Minimalist = "/apps/instant/minimalist/index.html",
   Nearby = "/apps/instant/nearby/index.html",
   Notify = "/apps/instant/notification/index.html",
+  Observer = "/apps/instant/observer/index.html",
   Portfolio = "/apps/instant/portfolio/index.html",
   Sidebar = "/apps/instant/sidebar/index.html",
   Slider = "/apps/instant/slider/index.html",
@@ -49,7 +50,8 @@ const EResourceType_to_AppType_Mapping = {
   [EResourceType.Webmap]: [
     EAppTemplateType.ThreeDViewer,
     EAppTemplateType.Atlas,
-    EAppTemplateType.CategoryGallery
+    EAppTemplateType.CategoryGallery,
+    EAppTemplateType.Observer,
   ],
   [EResourceType.Webscene]: [
     EAppTemplateType.AttachmentViewer,
@@ -80,6 +82,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Minimalist,
     EAppTemplateType.Nearby,
     EAppTemplateType.Notify,
+    EAppTemplateType.Observer,
     EAppTemplateType.Portfolio,
     EAppTemplateType.Sidebar,
     EAppTemplateType.Slider,
@@ -163,6 +166,7 @@ export class CompatibilityChecker {
       [EAppTemplateType.Minimalist]:        resourceMessages.Webmap,
       [EAppTemplateType.Nearby]:            resourceMessages.Webmap,
       [EAppTemplateType.Notify]:            resourceMessages.Webmap,
+      [EAppTemplateType.Observer]:          resourceMessages.Webscene,
       [EAppTemplateType.Portfolio]:         resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.Sidebar]:           resourceMessages.Webmap,
       [EAppTemplateType.Slider]:            resourceMessages.Webmap,
