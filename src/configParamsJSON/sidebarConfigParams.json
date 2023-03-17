@@ -9,14 +9,16 @@
           "id": "keyboardShortcuts",
           "express": true,
           "defaultValue": false,
-          "content":[    {
-            "type": "setting",
-            "id": "keyboardShortcutsPosition",
-            "defaultValue": {
-              "position": "top-left",
-              "index": 0
+          "content": [
+            {
+              "type": "setting",
+              "id": "keyboardShortcutsPosition",
+              "defaultValue": {
+                "position": "top-left",
+                "index": 0
+              }
             }
-          }]
+          ]
         }
       ]
     },
@@ -25,117 +27,120 @@
       "id": "about",
       "content": [
         {
-          "type":"subsection",
-          "id":"appComprehension",
-          "content":[{
-            "type":"group",
-            "id":"appComprehension",
-            "content":[
-              {
-                "type": "setting",
-                "id": "header",
-                "defaultValue": true,
-                "express": true,
-                "content": [
-                  {
-                    "type": "setting",
-                    "id": "title",
-                    "defaultValue": "",
-                    "express": true
-                  },
-                  {
-                    "type": "setting",
-                    "id": "customHeader",
-                    "defaultValue": false,
-                    "content": [
-                      {
-                        "type": "setting",
-                        "id": "customHeaderHTML",
-                        "defaultValue": ""
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "setting",
-                "id": "splash",
-                "express": true,
-                "defaultValue": false,
-                "content": [
-                  {
-                    "type": "setting",
-                    "id": "splashButtonPosition",
-                    "defaultValue": {
-                      "position": "top-right",
-                      "index": 0
+          "type": "subsection",
+          "id": "appComprehension",
+          "content": [
+            {
+              "type": "group",
+              "id": "appComprehension",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "header",
+                  "defaultValue": true,
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "title",
+                      "defaultValue": "",
+                      "express": true
+                    },
+                    {
+                      "type": "setting",
+                      "id": "customHeader",
+                      "defaultValue": false,
+                      "content": [
+                        {
+                          "type": "setting",
+                          "id": "customHeaderHTML",
+                          "defaultValue": ""
+                        }
+                      ]
                     }
-                  },
-                  {
-                    "type": "setting",
-                    "id": "splashOnStart",
-                    "defaultValue": true
-                  },
-                  {
-                    "type": "setting",
-                    "id": "splashTitle",
-                    "express": true,
-                    "defaultValue": "Splash title"
-                  },
-                  {
-                    "type": "setting",
-                    "id": "splashContent",
-                    "express": true,
-                    "defaultValue": "Splash content"
-                  },
-                  {
-                    "type": "setting",
-                    "id": "splashButtonText",
-                    "defaultValue": "Okay"
-                  }
-                ]
-              }]
-          }]
-      },
-       {
-        "type": "subsection",
-        "id": "coverPageSettings",
-        "content": [
-          {
-            "type": "group",
-            "id": "coverPage",
-            "content": [
-              {
-                "type": "setting",
-                "id": "coverPage",
-                "express": false,
-                "content": [
-                  {
-                    "type": "setting",
-                    "id": "coverPageConfig",
-                    "express": false,
-                    "defaultValue": {
-                      "title": "Title",
-                      "titleColor": "#ffffff",
-                      "subtitle": "Explore",
-                      "subtitleColor": "#ffffff",
-                      "textPosition": "center-leading",
-                      "buttonText": "Explore",
-                      "buttonTextColor": "#ffffff",
-                      "background": {
-                        "backgroundType": "color",
-                        "backgroundImage": null,
-                        "backgroundColor": "#0079c1"
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "splash",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "splashButtonPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashOnStart",
+                      "defaultValue": true
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashTitle",
+                      "express": true,
+                      "defaultValue": "Splash title"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashContent",
+                      "express": true,
+                      "defaultValue": "Splash content"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashButtonText",
+                      "defaultValue": "Okay"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "coverPageSettings",
+          "content": [
+            {
+              "type": "group",
+              "id": "coverPage",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "coverPage",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "coverPageConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "title": "Title",
+                        "titleColor": "#ffffff",
+                        "subtitle": "Explore",
+                        "subtitleColor": "#ffffff",
+                        "textPosition": "center-leading",
+                        "buttonText": "Explore",
+                        "buttonTextColor": "#ffffff",
+                        "background": {
+                          "backgroundType": "color",
+                          "backgroundImage": null,
+                          "backgroundColor": "#0079c1"
+                        }
                       }
                     }
-                  }
-                ],
-                "defaultValue": false
-              }
-            ]
-          }
-        ]
-      }
+                  ],
+                  "defaultValue": false
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -199,7 +204,11 @@
                           "imagery",
                           "group"
                         ],
-                        "sections": ["addLegend", "addTable", "addZoom"]
+                        "sections": [
+                          "addLegend",
+                          "addTable",
+                          "addZoom"
+                        ]
                       },
                       "defaultValue": null
                     }
@@ -393,12 +402,21 @@
                       "defaultValue": false
                     },
                     {
-                      "type":"setting",
-                      "id":"coordinateFormats",
-                      "express":false,
-                      "defaultValue":"xy"
+                      "type": "setting",
+                      "id": "coordinateFormats",
+                      "express": false,
+                      "defaultValue": "xy"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureAreaUnit",
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureLinearUnit",
+                      "express": false
                     }
-
                   ]
                 }
               ]
@@ -451,29 +469,31 @@
           "id": "modify",
           "content": [
             {
-              "type":"setting",
-              "id":"enableHighlightColor",
-              "express":false,
-              "content":[
-              {
-                "type":"setting",
-                "id":"highlightColor",
-                "express":false,
-                "defaultValue":"#00FFFF"
-              }
-            ]},
+              "type": "setting",
+              "id": "enableHighlightColor",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "highlightColor",
+                  "express": false,
+                  "defaultValue": "#00FFFF"
+                }
+              ]
+            },
             {
-              "type":"setting",
-              "id":"enableHighlightHaloColor",
-              "express":false,
-              "content":[
-              {
-                "type":"setting",
-                "id":"highlightHaloColor",
-                "express":false,
-                "defaultValue":"#00FFFF"
-              }
-            ]},
+              "type": "setting",
+              "id": "enableHighlightHaloColor",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "highlightHaloColor",
+                  "express": false,
+                  "defaultValue": "#00FFFF"
+                }
+              ]
+            },
             {
               "type": "setting",
               "id": "basemapToggle",
