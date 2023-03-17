@@ -1,0 +1,304 @@
+{
+    "config": [
+        {
+            "type": "section",
+            "id": "map",
+            "config": {
+                "itemTypes": [
+                    "3d"
+                ]
+            }
+        },
+        {
+            "type": "section",
+            "id": "about",
+            "content": [
+                {
+                    "type": "group",
+                    "id": "appComprehension",
+                    "content": [
+                        {
+                            "type": "setting",
+                            "id": "header",
+                            "express": true,
+                            "defaultValue": true,
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "title",
+                                    "express": true,
+                                    "defaultValue": ""
+                                }
+                            ]
+                        },
+                        {
+                            "type": "setting",
+                            "id": "splash",
+                            "express": true,
+                            "defaultValue": true,
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "splashTitle",
+                                    "defaultValue": "Title"
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "splashContent",
+                                    "defaultValue": "Content"
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "splashButtonText",
+                                    "defaultValue": "Enter"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "setting",
+                            "id": "legend",
+                            "defaultValue": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "id": "filterData",
+            "content": [
+                {
+                    "type": "subsection",
+                    "id": "attributes",
+                    "content": [
+                        {
+                            "type": "setting",
+                            "id": "enableFilter",
+                            "defaultValue": false,
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "filterConfig",
+                                    "defaultValue": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "subsection",
+                    "id": "scoreboard",
+                    "content": []
+                },
+                {
+                    "type": "subsection",
+                    "id": "time",
+                    "content": [
+                        {
+                            "type": "setting",
+                            "id": "timeFilter",
+                            "defaultValue": false,
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "timeFilterConfig",
+                                    "defaultValue": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "id": "interactivity",
+            "content": [
+                {
+                    "type": "subsection",
+                    "id": "exploreNavigate",
+                    "content": [
+                        {
+                            "type": "group",
+                            "id": "exploreNavigate",
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "home",
+                                    "defaultValue": true
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "mapZoom",
+                                    "defaultValue": true
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "bookmarks",
+                                    "express": true,
+                                    "defaultValue": false
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "locateWidget",
+                                    "defaultValue": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "subsection",
+                    "id": "modify",
+                    "content": [
+                        {
+                            "type": "group",
+                            "id": "modify",
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "layerList",
+                                    "express": true,
+                                    "defaultValue": false
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "basemapGallery",
+                                    "defaultValue": false,
+                                    "content": [
+                                        {
+                                            "type": "setting",
+                                            "id": "basemapGalleryConfig",
+                                            "defaultValue": null
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "subsection",
+                    "id": "share",
+                    "content": [
+                        {
+                            "type": "group",
+                            "id": "share",
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "socialShare",
+                                    "defaultValue": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "id": "screenshot",
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "screenshot",
+                                    "defaultValue": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "subsection",
+                    "id": "search",
+                    "content": [
+                        {
+                            "type": "group",
+                            "id": "search",
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "search",
+                                    "express": true,
+                                    "defaultValue": true,
+                                    "content": [
+                                        {
+                                            "type": "setting",
+                                            "id": "searchConfiguration",
+                                            "express": true,
+                                            "defaultValue": null
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "id": "themeLayout",
+            "content": [
+                {
+                    "type": "subsection",
+                    "id": "theme",
+                    "content": [
+                        {
+                            "type": "group",
+                            "id": "theme",
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "theme",
+                                    "express": true,
+                                    "defaultValue": "light"
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "customTheme",
+                                    "express": true,
+                                    "defaultValue": null,
+                                    "config": {
+                                        "singleFont": false
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "subsection",
+                    "id": "logo",
+                    "content": [
+                        {
+                            "type": "group",
+                            "id": "logo",
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "logo",
+                                    "defaultValue": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "subsection",
+                    "id": "positionManager",
+                    "content": [
+                        {
+                            "type": "group",
+                            "id": "positionManager",
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "positionManager",
+                                    "defaultValue": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

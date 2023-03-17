@@ -12,6 +12,7 @@ import Media from "dojo/text!../../configParamsJSON/mediaConfigParams.json";
 import Minimalist from "dojo/text!../../configParamsJSON/minimalistConfigParams.json";
 import Nearby from "dojo/text!../../configParamsJSON/nearbyConfigParams.json";
 import Notify from "dojo/text!../../configParamsJSON/notifyConfigParams.json";
+import Observer from "dojo/text!../../configParamsJSON/observerConfigParams.json";
 import Portfolio from "dojo/text!../../configParamsJSON/portfolioConfigParams.json";
 import Sidebar from "dojo/text!../../configParamsJSON/sidebarConfigParams.json";
 import Slider from "dojo/text!../../configParamsJSON/dataSliderConfigParams.json";
@@ -35,6 +36,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Minimalist]: Minimalist,
   [EAppTemplateType.Nearby]: Nearby,
   [EAppTemplateType.Notify]: Notify,
+  [EAppTemplateType.Observer]: Observer,
   [EAppTemplateType.Portfolio]: Portfolio,
   [EAppTemplateType.Sidebar]: Sidebar,
   [EAppTemplateType.Slider]: Slider,
