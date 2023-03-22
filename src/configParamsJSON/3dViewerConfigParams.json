@@ -391,22 +391,6 @@
                       }
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "keyboardShortcuts",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "keyboardShortcutsPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 0
-                      }
-                    }
-                  ]
                 }
               ]
             },
@@ -494,6 +478,12 @@
                   "express": false,
                   "defaultValue": true,
                   "content": [
+                    {
+                      "type": "setting",
+                      "id": "insetOverviewGraphicType",
+                      "express": false,
+                      "defaultValue": "marker"
+                    },
                     {
                       "type": "setting",
                       "id": "insetMapMarkerOutlineColor",
