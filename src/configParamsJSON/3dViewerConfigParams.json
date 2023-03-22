@@ -494,6 +494,12 @@
                   "express": false,
                   "defaultValue": true,
                   "content": [
+                       {
+                      "type": "setting",
+                      "id": "insetOverviewGraphicType",
+                      "express": false,
+                      "defaultValue": "marker"
+                    },
                     {
                       "type": "setting",
                       "id": "insetMapMarkerOutlineColor",
