@@ -2,25 +2,7 @@
   "config": [
     {
       "type": "section",
-      "id": "map",
-      "content": [
-        {
-          "type": "setting",
-          "id": "keyboardShortcuts",
-          "express": true,
-          "defaultValue": false,
-          "content": [
-            {
-              "type": "setting",
-              "id": "keyboardShortcutsPosition",
-              "defaultValue": {
-                "position": "top-left",
-                "index": 0
-              }
-            }
-          ]
-        }
-      ]
+      "id": "map"
     },
     {
       "type": "section",
@@ -416,6 +398,22 @@
                       "type": "setting",
                       "id": "measureLinearUnit",
                       "express": false
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcuts",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "keyboardShortcutsPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
                     }
                   ]
                 }

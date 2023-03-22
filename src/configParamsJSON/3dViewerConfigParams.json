@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": ["3d"]
+        "itemTypes": [
+          "3d"
+        ]
       }
     },
     {
@@ -389,6 +391,22 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcuts",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "keyboardShortcutsPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -470,27 +488,27 @@
                   "express": false,
                   "defaultValue": false
                 },
-             {
-              "type":"setting",
-              "id":"insetShowMarker",
-              "express":false,
-              "defaultValue":true,
-              "content":[
                 {
                   "type": "setting",
-                  "id": "insetMapMarkerOutlineColor",
+                  "id": "insetShowMarker",
                   "express": false,
-                  "defaultValue": "#333"
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "insetMapMarkerOutlineColor",
+                      "express": false,
+                      "defaultValue": "#333"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "insetMapMarkerColor",
+                      "express": false,
+                      "defaultValue": "#fff"
+                    }
+                  ]
                 },
                 {
-                  "type": "setting",
-                  "id": "insetMapMarkerColor",
-                  "express": false,
-                  "defaultValue": "#fff"
-                }
-              ]
-             },
-             {
                   "type": "setting",
                   "id": "insetOverviewMapPosition",
                   "defaultValue": {
@@ -565,7 +583,7 @@
                   "type": "setting",
                   "id": "shadowCast",
                   "defaultValue": false,
-                  "express":false,
+                  "express": false,
                   "content": [
                     {
                       "type": "setting",
@@ -602,7 +620,7 @@
                   "type": "setting",
                   "id": "floorFilter",
                   "defaultValue": false,
-                  "express":false,
+                  "express": false,
                   "content": [
                     {
                       "type": "setting",
