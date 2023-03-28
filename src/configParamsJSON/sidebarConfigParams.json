@@ -219,6 +219,23 @@
                       "id": "enableSnap",
                       "express": false,
                       "defaultValue": true
+                    },
+                                      {
+                      "type": "setting",
+                      "id": "editableLayers",
+                      "express": false,
+                      "config": {
+                        "layerSelectionMode": "multiple",
+                        "supportedLayerTypes": [
+                          "feature"
+                        ],
+                        "supportedCapabilityTypes": [
+                          "editable"
+                        ],
+                        "supportedGeometryTypes": "*",
+                        "supportsFieldSelection": false
+                      },
+                      "defaultValue": null
                     }
                   ]
                 },
