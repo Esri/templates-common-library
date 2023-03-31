@@ -220,7 +220,7 @@
                       "express": false,
                       "defaultValue": true
                     },
-                                      {
+                    {
                       "type": "setting",
                       "id": "editableLayers",
                       "express": false,
@@ -256,6 +256,23 @@
                       "id": "detailsContent",
                       "express": true,
                       "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "infoButtonIcon",
+                      "express": true,
+                      "defaultValue": "information",
+                      "config": {
+                        "iconList": [
+                          "inforamation",
+                          "information-f",
+                          "information-letter",
+                          "lightbulb",
+                          "question",
+                          "question-f",
+                          "question-mark"
+                        ]
+                      }
                     }
                   ]
                 },
