@@ -58,6 +58,23 @@
                     },
                     {
                       "type": "setting",
+                      "id": "splashButtonIcon",
+                      "express": true,
+                      "defaultValue": "information",
+                      "config": {
+                        "iconList": [
+                          "inforamation",
+                          "information-f",
+                          "information-letter",
+                          "lightbulb",
+                          "question",
+                          "question-f",
+                          "question-mark"
+                        ]
+                      }
+                    },
+                    {
+                      "type": "setting",
                       "id": "splashOnStart",
                       "defaultValue": true
                     },
@@ -220,7 +237,7 @@
                       "express": false,
                       "defaultValue": true
                     },
-                                      {
+                    {
                       "type": "setting",
                       "id": "editableLayers",
                       "express": false,
@@ -256,6 +273,23 @@
                       "id": "detailsContent",
                       "express": true,
                       "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "infoButtonIcon",
+                      "express": true,
+                      "defaultValue": "information",
+                      "config": {
+                        "iconList": [
+                          "inforamation",
+                          "information-f",
+                          "information-letter",
+                          "lightbulb",
+                          "question",
+                          "question-f",
+                          "question-mark"
+                        ]
+                      }
                     }
                   ]
                 },
