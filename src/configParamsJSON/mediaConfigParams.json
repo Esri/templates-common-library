@@ -585,7 +585,7 @@
             {
               "type": "setting",
               "id": "layerEffect",
-              "defaultValue": true,
+              "defaultValue": false,
               "content": [
                 {
                   "type": "setting",
