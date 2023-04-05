@@ -72,6 +72,12 @@
           "id": "search",
           "express": true,
           "defaultValue": true
+        },
+        {
+          "type": "setting",
+          "id": "screenshot",
+          "express": true,
+          "defaultValue": false
         }
       ]
     },
