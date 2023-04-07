@@ -41,6 +41,20 @@
               "defaultValue": "streets-vector"
             }
           ]
+        },
+        {
+          "type": "setting",
+          "id": "atlasBasemapGallery",
+          "express": false,
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "atlasBasemapGalleryConfig",
+              "express": false,
+              "defaultValue": null
+            }
+          ]
         }
       ]
     },
