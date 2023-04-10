@@ -42,9 +42,7 @@ export function goToOverride(
   if (prefersReducedMotion()) {
     goToParams.options = {
       ...goToParams.options,
-      ...{
-        animate: false,
-      },
+      animate: false,
     };
   }
   return view.goTo(goToParams.target, goToParams.options);
