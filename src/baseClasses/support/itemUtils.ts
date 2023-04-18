@@ -20,7 +20,7 @@
   limitations under the License.​
 */
 
-import {whenOnce} from "esri/core/reactiveUtils";
+import { whenOnce } from "esri/core/reactiveUtils";
 
 import MapView from "esri/views/MapView";
 import SceneView from "esri/views/SceneView";
@@ -31,7 +31,7 @@ import * as projection from "esri/geometry/projection";
 import {
   CreateMapFromItemOptions,
   ApplicationConfig,
-  ApplicationProxy
+  ApplicationProxy,
 } from "../../interfaces/applicationBase";
 
 import {
@@ -42,7 +42,7 @@ import {
   parseMarker,
   parseCenter,
   parseLevel,
-  parseBasemap
+  parseBasemap,
 } from "./urlUtils";
 import esri = __esri;
 //--------------------------------------------------------------------------
@@ -52,7 +52,15 @@ import esri = __esri;
 //--------------------------------------------------------------------------
 
 export function getConfigViewProperties(config: ApplicationConfig): any {
-  const { center, components, extent, level, viewpoint, popupFixed, popupFixedPosition } = config;
+  const {
+    center,
+    components,
+    extent,
+    level,
+    viewpoint,
+    popupFixed,
+    popupFixedPosition,
+  } = config;
   const ui = components
     ? { ui: { components: parseViewComponents(components) } }
     : null;
@@ -60,18 +68,22 @@ export function getConfigViewProperties(config: ApplicationConfig): any {
   const centerProps = center ? { center: parseCenter(center) } : null;
   const zoomProps = level ? { zoom: parseLevel(level) } : null;
   const extentProps = extent ? { extent: parseExtent(extent) } : null;
-  const popupProps = popupFixed ? parsePopup(popupFixed, popupFixedPosition) : null;
+  const popupProps = popupFixed
+    ? parsePopup(popupFixed, popupFixedPosition)
+    : null;
   return {
     ...ui,
     ...cameraProps,
     ...centerProps,
     ...zoomProps,
     ...extentProps,
-    ...popupProps
+    ...popupProps,
   };
 }
 
-export async function createView(properties: any): Promise<esri.MapView | esri.SceneView> {
+export async function createView(
+  properties: any
+): Promise<esri.MapView | esri.SceneView> {
   const { map } = properties;
 
   if (!map) {
@@ -86,7 +98,6 @@ export async function createView(properties: any): Promise<esri.MapView | esri.S
   }
 
   return isWebMap ? new MapView(properties) : new SceneView(properties);
-
 }
 
 export function createMapFromItem(
@@ -112,11 +123,10 @@ export async function createWebMapFromItem(
   const WebMap = await import("esri/WebMap");
   const wm = new WebMap.default({
     portalItem: item,
-    ...mapParams
+    ...mapParams,
   });
   await wm.load();
-  if (wm?.basemap)
-    await wm.basemap.load();
+  if (wm?.basemap) await wm.basemap.load();
   return _updateProxiedLayers(wm, appProxies) as __esri.WebMap;
 }
 
@@ -126,11 +136,10 @@ export async function createWebSceneFromItem(
   const { item, appProxies } = options;
   const WebScene = await import("esri/WebScene");
   const ws = new WebScene.default({
-    portalItem: item
+    portalItem: item,
   });
   await ws.load();
-  if (ws.basemap)
-    await ws.basemap.load();
+  if (ws.basemap) await ws.basemap.load();
   return _updateProxiedLayers(ws, appProxies) as __esri.WebScene;
 }
 
@@ -148,7 +157,10 @@ export async function setBasemap(
   if (!basemapUrl || !view) {
     return Promise.resolve();
   }
-  const basemap = await parseBasemap(basemapUrl, basemapReferenceUrl) as __esri.Basemap;
+  const basemap = (await parseBasemap(
+    basemapUrl,
+    basemapReferenceUrl
+  )) as __esri.Basemap;
   await view.when();
   view.map.basemap = basemap;
 }
@@ -180,18 +192,34 @@ export async function findQuery(
   const Search = await import("esri/widgets/Search");
 
   const search = new Search.default({
-    view
+    view,
   });
   const result = await search.search(query);
-  whenOnce(
-    () => !view.popup?.visible)
-    .then(() => {
-      search.destroy();
-    });
+  whenOnce(() => !view.popup?.visible).then(() => {
+    search.destroy();
+  });
   return result;
 }
-export function setHiddenLayers(hiddenLayers: string,
-  view: __esri.MapView | __esri.SceneView) {
+export function setImageryLayerHighlightOptions(
+  view: __esri.MapView | __esri.SceneView
+) {
+  const imageryHighlightOptions = {
+    fillOpacity: 0,
+  };
+  view.allLayerViews.on("change", (event) => {
+    event.added.forEach((layerView) => {
+      const layerType = layerView.layer.type;
+      if (layerType === "imagery") {
+        (layerView as __esri.ImageryLayerView).highlightOptions =
+          imageryHighlightOptions;
+      }
+    });
+  });
+}
+export function setHiddenLayers(
+  hiddenLayers: string,
+  view: __esri.MapView | __esri.SceneView
+) {
   if (hiddenLayers) {
     view.map.allLayers.forEach((layer: __esri.Layer) => {
       if (hiddenLayers.indexOf(layer.id) !== -1) {
@@ -206,11 +234,11 @@ export async function findSelectedFeature(
   selectedFeature: string,
   view: __esri.MapView | __esri.SceneView
 ): Promise<any> {
-  const vals = selectedFeature?.split(";")
+  const vals = selectedFeature?.split(";");
   const layerId = vals[0];
   const oid = parseInt(vals[1]);
   const layer = view.map.allLayers.find(
-    layer => layerId === layer.id
+    (layer) => layerId === layer.id
   ) as __esri.FeatureLayer;
 
   if (!layer) return;
@@ -222,13 +250,9 @@ export async function findSelectedFeature(
     const options = { features: response?.features };
     // projection needs to be loaded for some maps and scenes
     await projection?.load();
-
-    view.popup.open(options);
-  } catch (error) {
-
-  }
-
-
+    // TODO remove once we get updated typings
+    (view as any).openPopup(options);
+  } catch (error) {}
 }
 //--------------------------------------------------------------------------
 //
@@ -244,7 +268,7 @@ function _updateProxiedLayers(
     return webItem;
   }
 
-  appProxies.forEach(proxy => {
+  appProxies.forEach((proxy) => {
     webItem.allLayers.forEach((layer: any) => {
       if (layer.url === proxy.sourceUrl) {
         layer.url = proxy.proxyUrl;
