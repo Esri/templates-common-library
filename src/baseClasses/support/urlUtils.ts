@@ -100,8 +100,8 @@ export function parseCenter(center: string): Point {
     x,
     y,
     spatialReference: {
-      wkid,
-    },
+      wkid
+    }
   });
 }
 
@@ -141,8 +141,8 @@ export function parseExtent(extent: string): Extent {
     xmax,
     ymax,
     spatialReference: {
-      wkid,
-    },
+      wkid
+    }
   });
   return ext;
 }
@@ -167,14 +167,8 @@ export async function parseMarker(marker: string): Promise<esri.Graphic | {}> {
     return Promise.reject();
   }
 
-  const modules = await eachAlways([
-    import("esri/Graphic"),
-    import("esri/PopupTemplate"),
-    import("esri/symbols/PictureMarkerSymbol"),
-    import("esri/symbols/SimpleMarkerSymbol"),
-  ]);
-  const [Graphic, PopupTemplate, PictureMarkerSymbol, SimpleMarkerSymbol] =
-    modules.map((module) => module.value);
+  const modules = await eachAlways([import("esri/Graphic"), import("esri/PopupTemplate"), import("esri/symbols/PictureMarkerSymbol"), import("esri/symbols/SimpleMarkerSymbol")]);
+  const [Graphic, PopupTemplate, PictureMarkerSymbol, SimpleMarkerSymbol] = modules.map((module) => module.value);
 
   const x = parseFloat(markerArray[0]);
   const y = parseFloat(markerArray[1]);
@@ -184,61 +178,61 @@ export async function parseMarker(marker: string): Promise<esri.Graphic | {}> {
   const wkid = markerArray[2] ? parseInt(markerArray[2], 10) : 4326;
 
   const markerSymbol = icon_url
-    ? (new PictureMarkerSymbol.default({
-        url: icon_url,
-        height: "32px",
-        width: "32px",
-      }) as PictureMarkerSymbol)
-    : (new SimpleMarkerSymbol.default({
-        outline: {
-          width: 1,
-        },
-        size: 14,
-        color: [255, 255, 255, 0],
-      }) as SimpleMarkerSymbol);
+    ? new PictureMarkerSymbol.default({
+      url: icon_url,
+      height: "32px",
+      width: "32px"
+    }) as PictureMarkerSymbol
+    : new SimpleMarkerSymbol.default({
+      outline: {
+        width: 1
+      },
+      size: 14,
+      color: [255, 255, 255, 0]
+    }) as SimpleMarkerSymbol;
 
   const point = new Point({
     x,
     y,
     spatialReference: {
-      wkid,
-    },
+      wkid
+    }
   });
 
   const hasPopupDetails = content || label;
   const popupTemplate = hasPopupDetails
-    ? (new PopupTemplate.default({
-        title: content || null,
-        content: label || null,
-      }) as esri.PopupTemplate)
+    ? new PopupTemplate.default({
+      title: content || null,
+      content: label || null
+    }) as esri.PopupTemplate
     : null;
 
   const graphic = new Graphic.default({
     geometry: point,
     symbol: markerSymbol,
-    popupTemplate: popupTemplate,
+    popupTemplate: popupTemplate
   });
   return graphic as esri.Graphic;
 }
 
 export function parsePopup(popupFixed, popupFixedPosition) {
   return {
-    popup: {
+    "popup": {
       dockEnabled: popupFixed,
-      dockOptions: {
+      "dockOptions": {
         breakpoint: !popupFixed,
-        position: popupFixed ? popupFixedPosition : "auto",
-      },
-    },
-  };
+        position: popupFixed ? popupFixedPosition : "auto"
+      }
+    }
+  }
 }
 export function parseBasemap(basemapUrl, basemapReferenceUrl) {
   if (!basemapUrl) {
     return;
   }
-  return _getBasemap(basemapUrl, basemapReferenceUrl).then((basemap) => {
+  return _getBasemap(basemapUrl, basemapReferenceUrl).then(basemap => {
     return basemap;
-  });
+  })
 }
 //--------------------------------------------------------------------------
 //
@@ -278,8 +272,8 @@ function _getCameraPosition(camera: string): Point {
     y,
     z,
     spatialReference: {
-      wkid,
-    },
+      wkid
+    }
   });
 }
 
@@ -292,55 +286,55 @@ function _getHeadingAndTilt(headingAndTilt: string): CameraProperties {
 
   return tiltHeadingArray.length >= 0
     ? {
-        heading: parseFloat(tiltHeadingArray[0]),
-        tilt: parseFloat(tiltHeadingArray[1]),
-      }
+      heading: parseFloat(tiltHeadingArray[0]),
+      tilt: parseFloat(tiltHeadingArray[1])
+    }
     : null;
 }
 function _getBasemap(basemapUrl, basemapReferenceUrl): Promise<Basemap> {
+
   // ?basemapUrl=https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer&basemapReferenceUrl=http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer
   if (!basemapUrl) {
     return;
   }
-  return eachAlways([import("esri/layers/Layer"), import("esri/Basemap")]).then(
-    (modules) => {
-      modules = modules.map((module) => module.value);
-      const [Layer, Basemap] = modules;
+  return eachAlways([import("esri/layers/Layer"), import("esri/Basemap")]).then((modules) => {
+    modules = modules.map((module) => module.value);
+    const [Layer, Basemap] = modules;
 
-      const getBaseLayer = Layer.default.fromArcGISServerUrl({
-        url: basemapUrl,
-      });
+    const getBaseLayer = Layer.default.fromArcGISServerUrl({ url: basemapUrl });
 
-      const getReferenceLayer = basemapReferenceUrl
-        ? Layer.default.fromArcGISServerUrl({
-            url: basemapReferenceUrl,
-          })
-        : Promise.resolve();
+    const getReferenceLayer = basemapReferenceUrl
+      ? Layer.default.fromArcGISServerUrl({
+        url: basemapReferenceUrl
+      })
+      : Promise.resolve();
 
-      const getBaseLayers = eachAlways({
-        baseLayer: getBaseLayer,
-        referenceLayer: getReferenceLayer,
-      });
+    const getBaseLayers = eachAlways({ baseLayer: getBaseLayer, referenceLayer: getReferenceLayer });
 
-      return getBaseLayers.then(async (response) => {
-        const error =
-          response?.baseLayer?.error || response?.referenceLayer?.error;
-        if (error) {
-          return Promise.reject(error);
-        } else {
-          const baseLayer = response.baseLayer;
-          const referenceLayer = response.referenceLayer;
-          const basemapOptions = {
-            baseLayers: [baseLayer.value],
-            referenceLayers: referenceLayer.value ? [referenceLayer.value] : [],
-          };
-          const basemap = new Basemap.default(basemapOptions);
-          await basemap.loadAll();
-          return basemap;
-        }
-      });
-    }
-  );
+    return getBaseLayers.then(async (response) => {
+      const error = response?.baseLayer?.error || response?.referenceLayer?.error;
+      if (error) {
+        return Promise.reject(error);
+      } else {
+        const baseLayer = response.baseLayer;
+        const referenceLayer = response.referenceLayer;
+        const basemapOptions = {
+          baseLayers: [baseLayer.value],
+          referenceLayers: referenceLayer.value ? [referenceLayer.value] : []
+        };
+        const basemap = new Basemap.default(basemapOptions);
+        await basemap.loadAll();
+        return basemap;
+      }
+    });
+  });
+
+
+
+
+
+
+
 }
 
 function _getCameraProperties(
@@ -352,6 +346,6 @@ function _getCameraProperties(
 
   return {
     position: cameraPosition,
-    ...headingAndTiltProperties,
+    ...headingAndTiltProperties
   };
 }
