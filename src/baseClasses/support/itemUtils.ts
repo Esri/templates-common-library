@@ -167,6 +167,22 @@ export async function goToMarker(
 
   return graphic;
 }
+export function setImageryLayerHighlightOptions(
+  view: __esri.MapView | __esri.SceneView
+) {
+  const imageryHighlightOptions = {
+    fillOpacity: 0,
+  };
+  view.allLayerViews.on("change", (event) => {
+    event.added.forEach((layerView) => {
+      const layerType = layerView.layer.type;
+      if (layerType === "imagery") {
+        (layerView as __esri.ImageryLayerView).highlightOptions =
+          imageryHighlightOptions;
+      }
+    });
+  });
+}
 
 export async function findQuery(
   query: string,
