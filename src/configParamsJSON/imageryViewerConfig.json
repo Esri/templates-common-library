@@ -563,31 +563,38 @@
       "content": [
         {
           "type": "subsection",
-          "id": "themeLayout",
+          "id": "theme",
           "content": [
             {
               "type": "setting",
-              "id": "applySharedTheme",
+              "id": "theme",
               "express": true,
-              "defaultValue": true
+              "defaultValue": "light"
             },
             {
               "type": "setting",
-              "id": "headerColor",
+              "id": "customTheme",
               "express": true,
-              "defaultValue": "#ffffff"
-            },
-            {
-              "type": "setting",
-              "id": "headerBackground",
-              "express": true,
-              "defaultValue": "#0079c1"
+              "defaultValue": null,
+              "config": {
+                "singleFont": false
+              }
             },
             {
               "type": "setting",
               "id": "customCSS",
-              "express": false,
               "defaultValue": ""
+            },
+            {
+              "type": "group",
+              "id": "layout",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapToolsExpanded",
+                  "defaultValue": true
+                }
+              ]
             }
           ]
         },
