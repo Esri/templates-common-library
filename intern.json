@@ -11,6 +11,7 @@
           "name": "dgrid",
           "location": "node_modules/dgrid"
         },
+        { "name": "esri/geometry/projectionEllipsoid", "location": "node_modules/arcgis-js-api/geometry/Geometry" },
         { "name": "esri", "location": "node_modules/arcgis-js-api" },
         {
           "name": "tslib",

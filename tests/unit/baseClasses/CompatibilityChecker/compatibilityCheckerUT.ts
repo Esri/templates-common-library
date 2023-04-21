@@ -9,15 +9,22 @@ const chai = intern.getPlugin("chai");
 const { assert } = chai;
 const { suite, test } = intern.getPlugin("interface.tdd");
 
+enum ResourceResults {
+  Webmap = "This app requires a webmap",
+  Webscene = "This app requires a webscene",
+  Group = "This app requires a group",
+  WebmapOrWebscene = "This app requires a webmap or a webscene",
+}
+
 class CompatibilityCheckerUT {
   init() {
     suite("CompatibilityChecker", () => {
       const compatibilityChecker = new CompatibilityChecker.CompatibilityChecker({
         resourceMessages: {
-          Webmap: "This app requires a webmap",
-          Webscene: "This app requires a webscene",
-          Group: "This app requires a group",
-          WebmapOrWebscene: "This app requires a webmap or a webscene"
+          Webmap: ResourceResults.Webmap,
+          Webscene: ResourceResults.Webscene,
+          Group: ResourceResults.Group,
+          WebmapOrWebscene: ResourceResults.WebmapOrWebscene
         },
 
         requirementsMessages: {
@@ -41,23 +48,34 @@ class CompatibilityCheckerUT {
               portal: new Portal({ url: "https://catsqa.mapsdevext.arcgis.com/" })
             }
           }));
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.AttachmentViewer), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Basic), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.CategoryGallery), "This app requires a group");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Charts), "This app requires a map with at least one chart configured");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Countdown), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Exhibit), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ImageryApp), "This app requires an imagery layer");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Insets), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.InteractiveLegend), "This app requires a feature layer with a supported drawing style");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Media), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Minimalist), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Nearby), "This app requires a feature layer with pop-up enabled");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Portfolio), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Sidebar), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Slider), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ThreeDViewer), "This app requires a webscene");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ZoneLookup), "This app requires a feature layer with pop-up enabled");
+
+          [
+            [CompatibilityChecker.EAppTemplateType.ThreeDViewer, ResourceResults.Webscene],
+            [CompatibilityChecker.EAppTemplateType.Atlas, ResourceResults.Group],
+            [CompatibilityChecker.EAppTemplateType.AttachmentViewer, null],
+            [CompatibilityChecker.EAppTemplateType.Basic, null],
+            [CompatibilityChecker.EAppTemplateType.CategoryGallery, ResourceResults.Group],
+            [CompatibilityChecker.EAppTemplateType.Charts, "This app requires a map with at least one chart configured"],
+            [CompatibilityChecker.EAppTemplateType.Countdown, null],
+            [CompatibilityChecker.EAppTemplateType.Exhibit, null],
+            [CompatibilityChecker.EAppTemplateType.Insets, null],
+            [CompatibilityChecker.EAppTemplateType.InteractiveLegend, "This app requires a feature layer with a supported drawing style"],
+            [CompatibilityChecker.EAppTemplateType.ImageryApp, "This app requires an imagery layer"],
+            [CompatibilityChecker.EAppTemplateType.Media, null],
+            [CompatibilityChecker.EAppTemplateType.Minimalist, null],
+            [CompatibilityChecker.EAppTemplateType.Nearby, "This app requires a feature layer with pop-up enabled"],
+            [CompatibilityChecker.EAppTemplateType.Notify, null],
+            [CompatibilityChecker.EAppTemplateType.Observer, ResourceResults.Webscene],
+            [CompatibilityChecker.EAppTemplateType.Portfolio, null],
+            [CompatibilityChecker.EAppTemplateType.Sidebar, null],
+            [CompatibilityChecker.EAppTemplateType.Slider, null],
+            [CompatibilityChecker.EAppTemplateType.ZoneLookup, "This app requires a feature layer with pop-up enabled"],
+          ].forEach((testInfo)=>{
+            assert.equal(
+              result.get(testInfo[0]), testInfo[1],
+              testInfo[0]
+            );  
+          });
         });
       });
 
@@ -69,46 +87,68 @@ class CompatibilityCheckerUT {
               portal: new Portal({ url: "https://catsqa.mapsdevext.arcgis.com/" })
             }
           }));
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.AttachmentViewer), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Basic), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.CategoryGallery), "This app requires a group");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Charts), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Countdown), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Exhibit), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ImageryApp), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Insets), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.InteractiveLegend), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Media), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Minimalist), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Nearby), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Portfolio), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Sidebar), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Slider), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ThreeDViewer), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ZoneLookup), "This app requires a webmap");
+          [
+            [CompatibilityChecker.EAppTemplateType.ThreeDViewer, null],
+            [CompatibilityChecker.EAppTemplateType.Atlas, ResourceResults.Group],
+            [CompatibilityChecker.EAppTemplateType.AttachmentViewer, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Basic, null],
+            [CompatibilityChecker.EAppTemplateType.CategoryGallery, ResourceResults.Group],
+            [CompatibilityChecker.EAppTemplateType.Charts, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Countdown, null],
+            [CompatibilityChecker.EAppTemplateType.Exhibit, null],
+            [CompatibilityChecker.EAppTemplateType.Insets, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.InteractiveLegend, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.ImageryApp, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Media, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Minimalist, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Nearby, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Notify, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Observer, null],
+            [CompatibilityChecker.EAppTemplateType.Portfolio, null],
+            [CompatibilityChecker.EAppTemplateType.Sidebar, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Slider, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.ZoneLookup, ResourceResults.Webmap],
+          ].forEach((testInfo)=>{
+            assert.equal(
+              result.get(testInfo[0]), testInfo[1],
+              testInfo[0]
+            );  
+          });
+
         });
       });
 
       suite("Group", () => {
         test("checkAllTemplates", async () => {
           const result: Map<CompatibilityChecker.EAppTemplateType, string> = await compatibilityChecker.checkAllTemplates("group");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.AttachmentViewer), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Basic), "This app requires a webmap or a webscene");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.CategoryGallery), null);
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Charts), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Countdown), "This app requires a webmap or a webscene");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Exhibit), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ImageryApp), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Insets), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.InteractiveLegend), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Media), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Minimalist), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Nearby), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Portfolio), "This app requires a webmap or a webscene");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Sidebar), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.Slider), "This app requires a webmap");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ThreeDViewer), "This app requires a webscene");
-          assert.equal(result.get(CompatibilityChecker.EAppTemplateType.ZoneLookup), "This app requires a webmap");
+
+          [
+            [CompatibilityChecker.EAppTemplateType.ThreeDViewer, ResourceResults.Webscene],
+            [CompatibilityChecker.EAppTemplateType.Atlas, null],
+            [CompatibilityChecker.EAppTemplateType.AttachmentViewer, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Basic, ResourceResults.WebmapOrWebscene],
+            [CompatibilityChecker.EAppTemplateType.CategoryGallery, null],
+            [CompatibilityChecker.EAppTemplateType.Charts, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Countdown, ResourceResults.WebmapOrWebscene],
+            [CompatibilityChecker.EAppTemplateType.Exhibit, ResourceResults.WebmapOrWebscene],
+            [CompatibilityChecker.EAppTemplateType.Insets, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.InteractiveLegend, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.ImageryApp, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Media, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Minimalist, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Nearby, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Notify, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Observer, ResourceResults.Webscene],
+            [CompatibilityChecker.EAppTemplateType.Portfolio, ResourceResults.WebmapOrWebscene],
+            [CompatibilityChecker.EAppTemplateType.Sidebar, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.Slider, ResourceResults.Webmap],
+            [CompatibilityChecker.EAppTemplateType.ZoneLookup, ResourceResults.Webmap],
+          ].forEach((testInfo)=>{
+            assert.equal(
+              result.get(testInfo[0]), testInfo[1],
+              testInfo[0]
+            );  
+          });
         });
       });
     });
