@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": ["2d"]
+        "itemTypes": [
+          "2d"
+        ]
       },
       "content": [
         {
@@ -12,14 +14,16 @@
           "id": "keyboardShortcuts",
           "express": false,
           "defaultValue": false,
-          "content":[    {
-            "type": "setting",
-            "id": "keyboardShortcutsPosition",
-            "defaultValue": {
-              "position": "top-left",
-              "index": 0
+          "content": [
+            {
+              "type": "setting",
+              "id": "keyboardShortcutsPosition",
+              "defaultValue": {
+                "position": "top-left",
+                "index": 0
+              }
             }
-          }]
+          ]
         }
       ]
     },
@@ -79,16 +83,29 @@
         },
         {
           "type": "subsection",
-          "id": "coverPageSettings",
+          "id": "coverPageOrSplash",
           "content": [
             {
-              "type": "group",
-              "id": "coverPage",
+              "type": "setting",
+              "id": "enableSplashOrCover",
               "content": [
                 {
                   "type": "setting",
-                  "id": "coverPage",
-                  "express": false,
+                  "id": "splashModeType",
+                  "express": true,
+                  "config": {
+                    "branches": [
+                      [
+                        "coverPageConfig"
+                      ],
+                      [
+                        "splashTitle",
+                        "splashContent",
+                        "splashButtonText",
+                        "splashIsOpen"
+                      ]
+                    ]
+                  },
                   "content": [
                     {
                       "type": "setting",
@@ -108,9 +125,49 @@
                           "backgroundColor": "#0079c1"
                         }
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashTitle",
+                      "defaultValue": ""
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashContent",
+                      "defaultValue": ""
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashButtonText",
+                      "defaultValue": "Close"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashButtonPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "info",
+                      "defaultValue": false,
+                      "express": false,
+                      "content": [
+                        {
+                          "type": "setting",
+                          "id": "detailsOpenAtStart",
+                          "express": false,
+                          "defaultValue": false
+                        }
+                      ]
                     }
                   ],
-                  "defaultValue": false
+                  "defaultValue": {
+                    "branchValue": "search-radius",
+                    "branchOptionsFieldNames": []
+                  }
                 }
               ]
             }
@@ -119,97 +176,111 @@
       ]
     },
     {
-      "type":"section",
-      "id":"notification",
-      "content":[  
+      "type": "section",
+      "id": "notification",
+      "content": [
         {
-          "type":"subsection",
-          "id":"layerOptions",
-          "content":[
+          "type": "subsection",
+          "id": "layerOptions",
+          "content": [
             {
-                "type":"group",
-                "id":"addressLayers",
-                "content":[
-                  {
-                    "type": "setting",
-                     "id": "addressLayers",
-                    "express": true,
-                    "config": {
-                      "layerSelectionMode": "multiple",
-                      "supportedLayerTypes": ["map-image", "feature", "group", "csv", "geojson"],
-                      "supportedGeometryTypes": "*",
-                      "supportsFieldSelection": false
-                    },
-                    "defaultValue": null
-                  }
-                ]
-           },
-           {
-            "type":"group",
-            "id":"selectionLayers",
-            "express":false,
-            "content":[
-              {
-                "type": "setting",
-                "id": "selectionLayers",
-                "express": false,
-                "config": {
-                  "layerSelectionMode": "multiple",
-                  "supportedLayerTypes": ["map-image", "feature", "group", "csv", "geojson"],
-                  "supportedGeometryTypes": "*",
-                  "supportsFieldSelection": false
-                },
-                "defaultValue": null
-              }
-            ]
-       },{
-        "type":"setting",
-        "id":"listName",
-        "express":false
-       }
+              "type": "group",
+              "id": "addressLayers",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "addressLayers",
+                  "express": true,
+                  "config": {
+                    "layerSelectionMode": "multiple",
+                    "supportedLayerTypes": [
+                      "map-image",
+                      "feature",
+                      "group",
+                      "csv",
+                      "geojson"
+                    ],
+                    "supportedGeometryTypes": "*",
+                    "supportsFieldSelection": false
+                  },
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "selectionLayers",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "selectionLayers",
+                  "express": false,
+                  "config": {
+                    "layerSelectionMode": "multiple",
+                    "supportedLayerTypes": [
+                      "map-image",
+                      "feature",
+                      "group",
+                      "csv",
+                      "geojson"
+                    ],
+                    "supportedGeometryTypes": "*",
+                    "supportsFieldSelection": false
+                  },
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "listName",
+              "express": false
+            }
           ]
         },
         {
-          "type":"subsection",
-          "id":"notificationResults",
-          "content":[{
-            "type":"group",
-            "id":"refineResults",
-            "content":[
-              {
-                "type":"setting",
-                "id":"refineSelection",
-                "express":false,
-                "defaultValue":false
-              }, {
-                "type": "setting",
-                "id": "noResultsMessage",
-                "defaultValue": "",
-                "express": true
-              }
-            ]
-          },
-          {
-            "type":"group",
-            "id":"searchOptions",
-            "content":[
-                  {
-                    "type": "setting",
-                    "id": "defaultDistance",
-                    "defaultValue": 0,
-                    "min": 0
-                  },
-                  {
-                    "type": "setting",
-                    "id": "searchUnits",
-                    "defaultValue": "kilometers"
-                  }
-            ]
-          }
-           
+          "type": "subsection",
+          "id": "notificationResults",
+          "content": [
+            {
+              "type": "group",
+              "id": "refineResults",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "refineSelection",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "noResultsMessage",
+                  "defaultValue": "",
+                  "express": true
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "searchOptions",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "defaultDistance",
+                  "defaultValue": 0,
+                  "min": 0
+                },
+                {
+                  "type": "setting",
+                  "id": "searchUnits",
+                  "defaultValue": "kilometers"
+                }
+              ]
+            }
           ]
         }
-       ]
+      ]
     },
     {
       "type": "section",
@@ -392,7 +463,7 @@
                     }
                   ],
                   "defaultValue": false,
-                  "express":true
+                  "express": true
                 }
               ]
             }
@@ -442,7 +513,8 @@
                   "defaultValue": null
                 }
               ]
-            },   {
+            },
+            {
               "type": "setting",
               "id": "customCSS",
               "defaultValue": ""
