@@ -140,28 +140,6 @@
                       "type": "setting",
                       "id": "splashButtonText",
                       "defaultValue": "Close"
-                    },
-                    {
-                      "type": "setting",
-                      "id": "splashButtonPosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "info",
-                      "defaultValue": false,
-                      "express": false,
-                      "content": [
-                        {
-                          "type": "setting",
-                          "id": "detailsOpenAtStart",
-                          "express": false,
-                          "defaultValue": false
-                        }
-                      ]
                     }
                   ],
                   "defaultValue": {
