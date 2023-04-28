@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": ["popupDisabled"]
+        "conditions": [
+          "popupDisabled"
+        ]
       },
       "content": [
         {
@@ -12,14 +14,16 @@
           "id": "keyboardShortcuts",
           "express": true,
           "defaultValue": false,
-          "content":[    {
-            "type": "setting",
-            "id": "keyboardShortcutsPosition",
-            "defaultValue": {
-              "position": "top-left",
-              "index": 0
+          "content": [
+            {
+              "type": "setting",
+              "id": "keyboardShortcutsPosition",
+              "defaultValue": {
+                "position": "top-left",
+                "index": 0
+              }
             }
-          }]
+          ]
         }
       ]
     },
@@ -94,20 +98,22 @@
                       "type": "setting",
                       "id": "introductionContent",
                       "express": true,
-                      "defaultValue":"Search to learn more about a location and its surrounding area.</br> Use one of the following search methods: <ul><li>Click the search box and type in an address or choose <b>Use current location </b></li><li>Click within the map <div></div></li></ul></br> Results will include information about features of interest.",
+                      "defaultValue": "Search to learn more about a location and its surrounding area.</br> Use one of the following search methods: <ul><li>Click the search box and type in an address or choose <b>Use current location </b></li><li>Click within the map <div></div></li></ul></br> Results will include information about features of interest.",
                       "config": {
                         "imageUpload": true
                       }
-                    },{
-                      "type":"setting",
-                      "id":"infoAsModal",
-                      "express":false,
-                      "defaultValue":false
-                    },{
-                      "type":"setting",
-                      "id":"infoIncludeLocation",
-                      "express":false,
-                      "defaultValue":false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "infoAsModal",
+                      "express": false,
+                      "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "infoIncludeLocation",
+                      "express": false,
+                      "defaultValue": false
                     }
                   ],
                   "defaultValue": true
@@ -171,7 +177,13 @@
               "express": true,
               "config": {
                 "layerSelectionMode": "multiple",
-                "supportedLayerTypes": ["map-image", "feature", "group", "csv", "geojson"],
+                "supportedLayerTypes": [
+                  "map-image",
+                  "feature",
+                  "group",
+                  "csv",
+                  "geojson"
+                ],
                 "supportedGeometryTypes": "*",
                 "supportsFieldSelection": false
               },
@@ -191,7 +203,9 @@
                     "enableBufferColor",
                     "enableSearchScale"
                   ],
-                  ["showAll"]
+                  [
+                    "showAll"
+                  ]
                 ]
               },
               "content": [
@@ -263,15 +277,16 @@
                     }
                   ],
                   "defaultValue": false
-                },{
-                  "type":"setting",
-                  "id":"showAll",
-                  "express":false,
-                  "defaultValue":false
+                },
+                {
+                  "type": "setting",
+                  "id": "showAll",
+                  "express": false,
+                  "defaultValue": false
                 }
               ],
               "defaultValue": {
-                "branchValue": "search-radius",
+                "branchValue": "search-extent",
                 "branchOptionsFieldNames": []
               }
             }
@@ -405,7 +420,9 @@
                   "express": true,
                   "defaultValue": false,
                   "config": {
-                    "proxy": ["route"]
+                    "proxy": [
+                      "route"
+                    ]
                   },
                   "content": [
                     {
@@ -417,11 +434,13 @@
                         "supportedLayerTypes": [
                           "map-image",
                           "feature",
-                          "group", 
-                          "csv", 
+                          "group",
+                          "csv",
                           "geojson"
                         ],
-                        "supportedGeometryTypes": ["esriGeometryPoint"],
+                        "supportedGeometryTypes": [
+                          "esriGeometryPoint"
+                        ],
                         "supportsFieldSelection": false
                       },
                       "defaultValue": null
@@ -459,26 +478,28 @@
           ]
         },
         {
-          "type":"subsection",
-          "id":"exportShareResults",
-          "content":[                {
-            "type": "setting",
-            "id": "shareSelected",
-            "express": false,
-            "defaultValue": false
-          },
-          {
-            "type": "setting",
-            "id": "exportToPDF",
-            "express": false,
-            "defaultValue": false
-          },
-          {
-            "type": "setting",
-            "id": "exportCSV",
-            "express": false,
-            "defaultValue": false
-          }]
+          "type": "subsection",
+          "id": "exportShareResults",
+          "content": [
+            {
+              "type": "setting",
+              "id": "shareSelected",
+              "express": false,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "exportToPDF",
+              "express": false,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "exportCSV",
+              "express": false,
+              "defaultValue": false
+            }
+          ]
         },
         {
           "type": "subsection",
@@ -644,65 +665,69 @@
               "id": "modify",
               "content": [
                 {
-                  "type":"setting",
-                  "id":"enableHighlightColor",
-                  "express":false,
-                  "content":[
-                  {
-                    "type":"setting",
-                    "id":"highlightColor",
-                    "express":false,
-                    "defaultValue":"#00FFFF"
-                  }
-                ]},
-                {
-                  "type":"setting",
-                  "id":"enableHighlightHaloColor",
-                  "express":false,
-                  "content":[
-                  {
-                    "type":"setting",
-                    "id":"highlightHaloColor",
-                    "express":false,
-                    "defaultValue":"#00FFFF"
-                  }
-                ]},
-                {
-              "type": "setting",
-              "id": "layerList",
-              "defaultValue": false,
-              "content": [
-                {
                   "type": "setting",
-                  "id": "layerListConfig",
+                  "id": "enableHighlightColor",
                   "express": false,
-                  "config": {
-                    "supportedLayerTypes": [
-                      "map-image",
-                      "feature",
-                      "imagery",
-                      "group"
-                    ],
-                    "sections": ["addLegend"]
-                  },
-                  "defaultValue": null
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "highlightColor",
+                      "express": false,
+                      "defaultValue": "#00FFFF"
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
-                  "id": "layerListPosition",
-                  "defaultValue": {
-                    "position": "bottom-right",
-                    "index": 0
-                  }
+                  "id": "enableHighlightHaloColor",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "highlightHaloColor",
+                      "express": false,
+                      "defaultValue": "#00FFFF"
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
-                  "id": "layerListOpenAtStart",
-                  "express": false,
-                  "defaultValue": false
-                }
-              ]
-            },
+                  "id": "layerList",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "layerListConfig",
+                      "express": false,
+                      "config": {
+                        "supportedLayerTypes": [
+                          "map-image",
+                          "feature",
+                          "imagery",
+                          "group"
+                        ],
+                        "sections": [
+                          "addLegend"
+                        ]
+                      },
+                      "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListPosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListOpenAtStart",
+                      "express": false,
+                      "defaultValue": false
+                    }
+                  ]
+                },
                 {
                   "type": "setting",
                   "id": "basemapToggle",
