@@ -92,7 +92,6 @@
                 {
                   "type": "setting",
                   "id": "splashModeType",
-                  "express": true,
                   "config": {
                     "branches": [
                       [
@@ -143,7 +142,7 @@
                     }
                   ],
                   "defaultValue": {
-                    "branchValue": "search-radius",
+                    "branchValue": "cover-page",
                     "branchOptionsFieldNames": []
                   }
                 }
