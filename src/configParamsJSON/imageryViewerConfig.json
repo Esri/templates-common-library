@@ -584,17 +584,6 @@
               "type": "setting",
               "id": "customCSS",
               "defaultValue": ""
-            },
-            {
-              "type": "group",
-              "id": "layout",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "mapToolsExpanded",
-                  "defaultValue": true
-                }
-              ]
             }
           ]
         },
