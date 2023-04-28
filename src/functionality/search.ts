@@ -1,7 +1,6 @@
 import Search from "esri/widgets/Search";
 import FeatureLayer from "esri/layers/FeatureLayer";
-import MapView from "esri/views/MapView";
-import SceneView from "esri/views/SceneView";
+
 import Portal from "esri/portal/Portal";
 
 interface SearchSourceConfigItem {
@@ -17,7 +16,7 @@ interface SearchSourceConfigItem {
 }
 
 interface LocatorSourceConfigItem extends SearchSourceConfigItem {
-  locator?: { url: string; }
+  locator?: { url: string };
   url: string;
   singleLineFieldName: string;
   countryCode: string;
@@ -44,7 +43,11 @@ interface SearchConfiguration {
   sources?: Array<LocatorSourceConfigItem | LayerSourceConfigItem>;
 }
 
-export function createSearch(view: MapView | SceneView, portal: Portal, searchConfiguration: SearchConfiguration): Search {
+export function createSearch(
+  view: __esri.MapView | __esri.SceneView,
+  portal: Portal,
+  searchConfiguration: SearchConfiguration
+): Search {
   const INCLUDE_DEFAULT_SOURCES = "includeDefaultSources";
   const sources = searchConfiguration?.sources;
 
@@ -64,27 +67,34 @@ export function createSearch(view: MapView | SceneView, portal: Portal, searchCo
           layerSource.layer = new FeatureLayer(layerUrl as any);
         }
       } else {
-         const locatorSource = (source as LocatorSourceConfigItem);
+        const locatorSource = source as LocatorSourceConfigItem;
         if (locatorSource?.name === "ArcGIS World Geocoding Service") {
-          if (!locatorSource?.placeholder) locatorSource.placeholder = "Find address or place";
-          const outFields = locatorSource.outFields || ["Addr_type", "Match_addr", "StAddr", "City"];
+          if (!locatorSource?.placeholder)
+            locatorSource.placeholder = "Find address or place";
+          const outFields = locatorSource.outFields || [
+            "Addr_type",
+            "Match_addr",
+            "StAddr",
+            "City",
+          ];
           locatorSource.outFields = outFields;
           locatorSource.singleLineFieldName = "SingleLine";
         }
 
-        if (locatorSource?.locator?.url) locatorSource.url = locatorSource.locator.url;
+        if (locatorSource?.locator?.url)
+          locatorSource.url = locatorSource.locator.url;
       }
     });
   } else {
     searchConfiguration = {
       ...searchConfiguration,
-      includeDefaultSources: true
-    }
+      includeDefaultSources: true,
+    };
   }
 
   return new Search({
     view,
     portal,
-    ...searchConfiguration
+    ...searchConfiguration,
   });
 }
