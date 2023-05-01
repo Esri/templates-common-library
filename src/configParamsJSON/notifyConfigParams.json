@@ -321,6 +321,22 @@
                 },
                 {
                   "type": "setting",
+                  "id": "compassWidget",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "compassWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "locateWidget",
                   "express": false,
                   "defaultValue": false,

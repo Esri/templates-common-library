@@ -4,7 +4,10 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": ["2d", "3d"]
+        "itemTypes": [
+          "2d",
+          "3d"
+        ]
       }
     },
     {
@@ -123,6 +126,22 @@
                       "defaultValue": {
                         "position": "top-left",
                         "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "compassWidget",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "compassWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 1
                       }
                     }
                   ]

@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": ["popupDisabled"]
+        "conditions": [
+          "popupDisabled"
+        ]
       }
     },
     {
@@ -73,16 +75,18 @@
               "config": {
                 "imageUpload": true
               }
-            },{
-              "type":"setting",
-              "id":"infoAsModal",
-              "express":false,
-              "defaultValue":false
-            },{
-              "type":"setting",
-              "id":"infoIncludeLocation",
-              "express":false,
-              "defaultValue":false
+            },
+            {
+              "type": "setting",
+              "id": "infoAsModal",
+              "express": false,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "infoIncludeLocation",
+              "express": false,
+              "defaultValue": false
             }
           ]
         },
@@ -141,8 +145,15 @@
               "express": true,
               "config": {
                 "branches": [
-                  ["zoneLookupLayers"],
-                  ["searchLayer", "lookupLayers", "showDirections","spatialRelationship"]
+                  [
+                    "zoneLookupLayers"
+                  ],
+                  [
+                    "searchLayer",
+                    "lookupLayers",
+                    "showDirections",
+                    "spatialRelationship"
+                  ]
                 ]
               },
               "content": [
@@ -152,16 +163,23 @@
                   "express": true,
                   "config": {
                     "layerSelectionMode": "single",
-                    "supportedLayerTypes": ["map-image", "feature", "group"],
-                    "supportedGeometryTypes": ["esriGeometryPolygon"],
+                    "supportedLayerTypes": [
+                      "map-image",
+                      "feature",
+                      "group"
+                    ],
+                    "supportedGeometryTypes": [
+                      "esriGeometryPolygon"
+                    ],
                     "supportsFieldSelection": false
                   },
                   "defaultValue": null
-                },{
-                  "type":"setting",
-                  "id":"spatialRelationship",
-                  "express":false,
-                  "defaultValue":"contains"
+                },
+                {
+                  "type": "setting",
+                  "id": "spatialRelationship",
+                  "express": false,
+                  "defaultValue": "contains"
                 },
                 {
                   "type": "setting",
@@ -169,7 +187,9 @@
                   "express": true,
                   "defaultValue": false,
                   "config": {
-                    "proxy": ["route"]
+                    "proxy": [
+                      "route"
+                    ]
                   },
                   "content": [
                     {
@@ -183,7 +203,9 @@
                           "feature",
                           "group"
                         ],
-                        "supportedGeometryTypes": ["esriGeometryPoint"],
+                        "supportedGeometryTypes": [
+                          "esriGeometryPoint"
+                        ],
                         "supportsFieldSelection": false
                       },
                       "defaultValue": null
@@ -196,8 +218,14 @@
                   "express": true,
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": ["map-image", "feature", "group"],
-                    "supportedGeometryTypes": ["esriGeometryPolygon"],
+                    "supportedLayerTypes": [
+                      "map-image",
+                      "feature",
+                      "group"
+                    ],
+                    "supportedGeometryTypes": [
+                      "esriGeometryPolygon"
+                    ],
                     "supportsFieldSelection": false
                   },
                   "defaultValue": null
@@ -208,7 +236,11 @@
                   "express": true,
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": ["map-image", "feature", "group"],
+                    "supportedLayerTypes": [
+                      "map-image",
+                      "feature",
+                      "group"
+                    ],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": false
                   },
@@ -263,12 +295,12 @@
               ]
             }
           ]
-        },        {
+        },
+        {
           "type": "subsection",
           "id": "resultsMap",
           "content": [
-
-           {
+            {
               "type": "setting",
               "id": "applyLayerEffects",
               "express": true,
@@ -301,7 +333,8 @@
                 }
               ],
               "defaultValue": false
-            },   {
+            },
+            {
               "type": "setting",
               "id": "hideLayers",
               "express": false,
@@ -314,14 +347,15 @@
               "defaultValue": true,
               "content": [
                 {
-                  "type":"setting",
-                  "id":"showSelectedOnly",
-                  "defaultValue":false,
-                  "express":false
-                }]
+                  "type": "setting",
+                  "id": "showSelectedOnly",
+                  "defaultValue": false,
+                  "express": false
+                }
+              ]
             }
-
-          ]},
+          ]
+        },
         {
           "type": "subsection",
           "id": "resultsGraphics",
@@ -495,6 +529,22 @@
                 },
                 {
                   "type": "setting",
+                  "id": "compassWidget",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "compassWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "locateWidget",
                   "express": false,
                   "defaultValue": false,
@@ -556,66 +606,70 @@
               "type": "group",
               "id": "modify",
               "content": [
-                  {
-              "type": "setting",
-              "id": "layerList",
-              "defaultValue": false,
-              "content": [
                 {
                   "type": "setting",
-                  "id": "layerListConfig",
-                  "express": false,
-                  "config": {
-                    "supportedLayerTypes": [
-                      "map-image",
-                      "feature",
-                      "imagery",
-                      "group"
-                    ],
-                    "sections": ["addLegend"]
-                  },
-                  "defaultValue": null
+                  "id": "layerList",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "layerListConfig",
+                      "express": false,
+                      "config": {
+                        "supportedLayerTypes": [
+                          "map-image",
+                          "feature",
+                          "imagery",
+                          "group"
+                        ],
+                        "sections": [
+                          "addLegend"
+                        ]
+                      },
+                      "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListPosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListOpenAtStart",
+                      "express": false,
+                      "defaultValue": false
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
-                  "id": "layerListPosition",
-                  "defaultValue": {
-                    "position": "bottom-right",
-                    "index": 0
-                  }
+                  "id": "enableHighlightColor",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "highlightColor",
+                      "express": false,
+                      "defaultValue": "#00FFFF"
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
-                  "id": "layerListOpenAtStart",
+                  "id": "enableHighlightHaloColor",
                   "express": false,
-                  "defaultValue": false
-                }
-              ]
-            },
-                {
-                  "type":"setting",
-                  "id":"enableHighlightColor",
-                  "express":false,
-                  "content":[
-                  {
-                    "type":"setting",
-                    "id":"highlightColor",
-                    "express":false,
-                    "defaultValue":"#00FFFF"
-                  }
-                ]},
-                {
-                  "type":"setting",
-                  "id":"enableHighlightHaloColor",
-                  "express":false,
-                  "content":[
-                  {
-                    "type":"setting",
-                    "id":"highlightHaloColor",
-                    "express":false,
-                    "defaultValue":"#00FFFF"
-                  }
-                ]},
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "highlightHaloColor",
+                      "express": false,
+                      "defaultValue": "#00FFFF"
+                    }
+                  ]
+                },
                 {
                   "type": "setting",
                   "id": "basemapToggle",
