@@ -48,6 +48,20 @@
                       "id": "alignHeader",
                       "defaultValue": "left",
                       "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "showTitle",
+                      "defaultValue": false,
+                      "express": false,
+                      "content": [
+                        {
+                          "type": "setting",
+                          "id": "title",
+                          "defaultValue": "",
+                          "express": false
+                        }
+                      ]
                     }
                   ]
                 },
