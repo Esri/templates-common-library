@@ -27,7 +27,7 @@
                             "type": "setting",
                             "id": "splash",
                             "express": true,
-                            "defaultValue": true,
+                            "defaultValue": false,
                             "content": [
                                 {
                                     "type": "setting",
@@ -49,7 +49,7 @@
                         {
                             "type": "setting",
                             "id": "legend",
-                            "defaultValue": false
+                            "defaultValue": true
                         }
                     ]
                 }
@@ -61,47 +61,12 @@
             "content": [
                 {
                     "type": "subsection",
-                    "id": "attributes",
-                    "content": [
-                        {
-                            "type": "setting",
-                            "id": "enableFilter",
-                            "defaultValue": false,
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "filterConfig",
-                                    "defaultValue": null
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "subsection",
                     "id": "scoreboard",
                     "content": [
                         {
                             "type": "setting",
-                            "id": "scoreboardItems"
-                        }
-                    ]
-                },
-                {
-                    "type": "subsection",
-                    "id": "time",
-                    "content": [
-                        {
-                            "type": "setting",
-                            "id": "timeFilter",
-                            "defaultValue": false,
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "timeFilterConfig",
-                                    "defaultValue": null
-                                }
-                            ]
+                            "id": "scoreboardItems",
+                            "express": true
                         }
                     ]
                 }
@@ -278,7 +243,8 @@
                                 {
                                     "type": "setting",
                                     "id": "scoreboardPosition",
-                                    "defaultValue": "bottom"
+                                    "defaultValue": "bottom",
+                                    "express": true
                                 },
                                 {
                                     "type": "setting",
