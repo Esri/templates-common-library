@@ -19,17 +19,9 @@
                     "content": [
                         {
                             "type": "setting",
-                            "id": "header",
+                            "id": "title",
                             "express": true,
-                            "defaultValue": true,
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "title",
-                                    "express": true,
-                                    "defaultValue": ""
-                                }
-                            ]
+                            "defaultValue": ""
                         },
                         {
                             "type": "setting",
@@ -88,7 +80,12 @@
                 {
                     "type": "subsection",
                     "id": "scoreboard",
-                    "content": []
+                    "content": [
+                        {
+                            "type": "setting",
+                            "id": "scoreboardItems"
+                        }
+                    ]
                 },
                 {
                     "type": "subsection",
@@ -191,17 +188,6 @@
                                     "defaultValue": false
                                 }
                             ]
-                        },
-                        {
-                            "type": "group",
-                            "id": "screenshot",
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "screenshot",
-                                    "defaultValue": false
-                                }
-                            ]
                         }
                     ]
                 },
@@ -283,16 +269,32 @@
                 },
                 {
                     "type": "subsection",
-                    "id": "positionManager",
+                    "id": "layout",
                     "content": [
                         {
                             "type": "group",
-                            "id": "positionManager",
+                            "id": "scoreboard",
                             "content": [
                                 {
                                     "type": "setting",
-                                    "id": "positionManager",
-                                    "defaultValue": null
+                                    "id": "scoreboardPosition",
+                                    "defaultValue": "bottom"
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "scoreboardMode",
+                                    "defaultValue": "floating"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "id": "toolbar",
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "toolbarPosition",
+                                    "defaultValue": "left"
                                 }
                             ]
                         }
