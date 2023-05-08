@@ -46,7 +46,9 @@
               "type": "setting",
               "id": "dataSliderSpeed",
               "express": true,
-              "defaultValue": [2]
+              "defaultValue": [
+                2
+              ]
             },
             {
               "type": "setting",
@@ -191,6 +193,17 @@
                       "defaultValue": "Okay"
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "mapA11y",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapA11yDesc",
+                  "express": true
                 }
               ]
             }

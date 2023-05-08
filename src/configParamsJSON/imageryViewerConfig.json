@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": ["imagery"]
+        "conditions": [
+          "imagery"
+        ]
       }
     },
     {
@@ -66,6 +68,17 @@
                 "position": "bottom-left",
                 "index": 0
               }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "mapA11y",
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapA11yDesc",
+              "express": true
             }
           ]
         }
@@ -276,13 +289,18 @@
                   "express": true,
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": ["imagery", "imagery-tile"],
+                    "supportedLayerTypes": [
+                      "imagery",
+                      "imagery-tile"
+                    ],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "single",
                     "supportedFieldTypes": "*",
                     "isFieldSelectionRequired": true,
-                    "excludeFields": ["Shape"]
+                    "excludeFields": [
+                      "Shape"
+                    ]
                   },
                   "defaultValue": null
                 },
@@ -340,13 +358,20 @@
                   "express": false,
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": ["imagery", "imagery-tile"],
+                    "supportedLayerTypes": [
+                      "imagery",
+                      "imagery-tile"
+                    ],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "single",
-                    "supportedFieldTypes": ["date"],
+                    "supportedFieldTypes": [
+                      "date"
+                    ],
                     "isFieldSelectionRequired": true,
-                    "excludeFields": ["Shape"]
+                    "excludeFields": [
+                      "Shape"
+                    ]
                   },
                   "defaultValue": null
                 }
@@ -374,7 +399,10 @@
                       "express": true,
                       "config": {
                         "layerSelectionMode": "single",
-                        "supportedLayerTypes": ["imagery", "imagery-tile"],
+                        "supportedLayerTypes": [
+                          "imagery",
+                          "imagery-tile"
+                        ],
                         "supportedGeometryTypes": "*",
                         "supportsFieldSelection": false
                       },
@@ -386,7 +414,10 @@
                       "express": true,
                       "config": {
                         "layerSelectionMode": "single",
-                        "supportedLayerTypes": ["imagery", "imagery-tile"],
+                        "supportedLayerTypes": [
+                          "imagery",
+                          "imagery-tile"
+                        ],
                         "supportedGeometryTypes": "*",
                         "supportsFieldSelection": false
                       },

@@ -67,6 +67,17 @@
               ]
             }
           ]
+        },
+        {
+          "type": "group",
+          "id": "mapA11y",
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapA11yDesc",
+              "express": true
+            }
+          ]
         }
       ]
     },

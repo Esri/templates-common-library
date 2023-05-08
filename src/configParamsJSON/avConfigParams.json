@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": ["attachments"]
+        "conditions": [
+          "attachments"
+        ]
       }
     },
     {
@@ -65,6 +67,17 @@
               "express": true
             }
           ]
+        },
+        {
+          "type": "group",
+          "id": "mapA11y",
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapA11yDesc",
+              "express": true
+            }
+          ]
         }
       ]
     },
@@ -82,8 +95,14 @@
               "express": true,
               "config": {
                 "branches": [
-                  ["hideAttributePanel"],
-                  ["thumbnailFormat", "thumbnailHeight", "mapCentricTooltip"]
+                  [
+                    "hideAttributePanel"
+                  ],
+                  [
+                    "thumbnailFormat",
+                    "thumbnailHeight",
+                    "mapCentricTooltip"
+                  ]
                 ]
               },
               "content": [

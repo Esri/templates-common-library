@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": ["renderer"]
+        "conditions": [
+          "renderer"
+        ]
       }
     },
     {
@@ -106,6 +108,17 @@
               "defaultValue": "bottom-right"
             }
           ]
+        },
+        {
+          "type": "group",
+          "id": "mapA11y",
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapA11yDesc",
+              "express": true
+            }
+          ]
         }
       ]
     },
@@ -118,7 +131,14 @@
           "id": "interactiveLegendStyle",
           "express": true,
           "config": {
-            "branches": [["interactiveLegendOpenAtStart"], ["interactiveLegendPanelLocation"]]
+            "branches": [
+              [
+                "interactiveLegendOpenAtStart"
+              ],
+              [
+                "interactiveLegendPanelLocation"
+              ]
+            ]
           },
           "content": [
             {
@@ -139,7 +159,6 @@
             "branchOptionsFieldNames": []
           }
         },
-
         {
           "type": "setting",
           "id": "updateExtent",

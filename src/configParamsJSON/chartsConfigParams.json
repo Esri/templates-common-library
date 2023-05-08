@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": ["charts"]
+        "conditions": [
+          "charts"
+        ]
       }
     },
     {
@@ -20,7 +22,12 @@
               "id": "chartsLayout",
               "express": true,
               "config": {
-                "branches": [["panelSize"], []]
+                "branches": [
+                  [
+                    "panelSize"
+                  ],
+                  []
+                ]
               },
               "content": [
                 {
@@ -32,7 +39,9 @@
               ],
               "defaultValue": {
                 "branchValue": "stack",
-                "branchOptionsFieldNames": ["panelSize"]
+                "branchOptionsFieldNames": [
+                  "panelSize"
+                ]
               }
             },
             {
@@ -143,6 +152,17 @@
                       "express": true
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "mapA11y",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapA11yDesc",
+                  "express": true
                 }
               ]
             }
