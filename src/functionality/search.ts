@@ -48,6 +48,7 @@ export function createSearch(
   portal: Portal,
   searchConfiguration: SearchConfiguration
 ): Search {
+  const DEFAULT_PLACEHOLDER = "Find address or place";
   const INCLUDE_DEFAULT_SOURCES = "includeDefaultSources";
   const sources = searchConfiguration?.sources;
 
@@ -70,7 +71,7 @@ export function createSearch(
         const locatorSource = source as LocatorSourceConfigItem;
         if (locatorSource?.name === "ArcGIS World Geocoding Service") {
           if (!locatorSource?.placeholder)
-            locatorSource.placeholder = "Find address or place";
+            locatorSource.placeholder = DEFAULT_PLACEHOLDER;
           const outFields = locatorSource.outFields || [
             "Addr_type",
             "Match_addr",
@@ -92,9 +93,14 @@ export function createSearch(
     };
   }
 
-  return new Search({
+   const searchWidget = new Search({
     view,
     portal,
     ...searchConfiguration,
   });
+
+  const searchWidget_t9n = searchWidget?.["messages"];
+  if (searchWidget.allPlaceholder === DEFAULT_PLACEHOLDER) searchWidget.allPlaceholder = searchWidget_t9n.allPlaceholder;
+
+  return;
 }
