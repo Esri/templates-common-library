@@ -102,5 +102,5 @@ export function createSearch(
   const searchWidget_t9n = searchWidget?.["messages"];
   if (searchWidget.allPlaceholder === DEFAULT_PLACEHOLDER) searchWidget.allPlaceholder = searchWidget_t9n.allPlaceholder;
 
-  return;
+  return searchWidget;
 }
