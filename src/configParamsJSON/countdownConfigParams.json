@@ -4,8 +4,13 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": ["2d", "3d"],
-        "conditions": ["supportsOrderBy"]
+        "itemTypes": [
+          "2d",
+          "3d"
+        ],
+        "conditions": [
+          "supportsOrderBy"
+        ]
       }
     },
     {
@@ -172,6 +177,17 @@
                   "defaultValue": false
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "mapA11y",
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapA11yDesc",
+              "express": true
             }
           ]
         }

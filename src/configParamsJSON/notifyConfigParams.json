@@ -7,25 +7,7 @@
         "itemTypes": [
           "2d"
         ]
-      },
-      "content": [
-        {
-          "type": "setting",
-          "id": "keyboardShortcuts",
-          "express": false,
-          "defaultValue": false,
-          "content": [
-            {
-              "type": "setting",
-              "id": "keyboardShortcutsPosition",
-              "defaultValue": {
-                "position": "top-left",
-                "index": 0
-              }
-            }
-          ]
-        }
-      ]
+      }
     },
     {
       "type": "section",
@@ -76,6 +58,17 @@
                   "type": "setting",
                   "id": "legendOpenAtStart",
                   "defaultValue": false
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "mapA11y",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapA11yDesc",
+                  "express": true
                 }
               ]
             }
@@ -346,6 +339,22 @@
                       "id": "locateWidgetPosition",
                       "defaultValue": {
                         "position": "top-right",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcuts",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "keyboardShortcutsPosition",
+                      "defaultValue": {
+                        "position": "top-left",
                         "index": 0
                       }
                     }
