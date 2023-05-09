@@ -150,7 +150,7 @@
                       "id": "legendPosition",
                       "defaultValue": {
                         "position": "bottom-left",
-                        "index": 1
+                        "index": 2
                       }
                     },
                     {
@@ -211,6 +211,22 @@
                   "id": "locateWidget",
                   "express": true,
                   "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "scalebar",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "scalebarPosition",
+                      "defaultValue": {
+                        "position": "bottom-left",
+                        "index": 1
+                      }
+                    }
+                  ]
                 }
               ]
             }
