@@ -72,6 +72,32 @@
             "content": [
                 {
                     "type": "subsection",
+                    "id": "attributes",
+                    "content": [
+                        {
+                            "type": "setting",
+                            "id": "filterPanel",
+                            "express": false,
+                            "defaultValue": false,
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "expandFilters",
+                                    "defaultValue": false,
+                                    "express": false
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "filterConfig",
+                                    "express": false,
+                                    "defaultValue": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "subsection",
                     "id": "scoreboard",
                     "content": [
                         {
