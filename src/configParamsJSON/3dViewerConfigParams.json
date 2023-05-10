@@ -418,6 +418,22 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "magnifier",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "magnifierPosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -626,6 +642,21 @@
                     {
                       "type": "setting",
                       "id": "weatherPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "buildingExplorer",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "buildingExplorerPosition",
                       "defaultValue": {
                         "position": "top-right",
                         "index": 0
