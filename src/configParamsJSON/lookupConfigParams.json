@@ -80,7 +80,14 @@
               "type": "setting",
               "id": "infoAsModal",
               "express": false,
-              "defaultValue": false
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "splashButtonText",
+                  "defaultValue": "Close"
+                }
+              ]
             },
             {
               "type": "setting",
