@@ -1,5 +1,7 @@
 import Search from "esri/widgets/Search";
 import FeatureLayer from "esri/layers/FeatureLayer";
+import LayerSearchSource from "esri/widgets/Search/LayerSearchSource";
+import LocatorSearchSource from "esri/widgets/Search/LocatorSearchSource";
 
 import Portal from "esri/portal/Portal";
 
@@ -99,8 +101,14 @@ export function createSearch(
     ...searchConfiguration,
   });
 
+  // Replaces default placeholder ('Find address or place') with translated string from Search widget's t9n messages
   const searchWidget_t9n = searchWidget?.["messages"];
-  if (searchWidget.allPlaceholder === DEFAULT_PLACEHOLDER) searchWidget.allPlaceholder = searchWidget_t9n?.allPlaceholder;
+
+  if (searchWidget?.allPlaceholder === DEFAULT_PLACEHOLDER) searchWidget.allPlaceholder = searchWidget_t9n.allPlaceholder;
+
+  searchWidget?.sources?.forEach((source: __esri.SearchSource) => {
+    if (source?.placeholder === DEFAULT_PLACEHOLDER) source.placeholder = searchWidget_t9n.placeholder;
+  });
 
   return searchWidget;
 }
