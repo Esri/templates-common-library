@@ -1,6 +1,8 @@
 import Search from "esri/widgets/Search";
 import FeatureLayer from "esri/layers/FeatureLayer";
 
+import { when } from "esri/core/reactiveUtils";
+
 import Portal from "esri/portal/Portal";
 
 interface SearchSourceConfigItem {
@@ -52,7 +54,7 @@ export function createSearch(
   const INCLUDE_DEFAULT_SOURCES = "includeDefaultSources";
   const sources = searchConfiguration?.sources;
 
-  if (sources?.length > 0) {
+  if (sources && sources?.length > 0) {
     searchConfiguration[INCLUDE_DEFAULT_SOURCES] = false;
 
     sources.forEach((source) => {
@@ -70,43 +72,44 @@ export function createSearch(
       } else {
         const locatorSource = source as LocatorSourceConfigItem;
         if (locatorSource?.name === "ArcGIS World Geocoding Service") {
-          if (!locatorSource?.placeholder)
-            locatorSource.placeholder = DEFAULT_PLACEHOLDER;
-          const outFields = locatorSource.outFields || [
-            "Addr_type",
-            "Match_addr",
-            "StAddr",
-            "City",
-          ];
+          if (!locatorSource?.placeholder) locatorSource.placeholder = DEFAULT_PLACEHOLDER;
+          const outFields = locatorSource.outFields || ["Addr_type", "Match_addr", "StAddr", "City"];
           locatorSource.outFields = outFields;
           locatorSource.singleLineFieldName = "SingleLine";
         }
 
-        if (locatorSource?.locator?.url)
-          locatorSource.url = locatorSource.locator.url;
+        if (locatorSource?.locator?.url) locatorSource.url = locatorSource.locator.url;
       }
     });
   } else {
     searchConfiguration = {
       ...searchConfiguration,
-      includeDefaultSources: true,
+      includeDefaultSources: true
     };
   }
 
-   const searchWidget = new Search({
+  const searchWidget = new Search({
     view,
     portal,
-    ...searchConfiguration,
+    ...searchConfiguration
   });
 
-  // Replaces default placeholder ('Find address or place') with translated string from Search widget's t9n messages
-  const searchWidget_t9n = searchWidget?.["messages"];
+  when(
+    () => searchWidget?.["messages"],
+    () => {
+      // Replaces default placeholder ('Find address or place') with translated string from Search widget's t9n messages
+      const searchWidget_t9n = searchWidget?.["messages"];
 
-  if (searchWidget?.allPlaceholder === DEFAULT_PLACEHOLDER) searchWidget.allPlaceholder = searchWidget_t9n.allPlaceholder;
+      if (searchWidget?.allPlaceholder === DEFAULT_PLACEHOLDER && searchWidget_t9n?.allPlaceholder)
+        searchWidget.allPlaceholder = searchWidget_t9n.allPlaceholder;
 
-  searchWidget?.sources?.forEach((source: __esri.SearchSource) => {
-    if (source?.placeholder === DEFAULT_PLACEHOLDER) source.placeholder = searchWidget_t9n.placeholder;
-  });
+      searchWidget?.sources?.forEach((source: __esri.SearchSource) => {
+        if (source?.placeholder === DEFAULT_PLACEHOLDER && searchWidget_t9n?.placeholder)
+          source.placeholder = searchWidget_t9n.placeholder;
+      });
+    },
+    { once: true, initial: true }
+  );
 
   return searchWidget;
 }
