@@ -406,6 +406,14 @@
                 "position": "top-left",
                 "index": 0
               }
+            },
+            {
+              "type": "setting",
+              "id": "layerListPosition",
+              "defaultValue": {
+                "position": "top-right",
+                "index": 1
+              }
             }
           ]
         }
