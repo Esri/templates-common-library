@@ -99,8 +99,14 @@ export function createSearch(
     ...searchConfiguration,
   });
 
+  // Replaces default placeholder ('Find address or place') with translated string from Search widget's t9n messages
   const searchWidget_t9n = searchWidget?.["messages"];
-  if (searchWidget.allPlaceholder === DEFAULT_PLACEHOLDER) searchWidget.allPlaceholder = searchWidget_t9n?.allPlaceholder;
+
+  if (searchWidget?.allPlaceholder === DEFAULT_PLACEHOLDER) searchWidget.allPlaceholder = searchWidget_t9n.allPlaceholder;
+
+  searchWidget?.sources?.forEach((source: __esri.SearchSource) => {
+    if (source?.placeholder === DEFAULT_PLACEHOLDER) source.placeholder = searchWidget_t9n.placeholder;
+  });
 
   return searchWidget;
 }
