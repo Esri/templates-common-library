@@ -1,7 +1,5 @@
 import Search from "esri/widgets/Search";
 import FeatureLayer from "esri/layers/FeatureLayer";
-import LayerSearchSource from "esri/widgets/Search/LayerSearchSource";
-import LocatorSearchSource from "esri/widgets/Search/LocatorSearchSource";
 
 import Portal from "esri/portal/Portal";
 
