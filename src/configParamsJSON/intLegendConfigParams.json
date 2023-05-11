@@ -297,6 +297,22 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "compassWidget",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "compassWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 4
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "extentSelector",
                   "defaultValue": false,
                   "content": [

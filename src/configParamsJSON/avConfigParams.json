@@ -247,6 +247,12 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "compassWidget",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
                   "id": "extentSelector",
                   "content": [
                     {
