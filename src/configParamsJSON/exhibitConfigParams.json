@@ -153,38 +153,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "subsection",
-          "id": "featureComprehension",
-          "content": [
-            {
-              "type": "group",
-              "id": "featureComprehension",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "legend",
-                  "defaultValue": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "legendPosition",
-                      "defaultValue": {
-                        "position": "bottom-left",
-                        "index": 0
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "legendOpenAtStart",
-                      "defaultValue": false
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
         }
       ]
     },
@@ -444,6 +412,14 @@
               "id": "controlPanelPosition",
               "defaultValue": {
                 "position": "top-right",
+                "index": 0
+              }
+            },
+            {
+              "type": "setting",
+              "id": "legendPosition",
+              "defaultValue": {
+                "position": "bottom-left",
                 "index": 0
               }
             }
