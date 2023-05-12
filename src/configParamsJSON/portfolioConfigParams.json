@@ -280,6 +280,22 @@
                 },
                 {
                   "type": "setting",
+                  "id": "compassWidget",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "compassWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 3
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "legend",
                   "defaultValue": true,
                   "express": false,
