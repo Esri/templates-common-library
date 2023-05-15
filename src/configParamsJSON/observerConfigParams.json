@@ -115,6 +115,11 @@
                                     "type": "setting",
                                     "id": "locateWidget",
                                     "defaultValue": false
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "measure",
+                                    "defaultValue": false
                                 }
                             ]
                         }
@@ -143,6 +148,25 @@
                                             "type": "setting",
                                             "id": "basemapGalleryConfig",
                                             "defaultValue": null
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "daylight",
+                                    "defaultValue": false,
+                                    "content": [
+                                        {
+                                            "type": "setting",
+                                            "id": "daylightDate",
+                                            "express": false,
+                                            "defaultValue": ""
+                                        },
+                                        {
+                                            "type": "setting",
+                                            "id": "daylightTime",
+                                            "express": false,
+                                            "defaultValue": ""
                                         }
                                     ]
                                 }
