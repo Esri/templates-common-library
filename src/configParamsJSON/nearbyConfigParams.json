@@ -491,7 +491,23 @@
               "type": "setting",
               "id": "exportToPDF",
               "express": false,
-              "defaultValue": false
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "exportButtonIcon",
+                  "express": true,
+                  "defaultValue": "file-pdf",
+                  "config": {
+                    "iconList": [
+                      "export",
+                      "file-pdf",
+                      "print",
+                      "print-preview"
+                    ]
+                  }
+                }
+              ]
             },
             {
               "type": "setting",
