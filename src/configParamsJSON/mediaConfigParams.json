@@ -579,7 +579,15 @@
                   "id": "swipeLeadingLayers",
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": "*",
+                    "supportedLayerTypes": [
+                      "map-image",
+                      "feature",
+                      "imagery",
+                      "imagery-tile",
+                      "tile",
+                      "web-tile",
+                      "wmts"
+                    ],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": false
                   },
@@ -590,7 +598,15 @@
                   "id": "swipeTrailingLayers",
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": "*",
+                    "supportedLayerTypes": [
+                      "map-image",
+                      "feature",
+                      "imagery",
+                      "imagery-tile",
+                      "tile",
+                      "web-tile",
+                      "wmts"
+                    ],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": false
                   },
