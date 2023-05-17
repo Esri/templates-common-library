@@ -71,15 +71,9 @@
             "id": "filterData",
             "content": [
                 {
-                    "type": "subsection",
-                    "id": "scoreboard",
-                    "content": [
-                        {
-                            "type": "setting",
-                            "id": "scoreboardItems",
-                            "express": true
-                        }
-                    ]
+                    "type": "setting",
+                    "id": "scoreboardItems",
+                    "express": true
                 }
             ]
         },
