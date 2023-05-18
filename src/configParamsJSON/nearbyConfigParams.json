@@ -204,7 +204,8 @@
                     "enableSearchScale"
                   ],
                   [
-                    "showAll"
+                    "showAll",
+                    "enableSearchScale"
                   ]
                 ]
               },
