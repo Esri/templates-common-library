@@ -2,7 +2,28 @@
   "config": [
     {
       "type": "section",
-      "id": "map"
+      "id": "map",
+      "content": [
+        {
+          "type": "group",
+          "id": "mapAreaGroupHeading",
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapArea",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapAreaConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ],
+              "defaultValue": false
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
@@ -425,19 +446,6 @@
                   "id": "disableScroll",
                   "defaultValue": false,
                   "express": false
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "express": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "defaultValue": false
                 }
               ]
             }
