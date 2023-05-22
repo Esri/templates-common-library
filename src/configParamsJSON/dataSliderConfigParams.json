@@ -7,10 +7,12 @@
         {
           "type": "group",
           "id": "mapAreaGroupHeading",
+          "express": false,
           "content": [
             {
               "type": "setting",
               "id": "mapArea",
+              "express": false,
               "content": [
                 {
                   "type": "setting",
@@ -67,9 +69,7 @@
               "type": "setting",
               "id": "dataSliderSpeed",
               "express": true,
-              "defaultValue": [
-                2
-              ]
+              "defaultValue": [2]
             },
             {
               "type": "setting",
