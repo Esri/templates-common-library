@@ -71,27 +71,36 @@ export function createSearch(
         }
       } else {
         const locatorSource = source as LocatorSourceConfigItem;
-        if (locatorSource?.name === "ArcGIS World Geocoding Service") {
-          if (!locatorSource?.placeholder) locatorSource.placeholder = DEFAULT_PLACEHOLDER;
-          const outFields = locatorSource.outFields || ["Addr_type", "Match_addr", "StAddr", "City"];
+        const isWorldLocatorExpression = new RegExp("/World/GeocodeServer");
+
+        if (isWorldLocatorExpression.test(locatorSource?.url)) {
+          if (!locatorSource?.placeholder)
+            locatorSource.placeholder = DEFAULT_PLACEHOLDER;
+          const outFields = locatorSource.outFields || [
+            "Addr_type",
+            "Match_addr",
+            "StAddr",
+            "City",
+          ];
           locatorSource.outFields = outFields;
           locatorSource.singleLineFieldName = "SingleLine";
         }
 
-        if (locatorSource?.locator?.url) locatorSource.url = locatorSource.locator.url;
+        if (locatorSource?.locator?.url)
+          locatorSource.url = locatorSource.locator.url;
       }
     });
   } else {
     searchConfiguration = {
       ...searchConfiguration,
-      includeDefaultSources: true
+      includeDefaultSources: true,
     };
   }
 
   const searchWidget = new Search({
     view,
     portal,
-    ...searchConfiguration
+    ...searchConfiguration,
   });
 
   when(
@@ -100,11 +109,17 @@ export function createSearch(
       // Replaces default placeholder ('Find address or place') with translated string from Search widget's t9n messages
       const searchWidget_t9n = searchWidget?.["messages"];
 
-      if (searchWidget?.allPlaceholder === DEFAULT_PLACEHOLDER && searchWidget_t9n?.allPlaceholder)
+      if (
+        searchWidget?.allPlaceholder === DEFAULT_PLACEHOLDER &&
+        searchWidget_t9n?.allPlaceholder
+      )
         searchWidget.allPlaceholder = searchWidget_t9n.allPlaceholder;
 
       searchWidget?.sources?.forEach((source: __esri.SearchSource) => {
-        if (source?.placeholder === DEFAULT_PLACEHOLDER && searchWidget_t9n?.placeholder)
+        if (
+          source?.placeholder === DEFAULT_PLACEHOLDER &&
+          searchWidget_t9n?.placeholder
+        )
           source.placeholder = searchWidget_t9n.placeholder;
       });
     },
