@@ -70,3 +70,24 @@ export function updateViewsCalciteMode(mode: "light" | "dark"): void {
     uiContainers[i].className = uiContainers[i].className.replace(prevCalciteMode, calciteMode);
   }
 }
+
+//-----------------------------------
+// handleCustomCSS
+// --------------------------------- 
+
+/**
+ * Performs the logic of the "customCSS" config setting
+ */
+export function handleCustomCSS(styleSheetId: string, styles: string): void {
+  const customCSSStyleSheet = document.getElementById(styleSheetId);
+
+  if (customCSSStyleSheet) {
+    customCSSStyleSheet.remove();
+  }
+
+  const stylesheet = document.createElement("style");
+  stylesheet.id = styleSheetId;
+  const styleTextNode = document.createTextNode(styles);
+  stylesheet.appendChild(styleTextNode);
+  document.head.appendChild(stylesheet);
+}
