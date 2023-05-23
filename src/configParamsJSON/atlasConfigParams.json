@@ -113,6 +113,17 @@
                   "defaultValue": null
                 }
               ]
+            },
+            {
+              "type": "group",
+              "id": "additionalOptions",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customCSS",
+                  "defaultValue": ""
+                }
+              ]
             }
           ]
         },
