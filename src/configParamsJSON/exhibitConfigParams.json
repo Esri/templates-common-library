@@ -186,6 +186,22 @@
                 },
                 {
                   "type": "setting",
+                  "id": "compassWidget",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "compassWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "extentSelector",
                   "defaultValue": false,
                   "content": [
