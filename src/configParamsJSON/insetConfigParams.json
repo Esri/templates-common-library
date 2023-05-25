@@ -215,7 +215,7 @@
                 {
                   "type": "setting",
                   "id": "scalebar",
-                  "express": false,
+                  "express": true,
                   "defaultValue": false,
                   "content": [
                     {
