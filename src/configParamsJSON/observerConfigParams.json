@@ -32,16 +32,19 @@
                                 {
                                     "type": "setting",
                                     "id": "splashTitle",
+                                    "express": true,
                                     "defaultValue": "Title"
                                 },
                                 {
                                     "type": "setting",
                                     "id": "splashContent",
+                                    "express": true,
                                     "defaultValue": "Content"
                                 },
                                 {
                                     "type": "setting",
                                     "id": "splashButtonText",
+                                    "express": true,
                                     "defaultValue": "Enter"
                                 }
                             ]
