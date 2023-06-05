@@ -72,6 +72,18 @@
               "type": "setting",
               "id": "title",
               "defaultValue": "Atlas"
+            },
+            {
+              "type": "setting",
+              "id": "customHeader",
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customHeaderHTML",
+                  "defaultValue": ""
+                }
+              ]
             }
           ]
         }
