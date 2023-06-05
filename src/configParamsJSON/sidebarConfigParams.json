@@ -507,7 +507,7 @@
                   "express": false,
                   "defaultValue": false
                 },
-                {
+      {
                   "type": "setting",
                   "id": "scalebar",
                   "express": false,
@@ -520,6 +520,12 @@
                         "position": "bottom-left",
                         "index": 0
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "scalebarDualMode",
+                      "defaultValue": false,
+                      "express": false
                     }
                   ]
                 },
