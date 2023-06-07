@@ -168,6 +168,21 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "compassWidget",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "compassWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-left"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "disableScroll",
                   "express": false,
                   "defaultValue": false
