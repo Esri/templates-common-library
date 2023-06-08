@@ -1,3 +1,5 @@
+import ApplicationBase from "../baseClasses/ApplicationBase";
+
 const liveRegionId = "a11y-live-region";
 
 interface LiveRegionParams {
@@ -23,7 +25,25 @@ export function setupLiveRegion(params?: LiveRegionParams): HTMLElement {
   }
   return region;
 }
-
+export function setMapDescription(
+  base: ApplicationBase,
+  view: __esri.MapView | __esri.SceneView
+) {
+  const { config, results } = base;
+  const { applicationItem } = results;
+  let appitem,
+    mapItem = null;
+  const applicationPortalItem = applicationItem?.value;
+  if (applicationPortalItem) {
+    appitem =
+      applicationPortalItem?.snippet || applicationPortalItem?.description;
+  }
+  const mapPortalItem = (view as any)?.map?.portalItem;
+  if (mapPortalItem) {
+    mapItem = mapPortalItem?.snippet || mapPortalItem?.description;
+  }
+  return config?.mapA11yDesc || appitem || mapItem;
+}
 export function postToLiveRegion(message: string, id?: string) {
   const regionId = id ? id : liveRegionId;
   const region = document.body.querySelector<HTMLElement>(`#${regionId}`);
