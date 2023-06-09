@@ -61,3 +61,5 @@ export interface HighlightConfig {
   enableHighlightHaloColor: boolean;
   highlightHaloColor: string;
 }
+
+export interface ISanitizer { sanitize: (arg0: string) => string; }

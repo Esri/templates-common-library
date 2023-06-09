@@ -1,4 +1,5 @@
 import { ApplicationConfig } from "../interfaces/applicationBase";
+import { ISanitizer } from "../interfaces/commonInterfaces";
 
 const liveRegionId = "a11y-live-region";
 
@@ -43,7 +44,7 @@ export function getMapDescription(
   return config?.mapA11yDesc || appitem || mapItem;
 }
 
-export function setMapDescription(view: __esri.MapView | __esri.SceneView, mapA11yDesc: string, sanitizerInstance: any): void {
+export function setMapDescription(view: __esri.MapView | __esri.SceneView, mapA11yDesc: string, sanitizerInstance: ISanitizer): void {
   if (!view || !mapA11yDesc) return;
 
   if (typeof sanitizerInstance?.sanitize !== "function") {
