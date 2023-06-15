@@ -393,6 +393,18 @@
                 },
                 {
                   "type": "setting",
+                  "id": "showNonResultPopups",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "showPopupsOnZoom",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
                   "id": "relatedRecords",
                   "express": false,
                   "defaultValue": null
