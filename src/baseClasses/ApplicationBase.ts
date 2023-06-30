@@ -20,6 +20,7 @@ import {
   ApplicationConfig,
   ApplicationConfigs,
   Direction,
+  ILocalTestCase,
 } from "../interfaces/applicationBase";
 import { parseConfig } from "./support/configParser";
 import { eachAlways } from "esri/core/promiseUtils";
@@ -195,6 +196,15 @@ export default class ApplicationBase {
       const esriPortalUrl = this._getEsriEnvironmentPortalUrl();
       this.config.portalUrl = esriPortalUrl;
       this.config.proxyUrl = this._getEsriEnvironmentProxyUrl(esriPortalUrl);
+    }else{
+      if(this?.config?.localTestCases?.useLocalTestCases){
+        this._renderLocalTestCasesUI(this.config.localTestCases.testCases, template);
+        const savedTestCase = this._getSavedTestCase();
+        if (savedTestCase) {
+          this.config.portalUrl = savedTestCase.portalUrl;
+          this.config.appid = savedTestCase.appid;
+        }
+      }
     }
 
     const { portalUrl, proxyUrl, oauthappid, appid } = this.config;
@@ -803,5 +813,111 @@ export default class ApplicationBase {
   }
   private _isEmbedded(): boolean {
     return window.location !== window.parent.location;
+  }
+
+  /**
+   * "localTestCases" array defined in application.json for the template.
+   * This UI allows for the easy selection of a testcase. When selected, 
+   * the template reloads with the selected testcase.
+   */
+  private _renderLocalTestCasesUI(testCases: ILocalTestCase[], template: EAppTemplateType): void {
+    const toggleButtonId = "testCases_toggleButton";
+    const testCasesSelectorId = "testCases_SelectionDisplay";
+
+    const _renderToggleButton = () => {
+      document.createElement("button");
+      const button = document.createElement("button");
+      button.id = toggleButtonId;
+      button.style.position = "absolute";
+      button.style.top = "0";
+      button.style.right = "0";
+      button.style.zIndex = "9999";
+      button.style.padding = "10px";
+      button.style.margin = "10px";
+      button.style.opacity = "0.8";
+      button.style.borderRadius = "5px";
+      button.style.backgroundColor = "#fff";
+      button.style.border = "1px solid #000";
+      button.style.cursor = "pointer";
+      button.style.fontFamily = "Arial, Helvetica, sans-serif";
+      button.style.fontSize = "14px";
+      button.innerHTML = "Select Test Case";
+      document.body.appendChild(button);
+      button.addEventListener("click", () => {
+        document.getElementById(testCasesSelectorId).style.display = "flex";
+      });
+    };
+
+    const _renderTestCasesSelector = () => {
+      const testCasesDiv = document.createElement("div");
+      testCasesDiv.id = testCasesSelectorId;
+  
+      testCasesDiv.style.position = "absolute";
+      testCasesDiv.style.top = "0";
+      testCasesDiv.style.right = "0";
+      testCasesDiv.style.left = "0";
+  
+      testCasesDiv.style.height = "240px";
+  
+      testCasesDiv.style.zIndex = "9999";
+      testCasesDiv.style.padding = "10px";
+      testCasesDiv.style.margin = "10px";
+      testCasesDiv.style.borderRadius = "5px";
+      testCasesDiv.style.backgroundColor = "#fff";
+      testCasesDiv.style.border = "1px solid #000";
+      testCasesDiv.style.cursor = "pointer";
+      testCasesDiv.style.fontFamily = "Arial, Helvetica, sans-serif";
+      testCasesDiv.style.fontSize = "14px";
+      testCasesDiv.style.display = "none";
+      testCasesDiv.style.alignItems = "center";
+      testCasesDiv.style.overflow = "auto";
+      testCasesDiv.style.flexWrap = "wrap";
+      document.body.appendChild(testCasesDiv);
+      testCases.forEach((testCase) => {
+        const testCaseButton = document.createElement("div");
+        testCaseButton.style.display = "block";
+  
+        testCaseButton.style.height = "200px";
+        testCaseButton.style.width = "200px";
+        
+        testCaseButton.style.marginBottom = "10px";
+        testCaseButton.style.marginLeft = "5px";
+        testCaseButton.style.marginRight = "5px";
+        testCaseButton.style.padding = "15px";
+        testCaseButton.style.borderRadius = "5px";
+        testCaseButton.style.backgroundColor = "#fff";
+        testCaseButton.style.border = "1px solid #000";
+        testCaseButton.style.cursor = "pointer";
+        testCaseButton.style.fontFamily = "Arial, Helvetica, sans-serif";
+        testCaseButton.style.fontSize = "14px";
+        testCaseButton.style.overflowWrap = "break-word";
+        testCaseButton.style.overflow = "hidden";        
+        testCaseButton.innerHTML = `
+        <h2 style="font-weight: bold;">${testCase.desc}</h2>
+        <hr />
+        <div style="font-size: 0.8rem;">${testCase.appid}</div>
+        <div style="font-size: 0.8rem;">${testCase.portalUrl}</div>
+        <a href="${testCase.portalUrl}/${template}?appid=${testCase.appid}" target="_blank">Link</a>
+        ${testCase.issue != null ? (`<a href="${testCase.issue}" target="_blank">Linked Issue</a>`) : null}
+        `;
+        testCaseButton.addEventListener("click", () => {
+          this._setSavedTestCase(testCase);
+        });
+        testCasesDiv.appendChild(testCaseButton);
+      });
+    };
+
+    _renderToggleButton();
+    _renderTestCasesSelector();
+  }
+
+  _setSavedTestCase(testCase: ILocalTestCase): void {
+    localStorage.setItem("localtestcase", JSON.stringify(testCase));
+    window.location.reload();
+  }
+
+  _getSavedTestCase(): ILocalTestCase {
+    const testCase = localStorage.getItem("localtestcase");
+    return testCase ? JSON.parse(testCase) : null;
   }
 }
