@@ -208,12 +208,12 @@ export default class ApplicationBase {
       }
     }
 
-    const { portalUrl, proxyUrl, oauthappid, appid } = this.config;
+    const { portalUrl, proxyUrl, oauthappid, appid, usePopupWorkflow } = this.config;
 
     this._setPortalUrl(portalUrl);
     this._setProxyUrl(proxyUrl);
 
-    this._registerOauthInfos(oauthappid, portalUrl);
+    this._registerOauthInfos(oauthappid, portalUrl, usePopupWorkflow);
     const sharingUrl = `${portalUrl}/sharing`;
 
     const loadApplicationItem = appid
@@ -708,17 +708,16 @@ export default class ApplicationBase {
     esriConfig.request.proxyUrl = proxyUrl;
   }
 
-  private _registerOauthInfos(appId: string, portalUrl: string): void {
+  private _registerOauthInfos(appId: string, portalUrl: string, usePopupWorkflow?: boolean): void {
     if (!appId) {
       return;
     }
+    const shouldUsePopup = usePopupWorkflow || (this._isEmbedded() && !this._isWithinConfigurationExperience());
     const info = new OAuthInfo({
       appId,
       portalUrl,
-      popup:
-        this._isEmbedded() && !this._isWithinConfigurationExperience()
-          ? true
-          : false,
+      popup: shouldUsePopup,
+      flowType: shouldUsePopup ? "authorization-code" : "auto"
     });
 
     if (!info) {
