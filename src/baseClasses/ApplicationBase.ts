@@ -203,6 +203,7 @@ export default class ApplicationBase {
         if (savedTestCase) {
           this.config.portalUrl = savedTestCase.portalUrl;
           this.config.appid = savedTestCase.appid;
+          this.config.oauthappid = savedTestCase.oauthappid;
         }
       }
     }
