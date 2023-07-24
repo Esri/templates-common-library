@@ -129,12 +129,6 @@
                     },
                     {
                       "type": "setting",
-                      "id": "splashOnStart",
-                      "defaultValue": false,
-                      "express": true
-                    },
-                    {
-                      "type": "setting",
                       "id": "splashTitle",
                       "defaultValue": "Welcome!",
                       "express": true
