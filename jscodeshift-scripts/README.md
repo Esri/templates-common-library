@@ -10,7 +10,7 @@ Toolkit for running codemods to handle large code refactors in app source files.
 
 2. Use the following command with the necessary paths and script file names.
 
-   `jscodeshift -t [PATH_TO_SOURCE_FILES_TO_CONVERT]/ [PATH_TO_JSCODESHIFT_SCRIPT]/*.ts --extensions=ts,tsx --parser=tsx --no-fail-on-error`
+   `jscodeshift -t [PATH_TO_JSCODESHIFT_SCRIPT]/*.ts [PATH_TO_SOURCE_FILES_TO_CONVERT]/ --extensions=ts,tsx --parser=tsx --no-fail-on-error`
 
 3. Go through the git diff, and manually make sure everything looks good. Also, it'd be good to build the project and double check.
 
