@@ -1,0 +1,11 @@
+{
+  "name": "jscodeshift",
+  "version": "1.0.0",
+  "description": "Toolkit for running codemods to handle large code refactors in app source files. Prerequisite for writing jscodeshift codemod scripts is an understanding of AST types.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
