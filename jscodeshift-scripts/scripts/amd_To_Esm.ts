@@ -61,4 +61,3 @@ export default (fileInfo, api) => {
 
   return root.toSource();
 };
-// jscodeshift -t [PATH_TO_SOURCE_FILES]/ [PATH_TO_SCRIPT]/amdToEsm.ts --extensions=ts,tsx --parser=tsx --no-fail-on-error
