@@ -17,6 +17,7 @@
               "type": "setting",
               "id": "mapArea",
               "express": false,
+              "defaultValue": null,
               "content": [
                 {
                   "type": "setting",
@@ -24,8 +25,7 @@
                   "express": false,
                   "defaultValue": null
                 }
-              ],
-              "defaultValue": false
+              ]
             }
           ]
         }
