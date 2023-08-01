@@ -4,11 +4,31 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": [
-          "2d",
-          "3d"
-        ]
-      }
+        "itemTypes": ["2d", "3d"]
+      },
+      "content": [
+        {
+          "type": "group",
+          "id": "mapAreaGroupHeading",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapArea",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapAreaConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ],
+              "defaultValue": false
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
