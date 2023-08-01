@@ -2,30 +2,7 @@
   "config": [
     {
       "type": "section",
-      "id": "map",
-      "content": [
-        {
-          "type": "group",
-          "id": "mapAreaGroupHeading",
-          "express": false,
-          "content": [
-            {
-              "type": "setting",
-              "id": "mapArea",
-              "express": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "mapAreaConfig",
-                  "express": false,
-                  "defaultValue": null
-                }
-              ],
-              "defaultValue": false
-            }
-          ]
-        }
-      ]
+      "id": "map"
     },
     {
       "type": "section",
