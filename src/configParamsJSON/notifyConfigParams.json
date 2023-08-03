@@ -229,6 +229,11 @@
               "type": "setting",
               "id": "listName",
               "express": false
+            },
+            {
+              "type": "setting",
+              "id": "defaultNumLabelsPerPage",
+              "defaultValue": "6"
             }
           ]
         },
