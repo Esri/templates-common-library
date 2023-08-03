@@ -317,24 +317,6 @@
         },
         {
           "type": "group",
-          "id": "navigate",
-          "content": [
-            {
-              "type": "setting",
-              "id": "extentSelector",
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "extentSelectorConfig",
-                  "defaultValue": null
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "group",
           "id": "share",
           "content": [
             {
