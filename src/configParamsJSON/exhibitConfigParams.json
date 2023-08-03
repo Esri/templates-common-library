@@ -235,18 +235,6 @@
                       }
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "defaultValue": null
-                    }
-                  ]
                 }
               ]
             }
