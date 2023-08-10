@@ -211,7 +211,7 @@
                       "id": "mapZoomPosition",
                       "defaultValue": {
                         "position": "top-left",
-                        "index": 2
+                        "index": 1
                       }
                     }
                   ]
@@ -226,7 +226,17 @@
                   "type": "setting",
                   "id": "locateWidget",
                   "express": true,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "locateWidgetPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 3
+                      }
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
@@ -255,7 +265,7 @@
                       "id": "compassWidgetPosition",
                       "defaultValue": {
                         "position": "top-left",
-                        "index": 3
+                        "index": 2
                       }
                     }
                   ]
