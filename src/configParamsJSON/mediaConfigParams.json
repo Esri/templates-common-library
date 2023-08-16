@@ -496,19 +496,6 @@
                       }
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "express": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "defaultValue": false
                 }
               ]
             }
@@ -656,6 +643,32 @@
                 {
                   "type": "setting",
                   "id": "layerEffectConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "filter",
+          "content": [
+            {
+              "type": "setting",
+              "id": "enableFilter",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "filterPosition",
+                  "express": false,
+                  "defaultValue": "top-right"
+                },
+                {
+                  "type": "setting",
+                  "id": "filterConfig",
                   "express": false,
                   "defaultValue": null
                 }

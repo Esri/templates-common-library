@@ -305,6 +305,24 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "showScoreboard",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "scoreboardLabel",
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "scoreboardItems",
+                      "express": "false"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "groupResultsByLayer",
                   "express": false,
                   "defaultValue": false

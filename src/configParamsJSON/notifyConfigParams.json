@@ -30,6 +30,7 @@
             }
           ]
         }
+      }
       ]
     },
     {
@@ -229,6 +230,11 @@
               "type": "setting",
               "id": "listName",
               "express": false
+            },
+            {
+              "type": "setting",
+              "id": "defaultNumLabelsPerPage",
+              "defaultValue": "6"
             }
           ]
         },
@@ -364,6 +370,38 @@
                         "position": "top-right",
                         "index": 0
                       }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "measure",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "measurePosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "coordinateFormats",
+                      "express": false,
+                      "defaultValue": "xy"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureAreaUnit",
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureLinearUnit",
+                      "express": false
                     }
                   ]
                 },

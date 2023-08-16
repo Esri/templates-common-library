@@ -581,6 +581,28 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "basemapGallery",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "basemapGalleryConfig",
+                      "express": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "basemapGalleryPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "daylight",
                   "defaultValue": false,
                   "content": [
