@@ -2,7 +2,30 @@
   "config": [
     {
       "type": "section",
-      "id": "map"
+      "id": "map",
+      "content": [
+        {
+          "type": "group",
+          "id": "mapAreaGroupHeading",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapArea",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapAreaConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ],
+              "defaultValue": false
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
@@ -89,9 +112,9 @@
                       "id": "splashContent",
                       "express": true,
                       "defaultValue": "Splash content",
-                       "config": {
-                "imageUpload": true
-              }
+                      "config": {
+                        "imageUpload": true
+                      }
                     },
                     {
                       "type": "setting",
@@ -287,9 +310,9 @@
                       "id": "detailsContent",
                       "express": true,
                       "defaultValue": null,
-                       "config": {
-                "imageUpload": true
-              }
+                      "config": {
+                        "imageUpload": true
+                      }
                     },
                     {
                       "type": "setting",
@@ -532,19 +555,6 @@
                       "id": "scalebarDualMode",
                       "defaultValue": false,
                       "express": false
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "express": false,
-                      "defaultValue": null
                     }
                   ]
                 }
