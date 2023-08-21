@@ -2,19 +2,64 @@
   "config": [
     {
       "type": "section",
-      "id": "atlasGroup",
+      "id": "atlas",
       "content": [
         {
           "type": "setting",
-          "id": "group",
+          "id": "atlasContentPanel",
           "defaultValue": "",
           "express": true
+        },
+        {
+          "type": "setting",
+          "id": "mapArea",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapAreaConfig",
+              "express": false,
+              "defaultValue": null
+            }
+          ],
+          "defaultValue": false
         }
       ]
     },
     {
       "type": "section",
-      "id": "atlas",
+      "id": "about",
+      "content": [
+        {
+          "type": "setting",
+          "id": "header",
+          "defaultValue": true,
+          "express": true,
+          "content": [
+            {
+              "type": "setting",
+              "id": "title",
+              "defaultValue": "Atlas"
+            },
+            {
+              "type": "setting",
+              "id": "customHeader",
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customHeaderHTML",
+                  "defaultValue": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "interactivity",
       "content": [
         {
           "type": "setting",
@@ -55,44 +100,7 @@
               "defaultValue": null
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "id": "about",
-      "content": [
-        {
-          "type": "setting",
-          "id": "header",
-          "defaultValue": true,
-          "express": true,
-          "content": [
-            {
-              "type": "setting",
-              "id": "title",
-              "defaultValue": "Atlas"
-            },
-            {
-              "type": "setting",
-              "id": "customHeader",
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "customHeaderHTML",
-                  "defaultValue": ""
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "id": "interactivity",
-      "content": [
+        },
         {
           "type": "setting",
           "id": "search",
