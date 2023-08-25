@@ -533,7 +533,7 @@
                   "type": "setting",
                   "id": "exportButtonIcon",
                   "express": true,
-                  "defaultValue": "file-pdf",
+                  "defaultValue": "export",
                   "config": {
                     "iconList": [
                       "export",
