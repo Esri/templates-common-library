@@ -112,6 +112,42 @@
           "id": "showSignInBtn",
           "express": true,
           "defaultValue": false
+        },
+        {
+          "type": "setting",
+          "id": "hideOpenMap",
+          "express": false,
+          "defaultValue": false
+        },
+        {
+          "type": "setting",
+          "id": "hideAddLayer",
+          "express": false,
+          "defaultValue": false
+        },
+        {
+          "type": "setting",
+          "id": "hideMeasure",
+          "express": false,
+          "defaultValue": false
+        },
+                {
+          "type": "setting",
+          "id": "hideSketch",
+          "express": false,
+          "defaultValue": false
+        },
+                {
+          "type": "setting",
+          "id": "hide2D3D",
+          "express": false,
+          "defaultValue": false
+        },
+                {
+          "type": "setting",
+          "id": "hideBookmarks",
+          "express": false,
+          "defaultValue": false
         }
       ]
     },
