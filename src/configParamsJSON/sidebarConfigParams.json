@@ -662,7 +662,15 @@
               "type": "setting",
               "id": "share",
               "express": false,
-              "defaultValue": true
+              "defaultValue": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "shareIncludeEmbed",
+                  "express": false,
+                  "defaultValue": false
+                }
+              ]
             }
           ]
         },
