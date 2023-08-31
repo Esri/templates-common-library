@@ -758,6 +758,12 @@
                       "type": "setting",
                       "id": "sharePosition",
                       "defaultValue": "top-right"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeEmbed",
+                      "express": false,
+                      "defaultValue": false
                     }
                   ]
                 }
