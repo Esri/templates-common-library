@@ -250,6 +250,12 @@
                         "supportsFieldSelection": false
                       },
                       "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "directionsUnit",
+                      "defaultValue": "metric",
+                      "express": false
                     }
                   ]
                 },
