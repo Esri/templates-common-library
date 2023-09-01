@@ -71,6 +71,17 @@ export default class LanguageSwitcher extends Widget {
 
   postInitialize(): void {
     this._portalItem = this.base?.results?.applicationItem?.value as PortalItem;
+    if (isWithinConfigurationExperience()) {
+      window.addEventListener(
+        "message",
+        (e: any) => {
+          if (e?.data?.type === "cats-app") {
+            this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
+          }
+        },
+        false
+      );
+    }
   }
 
   getLanguageSwitcherHandles(widgetProps: esriWidgetProps): __esri.WatchHandle[] {
