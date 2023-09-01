@@ -35,6 +35,7 @@ import {
 
 import { getLocale, normalizeMessageBundleLocale } from "esri/intl";
 import PortalItem from "esri/portal/PortalItem";
+import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
 
 const CSS = {
   base: "esri-interactive-legend-language-switcher"
@@ -168,14 +169,14 @@ export default class LanguageSwitcher extends Widget {
 
   private async _handleSelection(e: CustomEvent): Promise<void> {
     this._set("selectedLanguageData", e.detail);
-    console.log(e.detail);
 
     const defaultLanguage = this._getDefaultLanguage();
     if (e?.detail?.data === defaultLanguage || e?.detail === null) {
       const templateAppData = await this._portalItem.fetchData();
+      const hasDraft = templateAppData?.values?.hasOwnProperty("draft");
       if (
-        this._isWithinConfigurationExperience() &&
-        templateAppData?.values?.hasOwnProperty("draft")
+        isWithinConfigurationExperience() &&
+        hasDraft
       ) {
         Object.assign(this.configurationSettings, {
           ...templateAppData?.values,
@@ -246,23 +247,6 @@ export default class LanguageSwitcher extends Widget {
       this.configurationSettings.languageSwitcherConfig;
     await this._refresh();
     this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
-  }
-
-  private _isWithinConfigurationExperience(): boolean {
-    const { frameElement, location, parent } = window; // If frameElement is null, origins between parent and child do not match
-    return frameElement
-      ? // If origins match, check if parent iframe has data-embed-type="instant-config"
-        frameElement.getAttribute("data-embed-type") === "instant-config"
-        ? // If so, app is within config experience - use draft values
-          true
-        : // Otherwise, it is not within config experience - use publish values
-          false
-      : // Origins do not match
-        // IF TRUE - If parent and child locations do not match, and the location hostnames are local host.
-        // Use draft values for locally hosted config panel testing
-        // IF FALSE - template app is embedded on hosted page - use publish values.
-        location !== parent.location &&
-          (location.hostname === "localhost" || location.hostname === "127.0.0.1");
   }
 }
 
