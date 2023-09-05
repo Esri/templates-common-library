@@ -185,6 +185,7 @@ export default class ApplicationBase {
 
     const isEsri = await this._isEnvironmentEsri();
     const urlParams = parseConfig(this._getUrlParamValues(urlParamsSettings));
+
     this.results.urlParams = urlParams;
 
     this.config = this._mixinAllConfigs({
@@ -207,8 +208,15 @@ export default class ApplicationBase {
         }
       }
     }
+    if (this?.config?.env) {
+      this.config.portalUrl = `https://${this.config.env}.arcgis.com`;
+      this.config.proxyUrl = this._getEsriEnvironmentProxyUrl(
+        this.config.portalUrl
+      );
+    }
 
     const { portalUrl, proxyUrl, oauthappid, appid, usePopupWorkflow } = this.config;
+
 
     this._setPortalUrl(portalUrl);
     this._setProxyUrl(proxyUrl);
