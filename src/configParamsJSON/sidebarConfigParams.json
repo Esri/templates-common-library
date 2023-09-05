@@ -821,6 +821,23 @@
           ]
         }
       ]
+    },
+    {
+      "type": "section",
+      "id": "languageSwitcher",
+      "express": false,
+      "content": [
+        {
+          "type": "setting",
+          "id": "languageSwitcher",
+          "content": [
+            {
+              "type": "setting",
+              "id": "languageSwitcherConfig"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
