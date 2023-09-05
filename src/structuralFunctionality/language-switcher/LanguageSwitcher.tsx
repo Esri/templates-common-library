@@ -124,18 +124,14 @@ export default class LanguageSwitcher extends Widget {
     );
   }
 
-
-
-  private async _setLanguageSwitcherUI(
-    config: ApplicationConfig,
-    configurationSettings: any
-  ) {
+  private async _setLanguageSwitcherUI(config: ApplicationConfig, configurationSettings: any) {
     const t9nData = this.selectedLanguageData?.data;
 
     if (t9nData) {
       const settingKeys = Object.keys(t9nData);
       settingKeys.forEach((key) => {
-        const withinConfigurationExperience = configurationSettings?.["withinConfigurationExperience"];
+        const withinConfigurationExperience =
+          configurationSettings?.["withinConfigurationExperience"];
         const defaultLocaleValue = withinConfigurationExperience
           ? config?.draft?.[key]
           : config?.[key];
@@ -182,13 +178,11 @@ export default class LanguageSwitcher extends Widget {
     this._set("selectedLanguageData", e.detail);
 
     const defaultLanguage = this._getDefaultLanguage();
-    if (e?.detail?.data === defaultLanguage || e?.detail === null) {
+    const data = e?.detail?.data;
+    if (data?.locale === defaultLanguage || data === null || data === undefined) {
       const templateAppData = await this._portalItem.fetchData();
       const hasDraft = templateAppData?.values?.hasOwnProperty("draft");
-      if (
-        isWithinConfigurationExperience() &&
-        hasDraft
-      ) {
+      if (isWithinConfigurationExperience() && hasDraft) {
         Object.assign(this.configurationSettings, {
           ...templateAppData?.values,
           ...templateAppData?.values?.draft
@@ -253,10 +247,11 @@ export default class LanguageSwitcher extends Widget {
 
   private async _languageSwitcherConfigCallback(widgetProps: esriWidgetProps): Promise<void> {
     const expand = widgetProps?.view?.ui?.find("esri-language-switcher") as Expand;
-    expand.expandIcon = this.configurationSettings.languageSwitcherConfig.icon;
-    if (this.langSwitcherNode) this.langSwitcherNode.config = this.configurationSettings.languageSwitcherConfig;
+    if (this.langSwitcherNode) {
+      expand.expandIcon = this.configurationSettings.languageSwitcherConfig.icon;
+      this.langSwitcherNode.config = this.configurationSettings.languageSwitcherConfig;
+    }
     await this._refresh();
     this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
   }
 }
-
