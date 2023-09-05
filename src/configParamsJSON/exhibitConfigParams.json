@@ -4,11 +4,31 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": [
-          "2d",
-          "3d"
-        ]
-      }
+        "itemTypes": ["2d", "3d"]
+      },
+      "content": [
+        {
+          "type": "group",
+          "id": "mapAreaGroupHeading",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapArea",
+              "express": false,
+              "defaultValue": null,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapAreaConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
@@ -110,6 +130,22 @@
                   "type": "setting",
                   "id": "mapA11yDesc",
                   "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcuts",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "keyboardShortcutsPosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
+                      }
+                    }
+                  ]
                 }
               ]
             }
@@ -197,18 +233,6 @@
                         "position": "top-left",
                         "index": 2
                       }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "defaultValue": null
                     }
                   ]
                 }

@@ -7,7 +7,30 @@
         "itemTypes": [
           "2d"
         ]
-      }
+      },
+      "content": [
+        {
+          "type": "group",
+          "id": "mapAreaGroupHeading",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapArea",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapAreaConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ],
+              "defaultValue": false
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
@@ -206,6 +229,11 @@
               "type": "setting",
               "id": "listName",
               "express": false
+            },
+            {
+              "type": "setting",
+              "id": "defaultNumLabelsPerPage",
+              "defaultValue": "6"
             }
           ]
         },
@@ -346,6 +374,38 @@
                 },
                 {
                   "type": "setting",
+                  "id": "measure",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "measurePosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "coordinateFormats",
+                      "express": false,
+                      "defaultValue": "xy"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureAreaUnit",
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureLinearUnit",
+                      "express": false
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "keyboardShortcuts",
                   "express": false,
                   "defaultValue": false,
@@ -381,18 +441,6 @@
                       }
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "defaultValue": null
-                    }
-                  ],
-                  "defaultValue": false
                 }
               ]
             }

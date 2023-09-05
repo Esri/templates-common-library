@@ -4,14 +4,32 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": [
-          "2d",
-          "3d"
-        ],
-        "conditions": [
-          "supportsOrderBy"
-        ]
-      }
+        "itemTypes": ["2d", "3d"],
+        "conditions": ["supportsOrderBy"]
+      },
+      "content": [
+        {
+          "type": "group",
+          "id": "mapAreaGroupHeading",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapArea",
+              "express": false,
+              "defaultValue": null,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapAreaConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
@@ -188,6 +206,22 @@
               "type": "setting",
               "id": "mapA11yDesc",
               "express": true
+            },
+            {
+              "type": "setting",
+              "id": "keyboardShortcuts",
+              "express": true,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcutsPosition",
+                  "defaultValue": {
+                    "position": "bottom-right",
+                    "index": 0
+                  }
+                }
+              ]
             }
           ]
         }
@@ -276,24 +310,6 @@
                   "id": "highlightHaloColor",
                   "express": false,
                   "defaultValue": "#00FFFF"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "id": "navigate",
-          "content": [
-            {
-              "type": "setting",
-              "id": "extentSelector",
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "extentSelectorConfig",
-                  "defaultValue": null
                 }
               ]
             }

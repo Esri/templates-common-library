@@ -2,7 +2,30 @@
   "config": [
     {
       "type": "section",
-      "id": "map"
+      "id": "map",
+      "content": [
+        {
+          "type": "group",
+          "id": "mapAreaGroupHeading",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapArea",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapAreaConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ],
+              "defaultValue": false
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
@@ -88,7 +111,10 @@
                       "type": "setting",
                       "id": "splashContent",
                       "express": true,
-                      "defaultValue": "Splash content"
+                      "defaultValue": "Splash content",
+                      "config": {
+                        "imageUpload": true
+                      }
                     },
                     {
                       "type": "setting",
@@ -283,7 +309,10 @@
                       "type": "setting",
                       "id": "detailsContent",
                       "express": true,
-                      "defaultValue": null
+                      "defaultValue": null,
+                      "config": {
+                        "imageUpload": true
+                      }
                     },
                     {
                       "type": "setting",
@@ -528,19 +557,6 @@
                       "express": false
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "express": false,
-                      "defaultValue": null
-                    }
-                  ]
                 }
               ]
             }
@@ -630,7 +646,7 @@
                   "type": "setting",
                   "id": "exportButtonIcon",
                   "express": true,
-                  "defaultValue": "file-pdf",
+                  "defaultValue": "export",
                   "config": {
                     "iconList": [
                       "export",
@@ -646,7 +662,15 @@
               "type": "setting",
               "id": "share",
               "express": false,
-              "defaultValue": true
+              "defaultValue": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "shareIncludeEmbed",
+                  "express": false,
+                  "defaultValue": false
+                }
+              ]
             }
           ]
         },

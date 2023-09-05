@@ -122,3 +122,11 @@ export interface esriWidgetProps extends __esri.WidgetProperties {
   portal?: __esri.Portal;
   propertyName?: string;
 }
+
+export interface ILocalTestCase {
+  portalUrl: string;
+  appid: string;
+  oauthappid: string;
+  desc: string;
+  issue: string;
+}

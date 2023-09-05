@@ -2,59 +2,27 @@
   "config": [
     {
       "type": "section",
-      "id": "atlasGroup",
-      "content": [
-        {
-          "type": "setting",
-          "id": "group",
-          "defaultValue": "",
-          "express": true
-        }
-      ]
-    },
-    {
-      "type": "section",
       "id": "atlas",
       "content": [
         {
           "type": "setting",
-          "id": "home",
-          "express": true,
-          "defaultValue": true
+          "id": "atlasContentPanel",
+          "defaultValue": "",
+          "express": true
         },
         {
           "type": "setting",
-          "id": "mapZoom",
-          "express": true,
-          "defaultValue": true
-        },
-        {
-          "type": "setting",
-          "id": "changeDefaultBasemapCond",
-          "defaultValue": false,
-          "express": true,
-          "content": [
-            {
-              "type": "setting",
-              "id": "changeDefaultBasemap",
-              "express": true,
-              "defaultValue": "streets-vector"
-            }
-          ]
-        },
-        {
-          "type": "setting",
-          "id": "atlasBasemapGallery",
+          "id": "mapArea",
           "express": false,
-          "defaultValue": false,
           "content": [
             {
               "type": "setting",
-              "id": "atlasBasemapGalleryConfig",
+              "id": "mapAreaConfig",
               "express": false,
               "defaultValue": null
             }
-          ]
+          ],
+          "defaultValue": false
         }
       ]
     },
@@ -95,9 +63,91 @@
       "content": [
         {
           "type": "setting",
+          "id": "home",
+          "express": true,
+          "defaultValue": true
+        },
+        {
+          "type": "setting",
+          "id": "mapZoom",
+          "express": true,
+          "defaultValue": true
+        },
+        {
+          "type": "setting",
+          "id": "changeDefaultBasemapCond",
+          "defaultValue": false,
+          "express": true,
+          "content": [
+            {
+              "type": "setting",
+              "id": "changeDefaultBasemap",
+              "express": true,
+              "defaultValue": "streets-vector"
+            }
+          ]
+        },
+        {
+          "type": "setting",
+          "id": "atlasBasemapGallery",
+          "express": false,
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "atlasBasemapGalleryConfig",
+              "express": false,
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "type": "setting",
           "id": "search",
           "express": true,
           "defaultValue": true
+        },
+        {
+          "type": "setting",
+          "id": "showSignInBtn",
+          "express": true,
+          "defaultValue": false
+        },
+        {
+          "type": "setting",
+          "id": "hideOpenMap",
+          "express": false,
+          "defaultValue": false
+        },
+        {
+          "type": "setting",
+          "id": "hideAddLayer",
+          "express": false,
+          "defaultValue": false
+        },
+        {
+          "type": "setting",
+          "id": "hideMeasure",
+          "express": false,
+          "defaultValue": false
+        },
+                {
+          "type": "setting",
+          "id": "hideSketch",
+          "express": false,
+          "defaultValue": false
+        },
+                {
+          "type": "setting",
+          "id": "hide2D3D",
+          "express": false,
+          "defaultValue": false
+        },
+                {
+          "type": "setting",
+          "id": "hideBookmarks",
+          "express": false,
+          "defaultValue": false
         }
       ]
     },

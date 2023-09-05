@@ -2,7 +2,30 @@
   "config": [
     {
       "type": "section",
-      "id": "map"
+      "id": "map",
+      "content": [
+        {
+          "type": "group",
+          "id": "mapAreaGroupHeading",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapArea",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapAreaConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ],
+              "defaultValue": false
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
@@ -473,19 +496,6 @@
                       }
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "express": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "defaultValue": false
                 }
               ]
             }
@@ -642,6 +652,32 @@
         },
         {
           "type": "subsection",
+          "id": "filter",
+          "content": [
+            {
+              "type": "setting",
+              "id": "enableFilter",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "filterPosition",
+                  "express": false,
+                  "defaultValue": "top-right"
+                },
+                {
+                  "type": "setting",
+                  "id": "filterConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "share",
           "content": [
             {
@@ -722,6 +758,12 @@
                       "type": "setting",
                       "id": "sharePosition",
                       "defaultValue": "top-right"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeEmbed",
+                      "express": false,
+                      "defaultValue": false
                     }
                   ]
                 }
@@ -807,80 +849,82 @@
                   "type": "setting",
                   "id": "time",
                   "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "timePosition",
-                  "defaultValue": {
-                    "position": "bottom-left",
-                    "index": 0
-                  }
-                },
-                {
-                  "type": "setting",
-                  "id": "timeLoop",
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "timeExpandAtStart",
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "timeVisible",
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "timeEffect",
                   "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "excludedEffect",
-                      "defaultValue": null
+                      "id": "timePosition",
+                      "defaultValue": {
+                        "position": "bottom-left",
+                        "index": 0
+                      }
                     },
                     {
                       "type": "setting",
-                      "id": "includedEffect",
-                      "defaultValue": null
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "liveData",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "durationTime",
-                      "defaultValue": 1,
-                      "min": 0
-                    },
-                    {
-                      "type": "setting",
-                      "id": "snapTime",
+                      "id": "timeLoop",
                       "defaultValue": false
                     },
                     {
                       "type": "setting",
-                      "id": "durationPeriod",
-                      "defaultValue": "weeks"
+                      "id": "timeExpandAtStart",
+                      "defaultValue": false
                     },
                     {
                       "type": "setting",
-                      "id": "timeInterval",
-                      "defaultValue": 1,
-                      "min": 0
+                      "id": "timeVisible",
+                      "defaultValue": false
                     },
                     {
                       "type": "setting",
-                      "id": "timeIntervalUnits",
-                      "express": "days",
-                      "defaultValue": "days"
+                      "id": "timeEffect",
+                      "defaultValue": false,
+                      "content": [
+                        {
+                          "type": "setting",
+                          "id": "excludedEffect",
+                          "defaultValue": null
+                        },
+                        {
+                          "type": "setting",
+                          "id": "includedEffect",
+                          "defaultValue": null
+                        }
+                      ]
+                    },
+                    {
+                      "type": "setting",
+                      "id": "liveData",
+                      "defaultValue": false,
+                      "content": [
+                        {
+                          "type": "setting",
+                          "id": "durationTime",
+                          "defaultValue": 1,
+                          "min": 0
+                        },
+                        {
+                          "type": "setting",
+                          "id": "snapTime",
+                          "defaultValue": false
+                        },
+                        {
+                          "type": "setting",
+                          "id": "durationPeriod",
+                          "defaultValue": "weeks"
+                        },
+                        {
+                          "type": "setting",
+                          "id": "timeInterval",
+                          "defaultValue": 1,
+                          "min": 0
+                        },
+                        {
+                          "type": "setting",
+                          "id": "timeIntervalUnits",
+                          "express": "days",
+                          "defaultValue": "days"
+                        }
+                      ]
                     }
                   ]
                 }

@@ -7,7 +7,30 @@
         "conditions": [
           "popupDisabled"
         ]
-      }
+      },
+      "content": [
+        {
+          "type": "group",
+          "id": "mapAreaGroupHeading",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapArea",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapAreaConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ],
+              "defaultValue": false
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
@@ -282,6 +305,24 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "showScoreboard",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "scoreboardLabel",
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "scoreboardItems",
+                      "express": "false"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "groupResultsByLayer",
                   "express": false,
                   "defaultValue": false
@@ -320,7 +361,7 @@
                       "type": "setting",
                       "id": "exportButtonIcon",
                       "express": true,
-                      "defaultValue": "file-pdf",
+                      "defaultValue": "export",
                       "config": {
                         "iconList": [
                           "export",
@@ -618,25 +659,6 @@
                         "position": "top-right",
                         "index": 1
                       }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "group",
-              "id": "navigate",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "express": false,
-                      "defaultValue": null
                     }
                   ]
                 }
