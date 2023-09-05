@@ -254,7 +254,7 @@ export default class LanguageSwitcher extends Widget {
   private async _languageSwitcherConfigCallback(widgetProps: esriWidgetProps): Promise<void> {
     const expand = widgetProps?.view?.ui?.find("esri-language-switcher") as Expand;
     expand.expandIcon = this.configurationSettings.languageSwitcherConfig.icon;
-    this.langSwitcherNode.config = this.configurationSettings.languageSwitcherConfig;
+    if (this.langSwitcherNode) this.langSwitcherNode.config = this.configurationSettings.languageSwitcherConfig;
     await this._refresh();
     this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
   }
