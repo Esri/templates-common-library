@@ -4,9 +4,7 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": [
-          "renderer"
-        ]
+        "conditions": ["renderer"]
       }
     },
     {
@@ -131,14 +129,7 @@
           "id": "interactiveLegendStyle",
           "express": true,
           "config": {
-            "branches": [
-              [
-                "interactiveLegendOpenAtStart"
-              ],
-              [
-                "interactiveLegendPanelLocation"
-              ]
-            ]
+            "branches": [["interactiveLegendOpenAtStart"], ["interactiveLegendPanelLocation"]]
           },
           "content": [
             {
@@ -664,10 +655,20 @@
         {
           "type": "setting",
           "id": "languageSwitcher",
+          "defaultValue": false,
           "content": [
             {
               "type": "setting",
-              "id": "languageSwitcherConfig"
+              "id": "languageSwitcherConfig",
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "languageSwitcherPosition",
+              "defaultValue": {
+                "position": "top-right",
+                "index": 5
+              }
             }
           ]
         }
