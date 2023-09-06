@@ -41,6 +41,13 @@ const CSS = {
   base: "esri-interactive-legend-language-switcher"
 };
 
+const HANDLES_KEY = "language-switcher-handles";
+
+interface LanguageData {
+  locale: string;
+  data: { [key: string]: string };
+}
+
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
   constructor(params) {
@@ -67,7 +74,7 @@ export default class LanguageSwitcher extends Widget {
   @property({
     readOnly: true
   })
-  readonly selectedLanguageData: { locale: string; data: { [key: string]: string } };
+  readonly selectedLanguageData: LanguageData;
 
   postInitialize(): void {
     this._portalItem = this.base?.results?.applicationItem?.value as PortalItem;
@@ -84,7 +91,21 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
+  destroy(): void {
+    this.removeHandles(HANDLES_KEY);
+  }
+
   getLanguageSwitcherHandles(widgetProps: esriWidgetProps): __esri.WatchHandle[] {
+    this.addHandles(
+      watch(
+        () => this.configurationSettings?.languageSwitcherConfig,
+        () => {
+          this._languageSwitcherConfigCallback(widgetProps);
+        },
+        { initial: true }
+      ),
+      HANDLES_KEY
+    );
     return [
       watch(
         () => this.configurationSettings?.languageSwitcher,
@@ -94,11 +115,6 @@ export default class LanguageSwitcher extends Widget {
       watch(
         () => this.configurationSettings?.languageSwitcherPosition,
         () => this._languageSwitcherCallback(widgetProps, "languageSwitcherPosition"),
-        { initial: true }
-      ),
-      watch(
-        () => this.configurationSettings?.languageSwitcherConfig,
-        () => this._languageSwitcherConfigCallback(widgetProps),
         { initial: true }
       )
     ];
@@ -177,22 +193,31 @@ export default class LanguageSwitcher extends Widget {
   private async _handleSelection(e: CustomEvent): Promise<void> {
     this._set("selectedLanguageData", e.detail);
 
-    const defaultLanguage = this._getDefaultLanguage();
     const data = e?.detail?.data;
-    if (data?.locale === defaultLanguage || data === null || data === undefined) {
+    const isDefault = this._useDefaultLocaleStrings(data);
+    if (isDefault) {
       const templateAppData = await this._portalItem.fetchData();
       const hasDraft = templateAppData?.values?.hasOwnProperty("draft");
       if (isWithinConfigurationExperience() && hasDraft) {
-        Object.assign(this.configurationSettings, {
+        const config = {
           ...templateAppData?.values,
           ...templateAppData?.values?.draft
-        });
+        };
+        delete config.languageSwitcherConfig;
+        Object.assign(this.configurationSettings, config);
       } else {
-        Object.assign(this.configurationSettings, {
+        const config = {
           ...templateAppData?.values
-        });
+        };
+        delete config.languageSwitcherConfig;
+        Object.assign(this.configurationSettings, config);
       }
     }
+  }
+
+  private _useDefaultLocaleStrings(data: LanguageData): boolean {
+    const defaultLanguage = this._getDefaultLanguage();
+    return data?.locale === defaultLanguage || data === null || data === undefined;
   }
 
   private _getDefaultLanguage(): string {
@@ -251,7 +276,7 @@ export default class LanguageSwitcher extends Widget {
       expand.expandIcon = this.configurationSettings.languageSwitcherConfig.icon;
       this.langSwitcherNode.config = this.configurationSettings.languageSwitcherConfig;
     }
-    await this._refresh();
+    if (isWithinConfigurationExperience()) await this._refresh();
     this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
   }
 }
