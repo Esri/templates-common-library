@@ -1012,10 +1012,20 @@
         {
           "type": "setting",
           "id": "languageSwitcher",
+          "defaultValue": false,
           "content": [
             {
               "type": "setting",
-              "id": "languageSwitcherConfig"
+              "id": "languageSwitcherConfig",
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "languageSwitcherPosition",
+              "defaultValue": {
+                "position": "top-right",
+                "index": 5
+              }
             }
           ]
         }
