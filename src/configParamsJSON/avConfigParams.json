@@ -4,9 +4,7 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": [
-          "attachments"
-        ]
+        "conditions": ["attachments"]
       }
     },
     {
@@ -94,16 +92,7 @@
               "id": "appLayout",
               "express": true,
               "config": {
-                "branches": [
-                  [
-                    "hideAttributePanel"
-                  ],
-                  [
-                    "thumbnailFormat",
-                    "thumbnailHeight",
-                    "mapCentricTooltip"
-                  ]
-                ]
+                "branches": [["hideAttributePanel"], ["thumbnailFormat", "thumbnailHeight", "mapCentricTooltip"]]
               },
               "content": [
                 {
@@ -290,6 +279,26 @@
                   "id": "attributeEditing",
                   "defaultValue": false,
                   "express": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "filter",
+          "content": [
+            {
+              "type": "setting",
+              "id": "enableFilter",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "filterConfig",
+                  "express": false,
+                  "defaultValue": null
                 }
               ]
             }
