@@ -581,7 +581,7 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "filterPanel",
+                  "id": "enableFilter",
                   "express": false,
                   "defaultValue": false,
                   "content": [
