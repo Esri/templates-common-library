@@ -41,6 +41,11 @@ import {
   parseLevel,
   parseBasemap,
 } from "./urlUtils";
+import MapView from "esri/views/MapView";
+import SceneView from "esri/views/SceneView";
+import WebMap from "esri/WebMap";
+import WebScene from "esri/WebScene";
+import Search from "esri/widgets/Search";
 import esri = __esri;
 //--------------------------------------------------------------------------
 //
@@ -94,11 +99,9 @@ export async function createView(
     return Promise.reject(`map is not a "WebMap" or "WebScene"`);
   }
   if (isWebMap) {
-    const MapView = await import("esri/views/MapView");
-    return new MapView.default(properties);
+    return new MapView(properties);
   } else {
-    const SceneView = await import("esri/views/SceneView");
-    return new SceneView.default(properties);
+    return new SceneView(properties);
   }
 }
 
@@ -122,8 +125,7 @@ export async function createWebMapFromItem(
   options: CreateMapFromItemOptions
 ): Promise<esri.WebMap> {
   const { item, appProxies, mapParams } = options;
-  const WebMap = await import("esri/WebMap");
-  const wm = new WebMap.default({
+  const wm = new WebMap({
     portalItem: item,
     ...mapParams,
   });
@@ -136,8 +138,7 @@ export async function createWebSceneFromItem(
   options: CreateMapFromItemOptions
 ): Promise<esri.WebScene> {
   const { item, appProxies } = options;
-  const WebScene = await import("esri/WebScene");
-  const ws = new WebScene.default({
+  const ws = new WebScene({
     portalItem: item,
   });
   await ws.load();
@@ -207,9 +208,7 @@ export async function findQuery(
     return Promise.resolve();
   }
 
-  const Search = await import("esri/widgets/Search");
-
-  const search = new Search.default({
+  const search = new Search({
     view,
   });
   const result = await search.search(query);
