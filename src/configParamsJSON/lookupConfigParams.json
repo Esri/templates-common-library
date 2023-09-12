@@ -796,7 +796,7 @@
               "content": [
                 {
                   "type": "setting",
-                  "defaultValue": false,
+                  "defaultValue": true,
                   "express": true,
                   "id": "share",
                   "content": [
