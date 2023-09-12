@@ -791,10 +791,35 @@
               ]
             },
             {
-              "type": "setting",
+              "type": "group",
               "id": "share",
-              "express": false,
-              "defaultValue": true
+              "content": [
+                {
+                  "type": "setting",
+                  "defaultValue": false,
+                  "express": true,
+                  "id": "share",
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "sharePosition",
+                      "defaultValue": "top-right"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeEmbed",
+                      "express": false,
+                      "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeSocial",
+                      "defaultValue": true,
+                      "express": false
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
