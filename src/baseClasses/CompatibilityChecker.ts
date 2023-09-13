@@ -1,5 +1,5 @@
-import Collection from 'esri/core/Collection';
-import { eachAlways } from 'esri/core/promiseUtils';
+import Collection from "esri/core/Collection";
+import { eachAlways } from "esri/core/promiseUtils";
 
 // Note: "group" is good enough because there are no Requirements to check for any app templates that function with groups
 export type ResourceForCheck = __esri.WebMap | __esri.WebScene | "group";
@@ -17,6 +17,7 @@ export enum EAppTemplateType {
   Insets = "/apps/instant/insets/index.html",
   InteractiveLegend = "/apps/instant/interactivelegend/index.html",
   ImageryApp = "/apps/instant/imageryviewer/index.html",
+  Manager = "/apps/instant/manager/index.html",
   Media = "/apps/instant/media/index.html",
   Minimalist = "/apps/instant/minimalist/index.html",
   Nearby = "/apps/instant/nearby/index.html",
@@ -25,15 +26,15 @@ export enum EAppTemplateType {
   Portfolio = "/apps/instant/portfolio/index.html",
   Sidebar = "/apps/instant/sidebar/index.html",
   Slider = "/apps/instant/slider/index.html",
-  ZoneLookup = "/apps/instant/lookup/index.html"
+  ZoneLookup = "/apps/instant/lookup/index.html",
 }
 
-enum EResourceType{
+enum EResourceType {
   Webmap,
   Webscene,
   Group,
 
-  Unknown
+  Unknown,
 }
 
 enum ERequirementType {
@@ -42,7 +43,7 @@ enum ERequirementType {
   PopupDisabled,
   ImageryCondition,
   AttachmentsCondition,
-  ChartsCondition
+  ChartsCondition,
 }
 
 /** Mapping of all Resource Types to the Templates that they're not compatible with */
@@ -61,13 +62,14 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.ImageryApp,
     EAppTemplateType.Insets,
     EAppTemplateType.InteractiveLegend,
+    EAppTemplateType.Manager,
     EAppTemplateType.Media,
     EAppTemplateType.Minimalist,
     EAppTemplateType.Nearby,
     EAppTemplateType.Notify,
     EAppTemplateType.Sidebar,
     EAppTemplateType.Slider,
-    EAppTemplateType.ZoneLookup
+    EAppTemplateType.ZoneLookup,
   ],
   [EResourceType.Group]: [
     EAppTemplateType.AttachmentViewer,
@@ -78,6 +80,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.ImageryApp,
     EAppTemplateType.Insets,
     EAppTemplateType.InteractiveLegend,
+    EAppTemplateType.Manager,
     EAppTemplateType.Media,
     EAppTemplateType.Minimalist,
     EAppTemplateType.Nearby,
@@ -87,10 +90,9 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Sidebar,
     EAppTemplateType.Slider,
     EAppTemplateType.ThreeDViewer,
-    EAppTemplateType.ZoneLookup
-  ]
+    EAppTemplateType.ZoneLookup,
+  ],
 };
-
 
 export interface ICompatibilityCheckerProperties {
   requirementsMessages: {
@@ -100,41 +102,40 @@ export interface ICompatibilityCheckerProperties {
     InteractiveLegend: string;
     Nearby: string;
     ZoneLookup: string;
-  }
+  };
 
   resourceMessages: {
     Webmap: string;
     Webscene: string;
     Group: string;
     WebmapOrWebscene: string;
-  }
+  };
 }
 
-
 /**
-* Contains methods for determining if a resource is compatible with a template app.
-* If resource is not compatible with template app type, will return the string that indicates why
-* it is not compatible.
-*
-* Because of Localization, we must pass in the "not compatible" strings that get returned
-*
-* const compatChecks = new CompatibilityChecks({
-*   resourceStrings:{ ... etc },
-*   requirementStrings:{ ... etc }
-* });
-*
-* // usage example
-* compatChecks.checkSpecificTemplates(webmap, EAppType.AttachmentViewer ---> (or just pass in the urlFragment(ex: "/apps/instant/3dviewer/index.html")))
-*/
+ * Contains methods for determining if a resource is compatible with a template app.
+ * If resource is not compatible with template app type, will return the string that indicates why
+ * it is not compatible.
+ *
+ * Because of Localization, we must pass in the "not compatible" strings that get returned
+ *
+ * const compatChecks = new CompatibilityChecks({
+ *   resourceStrings:{ ... etc },
+ *   requirementStrings:{ ... etc }
+ * });
+ *
+ * // usage example
+ * compatChecks.checkSpecificTemplates(webmap, EAppType.AttachmentViewer ---> (or just pass in the urlFragment(ex: "/apps/instant/3dviewer/index.html")))
+ */
 export class CompatibilityChecker {
   private _Template_to_Function_Map = {
-    [EAppTemplateType.AttachmentViewer]:  this._testAttachmentsCondition,
-    [EAppTemplateType.Charts]:            this._testChartsCondition,
-    [EAppTemplateType.ImageryApp]:        this._testImageryCondition,
+    [EAppTemplateType.AttachmentViewer]: this._testAttachmentsCondition,
+    [EAppTemplateType.Charts]: this._testChartsCondition,
+    [EAppTemplateType.ImageryApp]: this._testImageryCondition,
     [EAppTemplateType.InteractiveLegend]: this._testUnsupportedRenderers,
-    [EAppTemplateType.Nearby]:            this._testPopupDisabled,
-    [EAppTemplateType.ZoneLookup]:        this._testPopupDisabled,
-  }
+    [EAppTemplateType.Nearby]: this._testPopupDisabled,
+    [EAppTemplateType.ZoneLookup]: this._testPopupDisabled,
+  };
 
   private _requirementsMessagesMap = {};
   private _resourceMessagesMap = {};
@@ -143,37 +144,40 @@ export class CompatibilityChecker {
     const { requirementsMessages, resourceMessages } = props;
 
     this._requirementsMessagesMap = {
-      [ERequirementType.AttachmentsCondition]:                requirementsMessages.AttachmentViewer,
-      [ERequirementType.ChartsCondition]:                     requirementsMessages.ChartViewer,
-      [ERequirementType.ImageryCondition]:                    requirementsMessages.ImageryViewer,
-      [ERequirementType.UnsupportedRenderers_FeatureLayer]:   requirementsMessages.InteractiveLegend,
-      [ERequirementType.UnsupportedRenderers_Renderer]:       requirementsMessages.InteractiveLegend,
-      [ERequirementType.PopupDisabled]:                       requirementsMessages.Nearby,
+      [ERequirementType.AttachmentsCondition]:
+        requirementsMessages.AttachmentViewer,
+      [ERequirementType.ChartsCondition]: requirementsMessages.ChartViewer,
+      [ERequirementType.ImageryCondition]: requirementsMessages.ImageryViewer,
+      [ERequirementType.UnsupportedRenderers_FeatureLayer]:
+        requirementsMessages.InteractiveLegend,
+      [ERequirementType.UnsupportedRenderers_Renderer]:
+        requirementsMessages.InteractiveLegend,
+      [ERequirementType.PopupDisabled]: requirementsMessages.Nearby,
     };
 
     this._resourceMessagesMap = {
-      [EAppTemplateType.AttachmentViewer]:  resourceMessages.Webmap,
-      [EAppTemplateType.Atlas]:             resourceMessages.Group,
-      [EAppTemplateType.Basic]:             resourceMessages.WebmapOrWebscene,
-      [EAppTemplateType.CategoryGallery]:   resourceMessages.Group,
-      [EAppTemplateType.Charts]:            resourceMessages.Webmap,
-      [EAppTemplateType.Countdown]:         resourceMessages.WebmapOrWebscene,
-      [EAppTemplateType.Exhibit]:           resourceMessages.WebmapOrWebscene,
-      [EAppTemplateType.ImageryApp]:        resourceMessages.Webmap,
-      [EAppTemplateType.Insets]:            resourceMessages.Webmap,
+      [EAppTemplateType.AttachmentViewer]: resourceMessages.Webmap,
+      [EAppTemplateType.Atlas]: resourceMessages.Group,
+      [EAppTemplateType.Basic]: resourceMessages.WebmapOrWebscene,
+      [EAppTemplateType.CategoryGallery]: resourceMessages.Group,
+      [EAppTemplateType.Charts]: resourceMessages.Webmap,
+      [EAppTemplateType.Countdown]: resourceMessages.WebmapOrWebscene,
+      [EAppTemplateType.Exhibit]: resourceMessages.WebmapOrWebscene,
+      [EAppTemplateType.ImageryApp]: resourceMessages.Webmap,
+      [EAppTemplateType.Insets]: resourceMessages.Webmap,
       [EAppTemplateType.InteractiveLegend]: resourceMessages.Webmap,
-      [EAppTemplateType.Media]:             resourceMessages.Webmap,
-      [EAppTemplateType.Minimalist]:        resourceMessages.Webmap,
-      [EAppTemplateType.Nearby]:            resourceMessages.Webmap,
-      [EAppTemplateType.Notify]:            resourceMessages.Webmap,
-      [EAppTemplateType.Observer]:          resourceMessages.Webscene,
-      [EAppTemplateType.Portfolio]:         resourceMessages.WebmapOrWebscene,
-      [EAppTemplateType.Sidebar]:           resourceMessages.Webmap,
-      [EAppTemplateType.Slider]:            resourceMessages.Webmap,
-      [EAppTemplateType.ThreeDViewer]:      resourceMessages.Webscene,
-      [EAppTemplateType.ZoneLookup]:        resourceMessages.Webmap
-    }
-
+      [EAppTemplateType.Manager]: resourceMessages.Webmap,
+      [EAppTemplateType.Media]: resourceMessages.Webmap,
+      [EAppTemplateType.Minimalist]: resourceMessages.Webmap,
+      [EAppTemplateType.Nearby]: resourceMessages.Webmap,
+      [EAppTemplateType.Notify]: resourceMessages.Webmap,
+      [EAppTemplateType.Observer]: resourceMessages.Webscene,
+      [EAppTemplateType.Portfolio]: resourceMessages.WebmapOrWebscene,
+      [EAppTemplateType.Sidebar]: resourceMessages.Webmap,
+      [EAppTemplateType.Slider]: resourceMessages.Webmap,
+      [EAppTemplateType.ThreeDViewer]: resourceMessages.Webscene,
+      [EAppTemplateType.ZoneLookup]: resourceMessages.Webmap,
+    };
   }
 
   ///////////////////////////
@@ -181,17 +185,23 @@ export class CompatibilityChecker {
   ///////////////////////////
 
   /** Check one Resource for all possible not-compatible app templates */
-  async checkAllTemplates(resource: ResourceForCheck): Promise<Map<EAppTemplateType, string>>{
+  async checkAllTemplates(
+    resource: ResourceForCheck
+  ): Promise<Map<EAppTemplateType, string>> {
     const resourceType: EResourceType = await this._identifyResource(resource);
 
     const appTemplateTypeKeys = Object.keys(EAppTemplateType);
-    const checkPromises = appTemplateTypeKeys.map((key: string)=>{
-      return this.checkSpecificTemplate(resource, EAppTemplateType[key], resourceType);
+    const checkPromises = appTemplateTypeKeys.map((key: string) => {
+      return this.checkSpecificTemplate(
+        resource,
+        EAppTemplateType[key],
+        resourceType
+      );
     });
     const checkResults = await Promise.all(checkPromises);
 
     const resultMap = new Map();
-    appTemplateTypeKeys.forEach((key, index)=>{
+    appTemplateTypeKeys.forEach((key, index) => {
       resultMap.set(EAppTemplateType[key], checkResults[index]);
     });
     return resultMap;
@@ -199,26 +209,35 @@ export class CompatibilityChecker {
 
   /**
    * Check one Resource for any compatibility issues with a specific app template
-  */
-  async checkSpecificTemplate(resource: ResourceForCheck, template: EAppTemplateType, resourceType?:EResourceType): Promise<string | null>{
-    const foundResourceType: EResourceType = resourceType != null ? resourceType : await this._identifyResource(resource);
+   */
+  async checkSpecificTemplate(
+    resource: ResourceForCheck,
+    template: EAppTemplateType,
+    resourceType?: EResourceType
+  ): Promise<string | null> {
+    const foundResourceType: EResourceType =
+      resourceType != null
+        ? resourceType
+        : await this._identifyResource(resource);
     // check for resource not-compats
-    if(this._isTemplateCompatWithResource(foundResourceType, template)){
-      if(resource === "group"){ // skip groups --- there are no requirements checks yet
+    if (this._isTemplateCompatWithResource(foundResourceType, template)) {
+      if (resource === "group") {
+        // skip groups --- there are no requirements checks yet
         return null;
       }
       // check requirement for template
       await resource?.loadAll();
       const requirementFunc = this._Template_to_Function_Map[template];
-      if(requirementFunc == null){ return null; }
+      if (requirementFunc == null) {
+        return null;
+      }
       let requirement = requirementFunc(resource);
-      if(requirement?.then != null){
+      if (requirement?.then != null) {
         requirement = await requirement;
       }
       const msg = this._requirementsMessagesMap[requirement];
       return requirement != null ? msg : null;
-
-    } else{
+    } else {
       // template is not compatible with resource
       return this._resourceMessagesMap[template];
     }
@@ -228,28 +247,35 @@ export class CompatibilityChecker {
   //// Private Methods
   ///////////////////////////
 
-  private async _identifyResource(resource: ResourceForCheck):Promise<EResourceType>{
-    if(resource === "group"){
+  private async _identifyResource(
+    resource: ResourceForCheck
+  ): Promise<EResourceType> {
+    if (resource === "group") {
       return EResourceType.Group;
-    }else {
+    } else {
       await resource?.loadAll();
-      if(resource.portalItem.type === "Web Map"){
+      if (resource.portalItem.type === "Web Map") {
         return EResourceType.Webmap;
-      }else if(resource.portalItem.type === "Web Scene"){
+      } else if (resource.portalItem.type === "Web Scene") {
         return EResourceType.Webscene;
       }
     }
   }
 
   /** Finds the EAppTemplateType[] that are not compatible with the resource */
-  private _isTemplateCompatWithResource(resourceType: EResourceType, template: EAppTemplateType): boolean{
+  private _isTemplateCompatWithResource(
+    resourceType: EResourceType,
+    template: EAppTemplateType
+  ): boolean {
     return !EResourceType_to_AppType_Mapping[resourceType].includes(template);
   }
 
-  private async _testUnsupportedRenderers(webmap: __esri.WebMap): Promise<ERequirementType | null> {
+  private async _testUnsupportedRenderers(
+    webmap: __esri.WebMap
+  ): Promise<ERequirementType | null> {
     let atLeastOneSupportedRenderer: boolean = false;
     let atLeastOneFeatureLayer: boolean = false;
-    webmap?.allLayers?.map(layer => {
+    webmap?.allLayers?.map((layer) => {
       const type = layer?.type;
 
       if (type === "group") {
@@ -278,7 +304,7 @@ export class CompatibilityChecker {
       ) {
         // CHECK VISUAL VARIABLES for color ramp, size ramp, opacity ramp
         const renderer = featureLayer.renderer as any;
-        renderer?.visualVariables?.forEach(visualVariable => {
+        renderer?.visualVariables?.forEach((visualVariable) => {
           if (
             visualVariable.type === "size" ||
             visualVariable.type === "color" ||
@@ -306,11 +332,11 @@ export class CompatibilityChecker {
 
       // SINGLE SYMBOL(UNIQUE SYMBOL) - CLUSTERING ENABLED.
       // Drawing style is similar to Counts and Amounts (Size/Color) Classify Data Unchecked which is unsupported.
-      const simpleRenderer = (featureLayer?.renderer?.type === "simple"
-        ? featureLayer.renderer
-        : null) as __esri.SimpleRenderer;
+      const simpleRenderer = (
+        featureLayer?.renderer?.type === "simple" ? featureLayer.renderer : null
+      ) as __esri.SimpleRenderer;
       const vvSizeArr = simpleRenderer?.visualVariables?.filter(
-        visualVariable => visualVariable.type === "size"
+        (visualVariable) => visualVariable.type === "size"
       );
       if (
         (simpleRenderer && featureLayer?.featureReduction) ||
@@ -321,7 +347,8 @@ export class CompatibilityChecker {
 
       // *** accumulate supportedRenderer info ***
       // (if isLayerRendererSupported is true, we know this layer is supported, and with the || it will turn atLeastOneSupportedRenderer to true)
-      atLeastOneSupportedRenderer = atLeastOneSupportedRenderer || isLayerRendererSupported;
+      atLeastOneSupportedRenderer =
+        atLeastOneSupportedRenderer || isLayerRendererSupported;
     });
 
     if (!atLeastOneFeatureLayer) {
@@ -337,10 +364,16 @@ export class CompatibilityChecker {
    * If there does not exist at least one layer in the webmap which has type "imagery" or "imagery-tile",
    *    return ERequirementType.ImageryCondition, else return null (Compatible)
    */
-  private _testImageryCondition(webmap: __esri.WebMap): ERequirementType | null {
-    let atLeastOneImageryLayer: boolean = webmap?.allLayers?.map(layer => {
-      return layer.type === "imagery" || layer.type === "imagery-tile";
-    }).reduce((acc: boolean, curr: boolean) => { return acc || curr }, false);
+  private _testImageryCondition(
+    webmap: __esri.WebMap
+  ): ERequirementType | null {
+    let atLeastOneImageryLayer: boolean = webmap?.allLayers
+      ?.map((layer) => {
+        return layer.type === "imagery" || layer.type === "imagery-tile";
+      })
+      .reduce((acc: boolean, curr: boolean) => {
+        return acc || curr;
+      }, false);
 
     return !atLeastOneImageryLayer ? ERequirementType.ImageryCondition : null;
   }
@@ -349,16 +382,19 @@ export class CompatibilityChecker {
    * If there does not exist at least one layer in the webmap with attachments,
    *    return ERequirementType.AttachmentsCondition, else return null (Compatible)
    */
-  private _testAttachmentsCondition(webmap: __esri.WebMap): Promise<ERequirementType | null> {
+  private _testAttachmentsCondition(
+    webmap: __esri.WebMap
+  ): Promise<ERequirementType | null> {
     return new Promise((res, rej) => {
       let isPassing = false;
       const layerPromises = eachAlways(
-        webmap?.allLayers?.map(layer => {
+        webmap?.allLayers?.map((layer) => {
           return layer.load().then(() => {
             if (layer.type === "feature") {
               const featureLayer = layer as __esri.FeatureLayer;
               if (
-                featureLayer.capabilities?.operations?.supportsQueryAttachments ||
+                featureLayer.capabilities?.operations
+                  ?.supportsQueryAttachments ||
                 featureLayer.capabilities?.data?.supportsAttachment
               ) {
                 isPassing = isPassing || true;
@@ -381,13 +417,13 @@ export class CompatibilityChecker {
   private _testChartsCondition(webmap: __esri.WebMap): ERequirementType | null {
     const chartsAvailable =
       webmap?.layers
-        .filter(layer => layer.type === "feature")
+        .filter((layer) => layer.type === "feature")
         .some((flayer: __esri.FeatureLayer) => {
           const flayerWithCharts = flayer.get("charts");
           return flayerWithCharts;
         }) ||
       webmap?.allTables
-        .filter(table => table.type === "feature")
+        .filter((table) => table.type === "feature")
         .some((featureTable: any) => {
           const fTableWithCharts = featureTable?.charts;
           return fTableWithCharts;
@@ -401,15 +437,25 @@ export class CompatibilityChecker {
    *    return EWebmapNotCompatible.PopupDisabled, else return null (Compatible)
    */
   private _testPopupDisabled(webmap: __esri.WebMap): ERequirementType | null {
-    const excludeTypes = new Collection(["tile", "base-tile", "imagery-tile", "vector-tile", "web-tile"]);
+    const excludeTypes = new Collection([
+      "tile",
+      "base-tile",
+      "imagery-tile",
+      "vector-tile",
+      "web-tile",
+    ]);
 
-    let atLeastOnePopupEnabled: boolean = webmap?.allLayers?.filter((layer)=>{
-      return !excludeTypes.includes(layer.type)
-    }).map(layer => {
-      return layer.get("popupEnabled") as boolean;
-    }).reduce((acc: boolean, curr: boolean) => { return acc || curr }, false);
+    let atLeastOnePopupEnabled: boolean = webmap?.allLayers
+      ?.filter((layer) => {
+        return !excludeTypes.includes(layer.type);
+      })
+      .map((layer) => {
+        return layer.get("popupEnabled") as boolean;
+      })
+      .reduce((acc: boolean, curr: boolean) => {
+        return acc || curr;
+      }, false);
 
     return !atLeastOnePopupEnabled ? ERequirementType.PopupDisabled : null;
   }
-
 }
