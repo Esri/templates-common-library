@@ -157,30 +157,32 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  private async _addLanguageSwitcher(props: esriWidgetProps) {
+  private _handleLanguageSwitcher(props: esriWidgetProps): void {
     const { config, propertyName } = props;
     const { languageSwitcher, languageSwitcherConfig, languageSwitcherPosition } = config;
+
     const id = "esri-language-switcher";
-    //   Find widget node in view UI
+    const defaultPosition = "bottom-right";
+
     const node = this.view.ui.find(id);
-    //   If language switcher is not enabled and node exists - remove from UI.
-    if (!languageSwitcher) {
-      if (node) {
-        this.view.ui.remove(node);
+
+    if (propertyName === "languageSwitcher") {
+      if (languageSwitcher) {
+        if (!node) {
+          const expand = new Expand({
+            id,
+            content: this,
+            expandIcon: languageSwitcherConfig?.icon ?? "globe"
+          }) as __esri.Expand;
+          this.view.ui.add(expand, languageSwitcherPosition ?? defaultPosition);
+        }
+      } else {
+        if (node) {
+          this.view.ui.remove(node);
+        }
       }
-      return Promise.resolve(null);
-    }
-
-    const expand = new Expand({
-      id,
-      content: this,
-      expandIcon: languageSwitcherConfig?.icon ?? "globe"
-    }) as __esri.Expand;
-
-    if (node && propertyName === "languageSwitcherPosition") {
-      this.view.ui.move(node, languageSwitcherPosition ?? "bottom-right");
-    } else if (propertyName === "languageSwitcher") {
-      this.view.ui.add(expand, languageSwitcherPosition ?? "bottom-right");
+    } else if (propertyName === "languageSwitcherPosition") {
+      this.view.ui.move(node, languageSwitcherPosition ?? defaultPosition);
     }
   }
 
@@ -203,12 +205,14 @@ export default class LanguageSwitcher extends Widget {
           ...templateAppData?.values,
           ...templateAppData?.values?.draft
         };
+        delete config.languageSwitcher;
         delete config.languageSwitcherConfig;
         Object.assign(this.configurationSettings, config);
       } else {
         const config = {
           ...templateAppData?.values
         };
+        delete config.languageSwitcher;
         delete config.languageSwitcherConfig;
         Object.assign(this.configurationSettings, config);
       }
@@ -234,12 +238,9 @@ export default class LanguageSwitcher extends Widget {
     ) as string;
   }
 
-  private async _languageSwitcherCallback(
-    widgetProps: esriWidgetProps,
-    propertyName: string
-  ): Promise<void> {
+  private _languageSwitcherCallback(widgetProps: esriWidgetProps, propertyName: string): void {
     widgetProps.propertyName = propertyName;
-    const languageSwitcher = await this._addLanguageSwitcher(widgetProps);
+    const languageSwitcher = this._handleLanguageSwitcher(widgetProps);
     const handleKey = "languageSwitcher";
 
     const handleExists = this.handles.has(handleKey);
