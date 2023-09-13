@@ -181,7 +181,7 @@ export default class LanguageSwitcher extends Widget {
           this.view.ui.remove(node);
         }
       }
-    } else if (propertyName === "languageSwitcherPosition") {
+    } else if (node && propertyName === "languageSwitcherPosition") {
       this.view.ui.move(node, languageSwitcherPosition ?? defaultPosition);
     }
   }
