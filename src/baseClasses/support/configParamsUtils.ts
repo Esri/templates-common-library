@@ -8,6 +8,7 @@ import Exhibit from "dojo/text!../../configParamsJSON/exhibitConfigParams.json";
 import Imagery from "dojo/text!../../configParamsJSON/imageryViewerConfig.json";
 import Insets from "dojo/text!../../configParamsJSON/insetConfigParams.json";
 import InteractiveLegend from "dojo/text!../../configParamsJSON/intLegendConfigParams.json";
+import Manager from "dojo/text!../../configParamsJSON/managerConfigParams.json";
 import Media from "dojo/text!../../configParamsJSON/mediaConfigParams.json";
 import Minimalist from "dojo/text!../../configParamsJSON/minimalistConfigParams.json";
 import Nearby from "dojo/text!../../configParamsJSON/nearbyConfigParams.json";
@@ -32,6 +33,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.ImageryApp]: Imagery,
   [EAppTemplateType.InteractiveLegend]: InteractiveLegend,
   [EAppTemplateType.Insets]: Insets,
+  [EAppTemplateType.Manager]: Manager,
   [EAppTemplateType.Media]: Media,
   [EAppTemplateType.Minimalist]: Minimalist,
   [EAppTemplateType.Nearby]: Nearby,
@@ -54,7 +56,7 @@ export function generateDefaultValuesObj(configParamsObj) {
   const { config } = configParamsObj;
 
   // Iterate through sections
-  config.forEach(section => {
+  config.forEach((section) => {
     const { content } = section;
 
     // Skip section if no content exists, i.e. map/scene sections
@@ -68,7 +70,7 @@ export function generateDefaultValuesObj(configParamsObj) {
 
 function handleConfigContent(configObj, defaultValues) {
   const { content } = configObj;
-  content.forEach(contentItem => {
+  content.forEach((contentItem) => {
     const { type, id, defaultValue } = contentItem;
 
     if (type === "setting" && defaultValue === undefined)
