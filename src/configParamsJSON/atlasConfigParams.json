@@ -54,6 +54,33 @@
               ]
             }
           ]
+        },
+        {
+          "type": "setting",
+          "id": "landingPage",
+          "express": false,
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "landingPageConfig",
+              "express": false,
+              "defaultValue": {
+                "titleText": "Title",
+                "subtitleText": "Subtitle",
+                "descriptionText": "Description content",
+                "entryButtonText": "Enter",
+                "alignment": "center",
+                "backgroundType": "color",
+                "textColor": "#FFFFFF",
+                "entryButtonColor": "#0079C1",
+                "backgroundColor": "#0079C1",
+                "iconImage": null,
+                "iconImageScale": "m",
+                "backgroundImageSrc": null
+              }
+            }
+          ]
         }
       ]
     },
