@@ -123,7 +123,7 @@ export default class LanguageSwitcher extends Widget {
   render() {
     const { configurationSettings, _portalItem } = this;
     const config = configurationSettings.languageSwitcherConfig;
-    const icon = config?.icon ?? "globe";
+    const icon = config?.icon ?? "language";
     const locales = config?.locales;
     return (
       <instant-apps-language-switcher
@@ -172,7 +172,7 @@ export default class LanguageSwitcher extends Widget {
           const expand = new Expand({
             id,
             content: this,
-            expandIcon: languageSwitcherConfig?.icon ?? "globe"
+            expandIcon: languageSwitcherConfig?.icon ?? "language"
           }) as __esri.Expand;
           this.view.ui.add(expand, languageSwitcherPosition ?? defaultPosition);
         }
