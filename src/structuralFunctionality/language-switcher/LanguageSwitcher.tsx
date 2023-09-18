@@ -1,22 +1,13 @@
 /*
   Copyright 2023 Esri
-
   Licensed under the Apache License, Version 2.0 (the "License");
-
   you may not use this file except in compliance with the License.
-
   You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
   Unless required by applicable law or agreed to in writing, software
-
   distributed under the License is distributed on an "AS IS" BASIS,
-
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
   See the License for the specific language governing permissions and
-
   limitations under the License.​
 */
 
@@ -36,17 +27,9 @@ import {
 import { getLocale, normalizeMessageBundleLocale } from "esri/intl";
 import PortalItem from "esri/portal/PortalItem";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
-
-const CSS = {
-  base: "esri-interactive-legend-language-switcher"
-};
-
-const HANDLES_KEY = "language-switcher-handles";
-
-interface LanguageData {
-  locale: string;
-  data: { [key: string]: string };
-}
+import { LanguageData } from "./support/interfaces";
+import { CSS, HANDLES_KEY, NODE_ID } from "./support/constants";
+import { Defaults, ProperyNames } from "./support/enums";
 
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
@@ -109,12 +92,17 @@ export default class LanguageSwitcher extends Widget {
     return [
       watch(
         () => this.configurationSettings?.languageSwitcher,
-        () => this._languageSwitcherCallback(widgetProps, "languageSwitcher"),
+        () => this._languageSwitcherCallback(widgetProps, ProperyNames.LanguageSwitcher),
+        { initial: true }
+      ),
+      watch(
+        () => this.configurationSettings?.languageSwitcherOpenAtStart,
+        () => this._languageSwitcherCallback(widgetProps, ProperyNames.LanguageSwitcherOpenAtStart),
         { initial: true }
       ),
       watch(
         () => this.configurationSettings?.languageSwitcherPosition,
-        () => this._languageSwitcherCallback(widgetProps, "languageSwitcherPosition"),
+        () => this._languageSwitcherCallback(widgetProps, ProperyNames.LanguageSwitcherPosition),
         { initial: true }
       )
     ];
@@ -123,7 +111,7 @@ export default class LanguageSwitcher extends Widget {
   render() {
     const { configurationSettings, _portalItem } = this;
     const config = configurationSettings.languageSwitcherConfig;
-    const icon = config?.icon ?? "globe";
+    const icon = config?.icon ?? Defaults.Icon;
     const locales = config?.locales;
     return (
       <instant-apps-language-switcher
@@ -159,30 +147,35 @@ export default class LanguageSwitcher extends Widget {
 
   private _handleLanguageSwitcher(props: esriWidgetProps): void {
     const { config, propertyName } = props;
-    const { languageSwitcher, languageSwitcherConfig, languageSwitcherPosition } = config;
+    const {
+      languageSwitcher,
+      languageSwitcherOpenAtStart,
+      languageSwitcherConfig,
+      languageSwitcherPosition
+    } = config;
 
-    const id = "esri-language-switcher";
-    const defaultPosition = "bottom-right";
+    const node = this.view.ui.find(NODE_ID) as __esri.Expand;
 
-    const node = this.view.ui.find(id);
-
-    if (propertyName === "languageSwitcher") {
+    if (propertyName === ProperyNames.LanguageSwitcher) {
       if (languageSwitcher) {
         if (!node) {
           const expand = new Expand({
-            id,
+            id: NODE_ID,
             content: this,
-            expandIcon: languageSwitcherConfig?.icon ?? "globe"
+            expandIcon: languageSwitcherConfig?.icon ?? Defaults.Icon,
+            expanded: languageSwitcherOpenAtStart
           }) as __esri.Expand;
-          this.view.ui.add(expand, languageSwitcherPosition ?? defaultPosition);
+          this.view.ui.add(expand, languageSwitcherPosition ?? Defaults.Position);
         }
       } else {
         if (node) {
           this.view.ui.remove(node);
         }
       }
-    } else if (node && propertyName === "languageSwitcherPosition") {
-      this.view.ui.move(node, languageSwitcherPosition ?? defaultPosition);
+    } else if (node && propertyName === ProperyNames.LanguageSwitcherOpenAtStart) {
+      node.expanded = languageSwitcherOpenAtStart;
+    } else if (node && propertyName === ProperyNames.LanguageSwitcherPosition) {
+      this.view.ui.move(node, languageSwitcherPosition ?? Defaults.Position);
     }
   }
 
@@ -205,15 +198,13 @@ export default class LanguageSwitcher extends Widget {
           ...templateAppData?.values,
           ...templateAppData?.values?.draft
         };
-        delete config.languageSwitcher;
-        delete config.languageSwitcherConfig;
+        this._preventOverwrite(config);
         Object.assign(this.configurationSettings, config);
       } else {
         const config = {
           ...templateAppData?.values
         };
-        delete config.languageSwitcher;
-        delete config.languageSwitcherConfig;
+        this._preventOverwrite(config);
         Object.assign(this.configurationSettings, config);
       }
     }
@@ -241,9 +232,8 @@ export default class LanguageSwitcher extends Widget {
   private _languageSwitcherCallback(widgetProps: esriWidgetProps, propertyName: string): void {
     widgetProps.propertyName = propertyName;
     const languageSwitcher = this._handleLanguageSwitcher(widgetProps);
-    const handleKey = "languageSwitcher";
 
-    const handleExists = this.handles.has(handleKey);
+    const handleExists = this.handles.has(HANDLES_KEY);
 
     when(
       () => languageSwitcher,
@@ -266,7 +256,7 @@ export default class LanguageSwitcher extends Widget {
           () => this._setLanguageSwitcherUI(this.base.config, this.configurationSettings),
           { initial: true }
         ),
-        handleKey
+        HANDLES_KEY
       );
     }
   }
@@ -279,5 +269,13 @@ export default class LanguageSwitcher extends Widget {
     }
     if (isWithinConfigurationExperience()) await this._refresh();
     this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
+  }
+
+  // Prevents the current values from being overwritten with a stale value
+  private _preventOverwrite(config): void {
+    delete config.languageSwitcher;
+    delete config.languageSwitcherOpenAtStart;
+    delete config.languageSwitcherPosition;
+    delete config.languageSwitcherConfig;
   }
 }
