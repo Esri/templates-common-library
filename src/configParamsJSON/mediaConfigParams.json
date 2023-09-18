@@ -1016,6 +1016,11 @@
           "content": [
             {
               "type": "setting",
+              "id": "languageSwitcherOpenAtStart",
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
               "id": "languageSwitcherConfig",
               "defaultValue": null
             },
