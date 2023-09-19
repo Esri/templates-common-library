@@ -2,7 +2,41 @@
     "config": [
         {
             "type": "section",
-            "id": "map"
+            "id": "manager",
+            "content": [
+                {
+                    "type": "subsection",
+                    "id": "maps",
+                    "content": [
+                        {
+                            "type": "setting",
+                            "id": "mapItemCollection",
+                            "express": true,
+                            "config": {
+                                "maxNumItems": 20
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "subsection",
+                    "id": "managerOptions",
+                    "content": [
+                        {
+                            "type": "setting",
+                            "id": "enableAutoRefresh",
+                            "defaultValue": true,
+                            "express": false
+                        },
+                        {
+                            "type": "setting",
+                            "id": "enableInlineEdit",
+                            "defaultValue": true,
+                            "express": false
+                        }
+                    ]
+                }
+            ]
         },
         {
             "type": "section",
@@ -32,24 +66,6 @@
                             "express": true
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "type": "section",
-            "id": "manager",
-            "content": [
-                {
-                    "type": "setting",
-                    "id": "enableAutoRefresh",
-                    "defaultValue": true,
-                    "express": false
-                },
-                {
-                    "type": "setting",
-                    "id": "enableInlineEdit",
-                    "defaultValue": true,
-                    "express": false
                 }
             ]
         },
@@ -94,22 +110,6 @@
                                 },
                                 {
                                     "type": "setting",
-                                    "id": "locateWidget",
-                                    "express": false,
-                                    "defaultValue": false,
-                                    "content": [
-                                        {
-                                            "type": "setting",
-                                            "id": "locateWidgetPosition",
-                                            "defaultValue": {
-                                                "position": "top-right",
-                                                "index": 0
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "setting",
                                     "id": "basemapGallery",
                                     "express": false,
                                     "defaultValue": false,
@@ -119,44 +119,6 @@
                                             "id": "basemapGalleryConfig",
                                             "express": false,
                                             "defaultValue": null
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "setting",
-                                    "id": "measure",
-                                    "express": false,
-                                    "defaultValue": false,
-                                    "content": [
-                                        {
-                                            "type": "setting",
-                                            "id": "measurePosition",
-                                            "defaultValue": {
-                                                "position": "top-right",
-                                                "index": 0
-                                            }
-                                        },
-                                        {
-                                            "type": "setting",
-                                            "id": "measureOpenAtStart",
-                                            "express": false,
-                                            "defaultValue": false
-                                        },
-                                        {
-                                            "type": "setting",
-                                            "id": "coordinateFormats",
-                                            "express": false,
-                                            "defaultValue": "xy"
-                                        },
-                                        {
-                                            "type": "setting",
-                                            "id": "measureAreaUnit",
-                                            "express": false
-                                        },
-                                        {
-                                            "type": "setting",
-                                            "id": "measureLinearUnit",
-                                            "express": false
                                         }
                                     ]
                                 }
