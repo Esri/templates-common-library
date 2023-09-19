@@ -592,6 +592,7 @@
                     "supportedLayerTypes": [
                       "map-image",
                       "feature",
+                      "media",
                       "imagery",
                       "imagery-tile",
                       "tile",
@@ -611,6 +612,7 @@
                     "supportedLayerTypes": [
                       "map-image",
                       "feature",
+                      "media",
                       "imagery",
                       "imagery-tile",
                       "tile",
