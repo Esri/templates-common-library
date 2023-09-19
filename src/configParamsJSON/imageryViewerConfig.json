@@ -635,6 +635,24 @@
         },
         {
           "type": "subsection",
+          "id": "logo",
+          "content": [
+            {
+              "type": "group",
+              "id": "logo",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "logo",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "positionManager",
           "content": [
             {
