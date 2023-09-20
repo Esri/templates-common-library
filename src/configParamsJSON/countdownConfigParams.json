@@ -9,25 +9,18 @@
       },
       "content": [
         {
-          "type": "group",
-          "id": "mapAreaGroupHeading",
+          "type": "setting",
+          "id": "mapArea",
           "express": false,
           "content": [
             {
               "type": "setting",
-              "id": "mapArea",
+              "id": "mapAreaConfig",
               "express": false,
-              "defaultValue": null,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "mapAreaConfig",
-                  "express": false,
-                  "defaultValue": null
-                }
-              ]
+              "defaultValue": null
             }
-          ]
+          ],
+          "defaultValue": false
         }
       ]
     },
