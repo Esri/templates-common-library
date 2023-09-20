@@ -1,194 +1,170 @@
 {
-    "config": [
+  "config": [
+    {
+      "type": "section",
+      "id": "manager",
+      "content": [
         {
-            "type": "section",
-            "id": "manager",
-            "content": [
-                {
-                    "type": "subsection",
-                    "id": "maps",
-                    "content": [
-                        {
-                            "type": "setting",
-                            "id": "mapItemCollection",
-                            "express": true,
-                            "config": {
-                                "maxNumItems": 20
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "subsection",
-                    "id": "managerOptions",
-                    "content": [
-                        {
-                            "type": "setting",
-                            "id": "enableAutoRefresh",
-                            "defaultValue": true,
-                            "express": false
-                        },
-                        {
-                            "type": "setting",
-                            "id": "enableInlineEdit",
-                            "defaultValue": true,
-                            "express": false
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "section",
-            "id": "about",
-            "content": [
-                {
-                    "type": "group",
-                    "id": "appComprehension",
-                    "content": [
-                        {
-                            "type": "setting",
-                            "id": "header",
-                            "defaultValue": false,
-                            "express": true,
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "title",
-                                    "defaultValue": ""
-                                }
-                            ]
-                        },
-                        {
-                            "type": "setting",
-                            "id": "legend",
-                            "defaultValue": true,
-                            "express": true
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "section",
-            "id": "interactivity",
-            "content": [
-                {
-                    "type": "subsection",
-                    "id": "exploreNavigate",
-                    "content": [
-                        {
-                            "type": "group",
-                            "id": "explore",
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "home",
-                                    "defaultValue": true
-                                },
-                                {
-                                    "type": "setting",
-                                    "id": "mapZoom",
-                                    "defaultValue": true
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "subsection",
-                    "id": "modify",
-                    "content": [
-                        {
-                            "type": "group",
-                            "id": "modify",
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "layerList",
-                                    "defaultValue": false
-                                },
-                                {
-                                    "type": "setting",
-                                    "id": "basemapGallery",
-                                    "express": false,
-                                    "defaultValue": false,
-                                    "content": [
-                                        {
-                                            "type": "setting",
-                                            "id": "basemapGalleryConfig",
-                                            "express": false,
-                                            "defaultValue": null
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "subsection",
-                    "id": "share",
-                    "content": [
-                        {
-                            "type": "group",
-                            "id": "share",
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "share",
-                                    "defaultValue": false
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "section",
-            "id": "themeLayout",
-            "content": [
-                {
-                    "type": "subsection",
-                    "id": "theme",
-                    "content": [
-                        {
-                            "type": "setting",
-                            "id": "theme",
-                            "express": true,
-                            "defaultValue": "light"
-                        },
-                        {
-                            "type": "setting",
-                            "id": "customTheme",
-                            "express": true,
-                            "defaultValue": null,
-                            "config": {
-                                "singleFont": false
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "subsection",
-                    "id": "logo",
-                    "content": [
-                        {
-                            "type": "group",
-                            "id": "logo",
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "logo",
-                                    "express": false,
-                                    "defaultValue": null
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+          "type": "setting",
+          "id": "mapItemCollection",
+          "express": true,
+          "config": {
+            "maxNumItems": 20
+          }
         }
-    ]
+      ]
+    },
+    {
+      "type": "section",
+      "id": "about",
+      "content": [
+        {
+          "type": "group",
+          "id": "appComprehension",
+          "content": [
+            {
+              "type": "setting",
+              "id": "header",
+              "defaultValue": false,
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "title",
+                  "defaultValue": ""
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "legend",
+              "defaultValue": true,
+              "express": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "interactivity",
+      "content": [
+        {
+          "type": "subsection",
+          "id": "exploreNavigate",
+          "content": [
+            {
+              "type": "group",
+              "id": "explore",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "home",
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "mapZoom",
+                  "defaultValue": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "modify",
+          "content": [
+            {
+              "type": "group",
+              "id": "modify",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "layerList",
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "basemapGallery",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "basemapGalleryConfig",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "share",
+          "content": [
+            {
+              "type": "group",
+              "id": "share",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "share",
+                  "defaultValue": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "themeLayout",
+      "content": [
+        {
+          "type": "subsection",
+          "id": "theme",
+          "content": [
+            {
+              "type": "setting",
+              "id": "theme",
+              "express": true,
+              "defaultValue": "light"
+            },
+            {
+              "type": "setting",
+              "id": "customTheme",
+              "express": true,
+              "defaultValue": null,
+              "config": {
+                "singleFont": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "logo",
+          "content": [
+            {
+              "type": "group",
+              "id": "logo",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "logo",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
