@@ -391,6 +391,17 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "restrictNumResults",
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "maxNumResults",
+                      "default": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "groupResultsByLayer",
                   "express": false,
                   "defaultValue": true
