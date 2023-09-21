@@ -62,7 +62,7 @@ class LandingPage extends Widget {
     }
     return (
       <instant-apps-landing-page
-        styles={styles}
+        style={styles}
         key="esri-attachment-viewer-landing-page"
         titleText={landingPageConfig?.titleText}
         subtitleText={landingPageConfig?.subtitleText}
@@ -79,7 +79,7 @@ class LandingPage extends Widget {
             : ""
         }
       />
-    ) ;
+    );
   }
 
   addLandingPageHandles(): void {
@@ -97,14 +97,14 @@ class LandingPage extends Widget {
     ]);
   }
 
-  private _getStyles(): { [key: string]: string } {
+  private _getStyles(): string {
     const landingPageConfig = this.configurationSettings?.landingPageConfig;
 
-    return {
-      [CSS.backgroundColor]: landingPageConfig?.backgroundColor,
-      [CSS.textColor]: landingPageConfig?.textColor,
-      [CSS.entryButtonColor]: landingPageConfig?.entryButtonColor
-    };
+    return `
+      ${CSS.backgroundColor}: ${landingPageConfig?.backgroundColor};
+      ${CSS.textColor}: ${landingPageConfig?.textColor};
+      ${CSS.entryButtonColor}: ${landingPageConfig?.entryButtonColor};
+    `;
   }
 
   private _getToken(): string {
