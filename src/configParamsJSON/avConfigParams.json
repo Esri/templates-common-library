@@ -74,12 +74,6 @@
               "type": "setting",
               "id": "mapA11yDesc",
               "express": true
-            },
-            {
-              "type": "setting",
-              "id": "keyboardShortcuts",
-              "express": true,
-              "defaultValue": false
             }
           ]
         }
@@ -232,6 +226,12 @@
                   "type": "setting",
                   "id": "locateWidget",
                   "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcuts",
+                  "express": true,
                   "defaultValue": false
                 }
               ]
