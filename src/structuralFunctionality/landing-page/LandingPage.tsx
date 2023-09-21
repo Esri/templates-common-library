@@ -99,21 +99,14 @@ class LandingPage extends Widget {
 
   private _getStyles(): string {
     const landingPageConfig = this.configurationSettings?.landingPageConfig;
+    const backgroundColor = landingPageConfig?.backgroundColor;
+    const textColor = landingPageConfig?.textColor;
+    const entryButtonColor = landingPageConfig?.entryButtonColor;
 
     return `
-      ${CSS.backgroundColor}: ${
-      landingPageConfig?.backgroundColor
-        ? landingPageConfig?.backgroundColor
-        : "var(--calcite-ui-brand)"
-    };
-      ${CSS.textColor}: ${
-      landingPageConfig?.textColor ? landingPageConfig?.textColor : "var(--calcite-ui-text-inverse)"
-    };
-      ${CSS.entryButtonColor}: ${
-      landingPageConfig?.entryButtonColor
-        ? landingPageConfig?.entryButtonColor
-        : "var(--calcite-ui-brand)"
-    };
+      ${CSS.backgroundColor}: ${backgroundColor ? backgroundColor : "var(--calcite-ui-brand)"};
+      ${CSS.textColor}: ${textColor ? textColor : "var(--calcite-ui-text-inverse)"};
+      ${CSS.entryButtonColor}: ${entryButtonColor ? entryButtonColor : "var(--calcite-ui-brand)"};
     `;
   }
 
