@@ -303,7 +303,7 @@
                 }
               ],
               "defaultValue": {
-                "branchValue": "search-radius",
+                "branchValue": "search-extent",
                 "branchOptionsFieldNames": []
               }
             }
