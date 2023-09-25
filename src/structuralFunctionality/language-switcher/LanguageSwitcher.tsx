@@ -54,6 +54,12 @@ export default class LanguageSwitcher extends Widget {
   @property()
   langSwitcherNode: any;
 
+  @property()
+  expandTooltip: string;
+
+  @property()
+  collapseTooltip: string;
+
   @property({
     readOnly: true
   })
@@ -159,12 +165,15 @@ export default class LanguageSwitcher extends Widget {
     if (propertyName === ProperyNames.LanguageSwitcher) {
       if (languageSwitcher) {
         if (!node) {
-          const expand = new Expand({
+          const config = {
             id: NODE_ID,
             content: this,
             expandIcon: languageSwitcherConfig?.icon ?? Defaults.Icon,
             expanded: languageSwitcherOpenAtStart
-          }) as __esri.Expand;
+          } as __esri.ExpandProperties;
+          if (this.expandTooltip) config.expandTooltip = this.expandTooltip;
+          if (this.collapseTooltip) config.collapseTooltip = this.collapseTooltip;
+          const expand = new Expand(config) as __esri.Expand;
           this.view.ui.add(expand, languageSwitcherPosition ?? Defaults.Position);
         }
       } else {
