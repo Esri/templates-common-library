@@ -77,19 +77,20 @@ export default class Alert extends Widget {
                   container.innerHTML = this?.config?.googleAnalyticsConsentMsg;
                 }}
               ></span>
-              <calcite-button
-                scale="s"
-                slot="link"
-                bind={this}
-                onclick={this.handleClick.bind(this)}
-                class={CSS.optOutButton}
-              >
-                {/* {this.messages.webAnalytics.optIn} */}
-                {/* T9N - HARDCODED EN STRING */}
-                Opt In
-              </calcite-button>
             </div>
           </div>
+          <calcite-button
+            scale="s"
+            slot="actions-end"
+            bind={this}
+            onclick={this.handleClick.bind(this)}
+            class={CSS.optOutButton}
+            style="margin: auto 18px;"
+          >
+            {/* {this.messages.webAnalytics.optIn} */}
+            {/* T9N - HARDCODED EN STRING */}
+            Opt In
+          </calcite-button>
         </calcite-alert>
       </div>
     );
