@@ -212,15 +212,16 @@
               "config": {
                 "branches": [
                   [
+                    "showAll",
+                    "enableSearchScale",
+                    "maxQueryNumber"
+                  ],
+                  [
                     "sliderRange",
                     "precision",
                     "searchUnits",
                     "inputsEnabled",
                     "enableBufferColor",
-                    "enableSearchScale"
-                  ],
-                  [
-                    "showAll",
                     "enableSearchScale"
                   ]
                 ]
@@ -294,6 +295,12 @@
                     }
                   ],
                   "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "maxQueryNumber",
+                  "express": false,
+                  "defaultValue": 2000
                 },
                 {
                   "type": "setting",
@@ -378,28 +385,53 @@
                 }
               ],
               "defaultValue": false
+            },
+            {
+              "type": "group",
+              "id": "mapOptions",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "hideLayers",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "interactiveResults",
+                  "express": false,
+                  "defaultValue": true
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "popupBehavior",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "showNonResultPopups",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "showPopupsOnZoom",
+                  "express": false,
+                  "defaultValue": true
+                }
+              ]
             }
           ]
         },
         {
           "type": "subsection",
-          "id": "results",
+          "id": "nearbyPanelResults",
           "content": [
             {
               "type": "group",
-              "id": "results",
+              "id": "panelOptions",
               "content": [
-                {
-                  "type": "setting",
-                  "id": "restrictNumResults",
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "maxNumResults",
-                      "default": 1
-                    }
-                  ]
-                },
                 {
                   "type": "setting",
                   "id": "groupResultsByLayer",
@@ -414,33 +446,27 @@
                 },
                 {
                   "type": "setting",
-                  "id": "interactiveResults",
+                  "id": "restrictNumResults",
                   "express": false,
-                  "defaultValue": true
-                },
-                {
-                  "type": "setting",
-                  "id": "showNonResultPopups",
-                  "express": false,
-                  "defaultValue": true
-                },
-                {
-                  "type": "setting",
-                  "id": "showPopupsOnZoom",
-                  "express": false,
-                  "defaultValue": true
-                },
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "maxNumResults",
+                      "default": 1
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "addOns",
+              "content": [
                 {
                   "type": "setting",
                   "id": "relatedRecords",
                   "express": false,
                   "defaultValue": null
-                },
-                {
-                  "type": "setting",
-                  "id": "hideLayers",
-                  "express": false,
-                  "defaultValue": false
                 },
                 {
                   "type": "setting",
