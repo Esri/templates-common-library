@@ -22,7 +22,7 @@
 
 import { subclass, property } from "esri/core/accessorSupport/decorators";
 import Widget from "esri/widgets/Widget";
-import { storeNode, tsx, messageBundle } from "esri/widgets/support/widget";
+import { storeNode, tsx } from "esri/widgets/support/widget";
 
 const CSS = {
   base: "esri-interactive-legend-ga-alert",
