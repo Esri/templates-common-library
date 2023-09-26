@@ -212,17 +212,17 @@
               "config": {
                 "branches": [
                   [
+                    "showAll",
+                    "enableSearchScale",
+                    "maxQueryNumber"
+                  ],
+                  [
                     "sliderRange",
                     "precision",
                     "searchUnits",
                     "inputsEnabled",
                     "enableBufferColor",
                     "enableSearchScale"
-                  ],
-                  [
-                    "showAll",
-                    "enableSearchScale",
-                    "maxQueryNumber"
                   ]
                 ]
               },
