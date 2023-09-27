@@ -662,6 +662,12 @@
                   "id": "shareIncludeEmbed",
                   "express": false,
                   "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "shareIncludeSocial",
+                  "defaultValue": true,
+                  "express": false
                 }
               ]
             }
