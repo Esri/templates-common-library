@@ -11,6 +11,12 @@
           "config": {
             "maxNumItems": 20
           }
+        },
+        {
+          "type": "setting",
+          "id": "enableInlineEdit",
+          "express": true,
+          "defaultValue": true
         }
       ]
     },
@@ -60,12 +66,30 @@
                 {
                   "type": "setting",
                   "id": "home",
-                  "defaultValue": true
+                  "defaultValue": true,
+                  "express": true
                 },
                 {
                   "type": "setting",
                   "id": "mapZoom",
-                  "defaultValue": true
+                  "defaultValue": true,
+                  "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "fullScreen",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "fullScreenPosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
+                      }
+                    }
+                  ]
                 }
               ]
             }
@@ -81,13 +105,8 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "layerList",
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
                   "id": "basemapGallery",
-                  "express": false,
+                  "express": true,
                   "defaultValue": false,
                   "content": [
                     {
@@ -97,23 +116,12 @@
                       "defaultValue": null
                     }
                   ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "id": "share",
-          "content": [
-            {
-              "type": "group",
-              "id": "share",
-              "content": [
+                },
                 {
                   "type": "setting",
-                  "id": "share",
-                  "defaultValue": false
+                  "id": "exportCSV",
+                  "express": true,
+                  "defaultValue": true
                 }
               ]
             }
