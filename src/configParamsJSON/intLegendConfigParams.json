@@ -431,6 +431,12 @@
                   "content": [
                     {
                       "type": "setting",
+                      "id": "shareIncludeSocial",
+                      "defaultValue": true,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
                       "id": "sharePosition",
                       "express": true,
                       "defaultValue": {

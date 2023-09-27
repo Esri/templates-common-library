@@ -182,7 +182,15 @@
                                 {
                                     "type": "setting",
                                     "id": "socialShare",
-                                    "defaultValue": false
+                                    "defaultValue": false,
+                                    "content": [
+                                        {
+                                            "type": "setting",
+                                            "id": "shareIncludeSocial",
+                                            "defaultValue": true,
+                                            "express": false
+                                          }
+                                    ]
                                 }
                             ]
                         }
