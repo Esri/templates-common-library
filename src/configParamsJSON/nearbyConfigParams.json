@@ -222,7 +222,8 @@
                     "searchUnits",
                     "inputsEnabled",
                     "enableBufferColor",
-                    "enableSearchScale"
+                    "enableSearchScale",
+                    "hideMap"
                   ]
                 ]
               },
@@ -243,6 +244,12 @@
                     "includeDefaultValInput": true,
                     "defaultDefaultVal": 1
                   }
+                },
+                {
+                  "type": "setting",
+                  "id": "hideMap",
+                  "defaultValue": false,
+                  "express": false
                 },
                 {
                   "type": "setting",
@@ -300,7 +307,7 @@
                   "type": "setting",
                   "id": "maxQueryNumber",
                   "express": false,
-                  "defaultValue": 2000
+                  "defaultValue": 200
                 },
                 {
                   "type": "setting",
@@ -367,29 +374,29 @@
               ]
             },
             {
-              "type": "setting",
-              "id": "applyLayerEffects",
-              "express": true,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "presetLayerEffects",
-                  "express": true,
-                  "defaultValue": {
-                    "id": "lift-1",
-                    "data": {
-                      "includedEffect": "drop-shadow(4px, 4px, 4px, #000000)",
-                      "excludedEffect": ""
-                    }
-                  }
-                }
-              ],
-              "defaultValue": false
-            },
-            {
               "type": "group",
               "id": "mapOptions",
               "content": [
+                {
+                  "type": "setting",
+                  "id": "applyLayerEffects",
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "presetLayerEffects",
+                      "express": true,
+                      "defaultValue": {
+                        "id": "lift-1",
+                        "data": {
+                          "includedEffect": "drop-shadow(4px, 4px, 4px, #000000)",
+                          "excludedEffect": ""
+                        }
+                      }
+                    }
+                  ],
+                  "defaultValue": false
+                },
                 {
                   "type": "setting",
                   "id": "hideLayers",
@@ -991,12 +998,6 @@
               "type": "group",
               "id": "layout",
               "content": [
-                {
-                  "type": "setting",
-                  "id": "hideMap",
-                  "defaultValue": false,
-                  "express": false
-                },
                 {
                   "type": "setting",
                   "id": "panelSize",
