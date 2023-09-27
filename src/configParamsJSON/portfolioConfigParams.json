@@ -451,7 +451,15 @@
                   "type": "setting",
                   "id": "share",
                   "defaultValue": false,
-                  "express": false
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeSocial",
+                      "defaultValue": true,
+                      "express": false
+                    }
+                  ]
                 }
               ]
             }
