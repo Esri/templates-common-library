@@ -4,7 +4,10 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": ["2d", "3d"]
+        "itemTypes": [
+          "2d",
+          "3d"
+        ]
       },
       "content": [
         {
@@ -297,6 +300,18 @@
                   "type": "setting",
                   "id": "share",
                   "content": [
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeEmbed",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeSocial",
+                      "defaultValue": true,
+                      "express": false
+                    },
                     {
                       "type": "setting",
                       "id": "sharePosition",

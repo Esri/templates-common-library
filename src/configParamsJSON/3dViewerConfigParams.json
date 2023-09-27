@@ -904,6 +904,18 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "shareIncludeEmbed",
+                  "defaultValue": false,
+                  "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "shareIncludeSocial",
+                  "defaultValue": true,
+                  "express": false
+                },
+                {
+                  "type": "setting",
                   "id": "sharePosition",
                   "defaultValue": "top-right"
                 }
