@@ -149,7 +149,8 @@
               "express": true,
               "defaultValue": null,
               "config": {
-                "singleFont": false
+                "singleFont": false,
+                "numOfSections": 2
               }
             }
           ]
