@@ -28,57 +28,81 @@
     },
     {
       "type": "section",
-      "id": "about",
+      "id": "atlasAbout",
       "content": [
         {
-          "type": "setting",
-          "id": "header",
-          "defaultValue": true,
-          "express": true,
+          "type": "group",
+          "id": "saveOptions",
           "content": [
             {
               "type": "setting",
-              "id": "title",
-              "defaultValue": "Atlas"
-            },
-            {
-              "type": "setting",
-              "id": "customHeader",
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "customHeaderHTML",
-                  "defaultValue": ""
-                }
-              ]
+              "id": "showSignInBtn",
+              "express": true,
+              "defaultValue": false
             }
           ]
         },
         {
-          "type": "setting",
-          "id": "landingPage",
-          "express": false,
-          "defaultValue": false,
+          "type": "group",
+          "id": "headerOptions",
           "content": [
             {
               "type": "setting",
-              "id": "landingPageConfig",
+              "id": "header",
+              "defaultValue": true,
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "title",
+                  "defaultValue": "Atlas",
+                  "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "signInOnHeader",
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "customHeader",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "customHeaderHTML",
+                      "defaultValue": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "landingPage",
               "express": false,
-              "defaultValue": {
-                "titleText": "Title",
-                "subtitleText": "Subtitle",
-                "descriptionText": "Description content",
-                "entryButtonText": "Enter",
-                "alignment": "center",
-                "backgroundType": "color",
-                "textColor": "#FFFFFF",
-                "entryButtonColor": "#0079C1",
-                "backgroundColor": "#0079C1",
-                "iconImage": null,
-                "iconImageScale": "m",
-                "backgroundImageSrc": null
-              }
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "landingPageConfig",
+                  "express": false,
+                  "defaultValue": {
+                    "titleText": "Title",
+                    "subtitleText": "Subtitle",
+                    "descriptionText": "Description content",
+                    "entryButtonText": "Enter",
+                    "alignment": "center",
+                    "backgroundType": "color",
+                    "textColor": "#FFFFFF",
+                    "entryButtonColor": "#0079C1",
+                    "backgroundColor": "#0079C1",
+                    "iconImage": null,
+                    "iconImageScale": "m",
+                    "backgroundImageSrc": null
+                  }
+                }
+              ]
             }
           ]
         }
@@ -86,95 +110,107 @@
     },
     {
       "type": "section",
-      "id": "interactivity",
+      "id": "atlasInteractivity",
       "content": [
         {
-          "type": "setting",
-          "id": "home",
-          "express": true,
-          "defaultValue": true
-        },
-        {
-          "type": "setting",
-          "id": "mapZoom",
-          "express": true,
-          "defaultValue": true
-        },
-        {
-          "type": "setting",
-          "id": "changeDefaultBasemapCond",
-          "defaultValue": false,
-          "express": true,
+          "type": "group",
+          "id": "mapTools",
           "content": [
             {
               "type": "setting",
-              "id": "changeDefaultBasemap",
+              "id": "home",
               "express": true,
-              "defaultValue": "streets-vector"
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "mapZoom",
+              "express": true,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "changeDefaultBasemapCond",
+              "defaultValue": false,
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "changeDefaultBasemap",
+                  "express": true,
+                  "defaultValue": "streets-vector"
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "atlasBasemapGallery",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "atlasBasemapGalleryConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "search",
+              "express": true,
+              "defaultValue": true
             }
           ]
         },
         {
-          "type": "setting",
-          "id": "atlasBasemapGallery",
-          "express": false,
-          "defaultValue": false,
+          "type": "group",
+          "id": "configureToolbar",
           "content": [
             {
               "type": "setting",
-              "id": "atlasBasemapGalleryConfig",
+              "id": "showBasemap",
               "express": false,
-              "defaultValue": null
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "showOpenMap",
+              "express": false,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "showAddLayer",
+              "express": false,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "showMeasure",
+              "express": false,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "showSketch",
+              "express": false,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "show2D3D",
+              "express": false,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "showBookmarks",
+              "express": false,
+              "defaultValue": false
             }
           ]
-        },
-        {
-          "type": "setting",
-          "id": "search",
-          "express": true,
-          "defaultValue": true
-        },
-        {
-          "type": "setting",
-          "id": "showSignInBtn",
-          "express": true,
-          "defaultValue": false
-        },
-        {
-          "type": "setting",
-          "id": "hideOpenMap",
-          "express": false,
-          "defaultValue": false
-        },
-        {
-          "type": "setting",
-          "id": "hideAddLayer",
-          "express": false,
-          "defaultValue": false
-        },
-        {
-          "type": "setting",
-          "id": "hideMeasure",
-          "express": false,
-          "defaultValue": false
-        },
-                {
-          "type": "setting",
-          "id": "hideSketch",
-          "express": false,
-          "defaultValue": false
-        },
-                {
-          "type": "setting",
-          "id": "hide2D3D",
-          "express": false,
-          "defaultValue": false
-        },
-                {
-          "type": "setting",
-          "id": "hideBookmarks",
-          "express": false,
-          "defaultValue": false
         }
       ]
     },
