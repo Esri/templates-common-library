@@ -79,6 +79,12 @@
             },
             {
               "type": "setting",
+              "id": "disclaimerText",
+              "defaultValue": null,
+              "express": false
+            },
+            {
+              "type": "setting",
               "id": "landingPage",
               "express": false,
               "defaultValue": false,
