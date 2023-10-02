@@ -137,10 +137,11 @@ export default class LanguageSwitcher extends Widget {
     );
   }
 
-  updateGroup(group: string): void {
+  updateExpandGroup(expandGroup: string | null): void {
+    if (!expandGroup) return;
     const languageSwitcher = this.view?.ui?.find("esri-language-switcher") as __esri.Expand;
-    this.expandGroup = group;
-    if(languageSwitcher) languageSwitcher.group = group;
+    this.expandGroup = expandGroup;
+    if(languageSwitcher) languageSwitcher.group = expandGroup;
   }
 
   private async _setLanguageSwitcherUI(config: ApplicationConfig, configurationSettings: any) {

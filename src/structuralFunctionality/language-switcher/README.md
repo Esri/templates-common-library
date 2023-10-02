@@ -32,23 +32,28 @@ const languageSwitcher = new LanguageSwitcher({
 
 This method is used to update the expand group to allow only one expand within the group to opened at a time.
 
-expandGroup(group: string): void;
+updateExpandGroup(group: string): void;
 
 ```
-  watch(
-    () => this._configurationSettings?.languageSwitcherPosition,
-    () => {
-      if (this._languageSwitcher) {
-        const { left, right } = { left: "left", right: "right" };
-        const position = this._configurationSettings?.languageSwitcherPosition?.position ?? right;
-        const isLeft = position?.indexOf(left) !== -1;
-        const isRight = position?.indexOf(right) !== -1;
-        const group = isLeft ? left : isRight ? right : null;
-        this._languageSwitcher.updateGroup(group);
-      }
-    },
-    { initial: true }
-  )
+  this._handles.add([
+    ...Configuration setting watch handles
+    watch(
+      () => this._configurationSettings?.languageSwitcherPosition,
+      () => {
+        if (!this._languageSwitcher) return;
+        const LEFT = "left";
+        const RIGHT = "right";
+        const position = this._configurationSettings?.languageSwitcherPosition?.position ?? RIGHT;
+        const isLeft = position?.indexOf(LEFT) !== -1;
+        const isRight = position?.indexOf(RIGHT) !== -1;
+        const group = isLeft ? LEFT : isRight ? RIGHT : null;
+        this._languageSwitcher.updateExpandGroup(group);
+      },
+      { initial: true }
+    ),
+    ...Configuration setting watch handles
+  ]);
+
 ```
 
 ## Properties
