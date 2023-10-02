@@ -138,10 +138,10 @@ export default class LanguageSwitcher extends Widget {
   }
 
   updateExpandGroup(expandGroup: string | null): void {
-    if (!expandGroup) return;
     const languageSwitcher = this.view?.ui?.find(NODE_ID) as __esri.Expand;
+    if (!languageSwitcher || !expandGroup) return;
     this.expandGroup = expandGroup;
-    if(languageSwitcher) languageSwitcher.group = expandGroup;
+    languageSwitcher.group = expandGroup;
   }
 
   private async _setLanguageSwitcherUI(config: ApplicationConfig, configurationSettings: any) {
