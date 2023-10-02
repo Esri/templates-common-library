@@ -17,20 +17,6 @@
           "id": "enableInlineEdit",
           "express": true,
           "defaultValue": true
-        },
-        {
-          "type": "setting",
-          "id": "enableZoom",
-          "express": false,
-          "content": [
-            {
-              "type": "setting",
-              "id": "searchScale",
-              "express": false,
-              "defaultValue": 10000
-            }
-          ],
-          "defaultValue": false
         }
       ]
     },
