@@ -30,9 +30,9 @@ const languageSwitcher = new LanguageSwitcher({
 
 ### Expand group
 
-This method is used to update the expand group to allow only one expand within the group to opened at a time.
+Sets the expand widget's group property to allow just one expand widget within a group to be opened at a time.
 
-updateExpandGroup(group: string): void;
+setExpandGroup(group: string): void;
 
 ```
   this._handles.add([
@@ -47,7 +47,7 @@ updateExpandGroup(group: string): void;
         const isLeft = position?.indexOf(LEFT) !== -1;
         const isRight = position?.indexOf(RIGHT) !== -1;
         const group = isLeft ? LEFT : isRight ? RIGHT : null;
-        this._languageSwitcher.updateExpandGroup(group);
+        this._languageSwitcher.setExpandGroup(group);
       },
       { initial: true }
     ),
