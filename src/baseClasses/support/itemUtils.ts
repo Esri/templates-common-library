@@ -252,7 +252,7 @@ export async function findSelectedFeature(
     // projection needs to be loaded for some maps and scenes
     await projection?.load();
 
-    view.popup.open(options);
+    view.openPopup(options);
   } catch (error) {}
 }
 //--------------------------------------------------------------------------
