@@ -172,7 +172,8 @@ export default class LanguageSwitcher extends Widget {
             id: NODE_ID,
             content: this,
             expandIcon: languageSwitcherConfig?.icon ?? Defaults.Icon,
-            expanded: languageSwitcherOpenAtStart
+            expanded: languageSwitcherOpenAtStart,
+            view: this.view
           } as __esri.ExpandProperties;
           if (this.expandTooltip) config.expandTooltip = this.expandTooltip;
           if (this.collapseTooltip) config.collapseTooltip = this.collapseTooltip;
