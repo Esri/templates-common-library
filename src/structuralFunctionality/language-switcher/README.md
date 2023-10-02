@@ -32,7 +32,7 @@ const languageSwitcher = new LanguageSwitcher({
 
 Sets the expand widget's group property to allow just one expand widget within a group to be opened at a time.
 
-setExpandGroup(group: string): void;
+setExpandGroup(group: string | null): void;
 
 ```
   this._handles.add([
