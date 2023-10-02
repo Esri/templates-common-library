@@ -137,6 +137,12 @@ export default class LanguageSwitcher extends Widget {
     );
   }
 
+  updateGroup(group: string): void {
+    const languageSwitcher = this.view?.ui?.find("esri-language-switcher") as __esri.Expand;
+    this.expandGroup = group;
+    if(languageSwitcher) languageSwitcher.group = group;
+  }
+
   private async _setLanguageSwitcherUI(config: ApplicationConfig, configurationSettings: any) {
     const t9nData = this.selectedLanguageData?.data;
 
