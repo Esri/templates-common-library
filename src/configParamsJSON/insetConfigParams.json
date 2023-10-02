@@ -2,7 +2,26 @@
   "config": [
     {
       "type": "section",
-      "id": "map"
+      "id": "map",
+      "content": [
+        {
+          "type": "setting",
+          "id": "mapArea",
+          "express": false,
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapAreaConfig",
+              "express": false,
+              "defaultValue": null,
+              "config": {
+                "hideBoundary": true
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "section",
