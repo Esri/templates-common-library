@@ -150,7 +150,7 @@
               "defaultValue": null,
               "config": {
                 "singleFont": false,
-                "numOfSections": 2
+                "numOfSections": 1
               }
             }
           ]
