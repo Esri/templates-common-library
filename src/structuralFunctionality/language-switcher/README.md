@@ -27,6 +27,35 @@ const languageSwitcher = new LanguageSwitcher({
   ]);
 ```
 
+
+### Expand group
+
+Sets the expand widget's group property to allow just one expand widget within a group to be opened at a time.
+
+setExpandGroup(group: string | null): void;
+
+```
+  this._handles.add([
+    ...Configuration setting watch handles
+    watch(
+      () => this._configurationSettings?.languageSwitcherPosition,
+      () => {
+        if (!this._languageSwitcher) return;
+        const LEFT = "left";
+        const RIGHT = "right";
+        const position = this._configurationSettings?.languageSwitcherPosition?.position ?? RIGHT;
+        const isLeft = position?.indexOf(LEFT) !== -1;
+        const isRight = position?.indexOf(RIGHT) !== -1;
+        const group = isLeft ? LEFT : isRight ? RIGHT : null;
+        this._languageSwitcher.setExpandGroup(group);
+      },
+      { initial: true }
+    ),
+    ...Configuration setting watch handles
+  ]);
+
+```
+
 ## Properties
 
 | Property              | Description                                                                       | Type                  |
