@@ -213,21 +213,17 @@ export default class LanguageSwitcher extends Widget {
     const data = e?.detail?.data;
     const isDefault = this._useDefaultLocaleStrings(data);
     if (isDefault) {
-      const templateAppData = await this._portalItem.fetchData();
-      const hasDraft = templateAppData?.values?.hasOwnProperty("draft");
-      if (isWithinConfigurationExperience() && hasDraft) {
-        const config = {
-          ...templateAppData?.values,
-          ...templateAppData?.values?.draft
-        };
+      try {
+        const templateAppData = await this._portalItem.fetchData();
+        const values = templateAppData?.values;
+        const baseConfig = this.base.config;
+        let config: ApplicationConfig = { ...baseConfig, ...values };
+        if (this.configurationSettings.withinConfigurationExperience)
+          config = { ...config, ...values?.draft };
         this._preventOverwrite(config);
         Object.assign(this.configurationSettings, config);
-      } else {
-        const config = {
-          ...templateAppData?.values
-        };
-        this._preventOverwrite(config);
-        Object.assign(this.configurationSettings, config);
+      } catch (err) {
+        console.error("ERROR: ", err);
       }
     }
   }
