@@ -80,17 +80,7 @@
                   "type": "setting",
                   "id": "fullScreen",
                   "express": false,
-                  "defaultValue": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "fullScreenPosition",
-                      "defaultValue": {
-                        "position": "bottom-right",
-                        "index": 0
-                      }
-                    }
-                  ]
+                  "defaultValue": true
                 }
               ]
             }
