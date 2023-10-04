@@ -222,11 +222,6 @@
               "type": "setting",
               "id": "listName",
               "express": false
-            },
-            {
-              "type": "setting",
-              "id": "defaultNumLabelsPerPage",
-              "defaultValue": "6"
             }
           ]
         },
@@ -238,6 +233,11 @@
               "type": "group",
               "id": "refineResults",
               "content": [
+                {
+                  "type": "setting",
+                  "id": "defaultNumLabelsPerPage",
+                  "defaultValue": "6"
+                },
                 {
                   "type": "setting",
                   "id": "refineSelection",
