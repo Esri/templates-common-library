@@ -50,7 +50,6 @@ enum ERequirementType {
 const EResourceType_to_AppType_Mapping = {
   [EResourceType.Webmap]: [
     EAppTemplateType.ThreeDViewer,
-    EAppTemplateType.Atlas,
     EAppTemplateType.CategoryGallery,
     EAppTemplateType.Observer,
   ],
