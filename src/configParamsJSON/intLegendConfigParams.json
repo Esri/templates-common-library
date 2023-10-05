@@ -5,7 +5,23 @@
       "id": "map",
       "config": {
         "conditions": ["renderer"]
-      }
+      },
+      "content": [
+        {
+          "type": "setting",
+          "id": "mapArea",
+          "express": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapAreaConfig",
+              "express": false,
+              "defaultValue": null
+            }
+          ],
+          "defaultValue": false
+        }
+      ]
     },
     {
       "type": "section",
@@ -299,19 +315,6 @@
                         "position": "top-left",
                         "index": 4
                       }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "extentSelector",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "extentSelectorConfig",
-                      "express": false,
-                      "defaultValue": null
                     }
                   ]
                 }
