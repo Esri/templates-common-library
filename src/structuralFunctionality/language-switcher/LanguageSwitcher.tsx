@@ -122,6 +122,7 @@ export default class LanguageSwitcher extends Widget {
     const config = configurationSettings.languageSwitcherConfig;
     const icon = config?.icon ?? Defaults.Icon;
     const locales = config?.locales;
+    const defaultLocale = config?.defaultLocale ?? null;
     return (
       <instant-apps-language-switcher
         bind={this}
@@ -130,6 +131,7 @@ export default class LanguageSwitcher extends Widget {
         icon={icon}
         locales={locales}
         portalItem={_portalItem}
+        defaultLocale={defaultLocale}
         onselectedLanguageUpdated={this._handleSelection}
         view={this.view}
         data-node-ref="langSwitcherNode"
