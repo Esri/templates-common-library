@@ -32,13 +32,13 @@
               "type": "setting",
               "id": "header",
               "defaultValue": true,
-              "express": false,
+              "express": true,
               "content": [
                 {
                   "type": "setting",
                   "id": "title",
-                  "defaultValue": "",
-                  "express": true
+                  "express": true,
+                  "defaultValue": ""
                 }
               ]
             },
