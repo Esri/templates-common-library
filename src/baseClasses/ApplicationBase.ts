@@ -218,8 +218,7 @@ export default class ApplicationBase {
       );
     }
 
-    const { portalUrl, proxyUrl, oauthappid, appid, usePopupWorkflow } =
-      this.config;
+    const { portalUrl, proxyUrl, oauthappid, appid } = this.config;
 
     this._setPortalUrl(portalUrl);
     this._setProxyUrl(proxyUrl);
