@@ -197,9 +197,12 @@ export default class ApplicationBase {
       const esriPortalUrl = this._getEsriEnvironmentPortalUrl();
       this.config.portalUrl = esriPortalUrl;
       this.config.proxyUrl = this._getEsriEnvironmentProxyUrl(esriPortalUrl);
-    }else{
-      if(this?.config?.localTestCases?.useLocalTestCases){
-        this._renderLocalTestCasesUI(this.config.localTestCases.testCases, template);
+    } else {
+      if (this?.config?.localTestCases?.useLocalTestCases) {
+        this._renderLocalTestCasesUI(
+          this.config.localTestCases.testCases,
+          template
+        );
         const savedTestCase = this._getSavedTestCase();
         if (savedTestCase) {
           this.config.portalUrl = savedTestCase.portalUrl;
@@ -215,13 +218,13 @@ export default class ApplicationBase {
       );
     }
 
-    const { portalUrl, proxyUrl, oauthappid, appid, usePopupWorkflow } = this.config;
-
+    const { portalUrl, proxyUrl, oauthappid, appid, usePopupWorkflow } =
+      this.config;
 
     this._setPortalUrl(portalUrl);
     this._setProxyUrl(proxyUrl);
 
-    this._registerOauthInfos(oauthappid, portalUrl, usePopupWorkflow);
+    this._registerOauthInfos();
     const sharingUrl = `${portalUrl}/sharing`;
 
     const loadApplicationItem = appid
@@ -716,17 +719,15 @@ export default class ApplicationBase {
     esriConfig.request.proxyUrl = proxyUrl;
   }
 
-  private _registerOauthInfos(appId: string, portalUrl: string, usePopupWorkflow?: boolean): void {
-    if (!appId) {
+  private _registerOauthInfos(): void {
+    const { oauth } = this?.config || {};
+    if (!oauth?.appId) {
       return;
     }
-    const shouldUsePopup = usePopupWorkflow || (this._isEmbedded() && !this._isWithinConfigurationExperience());
-    const info = new OAuthInfo({
-      appId,
-      portalUrl,
-      popup: shouldUsePopup,
-      flowType: shouldUsePopup ? "authorization-code" : "auto"
-    });
+    oauth.popup =
+      oauth?.popup ||
+      (this._isEmbedded() && !this._isWithinConfigurationExperience());
+    const info = new OAuthInfo(oauth);
 
     if (!info) {
       return;
@@ -825,10 +826,13 @@ export default class ApplicationBase {
 
   /**
    * "localTestCases" array defined in application.json for the template.
-   * This UI allows for the easy selection of a testcase. When selected, 
+   * This UI allows for the easy selection of a testcase. When selected,
    * the template reloads with the selected testcase.
    */
-  private _renderLocalTestCasesUI(testCases: ILocalTestCase[], template: EAppTemplateType): void {
+  private _renderLocalTestCasesUI(
+    testCases: ILocalTestCase[],
+    template: EAppTemplateType
+  ): void {
     const toggleButtonId = "testCases_toggleButton";
     const testCasesSelectorId = "testCases_SelectionDisplay";
 
@@ -859,14 +863,14 @@ export default class ApplicationBase {
     const _renderTestCasesSelector = () => {
       const testCasesDiv = document.createElement("div");
       testCasesDiv.id = testCasesSelectorId;
-  
+
       testCasesDiv.style.position = "absolute";
       testCasesDiv.style.top = "0";
       testCasesDiv.style.right = "0";
       testCasesDiv.style.left = "0";
-  
+
       testCasesDiv.style.height = "240px";
-  
+
       testCasesDiv.style.zIndex = "9999";
       testCasesDiv.style.padding = "10px";
       testCasesDiv.style.margin = "10px";
@@ -884,10 +888,10 @@ export default class ApplicationBase {
       testCases.forEach((testCase) => {
         const testCaseButton = document.createElement("div");
         testCaseButton.style.display = "block";
-  
+
         testCaseButton.style.height = "200px";
         testCaseButton.style.width = "200px";
-        
+
         testCaseButton.style.marginBottom = "10px";
         testCaseButton.style.marginLeft = "5px";
         testCaseButton.style.marginRight = "5px";
@@ -899,14 +903,20 @@ export default class ApplicationBase {
         testCaseButton.style.fontFamily = "Arial, Helvetica, sans-serif";
         testCaseButton.style.fontSize = "14px";
         testCaseButton.style.overflowWrap = "break-word";
-        testCaseButton.style.overflow = "hidden";        
+        testCaseButton.style.overflow = "hidden";
         testCaseButton.innerHTML = `
         <h2 style="font-weight: bold;">${testCase.desc}</h2>
         <hr />
         <div style="font-size: 0.8rem;">${testCase.appid}</div>
         <div style="font-size: 0.8rem;">${testCase.portalUrl}</div>
-        <a href="${testCase.portalUrl}/${template}?appid=${testCase.appid}" target="_blank">Link</a>
-        ${testCase.issue != null ? (`<a href="${testCase.issue}" target="_blank">Linked Issue</a>`) : null}
+        <a href="${testCase.portalUrl}/${template}?appid=${
+          testCase.appid
+        }" target="_blank">Link</a>
+        ${
+          testCase.issue != null
+            ? `<a href="${testCase.issue}" target="_blank">Linked Issue</a>`
+            : null
+        }
         `;
         testCaseButton.addEventListener("click", () => {
           this._setSavedTestCase(testCase);
