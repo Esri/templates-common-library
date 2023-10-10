@@ -188,7 +188,19 @@
             },
             {
               "type": "setting",
+              "id": "showMapLayers",
+              "express": false,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
               "id": "showAddLayer",
+              "express": false,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "showLegend",
               "express": false,
               "defaultValue": true
             },
@@ -215,6 +227,12 @@
               "id": "showBookmarks",
               "express": false,
               "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "showSave",
+              "express": false,
+              "defaultValue": true
             }
           ]
         }
