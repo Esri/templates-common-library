@@ -182,7 +182,8 @@ export default class LanguageSwitcher extends Widget {
             content: this,
             expandIcon: languageSwitcherConfig?.icon ?? Defaults.Icon,
             expanded: languageSwitcherOpenAtStart,
-            view: this.view
+            view: this.view,
+            mode: "floating"
           } as __esri.ExpandProperties;
           if (this.expandTooltip) config.expandTooltip = this.expandTooltip;
           if (this.collapseTooltip) config.collapseTooltip = this.collapseTooltip;

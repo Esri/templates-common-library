@@ -102,9 +102,9 @@ class LandingPage extends Widget {
     const backgroundColor = landingPageConfig?.backgroundColor;
     const textColor = landingPageConfig?.textColor;
     const entryButtonColor = landingPageConfig?.entryButtonColor;
-
+    const isImage = landingPageConfig?.backgroundType === "image"
     return `
-      ${CSS.backgroundColor}: ${backgroundColor ? backgroundColor : "var(--calcite-ui-brand)"};
+      ${CSS.backgroundColor}: ${isImage ? "transparent": backgroundColor ? backgroundColor : "var(--calcite-ui-brand)"};
       ${CSS.textColor}: ${textColor ? textColor : "var(--calcite-ui-text-inverse)"};
       ${CSS.entryButtonColor}: ${entryButtonColor ? entryButtonColor : "var(--calcite-ui-brand)"};
     `;
