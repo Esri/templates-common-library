@@ -213,8 +213,7 @@
                 "branches": [
                   [
                     "showAll",
-                    "enableSearchScale",
-                    "maxQueryNumber"
+                    "enableSearchScale"
                   ],
                   [
                     "sliderRange",
@@ -302,12 +301,6 @@
                     }
                   ],
                   "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "maxQueryNumber",
-                  "express": false,
-                  "defaultValue": 200
                 },
                 {
                   "type": "setting",
