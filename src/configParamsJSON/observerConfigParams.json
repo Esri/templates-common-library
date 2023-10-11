@@ -133,7 +133,13 @@
                                     "type": "setting",
                                     "id": "measure",
                                     "defaultValue": false
-                                }
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "keyboardShortcuts",
+                                    "express": true,
+                                    "defaultValue": false
+                                  }
                             ]
                         }
                     ]
