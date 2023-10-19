@@ -647,19 +647,6 @@
                   "defaultValue": 35
                 }
               ]
-            },
-            {
-              "type": "setting",
-              "id": "layerEffect",
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "layerEffectConfig",
-                  "express": false,
-                  "defaultValue": null
-                }
-              ]
             }
           ]
         },
