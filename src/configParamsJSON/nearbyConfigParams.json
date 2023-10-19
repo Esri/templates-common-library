@@ -447,14 +447,7 @@
                 {
                   "type": "setting",
                   "id": "restrictNumResults",
-                  "express": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "maxNumResults",
-                      "default": 1
-                    }
-                  ]
+                  "express": false
                 }
               ]
             },
