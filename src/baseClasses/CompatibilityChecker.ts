@@ -415,7 +415,7 @@ export class CompatibilityChecker {
 
   private _testChartsCondition(webmap: __esri.WebMap): ERequirementType | null {
     const chartsAvailable =
-      webmap?.layers
+      webmap?.allLayers
         .filter((layer) => layer.type === "feature")
         .some((flayer: __esri.FeatureLayer) => {
           const flayerWithCharts = flayer.get("charts");
