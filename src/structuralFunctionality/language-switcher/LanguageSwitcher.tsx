@@ -31,6 +31,8 @@ import { LanguageData } from "./support/interfaces";
 import { CSS, HANDLES_KEY, NODE_ID } from "./support/constants";
 import { Defaults, ProperyNames } from "./support/enums";
 
+const NO_DEFAULT_FIELDS = ["title"];
+
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
   constructor(params) {
@@ -223,11 +225,41 @@ export default class LanguageSwitcher extends Widget {
         let config: ApplicationConfig = { ...baseConfig, ...values };
         if (this.configurationSettings.withinConfigurationExperience)
           config = { ...config, ...values?.draft };
+        // Iterates fields that do not have a default value set in the app's config params JSON and sets the appropriate value i.e. title
+        this._processNoDefaultValues(config);
         this._preventOverwrite(config);
         Object.assign(this.configurationSettings, config);
       } catch (err) {
         console.error("ERROR: ", err);
       }
+    }
+  }
+
+  private _processNoDefaultValues(config: ApplicationConfig): void {
+    NO_DEFAULT_FIELDS.forEach((field) => {
+      const value = this._getProcessedValue(field, config[field]);
+      config[field] = value;
+    });
+  }
+
+  private _getProcessedValue(fieldName: string, value: string): string {
+    switch (fieldName) {
+      case "title":
+        const appItemTitle = this.base?.results?.applicationItem?.value?.title;
+        const { config, results } = this.base;
+        const { webMapItems } = results;
+        const validWebMapItems = webMapItems.map((response) => response.value);
+        const item = validWebMapItems[0];
+        const title = config?.title
+          ? config.title
+          : appItemTitle
+          ? appItemTitle
+          : item?.title
+          ? item.title
+          : "";
+        return title;
+      default:
+        value;
     }
   }
 
