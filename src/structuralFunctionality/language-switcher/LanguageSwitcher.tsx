@@ -237,8 +237,10 @@ export default class LanguageSwitcher extends Widget {
 
   private _processNoDefaultValues(config: ApplicationConfig): void {
     NO_DEFAULT_FIELDS.forEach((field) => {
-      const value = this._getProcessedValue(field, config[field]);
-      config[field] = value;
+      const value = config[field];
+      if (value) return;
+      const processedValue = this._getProcessedValue(field, config[field]);
+      config[field] = processedValue;
     });
   }
 
