@@ -28,10 +28,9 @@ import { getLocale, normalizeMessageBundleLocale } from "esri/intl";
 import PortalItem from "esri/portal/PortalItem";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
 import { LanguageData } from "./support/interfaces";
-import { CSS, HANDLES_KEY, NODE_ID } from "./support/constants";
+import { CSS, HANDLES_KEY, NODE_ID, NO_DEFAULT_FIELDS, PREVENT_OVERWRITE } from "./support/constants";
 import { Defaults, ProperyNames } from "./support/enums";
 
-const NO_DEFAULT_FIELDS = ["title"];
 
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
@@ -329,7 +328,11 @@ export default class LanguageSwitcher extends Widget {
   // Prevents the current values from being overwritten with a stale value
   private _preventOverwrite(config): void {
     for (const key in config) {
-      if (typeof config[key] !== "string") {
+      const keyLowerCase = key.toLowerCase();
+      const isColor = keyLowerCase.includes("color");
+      const isPosition = keyLowerCase.includes("position");
+      const preventOverwrite = PREVENT_OVERWRITE.indexOf(key) !== -1;
+      if (typeof config[key] !== "string" || isColor || isPosition || preventOverwrite) {
         delete config[key];
       }
     }
