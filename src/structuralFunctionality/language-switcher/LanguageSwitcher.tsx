@@ -328,9 +328,10 @@ export default class LanguageSwitcher extends Widget {
 
   // Prevents the current values from being overwritten with a stale value
   private _preventOverwrite(config): void {
-    delete config.languageSwitcher;
-    delete config.languageSwitcherOpenAtStart;
-    delete config.languageSwitcherPosition;
-    delete config.languageSwitcherConfig;
+    for (const key in config) {
+      if (typeof config[key] !== "string") {
+        delete config[key];
+      }
+    }
   }
 }
