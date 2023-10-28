@@ -30,6 +30,7 @@ import { isWithinConfigurationExperience } from "../../functionality/configurati
 import { LanguageData } from "./support/interfaces";
 import { CSS, HANDLES_KEY, NODE_ID, NO_DEFAULT_FIELDS, PREVENT_OVERWRITE } from "./support/constants";
 import { Defaults, ProperyNames } from "./support/enums";
+import { autoUpdatedStrings } from "../t9nUtils";
 
 
 @subclass("LanguageSwitcher")
@@ -60,6 +61,15 @@ export default class LanguageSwitcher extends Widget {
 
   @property()
   collapseTooltip: string;
+
+  @property()
+  expandTooltipKey: string;
+
+  @property()
+  collapseTooltipKey: string;
+
+  @property()
+  messageBundleName: string;
 
   @property()
   expandGroup: string;
@@ -190,6 +200,7 @@ export default class LanguageSwitcher extends Widget {
           if (this.collapseTooltip) config.collapseTooltip = this.collapseTooltip;
           if (this.expandGroup) config.group = this.expandGroup;
           const expand = new Expand(config) as __esri.Expand;
+          this._setupAutoUpdateStrings(expand);
           this.view.ui.add(expand, languageSwitcherPosition ?? Defaults.Position);
         }
       } else {
@@ -335,6 +346,23 @@ export default class LanguageSwitcher extends Widget {
       if (typeof config[key] !== "string" || isColor || isPosition || preventOverwrite) {
         delete config[key];
       }
+    }
+  }
+
+  private _setupAutoUpdateStrings(expand: __esri.Expand): void {
+    if (this.messageBundleName && this.expandTooltipKey && this.collapseTooltipKey) {
+      autoUpdatedStrings.add({
+        obj: expand,
+        property: "expandTooltip",
+        bundleName: this.messageBundleName,
+        key: this.expandTooltipKey
+      });
+      autoUpdatedStrings.add({
+        obj: expand,
+        property: "collapseTooltip",
+        bundleName: this.messageBundleName,
+        key: this.collapseTooltipKey
+      });
     }
   }
 }
