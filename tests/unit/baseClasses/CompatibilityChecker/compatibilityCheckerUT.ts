@@ -67,6 +67,7 @@ class CompatibilityCheckerUT {
             [CompatibilityChecker.EAppTemplateType.Notify, null],
             [CompatibilityChecker.EAppTemplateType.Observer, ResourceResults.Webscene],
             [CompatibilityChecker.EAppTemplateType.Portfolio, null],
+            [CompatibilityChecker.EAppTemplateType.Reporter, null],
             [CompatibilityChecker.EAppTemplateType.Sidebar, null],
             [CompatibilityChecker.EAppTemplateType.Slider, null],
             [CompatibilityChecker.EAppTemplateType.ZoneLookup, "This app requires a feature layer with pop-up enabled"],
@@ -74,7 +75,7 @@ class CompatibilityCheckerUT {
             assert.equal(
               result.get(testInfo[0]), testInfo[1],
               testInfo[0]
-            );  
+            );
           });
         });
       });
@@ -105,6 +106,7 @@ class CompatibilityCheckerUT {
             [CompatibilityChecker.EAppTemplateType.Notify, ResourceResults.Webmap],
             [CompatibilityChecker.EAppTemplateType.Observer, null],
             [CompatibilityChecker.EAppTemplateType.Portfolio, null],
+            [CompatibilityChecker.EAppTemplateType.Reporter, ResourceResults.Webmap],
             [CompatibilityChecker.EAppTemplateType.Sidebar, ResourceResults.Webmap],
             [CompatibilityChecker.EAppTemplateType.Slider, ResourceResults.Webmap],
             [CompatibilityChecker.EAppTemplateType.ZoneLookup, ResourceResults.Webmap],
@@ -112,7 +114,7 @@ class CompatibilityCheckerUT {
             assert.equal(
               result.get(testInfo[0]), testInfo[1],
               testInfo[0]
-            );  
+            );
           });
 
         });
@@ -140,6 +142,7 @@ class CompatibilityCheckerUT {
             [CompatibilityChecker.EAppTemplateType.Notify, ResourceResults.Webmap],
             [CompatibilityChecker.EAppTemplateType.Observer, ResourceResults.Webscene],
             [CompatibilityChecker.EAppTemplateType.Portfolio, ResourceResults.WebmapOrWebscene],
+            [CompatibilityChecker.EAppTemplateType.Reporter, ResourceResults.Webmap],
             [CompatibilityChecker.EAppTemplateType.Sidebar, ResourceResults.Webmap],
             [CompatibilityChecker.EAppTemplateType.Slider, ResourceResults.Webmap],
             [CompatibilityChecker.EAppTemplateType.ZoneLookup, ResourceResults.Webmap],
@@ -147,7 +150,7 @@ class CompatibilityCheckerUT {
             assert.equal(
               result.get(testInfo[0]), testInfo[1],
               testInfo[0]
-            );  
+            );
           });
         });
       });
