@@ -197,11 +197,11 @@ export class CompatibilityChecker {
         resourceType
       );
     });
-    const checkResults = await Promise.all(checkPromises);
+    const checkResults = await Promise.allSettled(checkPromises);
 
     const resultMap = new Map();
     appTemplateTypeKeys.forEach((key, index) => {
-      resultMap.set(EAppTemplateType[key], checkResults[index]);
+      resultMap.set(EAppTemplateType[key], (checkResults[index] as any)?.value);
     });
     return resultMap;
   }
@@ -252,11 +252,17 @@ export class CompatibilityChecker {
     if (resource === "group") {
       return EResourceType.Group;
     } else {
-      await resource?.loadAll();
-      if (resource.portalItem.type === "Web Map") {
+      try {
+        await resource?.loadAll();
+      } catch (err) {
+        console.error(err);
+      }
+      if (resource?.portalItem?.type === "Web Map") {
         return EResourceType.Webmap;
-      } else if (resource.portalItem.type === "Web Scene") {
+      } else if (resource?.portalItem?.type === "Web Scene") {
         return EResourceType.Webscene;
+      } else {
+        return EResourceType.Unknown;
       }
     }
   }
