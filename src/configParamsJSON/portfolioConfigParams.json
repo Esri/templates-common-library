@@ -83,12 +83,6 @@
                   "content": [
                     {
                       "type": "setting",
-                      "id": "splashOnStart",
-                      "defaultValue": true,
-                      "express": false
-                    },
-                    {
-                      "type": "setting",
                       "id": "splashTitle",
                       "defaultValue": "Welcome!",
                       "express": false
