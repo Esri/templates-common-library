@@ -15,6 +15,7 @@ import Nearby from "dojo/text!../../configParamsJSON/nearbyConfigParams.json";
 import Notify from "dojo/text!../../configParamsJSON/notifyConfigParams.json";
 import Observer from "dojo/text!../../configParamsJSON/observerConfigParams.json";
 import Portfolio from "dojo/text!../../configParamsJSON/portfolioConfigParams.json";
+import Reporter from "dojo/text!../../configParamsJSON/reporterConfigParams.json";
 import Sidebar from "dojo/text!../../configParamsJSON/sidebarConfigParams.json";
 import Slider from "dojo/text!../../configParamsJSON/dataSliderConfigParams.json";
 import ThreeDViewer from "dojo/text!../../configParamsJSON/3dViewerConfigParams.json";
@@ -40,6 +41,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Notify]: Notify,
   [EAppTemplateType.Observer]: Observer,
   [EAppTemplateType.Portfolio]: Portfolio,
+  [EAppTemplateType.Reporter]: Reporter,
   [EAppTemplateType.Sidebar]: Sidebar,
   [EAppTemplateType.Slider]: Slider,
   [EAppTemplateType.ThreeDViewer]: ThreeDViewer,
