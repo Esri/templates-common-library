@@ -39,40 +39,29 @@
             },
             {
               "type": "setting",
-              "id": "onboarding",
+              "id": "splash",
               "express": true,
+              "defaultValue": false,
               "content": [
-                {
-                  "type": "setting",
-                  "id": "showOnboardingOnStart",
-                  "defaultValue": true
-                },
-                {
-                  "type": "setting",
-                  "id": "onboardingButtonText",
-                  "defaultValue": "Okay"
-                },
-                {
-                  "type": "setting",
-                  "id": "onboardingImage",
-                  "defaultValue": ""
-                },
-                {
-                  "type": "setting",
-                  "id": "customOnboarding",
-                  "defaultValue": false,
-                  "express": true,
-                  "content": [
-                    {
+                  {
                       "type": "setting",
-                      "id": "customOnboardingHTML",
-                      "defaultValue": "<h2><span style='color:#0079c1'>Welcome!</span></h2><p>View a location&rsquo;s attachments:</p><p>In addition to browsing through location details and attachments, use the following methods to explore the map:</p><ul><li>Select a feature on the map</li><li>If a search box is available, search for a specific feature</li></ul>",
-                      "express": true
-                    }
-                  ]
-                }
-              ],
-              "defaultValue": true
+                      "id": "splashTitle",
+                      "express": true,
+                      "defaultValue": "Title"
+                  },
+                  {
+                      "type": "setting",
+                      "id": "splashContent",
+                      "express": true,
+                      "defaultValue": "Content"
+                  },
+                  {
+                      "type": "setting",
+                      "id": "splashButtonText",
+                      "express": true,
+                      "defaultValue": "Enter"
+                  }
+              ]
             },
             {
               "type": "setting",

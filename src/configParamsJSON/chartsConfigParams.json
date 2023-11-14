@@ -104,27 +104,27 @@
                 },
                 {
                   "type": "setting",
-                  "id": "coverPage",
-                  "express": true,
+                  "id": "landingPage",
+                  "express": false,
                   "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "coverPageConfig",
-                      "express": true,
+                      "id": "landingPageConfig",
+                      "express": false,
                       "defaultValue": {
-                        "title": "Charts",
-                        "titleColor": "#ffffff",
-                        "subtitle": "View and analyze charts in your map!",
-                        "subtitleColor": "#ffffff",
-                        "textPosition": "center-leading",
-                        "buttonText": "Explore",
-                        "buttonTextColor": "#ffffff",
-                        "background": {
-                          "backgroundType": "color",
-                          "backgroundImage": null,
-                          "backgroundColor": "#0079c1"
-                        }
+                        "titleText": "Title",
+                        "subtitleText": "Subtitle",
+                        "descriptionText": "Description content",
+                        "entryButtonText": "Enter",
+                        "alignment": "center",
+                        "backgroundType": "color",
+                        "textColor": "#FFFFFF",
+                        "entryButtonColor": "#0079C1",
+                        "backgroundColor": "#0079C1",
+                        "iconImage": null,
+                        "iconImageScale": "m",
+                        "backgroundImageSrc": null
                       }
                     }
                   ]
@@ -142,12 +142,6 @@
                         "position": "top-left",
                         "index": 2
                       }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "splashOnStart",
-                      "defaultValue": false,
-                      "express": true
                     },
                     {
                       "type": "setting",
