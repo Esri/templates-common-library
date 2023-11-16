@@ -165,6 +165,46 @@
     },
     {
       "type": "section",
+      "id": "reporter",
+      "content": [
+        {
+          "type": "subsection",
+          "id": "layerOptions",
+          "content": [
+            {
+              "type": "group",
+              "id": "reportLayers",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "reportLayers",
+                  "express": true,
+                  "config": {
+                    "layerSelectionMode": "multiple",
+                    "supportedLayerTypes": ["feature"],
+                    "supportedGeometryTypes": "*",
+                    "supportsFieldSelection": false
+                  },
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "loginTitle",
+              "express": false
+            },
+            {
+              "type": "setting",
+              "id": "description",
+              "express": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
       "id": "interactivity",
       "content": [
         {
