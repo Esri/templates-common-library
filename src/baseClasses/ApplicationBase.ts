@@ -20,7 +20,7 @@ import {
   ApplicationConfig,
   ApplicationConfigs,
   Direction,
-  ILocalTestCase,
+  ILocalTestCase
 } from "../interfaces/applicationBase";
 import { parseConfig } from "./support/configParser";
 import { eachAlways } from "esri/core/promiseUtils";
@@ -36,7 +36,7 @@ import { prefersRTL } from "esri/intl";
 
 import {
   generateDefaultValuesObj,
-  getConfigParams,
+  getConfigParams
 } from "./support/configParamsUtils";
 import { EAppTemplateType } from "./CompatibilityChecker";
 
@@ -46,8 +46,8 @@ const defaultConfig = {
     geometry: {},
     printTask: {},
     elevationSync: {},
-    geocode: [],
-  },
+    geocode: []
+  }
 };
 
 const defaultSettings = {
@@ -55,7 +55,7 @@ const defaultSettings = {
   portal: {},
   urlParams: [],
   webMap: {},
-  webScene: {},
+  webScene: {}
 };
 
 export default class ApplicationBase {
@@ -80,12 +80,12 @@ export default class ApplicationBase {
 
     const configMixin = {
       ...defaultConfig,
-      ...applicationConfig,
+      ...applicationConfig
     };
 
     const settingsMixin = {
       ...defaultSettings,
-      ...applicationBaseSettings,
+      ...applicationBaseSettings
     };
 
     this._mixinSettingsDefaults(settingsMixin);
@@ -165,7 +165,7 @@ export default class ApplicationBase {
       sortOrder: "desc",
       num: 9,
       start: 1,
-      ...itemParams,
+      ...itemParams
     };
 
     const params = new PortalQueryParams(paramOptions);
@@ -180,7 +180,7 @@ export default class ApplicationBase {
       portal: portalSettings,
       webMap: webMapSettings,
       webScene: websceneSettings,
-      urlParams: urlParamsSettings,
+      urlParams: urlParamsSettings
     } = settings;
 
     const isEsri = await this._isEnvironmentEsri();
@@ -190,16 +190,19 @@ export default class ApplicationBase {
 
     this.config = this._mixinAllConfigs({
       config: this.config,
-      url: urlParams,
+      url: urlParams
     });
 
     if (isEsri) {
       const esriPortalUrl = this._getEsriEnvironmentPortalUrl();
       this.config.portalUrl = esriPortalUrl;
       this.config.proxyUrl = this._getEsriEnvironmentProxyUrl(esriPortalUrl);
-    }else{
-      if(this?.config?.localTestCases?.useLocalTestCases){
-        this._renderLocalTestCasesUI(this.config.localTestCases.testCases, template);
+    } else {
+      if (this?.config?.localTestCases?.useLocalTestCases) {
+        this._renderLocalTestCasesUI(
+          this.config.localTestCases.testCases,
+          template
+        );
         const savedTestCase = this._getSavedTestCase();
         if (savedTestCase) {
           this.config.portalUrl = savedTestCase.portalUrl;
@@ -215,8 +218,8 @@ export default class ApplicationBase {
       );
     }
 
-    const { portalUrl, proxyUrl, oauthappid, appid, usePopupWorkflow } = this.config;
-
+    const { portalUrl, proxyUrl, oauthappid, appid, usePopupWorkflow } =
+      this.config;
 
     this._setPortalUrl(portalUrl);
     this._setProxyUrl(proxyUrl);
@@ -251,7 +254,7 @@ export default class ApplicationBase {
       loadApplicationItem,
       fetchApplicationData,
       loadPortal,
-      checkAppAccess,
+      checkAppAccess
     ])
       .catch((applicationArgs) => applicationArgs)
       .then((applicationArgs) => {
@@ -259,7 +262,7 @@ export default class ApplicationBase {
           applicationItemResponse,
           applicationDataResponse,
           portalResponse,
-          checkAppAccessResponse,
+          checkAppAccessResponse
         ] = applicationArgs;
         const applicationItem = applicationItemResponse
           ? applicationItemResponse.value
@@ -320,7 +323,7 @@ export default class ApplicationBase {
         this.config = this._mixinAllConfigs({
           config: this.config,
           url: urlParams,
-          application: applicationConfig,
+          application: applicationConfig
         });
 
         // DEFAULT VALUES WORK STARTS HERE
@@ -335,7 +338,7 @@ export default class ApplicationBase {
           config: this.config,
           defaultValues,
           url: urlParams,
-          application: applicationConfig,
+          application: applicationConfig
         });
 
         delete this.config.localDefaultValues;
@@ -431,7 +434,7 @@ export default class ApplicationBase {
             : Promise.resolve(),
           groupItems: groupItemsPromises
             ? eachAlways(groupItemsPromises)
-            : Promise.resolve(),
+            : Promise.resolve()
         };
 
         return eachAlways(promises)
@@ -454,7 +457,7 @@ export default class ApplicationBase {
             if (!appAccess?.credential && this.invalidContentOrigin) {
               return Promise.reject({
                 appUrl: this._getAppUrl(),
-                error: "application:origin-other",
+                error: "application:origin-other"
               });
             }
             return this;
@@ -478,7 +481,7 @@ export default class ApplicationBase {
       sortField: "modified",
       sortOrder: "desc",
       num: 9,
-      start: 0,
+      start: 0
     } as PortalQueryParams;
 
     settings.group = {
@@ -487,26 +490,26 @@ export default class ApplicationBase {
       fetchItems: true,
       fetchMultiple: true,
       itemParams: itemParams,
-      ...userGroupSettings,
+      ...userGroupSettings
     };
 
     settings.portal = {
       fetch: true,
-      ...userPortalSettings,
+      ...userPortalSettings
     };
 
     settings.webMap = {
       default: "1970c1995b8f44749f4b9b6e81b5ba45",
       fetch: true,
       fetchMultiple: true,
-      ...userWebmapSettings,
+      ...userWebmapSettings
     };
 
     settings.webScene = {
       default: "e8f078ba0c1546b6a6e0727f877742a5",
       fetch: true,
       fetchMultiple: true,
-      ...userWebsceneSettings,
+      ...userWebsceneSettings
     };
   }
 
@@ -573,7 +576,7 @@ export default class ApplicationBase {
     const testingUrl: string = `${esriUrl}/sharing/rest/info`;
     try {
       const res: Response = await fetch(testingUrl, {
-        method: "HEAD",
+        method: "HEAD"
       });
       return res.ok;
     } catch (err) {
@@ -615,14 +618,14 @@ export default class ApplicationBase {
     portal: Portal
   ): Promise<__esri.PortalQueryResult> {
     const params = new PortalQueryParams({
-      query: `id:"${groupId}"`,
+      query: `id:"${groupId}"`
     });
     return (await portal.queryGroups(params)) as __esri.PortalQueryResult;
   }
 
-  private _loadItem(id: string): IPromise<PortalItem> {
+  private _loadItem(id: string): Promise<PortalItem> {
     const item = new PortalItem({
-      id,
+      id
     });
     return item.load();
   }
@@ -675,7 +678,7 @@ export default class ApplicationBase {
       ...defaultValues,
       ...this.config?.localDefaultValues,
       ...appConfig,
-      ...urlConfig,
+      ...urlConfig
     };
   }
 
@@ -716,11 +719,17 @@ export default class ApplicationBase {
     esriConfig.request.proxyUrl = proxyUrl;
   }
 
-  private _registerOauthInfos(appId: string, portalUrl: string, usePopupWorkflow?: boolean): void {
+  private _registerOauthInfos(
+    appId: string,
+    portalUrl: string,
+    usePopupWorkflow?: boolean
+  ): void {
     if (!appId) {
       return;
     }
-    const shouldUsePopup = usePopupWorkflow || (this._isEmbedded() && !this._isWithinConfigurationExperience());
+    const shouldUsePopup =
+      usePopupWorkflow ||
+      (this._isEmbedded() && !this._isWithinConfigurationExperience());
     const info = new OAuthInfo({
       appId,
       portalUrl,
@@ -825,10 +834,13 @@ export default class ApplicationBase {
 
   /**
    * "localTestCases" array defined in application.json for the template.
-   * This UI allows for the easy selection of a testcase. When selected, 
+   * This UI allows for the easy selection of a testcase. When selected,
    * the template reloads with the selected testcase.
    */
-  private _renderLocalTestCasesUI(testCases: ILocalTestCase[], template: EAppTemplateType): void {
+  private _renderLocalTestCasesUI(
+    testCases: ILocalTestCase[],
+    template: EAppTemplateType
+  ): void {
     const toggleButtonId = "testCases_toggleButton";
     const testCasesSelectorId = "testCases_SelectionDisplay";
 
@@ -859,14 +871,14 @@ export default class ApplicationBase {
     const _renderTestCasesSelector = () => {
       const testCasesDiv = document.createElement("div");
       testCasesDiv.id = testCasesSelectorId;
-  
+
       testCasesDiv.style.position = "absolute";
       testCasesDiv.style.top = "0";
       testCasesDiv.style.right = "0";
       testCasesDiv.style.left = "0";
-  
+
       testCasesDiv.style.height = "240px";
-  
+
       testCasesDiv.style.zIndex = "9999";
       testCasesDiv.style.padding = "10px";
       testCasesDiv.style.margin = "10px";
@@ -884,10 +896,10 @@ export default class ApplicationBase {
       testCases.forEach((testCase) => {
         const testCaseButton = document.createElement("div");
         testCaseButton.style.display = "block";
-  
+
         testCaseButton.style.height = "200px";
         testCaseButton.style.width = "200px";
-        
+
         testCaseButton.style.marginBottom = "10px";
         testCaseButton.style.marginLeft = "5px";
         testCaseButton.style.marginRight = "5px";
@@ -899,14 +911,20 @@ export default class ApplicationBase {
         testCaseButton.style.fontFamily = "Arial, Helvetica, sans-serif";
         testCaseButton.style.fontSize = "14px";
         testCaseButton.style.overflowWrap = "break-word";
-        testCaseButton.style.overflow = "hidden";        
+        testCaseButton.style.overflow = "hidden";
         testCaseButton.innerHTML = `
         <h2 style="font-weight: bold;">${testCase.desc}</h2>
         <hr />
         <div style="font-size: 0.8rem;">${testCase.appid}</div>
         <div style="font-size: 0.8rem;">${testCase.portalUrl}</div>
-        <a href="${testCase.portalUrl}/${template}?appid=${testCase.appid}" target="_blank">Link</a>
-        ${testCase.issue != null ? (`<a href="${testCase.issue}" target="_blank">Linked Issue</a>`) : null}
+        <a href="${testCase.portalUrl}/${template}?appid=${
+          testCase.appid
+        }" target="_blank">Link</a>
+        ${
+          testCase.issue != null
+            ? `<a href="${testCase.issue}" target="_blank">Linked Issue</a>`
+            : null
+        }
         `;
         testCaseButton.addEventListener("click", () => {
           this._setSavedTestCase(testCase);
