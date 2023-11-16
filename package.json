@@ -18,7 +18,6 @@
   "author": "Cameron Smith (c.smith@esri.com)",
   "license": "ISC",
   "devDependencies": {
-    "@types/arcgis-js-api": "^4.28.0",
     "@types/jest": "^26.0.19",
     "arcgis-js-api": "^4.28.8",
     "axios": "^0.21.1",

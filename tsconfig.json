@@ -1,33 +1,19 @@
 {
-    "compilerOptions": {
-      "sourceMap": false,
-      "lib": [
-        "es6",
-        "dom",
-        "scripthost"
-      ],
-      "declaration": false,
-      "noImplicitAny": false,
-      "module": "amd",
-      "target": "ES2020",
-      "outDir": "./dist",
-      "moduleResolution": "node",
-      "esModuleInterop": true,
-      "experimentalDecorators": true,
-      "jsx": "react",
-      "jsxFactory": "tsx"
-    },
-    "include": [
-      "./src/**/*.ts",
-      "./src/**/*.tsx"
-    ],
-    "exclude": [
-      "./node_modules",
-      "./dist",
-      "./distESM",
-      "./tests"
-    ],
-    "files": [
-      "./node_modules/@types/arcgis-js-api/index.d.ts"
-    ]
-  }
+  "compilerOptions": {
+    "sourceMap": false,
+    "lib": ["es6", "dom", "scripthost"],
+    "declaration": false,
+    "noImplicitAny": false,
+    "module": "amd",
+    "target": "ES2020",
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "jsxFactory": "tsx"
+  },
+  "files": ["./node_modules/arcgis-js-api/index.d.ts"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": ["./node_modules", "./dist", "./distESM", "./tests"]
+}
