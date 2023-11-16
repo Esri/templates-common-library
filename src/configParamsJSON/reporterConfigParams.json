@@ -4,15 +4,14 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": [
-          "2d"
-        ]
+        "itemTypes": ["2d"]
       },
       "content": [
         {
           "type": "setting",
           "id": "mapArea",
           "express": false,
+          "defaultValue": false,
           "content": [
             {
               "type": "setting",
@@ -20,8 +19,7 @@
               "express": false,
               "defaultValue": null
             }
-          ],
-          "defaultValue": false
+          ]
         }
       ]
     },
@@ -39,52 +37,86 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "title",
+                  "id": "header",
+                  "defaultValue": true,
                   "express": true,
-                  "defaultValue": ""
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "title",
+                      "express": true,
+                      "defaultValue": ""
+                    },
+                    {
+                      "type": "setting",
+                      "id": "titleLink",
+                      "express": false,
+                      "defaultValue": ""
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
-                  "id": "titleLink",
-                  "express": false,
-                  "defaultValue": ""
-                }
-              ]
-            },
-            {
-              "type": "setting",
-              "id": "header",
-              "defaultValue": true,
-              "express": false
-            },
-            {
-              "type": "setting",
-              "id": "legend",
-              "defaultValue": true,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "legendPosition",
-                  "defaultValue": {
-                    "position": "top-right",
-                    "index": 0
-                  }
+                  "id": "legend",
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "legendPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "legendOpenAtStart",
+                      "defaultValue": false
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
-                  "id": "legendOpenAtStart",
-                  "defaultValue": false
-                }
-              ]
-            },
-            {
-              "type": "group",
-              "id": "mapA11y",
-              "content": [
+                  "id": "splash",
+                  "defaultValue": false,
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "splashOnStart",
+                      "defaultValue": true,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashTitle",
+                      "defaultValue": "Welcome!",
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashContent",
+                      "defaultValue": "View and compare data in noncontiguous locations.",
+                      "express": true
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashButtonText",
+                      "defaultValue": "Explore",
+                      "express": false
+                    }
+                  ]
+                },
                 {
-                  "type": "setting",
-                  "id": "mapA11yDesc",
-                  "express": true
+                  "type": "group",
+                  "id": "mapA11y",
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "mapA11yDesc",
+                      "express": true
+                    }
+                  ]
                 }
               ]
             }
@@ -92,112 +124,40 @@
         },
         {
           "type": "subsection",
-          "id": "coverPageOrSplash",
-          "content": [
-            {
-              "type": "setting",
-              "id": "enableSplashOrCover",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "splashModeType",
-                  "config": {
-                    "branches": [
-                      [
-                        "coverPageConfig"
-                      ],
-                      [
-                        "splashTitle",
-                        "splashContent",
-                        "splashButtonText",
-                        "splashIsOpen"
-                      ]
-                    ]
-                  },
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "coverPageConfig",
-                      "express": false,
-                      "defaultValue": {
-                        "title": "Public Notification",
-                        "titleColor": "#ffffff",
-                        "subtitle": "",
-                        "subtitleColor": "#ffffff",
-                        "textPosition": "center-leading",
-                        "buttonText": "Explore",
-                        "buttonTextColor": "#ffffff",
-                        "background": {
-                          "backgroundType": "color",
-                          "backgroundImage": null,
-                          "backgroundColor": "#0079c1"
-                        }
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "splashTitle",
-                      "defaultValue": ""
-                    },
-                    {
-                      "type": "setting",
-                      "id": "splashContent",
-                      "defaultValue": ""
-                    },
-                    {
-                      "type": "setting",
-                      "id": "splashButtonText",
-                      "defaultValue": "Close"
-                    }
-                  ],
-                  "defaultValue": {
-                    "branchValue": "cover-page",
-                    "branchOptionsFieldNames": []
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "id": "reporter",
-      "content": [
-        {
-          "type": "subsection",
-          "id": "layerOptions",
+          "id": "coverPageSettings",
           "content": [
             {
               "type": "group",
-              "id": "reportLayers",
+              "id": "coverPage",
               "content": [
                 {
                   "type": "setting",
-                  "id": "reportLayers",
-                  "express": true,
-                  "config": {
-                    "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": [
-                      "feature"
-                    ],
-                    "supportedGeometryTypes": "*",
-                    "supportsFieldSelection": false
-                  },
-                  "defaultValue": null
+                  "id": "landingPage",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "landingPageConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "titleText": "Title",
+                        "subtitleText": "Subtitle",
+                        "descriptionText": "Description content",
+                        "entryButtonText": "Enter",
+                        "alignment": "center",
+                        "backgroundType": "color",
+                        "textColor": "#FFFFFF",
+                        "entryButtonColor": "#0079C1",
+                        "backgroundColor": "#0079C1",
+                        "iconImage": null,
+                        "iconImageScale": "m",
+                        "backgroundImageSrc": null
+                      }
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "type": "setting",
-              "id": "loginTitle",
-              "express": false
-            },
-            {
-              "type": "setting",
-              "id": "description",
-              "express": false
             }
           ]
         }
@@ -215,22 +175,6 @@
               "type": "group",
               "id": "explore",
               "content": [
-                {
-                  "type": "setting",
-                  "id": "bookmarks",
-                  "defaultValue": false,
-                  "express": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "bookmarksPosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
-                      }
-                    }
-                  ]
-                },
                 {
                   "type": "setting",
                   "id": "mapZoom",
@@ -265,16 +209,16 @@
                 },
                 {
                   "type": "setting",
-                  "id": "compassWidget",
-                  "express": false,
+                  "id": "bookmarks",
                   "defaultValue": false,
+                  "express": true,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "compassWidgetPosition",
+                      "id": "bookmarksPosition",
                       "defaultValue": {
-                        "position": "top-left",
-                        "index": 1
+                        "position": "top-right",
+                        "index": 0
                       }
                     }
                   ]
@@ -297,32 +241,44 @@
                 },
                 {
                   "type": "setting",
-                  "id": "measure",
+                  "id": "compassWidget",
                   "express": false,
                   "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "measurePosition",
+                      "id": "compassWidgetPosition",
                       "defaultValue": {
-                        "position": "bottom-right",
+                        "position": "top-left",
+                        "index": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "disableScroll",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "scalebar",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "scalebarPosition",
+                      "defaultValue": {
+                        "position": "bottom-left",
                         "index": 0
                       }
                     },
                     {
                       "type": "setting",
-                      "id": "coordinateFormats",
-                      "express": false,
-                      "defaultValue": "xy"
-                    },
-                    {
-                      "type": "setting",
-                      "id": "measureAreaUnit",
-                      "express": false
-                    },
-                    {
-                      "type": "setting",
-                      "id": "measureLinearUnit",
+                      "id": "scalebarDualMode",
+                      "defaultValue": false,
                       "express": false
                     }
                   ]
@@ -338,28 +294,6 @@
                       "id": "keyboardShortcutsPosition",
                       "defaultValue": {
                         "position": "top-left",
-                        "index": 0
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "group",
-              "id": "navigate",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "scalebar",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "scalebarPosition",
-                      "defaultValue": {
-                        "position": "bottom-left",
                         "index": 0
                       }
                     }
@@ -419,6 +353,18 @@
         },
         {
           "type": "subsection",
+          "id": "search",
+          "content": [
+            {
+              "type": "setting",
+              "id": "searchConfiguration",
+              "express": true,
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "share",
           "content": [
             {
@@ -456,13 +402,33 @@
         },
         {
           "type": "subsection",
-          "id": "search",
+          "id": "customURLParams",
           "content": [
             {
-              "type": "setting",
-              "id": "searchConfiguration",
-              "express": true,
-              "defaultValue": null
+              "type": "group",
+              "id": "customURLParams",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customURLParamName",
+                  "express": false,
+                  "defaultValue": ""
+                },
+                {
+                  "type": "setting",
+                  "id": "customUrlParam",
+                  "express": false,
+                  "config": {
+                    "layerSelectionMode": "single",
+                    "supportedLayerTypes": "*",
+                    "supportedGeometryTypes": "*",
+                    "supportsFieldSelection": true,
+                    "fieldSelectionMode": "single",
+                    "supportedFieldTypes": "*"
+                  },
+                  "defaultValue": null
+                }
+              ]
             }
           ]
         }
@@ -477,32 +443,38 @@
           "id": "theme",
           "content": [
             {
-              "type": "setting",
-              "id": "theme",
-              "defaultValue": "light",
-              "express": true
-            },
-            {
               "type": "group",
-              "id": "headerTheme",
+              "id": "theme",
               "content": [
+                {
+                  "type": "setting",
+                  "id": "theme",
+                  "express": true,
+                  "defaultValue": "light"
+                },
                 {
                   "type": "setting",
                   "id": "customTheme",
                   "express": true,
+                  "defaultValue": null,
                   "config": {
                     "numOfSections": 1,
                     "headerOnly": true,
-                    "singleFont": false
-                  },
-                  "defaultValue": null
+                    "fontAlwaysEditable": true
+                  }
                 }
               ]
             },
             {
-              "type": "setting",
-              "id": "customCSS",
-              "defaultValue": ""
+              "type": "group",
+              "id": "additionalOptions",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customCSS",
+                  "defaultValue": ""
+                }
+              ]
             }
           ]
         },
@@ -533,6 +505,38 @@
               "id": "positionManager",
               "express": true,
               "defaultValue": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "languageSwitcher",
+      "express": false,
+      "content": [
+        {
+          "type": "setting",
+          "id": "languageSwitcher",
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "languageSwitcherOpenAtStart",
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "languageSwitcherConfig",
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "languageSwitcherPosition",
+              "defaultValue": {
+                "position": "top-right",
+                "index": 5
+              }
             }
           ]
         }
