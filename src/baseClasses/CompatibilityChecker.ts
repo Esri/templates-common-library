@@ -27,6 +27,7 @@ export enum EAppTemplateType {
   Reporter = "/apps/instant/reporter/index.html",
   Sidebar = "/apps/instant/sidebar/index.html",
   Slider = "/apps/instant/slider/index.html",
+  Streamflow = "apps/instant/hydro/index.html",
   ZoneLookup = "/apps/instant/lookup/index.html",
 }
 
@@ -70,6 +71,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Reporter,
     EAppTemplateType.Sidebar,
     EAppTemplateType.Slider,
+    EAppTemplateType.Streamflow,
     EAppTemplateType.ZoneLookup,
   ],
   [EResourceType.Group]: [
@@ -91,6 +93,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Reporter,
     EAppTemplateType.Sidebar,
     EAppTemplateType.Slider,
+    EAppTemplateType.Streamflow,
     EAppTemplateType.ThreeDViewer,
     EAppTemplateType.ZoneLookup,
   ],
@@ -178,6 +181,7 @@ export class CompatibilityChecker {
       [EAppTemplateType.Reporter]: resourceMessages.Webmap,
       [EAppTemplateType.Sidebar]: resourceMessages.Webmap,
       [EAppTemplateType.Slider]: resourceMessages.Webmap,
+      [EAppTemplateType.Streamflow]: resourceMessages.Webmap,
       [EAppTemplateType.ThreeDViewer]: resourceMessages.Webscene,
       [EAppTemplateType.ZoneLookup]: resourceMessages.Webmap,
     };

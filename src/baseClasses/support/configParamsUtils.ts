@@ -18,6 +18,7 @@ import Portfolio from "dojo/text!../../configParamsJSON/portfolioConfigParams.js
 import Reporter from "dojo/text!../../configParamsJSON/reporterConfigParams.json";
 import Sidebar from "dojo/text!../../configParamsJSON/sidebarConfigParams.json";
 import Slider from "dojo/text!../../configParamsJSON/dataSliderConfigParams.json";
+import Streamflow from "dojo/text!../../configParamsJSON/streamflowConfigParams.json";
 import ThreeDViewer from "dojo/text!../../configParamsJSON/3dViewerConfigParams.json";
 import ZoneLookup from "dojo/text!../../configParamsJSON/lookupConfigParams.json";
 
@@ -44,6 +45,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Reporter]: Reporter,
   [EAppTemplateType.Sidebar]: Sidebar,
   [EAppTemplateType.Slider]: Slider,
+  [EAppTemplateType.Streamflow]: Streamflow,
   [EAppTemplateType.ThreeDViewer]: ThreeDViewer,
   [EAppTemplateType.ZoneLookup]: ZoneLookup,
 };
