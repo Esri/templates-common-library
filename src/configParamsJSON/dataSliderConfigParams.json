@@ -35,6 +35,7 @@
               ],
               [
                 "timeLoop",
+                "timeAutoplay",
                 "dataSliderExcludedEffect",
                 "dataSliderIncludedEffect",
                 "dataSliderSpeed",
@@ -75,6 +76,12 @@
             {
               "type": "setting",
               "id": "timeLoop",
+              "express": true,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "timeAutoplay",
               "express": true,
               "defaultValue": false
             },
