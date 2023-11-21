@@ -64,8 +64,8 @@
                       "type": "setting",
                       "id": "legendPosition",
                       "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
+                        "position": "bottom-left",
+                        "index": 2
                       }
                     },
                     {
@@ -226,7 +226,7 @@
                       "id": "mapZoomPosition",
                       "defaultValue": {
                         "position": "top-left",
-                        "index": 0
+                        "index": 1
                       }
                     }
                   ]
@@ -257,8 +257,8 @@
                       "type": "setting",
                       "id": "bookmarksPosition",
                       "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
+                        "position": "bottom-right",
+                        "index": 1
                       }
                     }
                   ]
@@ -273,8 +273,8 @@
                       "type": "setting",
                       "id": "locateWidgetPosition",
                       "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
+                        "position": "top-left",
+                        "index": 3
                       }
                     }
                   ]
@@ -290,7 +290,7 @@
                       "id": "compassWidgetPosition",
                       "defaultValue": {
                         "position": "top-left",
-                        "index": 1
+                        "index": 2
                       }
                     }
                   ]
@@ -305,7 +305,7 @@
                   "type": "setting",
                   "id": "scalebar",
                   "express": false,
-                  "defaultValue": true,
+                  "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
@@ -333,7 +333,7 @@
                       "type": "setting",
                       "id": "keyboardShortcutsPosition",
                       "defaultValue": {
-                        "position": "top-left",
+                        "position": "bottom-right",
                         "index": 0
                       }
                     }
@@ -358,7 +358,7 @@
                   "id": "basemapTogglePosition",
                   "defaultValue": {
                     "position": "bottom-left",
-                    "index": 0
+                    "index": 1
                   }
                 },
                 {
@@ -377,8 +377,8 @@
                   "type": "setting",
                   "id": "layerListPosition",
                   "defaultValue": {
-                    "position": "bottom-right",
-                    "index": 0
+                    "position": "top-right",
+                    "index": 1
                   }
                 },
                 {
@@ -430,7 +430,10 @@
                     {
                       "type": "setting",
                       "id": "sharePosition",
-                      "defaultValue": "top-right"
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 2
+                      }
                     }
                   ],
                   "defaultValue": false,
@@ -575,7 +578,7 @@
               "id": "languageSwitcherPosition",
               "defaultValue": {
                 "position": "top-right",
-                "index": 5
+                "index": 0
               }
             }
           ]
