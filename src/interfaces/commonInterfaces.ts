@@ -62,4 +62,37 @@ export interface HighlightConfig {
   highlightHaloColor: string;
 }
 
-export interface ISanitizer { sanitize: (arg0: string) => string; }
+export interface ISanitizer {
+  sanitize: (arg0: string) => string;
+}
+
+// Cover page/Landing page
+export interface CoverPageConfig {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  background: {
+    backgroundType: "color" | "image";
+    backgroundColor: string;
+    backgroundImage: {
+      name: string;
+      url: string;
+      size: number;
+    };
+  };
+}
+
+export interface LandingPageConfig {
+  titleText: string;
+  subtitleText: string;
+  descriptionText: string;
+  entryButtonText: string;
+  alignment: string;
+  backgroundType: string;
+  textColor: string;
+  entryButtonColor: string;
+  backgroundColor: string;
+  iconImage: string;
+  iconImageScale: string;
+  backgroundImageSrc: string;
+}
