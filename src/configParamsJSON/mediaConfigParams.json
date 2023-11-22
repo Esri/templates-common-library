@@ -133,30 +133,30 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "coverPage",
+                  "id": "landingPage",
                   "express": false,
+                  "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "coverPageConfig",
+                      "id": "landingPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "title": "Title",
-                        "titleColor": "#ffffff",
-                        "subtitle": "subtitle",
-                        "subtitleColor": "#ffffff",
-                        "textPosition": "center-leading",
-                        "buttonText": "Explore",
-                        "buttonTextColor": "#ffffff",
-                        "background": {
-                          "backgroundType": "color",
-                          "backgroundImage": null,
-                          "backgroundColor": "#0079c1"
-                        }
+                        "titleText": "",
+                        "subtitleText": "",
+                        "descriptionText": "",
+                        "entryButtonText": "",
+                        "alignment": "center",
+                        "backgroundType": "color",
+                        "textColor": "#FFFFFF",
+                        "entryButtonColor": "#0079C1",
+                        "backgroundColor": "#0079C1",
+                        "iconImage": null,
+                        "iconImageScale": "m",
+                        "backgroundImageSrc": null
                       }
                     }
-                  ],
-                  "defaultValue": false
+                  ]
                 }
               ]
             }
