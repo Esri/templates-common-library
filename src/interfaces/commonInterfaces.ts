@@ -96,3 +96,17 @@ export interface LandingPageConfig {
   iconImageScale: string;
   backgroundImageSrc: string;
 }
+
+export interface IOnboardingValues {
+  onboarding: boolean;
+  onboardingButtonText: string;
+  customOnboarding: boolean;
+  customOnboardingHTML: string;
+}
+
+export interface ISplash {
+  splash: boolean;
+  splashTitle: string;
+  splashContent: string;
+  splashButtonText: string;
+}
