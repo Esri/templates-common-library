@@ -5,20 +5,13 @@ import Search from "esri/widgets/Search";
 import * as urlUtils from "esri/core/urlUtils";
 
 import {
+  ExtentLayerView,
   ICustomTheme,
   IPortalPropsSharedTheme
 } from "../interfaces/commonInterfaces";
 
 import { isWithinConfigurationExperience } from "./configurationSettings";
 import { handleSearchExtent } from "./search";
-
-type ExtentLayerView =
-  | __esri.FeatureLayerView
-  | __esri.OGCFeatureLayerView
-  | __esri.CSVLayerView
-  | __esri.GeoJSONLayerView
-  | __esri.StreamLayerView
-  | __esri.WFSLayerView;
 
 export function checkCustomTheme(
   applyCustomTheme: boolean,
