@@ -51,13 +51,11 @@ export async function addHome(
     view.ui.add(node, homePosition);
   }
 
-  if (node != null) {
-    if (mapArea && mapAreaConfig != null) {
-      node.viewpoint = Viewpoint.fromJSON(mapAreaConfig);
-    } else {
-      const map = view.map as __esri.WebMap | __esri.WebScene;
-      node.viewpoint = map.initialViewProperties.viewpoint;
-    }
+  if (mapArea && mapAreaConfig != null) {
+    node.viewpoint = Viewpoint.fromJSON(mapAreaConfig);
+  } else {
+    const map = view.map as __esri.WebMap | __esri.WebScene;
+    node.viewpoint = map.initialViewProperties.viewpoint;
   }
 }
 
@@ -81,7 +79,7 @@ export async function addZoom(
 
   if (node && mapZoomPosition != null) {
     view.ui.move(node, mapZoomPosition);
-  } else if (mapZoom) {
+  } else {
     view.ui.add(new Zoom({ view, id: uniqueId }), mapZoomPosition);
   }
 }
@@ -338,7 +336,7 @@ export async function addFullscreen(
 
   if (node) {
     view.ui.move(node, fullScreenPosition);
-  } else if (fullScreen) {
+  } else {
     view.ui.add(
       new FullScreen({
         id: uniqueId,
@@ -392,7 +390,7 @@ export async function addLocateWidget(
 
   if (node && locateWidgetPosition != null) {
     view.ui.move(node, locateWidgetPosition);
-  } else if (locateWidget) {
+  } else {
     view.ui.add(new Locate({ view, id: uniqueId }), locateWidgetPosition);
   }
 }
