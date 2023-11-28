@@ -415,6 +415,14 @@
                   "id": "searchConfiguration",
                   "express": true,
                   "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "searchPosition",
+                  "defaultValue": {
+                    "position": "top-right",
+                    "index": 2
+                  }
                 }
               ]
             }
@@ -449,7 +457,7 @@
                       "id": "sharePosition",
                       "defaultValue": {
                         "position": "top-right",
-                        "index": 2
+                        "index": 3
                       }
                     }
                   ],
