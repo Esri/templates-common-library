@@ -152,78 +152,73 @@ export function handleExtentSelector(
  */
 function handleExtentSelectorLVFilter(
   config: any,
-  view: __esri.MapView | __esri.SceneView,
+  view: __esri.MapView,
   layerView?: ExtentLayerView
 ) {
-  if (view?.type === "2d") {
-    const filterLayers = [
-      "feature",
-      "ogc-feature",
-      "csv",
-      "geojson",
-      "stream",
-      "wfs"
-    ];
-    const map = view.map as __esri.WebMap;
-    const { initialViewProperties } = map;
-    const { mapArea, extentSelector, extentSelectorConfig } = config;
-    const isMapAreaOn = mapArea == null ? true : mapArea;
+  const filterLayers = [
+    "feature",
+    "ogc-feature",
+    "csv",
+    "geojson",
+    "stream",
+    "wfs"
+  ];
+  const map = view.map as __esri.WebMap;
+  const { initialViewProperties } = map;
+  const { mapArea, extentSelector, extentSelectorConfig } = config;
+  const isMapAreaOn = mapArea == null ? true : mapArea;
 
-    if (isMapAreaOn && extentSelector && extentSelectorConfig != null) {
-      const { constraints, mapRotation } = extentSelectorConfig;
-      const tempConstraints: __esri.MapViewConstraints = {
-        ...constraints,
-        geometry: fromJSON(constraints?.geometry)?.extent
-      };
-      if (tempConstraints.geometry != null) {
-        const extent = tempConstraints.geometry;
-        if (
-          extent &&
-          (extent?.type === "extent" || extent?.type === "polygon")
-        ) {
-          if (layerView != null) {
+  if (isMapAreaOn && extentSelector && extentSelectorConfig != null) {
+    const { constraints, mapRotation } = extentSelectorConfig;
+    const tempConstraints: __esri.MapViewConstraints = {
+      ...constraints,
+      geometry: fromJSON(constraints?.geometry)?.extent
+    };
+    if (tempConstraints.geometry != null) {
+      const extent = tempConstraints.geometry;
+      if (extent && (extent?.type === "extent" || extent?.type === "polygon")) {
+        if (layerView != null) {
+          if (filterLayers.includes(layerView.layer.type)) {
+            layerView.filter = new FeatureFilter({
+              ...layerView.filter,
+              geometry: extent,
+              spatialRelationship: "intersects"
+            });
+          }
+        } else {
+          view.allLayerViews.forEach((layerView) => {
             if (filterLayers.includes(layerView.layer.type)) {
-              layerView.filter = new FeatureFilter({
-                ...layerView.filter,
+              const filterLV = layerView as ExtentLayerView;
+              filterLV.filter = new FeatureFilter({
+                ...filterLV.filter,
                 geometry: extent,
                 spatialRelationship: "intersects"
               });
             }
-          } else {
-            view.allLayerViews.forEach((layerView) => {
-              if (filterLayers.includes(layerView.layer.type)) {
-                const filterLV = layerView as ExtentLayerView;
-                filterLV.filter = new FeatureFilter({
-                  ...filterLV.filter,
-                  geometry: extent,
-                  spatialRelationship: "intersects"
-                });
-              }
-            });
-          }
-        }
-      }
-      view.constraints = tempConstraints;
-      setMapRotation(view, mapRotation);
-    } else {
-      view.allLayerViews.forEach((layerView) => {
-        if (filterLayers.includes(layerView.layer.type)) {
-          const featureLV = layerView as ExtentLayerView;
-          featureLV.filter = new FeatureFilter({
-            ...featureLV.filter,
-            geometry: undefined,
-            spatialRelationship: undefined
           });
         }
-      });
-      view.rotation = initialViewProperties.viewpoint?.rotation ?? 0;
-      view.constraints.geometry = undefined;
-      view.constraints.minZoom = -1;
-      view.constraints.maxZoom = -1;
-      view.constraints.minScale = 0;
-      view.constraints.maxScale = 0;
-      view.constraints.rotationEnabled = true;
+      }
     }
+    view.constraints = tempConstraints;
+    setMapRotation(view, mapRotation);
+  } else {
+    view.allLayerViews.forEach((layerView) => {
+      if (filterLayers.includes(layerView.layer.type)) {
+        const featureLV = layerView as ExtentLayerView;
+        featureLV.filter = new FeatureFilter({
+          ...featureLV.filter,
+          geometry: undefined,
+          spatialRelationship: undefined
+        });
+      }
+    });
+    view.rotation = initialViewProperties.viewpoint?.rotation ?? 0;
+    view.constraints.geometry = undefined;
+    view.constraints.minZoom = -1;
+    view.constraints.maxZoom = -1;
+    view.constraints.minScale = 0;
+    view.constraints.maxScale = 0;
+    view.constraints.rotationEnabled = true;
   }
 }
 

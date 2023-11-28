@@ -477,7 +477,7 @@ export async function addShare(
 ): Promise<any | undefined> {
   const { share, sharePosition, shareIncludeEmbed, shareIncludeSocial } =
     config;
-  const uniqueId = "esri--instant-apps-share";
+  const uniqueId = "esri-instant-apps-share";
   const node = view.ui.find(uniqueId) as __esri.Expand;
 
   if (!share) {
@@ -541,7 +541,7 @@ export async function addKeyboardShortcuts(
   commonMessages: any
 ): Promise<void> {
   const { keyboardShortcuts, keyboardShortcutsPosition } = config;
-  const uniqueId = "esri--instant-apps-keyboard-shortcuts";
+  const uniqueId = "esri-instant-apps-keyboard-shortcuts";
   const node = view.ui.find(uniqueId) as __esri.Expand;
 
   if (!keyboardShortcuts) {
@@ -600,7 +600,7 @@ export async function addMeasurementTools(
   commonMessages: any
 ): Promise<void> {
   const { measure, measurePosition } = config;
-  const uniqueId = "esri--instant-apps-measurement";
+  const uniqueId = "esri-instant-apps-measurement";
   const node = view.ui.find(uniqueId) as __esri.Expand;
 
   if (!measure) {
