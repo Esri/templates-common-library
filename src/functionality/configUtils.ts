@@ -73,10 +73,11 @@ export function getSharedTheme(
  */
 
 export function updateViewsCalciteMode(mode: "light" | "dark"): void {
-  const prevCalciteMode =
-    mode === "light" ? "calcite-mode-dark" : "calcite-mode-light";
-  const calciteMode =
-    mode === "light" ? "calcite-mode-light" : "calcite-mode-dark";
+  const isLight = mode === "light";
+  const light = "calcite-mode-light";
+  const dark = "calcite-mode-dark";
+  const prevCalciteMode = isLight ? dark : light;
+  const calciteMode = isLight ? light : dark;
   const uiContainers = document.querySelectorAll(`.esri-ui.${prevCalciteMode}`);
   for (let i = 0; i < uiContainers.length; i++) {
     uiContainers[i].className = uiContainers[i].className.replace(
