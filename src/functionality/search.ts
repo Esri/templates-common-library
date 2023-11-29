@@ -1,5 +1,6 @@
 import Search from "esri/widgets/Search";
 import FeatureLayer from "esri/layers/FeatureLayer";
+import { fromJSON } from "esri/geometry/support/jsonUtils";
 
 import { when } from "esri/core/reactiveUtils";
 
@@ -80,7 +81,7 @@ export function createSearch(
             "Addr_type",
             "Match_addr",
             "StAddr",
-            "City",
+            "City"
           ];
           locatorSource.outFields = outFields;
           locatorSource.singleLineFieldName = "SingleLine";
@@ -93,14 +94,14 @@ export function createSearch(
   } else {
     searchConfiguration = {
       ...searchConfiguration,
-      includeDefaultSources: true,
+      includeDefaultSources: true
     };
   }
 
   const searchWidget = new Search({
     view,
     portal,
-    ...searchConfiguration,
+    ...searchConfiguration
   });
 
   when(
@@ -127,4 +128,34 @@ export function createSearch(
   );
 
   return searchWidget;
+}
+
+export function handleSearchExtent(
+  config: any,
+  searchWidget: __esri.widgetsSearch
+): void {
+  const { extentSelector, extentSelectorConfig, mapArea } = config;
+  if (searchWidget.sources != null) {
+    let extent: __esri.Geometry | undefined;
+    if (
+      (mapArea === true && extentSelector) ||
+      (mapArea == null && extentSelector)
+    ) {
+      const geometry =
+        fromJSON(extentSelectorConfig?.constraints?.geometry) || null;
+      if (geometry) {
+        extent = geometry.extent;
+      }
+    }
+
+    searchWidget.sources.forEach((source) => {
+      if (extent) {
+        source.filter = {
+          geometry: extent
+        };
+      } else {
+        source.filter = null as any;
+      }
+    });
+  }
 }

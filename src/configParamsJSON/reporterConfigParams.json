@@ -114,6 +114,7 @@
                     {
                       "type": "setting",
                       "id": "mapA11yDesc",
+                      "defaultValue": "",
                       "express": true
                     }
                   ]
@@ -192,11 +193,13 @@
             {
               "type": "setting",
               "id": "loginTitle",
+              "defaultValue": "",
               "express": false
             },
             {
               "type": "setting",
               "id": "description",
+              "defaultValue": "",
               "express": false
             }
           ]
@@ -397,9 +400,31 @@
           "content": [
             {
               "type": "setting",
-              "id": "searchConfiguration",
+              "id": "search",
               "express": true,
-              "defaultValue": null
+              "defaultValue": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "searchOpenAtStart",
+                  "express": true,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "searchConfiguration",
+                  "express": true,
+                  "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "searchPosition",
+                  "defaultValue": {
+                    "position": "top-right",
+                    "index": 2
+                  }
+                }
+              ]
             }
           ]
         },
@@ -432,7 +457,7 @@
                       "id": "sharePosition",
                       "defaultValue": {
                         "position": "top-right",
-                        "index": 2
+                        "index": 3
                       }
                     }
                   ],

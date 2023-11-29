@@ -110,3 +110,11 @@ export interface ISplash {
   splashContent: string;
   splashButtonText: string;
 }
+
+export type ExtentLayerView =
+  | __esri.FeatureLayerView
+  | __esri.OGCFeatureLayerView
+  | __esri.CSVLayerView
+  | __esri.GeoJSONLayerView
+  | __esri.StreamLayerView
+  | __esri.WFSLayerView;
