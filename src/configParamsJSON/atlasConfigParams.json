@@ -38,8 +38,31 @@
               "type": "setting",
               "id": "showSignInBtn",
               "express": true,
-              "defaultValue": false
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "signInOnboarding",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "signInOnboardingTitle",
+                      "express": false,
+                      "defaultValue": "Title"
+                    },
+                    {
+                        "type": "setting",
+                        "id": "signInOnboardingContent",
+                        "express": false,
+                        "defaultValue": "Content"
+                    }
+                  ]
+                }
+              ]
             }
+
           ]
         },
         {
