@@ -15,7 +15,16 @@ import { watch } from "esri/core/reactiveUtils";
 import Widget from "esri/widgets/Widget";
 
 import { tsx } from "esri/widgets/support/widget";
+import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
+import ApplicationBase from "../../baseClasses/ApplicationBase";
 import { getLandingPageValues } from "../../functionality/coverPage";
+
+const KEYS = [
+  "coverPage",
+  "landingPage",
+  "coverPageConfig",
+  "landingPageConfig",
+];
 
 const CSS = {
   backgroundColor: "--instant-apps-landing-page-background-color",
@@ -38,15 +47,24 @@ class LandingPage extends Widget {
   @property()
   portal: __esri.Portal;
 
+  @property()
+  base: ApplicationBase;
+
   postInitialize(): void {
+    this._handleDeprecatedCoverPage();
     document.body.prepend(this.container);
     this.addLandingPageHandles();
   }
 
   render() {
+    const { coverPage, landingPage } = this.configurationSettings;
     return (
       <div>
-        {this.configurationSettings?.landingPage
+        {landingPage === undefined
+          ? coverPage
+            ? this._renderLandingPage()
+            : null
+          : landingPage
           ? this._renderLandingPage()
           : null}
       </div>
@@ -135,6 +153,33 @@ class LandingPage extends Widget {
     const landingPageConfig = this.configurationSettings?.landingPageConfig;
     const coverPageConfig = this.configurationSettings?.coverPageConfig;
     return getLandingPageValues(landingPageConfig, coverPageConfig);
+  }
+
+  private _handleDeprecatedCoverPage(): void {
+    const values = this.base.results.applicationData.value.values;
+    KEYS.forEach((key) =>
+      this._handleUndefined(values, key, this.configurationSettings)
+    );
+  }
+
+  private _handleUndefined(values: any, key: string, config: any): void {
+    if (isWithinConfigurationExperience()) {
+      this._setUndefinedForDraft(values, key, config);
+    } else {
+      this._setUndefinedForPublish(values, key, config);
+    }
+  }
+
+  private _setUndefinedForDraft(values: any, key: string, config: any): void {
+    if (!values?.draft?.hasOwnProperty(key) && !values.hasOwnProperty(key)) {
+      config[key] = undefined;
+    }
+  }
+
+  private _setUndefinedForPublish(values: any, key: string, config: any): void {
+    if (!values.hasOwnProperty(key)) {
+      config[key] = undefined;
+    }
   }
 }
 
