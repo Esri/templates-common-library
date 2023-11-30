@@ -118,3 +118,7 @@ export type ExtentLayerView =
   | __esri.GeoJSONLayerView
   | __esri.StreamLayerView
   | __esri.WFSLayerView;
+export interface LanguageData {
+  locale: string;
+  data: { [key: string]: string };
+}

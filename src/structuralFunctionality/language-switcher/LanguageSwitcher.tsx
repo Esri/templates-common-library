@@ -21,17 +21,22 @@ import { watch, when } from "esri/core/reactiveUtils";
 import ApplicationBase from "../../baseClasses/ApplicationBase";
 import {
   ApplicationConfig,
-  esriWidgetProps
+  esriWidgetProps,
 } from "../../interfaces/applicationBase";
 
 import { getLocale, normalizeMessageBundleLocale } from "esri/intl";
 import PortalItem from "esri/portal/PortalItem";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
-import { LanguageData } from "./support/interfaces";
-import { CSS, HANDLES_KEY, NODE_ID, NO_DEFAULT_FIELDS, PREVENT_OVERWRITE } from "./support/constants";
+import { LanguageData } from "../../interfaces/commonInterfaces";
+import {
+  CSS,
+  HANDLES_KEY,
+  NODE_ID,
+  NO_DEFAULT_FIELDS,
+  PREVENT_OVERWRITE,
+} from "./support/constants";
 import { Defaults, ProperyNames } from "./support/enums";
 import { autoUpdatedStrings } from "../t9nUtils";
-
 
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
@@ -75,7 +80,7 @@ export default class LanguageSwitcher extends Widget {
   expandGroup: string;
 
   @property({
-    readOnly: true
+    readOnly: true,
   })
   readonly selectedLanguageData: LanguageData;
 
@@ -86,7 +91,10 @@ export default class LanguageSwitcher extends Widget {
         "message",
         (e: any) => {
           if (e?.data?.type === "cats-app") {
-            this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
+            this._setLanguageSwitcherUI(
+              this.base.config,
+              this.configurationSettings
+            );
           }
         },
         false
@@ -98,7 +106,9 @@ export default class LanguageSwitcher extends Widget {
     this.removeHandles(HANDLES_KEY);
   }
 
-  getLanguageSwitcherHandles(widgetProps: esriWidgetProps): __esri.WatchHandle[] {
+  getLanguageSwitcherHandles(
+    widgetProps: esriWidgetProps
+  ): __esri.WatchHandle[] {
     this.addHandles(
       watch(
         () => this.configurationSettings?.languageSwitcherConfig,
@@ -112,19 +122,31 @@ export default class LanguageSwitcher extends Widget {
     return [
       watch(
         () => this.configurationSettings?.languageSwitcher,
-        () => this._languageSwitcherCallback(widgetProps, ProperyNames.LanguageSwitcher),
+        () =>
+          this._languageSwitcherCallback(
+            widgetProps,
+            ProperyNames.LanguageSwitcher
+          ),
         { initial: true }
       ),
       watch(
         () => this.configurationSettings?.languageSwitcherOpenAtStart,
-        () => this._languageSwitcherCallback(widgetProps, ProperyNames.LanguageSwitcherOpenAtStart),
+        () =>
+          this._languageSwitcherCallback(
+            widgetProps,
+            ProperyNames.LanguageSwitcherOpenAtStart
+          ),
         { initial: true }
       ),
       watch(
         () => this.configurationSettings?.languageSwitcherPosition,
-        () => this._languageSwitcherCallback(widgetProps, ProperyNames.LanguageSwitcherPosition),
+        () =>
+          this._languageSwitcherCallback(
+            widgetProps,
+            ProperyNames.LanguageSwitcherPosition
+          ),
         { initial: true }
-      )
+      ),
     ];
   }
 
@@ -157,7 +179,10 @@ export default class LanguageSwitcher extends Widget {
     languageSwitcher.group = expandGroup;
   }
 
-  private async _setLanguageSwitcherUI(config: ApplicationConfig, configurationSettings: any) {
+  private async _setLanguageSwitcherUI(
+    config: ApplicationConfig,
+    configurationSettings: any
+  ) {
     const t9nData = this.selectedLanguageData?.data;
 
     if (t9nData) {
@@ -180,7 +205,7 @@ export default class LanguageSwitcher extends Widget {
       languageSwitcher,
       languageSwitcherOpenAtStart,
       languageSwitcherConfig,
-      languageSwitcherPosition
+      languageSwitcherPosition,
     } = config;
 
     const node = this.view.ui.find(NODE_ID) as __esri.Expand;
@@ -194,21 +219,28 @@ export default class LanguageSwitcher extends Widget {
             expandIcon: languageSwitcherConfig?.icon ?? Defaults.Icon,
             expanded: languageSwitcherOpenAtStart,
             view: this.view,
-            mode: "floating"
+            mode: "floating",
           } as __esri.ExpandProperties;
           if (this.expandTooltip) config.expandTooltip = this.expandTooltip;
-          if (this.collapseTooltip) config.collapseTooltip = this.collapseTooltip;
+          if (this.collapseTooltip)
+            config.collapseTooltip = this.collapseTooltip;
           if (this.expandGroup) config.group = this.expandGroup;
           const expand = new Expand(config) as __esri.Expand;
           this._setupAutoUpdateStrings(expand);
-          this.view.ui.add(expand, languageSwitcherPosition ?? Defaults.Position);
+          this.view.ui.add(
+            expand,
+            languageSwitcherPosition ?? Defaults.Position
+          );
         }
       } else {
         if (node) {
           this.view.ui.remove(node);
         }
       }
-    } else if (node && propertyName === ProperyNames.LanguageSwitcherOpenAtStart) {
+    } else if (
+      node &&
+      propertyName === ProperyNames.LanguageSwitcherOpenAtStart
+    ) {
       node.expanded = languageSwitcherOpenAtStart;
     } else if (node && propertyName === ProperyNames.LanguageSwitcherPosition) {
       if (this.expandGroup) node.group = this.expandGroup;
@@ -277,7 +309,9 @@ export default class LanguageSwitcher extends Widget {
 
   private _useDefaultLocaleStrings(data: LanguageData): boolean {
     const defaultLanguage = this._getDefaultLanguage();
-    return data?.locale === defaultLanguage || data === null || data === undefined;
+    return (
+      data?.locale === defaultLanguage || data === null || data === undefined
+    );
   }
 
   private _getDefaultLanguage(): string {
@@ -294,7 +328,10 @@ export default class LanguageSwitcher extends Widget {
     ) as string;
   }
 
-  private _languageSwitcherCallback(widgetProps: esriWidgetProps, propertyName: string): void {
+  private _languageSwitcherCallback(
+    widgetProps: esriWidgetProps,
+    propertyName: string
+  ): void {
     widgetProps.propertyName = propertyName;
     const languageSwitcher = this._handleLanguageSwitcher(widgetProps);
 
@@ -306,7 +343,10 @@ export default class LanguageSwitcher extends Widget {
         when(
           () => this.selectedLanguageData,
           () => {
-            this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
+            this._setLanguageSwitcherUI(
+              this.base.config,
+              this.configurationSettings
+            );
           },
           { initial: true, once: true }
         );
@@ -318,7 +358,11 @@ export default class LanguageSwitcher extends Widget {
       this.handles.add(
         watch(
           () => this.selectedLanguageData,
-          () => this._setLanguageSwitcherUI(this.base.config, this.configurationSettings),
+          () =>
+            this._setLanguageSwitcherUI(
+              this.base.config,
+              this.configurationSettings
+            ),
           { initial: true }
         ),
         HANDLES_KEY
@@ -326,11 +370,17 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  private async _languageSwitcherConfigCallback(widgetProps: esriWidgetProps): Promise<void> {
-    const expand = widgetProps?.view?.ui?.find("esri-language-switcher") as Expand;
+  private async _languageSwitcherConfigCallback(
+    widgetProps: esriWidgetProps
+  ): Promise<void> {
+    const expand = widgetProps?.view?.ui?.find(
+      "esri-language-switcher"
+    ) as Expand;
     if (this.langSwitcherNode) {
-      expand.expandIcon = this.configurationSettings.languageSwitcherConfig.icon;
-      this.langSwitcherNode.config = this.configurationSettings.languageSwitcherConfig;
+      expand.expandIcon =
+        this.configurationSettings.languageSwitcherConfig.icon;
+      this.langSwitcherNode.config =
+        this.configurationSettings.languageSwitcherConfig;
     }
     if (isWithinConfigurationExperience()) await this._refresh();
     this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
@@ -343,25 +393,34 @@ export default class LanguageSwitcher extends Widget {
       const isColor = keyLowerCase.includes("color");
       const isPosition = keyLowerCase.includes("position");
       const preventOverwrite = PREVENT_OVERWRITE.indexOf(key) !== -1;
-      if (typeof config[key] !== "string" || isColor || isPosition || preventOverwrite) {
+      if (
+        typeof config[key] !== "string" ||
+        isColor ||
+        isPosition ||
+        preventOverwrite
+      ) {
         delete config[key];
       }
     }
   }
 
   private _setupAutoUpdateStrings(expand: __esri.Expand): void {
-    if (this.messageBundleName && this.expandTooltipKey && this.collapseTooltipKey) {
+    if (
+      this.messageBundleName &&
+      this.expandTooltipKey &&
+      this.collapseTooltipKey
+    ) {
       autoUpdatedStrings.add({
         obj: expand,
         property: "expandTooltip",
         bundleName: this.messageBundleName,
-        key: this.expandTooltipKey
+        key: this.expandTooltipKey,
       });
       autoUpdatedStrings.add({
         obj: expand,
         property: "collapseTooltip",
         bundleName: this.messageBundleName,
-        key: this.collapseTooltipKey
+        key: this.collapseTooltipKey,
       });
     }
   }

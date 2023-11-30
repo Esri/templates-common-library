@@ -27,7 +27,7 @@ export enum EAppTemplateType {
   Reporter = "/apps/instant/reporter/index.html",
   Sidebar = "/apps/instant/sidebar/index.html",
   Slider = "/apps/instant/slider/index.html",
-  Streamflow = "apps/instant/streamflowviewer/index.html",
+  Streamflow = "/apps/instant/streamflowviewer/index.html",
   ZoneLookup = "/apps/instant/lookup/index.html",
 }
 
