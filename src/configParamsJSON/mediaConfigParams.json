@@ -142,10 +142,10 @@
                       "id": "landingPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "titleText": "",
-                        "subtitleText": "",
+                        "titleText": "Title",
+                        "subtitleText": "Subtitle Text",
                         "descriptionText": "",
-                        "entryButtonText": "",
+                        "entryButtonText": "Explore",
                         "alignment": "center",
                         "backgroundType": "color",
                         "textColor": "#FFFFFF",
