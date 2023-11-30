@@ -11,7 +11,8 @@ const landingPage = new LandingPage({
     container: document.createElement("div"),
     configurationSettings: this._configurationSettings,
     handles: this.handles,
-    portal: this.base.portal
+    portal: this.base.portal,
+    base: this.base
 });
 ```
 
@@ -19,7 +20,8 @@ const landingPage = new LandingPage({
 
 | Property              | Description                                                                       | Type                  |
 | --------------------- | --------------------------------------------------------------------------------- | --------------------- |
-| container                  | A reference to an HTML DOM element.                                          | HTMLElement       |
+| container             | A reference to an HTML DOM element.                                               | HTMLElement           |
 | configurationSettings | Configuration settings class that manages app setting values                      | ConfigurationSettings |
-| portal                  | A portal instance.                                                              | Portal               |
+| portal                | A portal instance.                                                                | Portal                |
 | handles               | Handles that contain watchers for an instant apps's configuration setting values. | Handles               |
+| base                  | Needed to access template app data values to handle deprecated cover page.        | ApplicationBase       |
