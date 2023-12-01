@@ -117,6 +117,43 @@
               ]
             }
           ]
+        },
+        {
+          "type": "subsection",
+          "id": "share",
+          "content": [
+            {
+              "type": "group",
+              "id": "share",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "share",
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeEmbed",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeSocial",
+                      "defaultValue": true,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "sharePosition",
+                      "defaultValue": "top-right"
+                    }
+                  ],
+                  "defaultValue": false,
+                  "express": true
+                }
+              ]
+            }
+          ]
         }
       ]
     },
