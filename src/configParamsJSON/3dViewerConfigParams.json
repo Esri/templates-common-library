@@ -137,30 +137,30 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "coverPage",
+                  "id": "landingPage",
                   "express": false,
+                  "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "coverPageConfig",
+                      "id": "landingPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "title": "Title",
-                        "titleColor": "#ffffff",
-                        "subtitle": "Explore",
-                        "subtitleColor": "#ffffff",
-                        "textPosition": "center-leading",
-                        "buttonText": "Explore",
-                        "buttonTextColor": "#ffffff",
-                        "background": {
-                          "backgroundType": "color",
-                          "backgroundImage": null,
-                          "backgroundColor": "#0079c1"
-                        }
+                        "titleText": "Title",
+                        "subtitleText": "Subtitle Text",
+                        "descriptionText": "",
+                        "entryButtonText": "Explore",
+                        "alignment": "center",
+                        "backgroundType": "color",
+                        "textColor": "#FFFFFF",
+                        "entryButtonColor": "#0079C1",
+                        "backgroundColor": "#0079C1",
+                        "iconImage": null,
+                        "iconImageScale": "m",
+                        "backgroundImageSrc": null
                       }
                     }
-                  ],
-                  "defaultValue": false
+                  ]
                 }
               ]
             }
@@ -1040,6 +1040,38 @@
               "id": "positionManager",
               "express": true,
               "defaultValue": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "languageSwitcher",
+      "express": false,
+      "content": [
+        {
+          "type": "setting",
+          "id": "languageSwitcher",
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "languageSwitcherOpenAtStart",
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "languageSwitcherConfig",
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "languageSwitcherPosition",
+              "defaultValue": {
+                "position": "top-right",
+                "index": 5
+              }
             }
           ]
         }
