@@ -130,11 +130,11 @@
           "content": [
             {
               "type": "group",
-              "id": "coverPage",
+              "id": "landingPage",
               "content": [
                 {
                   "type": "setting",
-                  "id": "coverPage",
+                  "id": "landingPageConfig",
                   "express": false,
                   "content": [
                     {
