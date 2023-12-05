@@ -44,6 +44,22 @@
                     ]
                 },
                 {
+                    "type": "setting",
+                    "id": "help",
+                    "defaultValue": true,
+                    "express": true,
+                    "content": [
+                        {
+                            "type": "setting",
+                            "id": "helpPosition",
+                            "defaultValue": {
+                                "position": "bottom-right",
+                                "index": 0
+                            }
+                        }
+                    ]
+                },
+                {
                     "type": "group",
                     "id": "featureComprehension",
                     "content": [
@@ -72,7 +88,7 @@
                             "type": "setting",
                             "id": "popupFixed",
                             "express": true,
-                            "defaultValue": false,
+                            "defaultValue": true,
                             "content": [
                                 {
                                     "type": "setting",
