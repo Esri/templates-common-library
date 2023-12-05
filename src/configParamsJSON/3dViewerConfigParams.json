@@ -147,9 +147,9 @@
                       "express": false,
                       "defaultValue": {
                         "titleText": "Title",
-                        "subtitleText": "Subtitle Text",
-                        "descriptionText": "",
-                        "entryButtonText": "Explore",
+                        "subtitleText": "Subtitle",
+                        "descriptionText": "Description content",
+                        "entryButtonText": "Enter",
                         "alignment": "center",
                         "backgroundType": "color",
                         "textColor": "#FFFFFF",

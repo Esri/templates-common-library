@@ -144,11 +144,11 @@
           "content": [
             {
               "type": "group",
-              "id": "coverPage",
+              "id": "landingPage",
               "content": [
                 {
                   "type": "setting",
-                  "id": "coverPage",
+                  "id": "landingPageConfig",
                   "express": false,
                   "content": [
                     {
@@ -156,18 +156,18 @@
                       "id": "coverPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "title": "Nearby",
-                        "titleColor": "#ffffff",
-                        "subtitle": "Find nearby locations",
-                        "subtitleColor": "#ffffff",
-                        "textPosition": "center-leading",
-                        "buttonText": "Explore",
-                        "buttonTextColor": "#ffffff",
-                        "background": {
-                          "backgroundType": "color",
-                          "backgroundImage": null,
-                          "backgroundColor": "#0079c1"
-                        }
+                        "titleText": "Title",
+                        "subtitleText": "Subtitle",
+                        "descriptionText": "Description content",
+                        "entryButtonText": "Enter",
+                        "alignment": "center",
+                        "backgroundType": "color",
+                        "textColor": "#FFFFFF",
+                        "entryButtonColor": "#0079C1",
+                        "backgroundColor": "#0079C1",
+                        "iconImage": null,
+                        "iconImageScale": "m",
+                        "backgroundImageSrc": null
                       }
                     }
                   ],
