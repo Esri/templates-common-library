@@ -235,35 +235,29 @@
           "id": "coverPageSettings",
           "content": [
             {
-              "type": "group",
-              "id": "coverPage",
+              "type": "setting",
+              "id": "landingPage",
+              "express": false,
+              "defaultValue": false,
               "content": [
                 {
                   "type": "setting",
-                  "id": "coverPage",
+                  "id": "landingPageConfig",
                   "express": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "coverPageConfig",
-                      "express": false,
-                      "defaultValue": {
-                        "title": "Title",
-                        "titleColor": "#ffffff",
-                        "subtitle": "Subtitle",
-                        "subtitleColor": "#ffffff",
-                        "textPosition": "center-leading",
-                        "buttonText": "Explore",
-                        "buttonTextColor": "#ffffff",
-                        "background": {
-                          "backgroundType": "color",
-                          "backgroundImage": null,
-                          "backgroundColor": "#0079c1"
-                        }
-                      }
-                    }
-                  ],
-                  "defaultValue": false
+                  "defaultValue": {
+                    "titleText": "Title",
+                    "subtitleText": "Subtitle",
+                    "descriptionText": "Description content",
+                    "entryButtonText": "Enter",
+                    "alignment": "center",
+                    "backgroundType": "color",
+                    "textColor": "#FFFFFF",
+                    "entryButtonColor": "#0079C1",
+                    "backgroundColor": "#0079C1",
+                    "iconImage": null,
+                    "iconImageScale": "m",
+                    "backgroundImageSrc": null
+                  }
                 }
               ]
             }
