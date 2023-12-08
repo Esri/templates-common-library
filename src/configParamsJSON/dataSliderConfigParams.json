@@ -510,6 +510,26 @@
                       "defaultValue": "streets-vector"
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "enableFilter",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "filterPosition",
+                      "express": false,
+                      "defaultValue": "top-right"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "filterConfig",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
                 }
               ]
             }
