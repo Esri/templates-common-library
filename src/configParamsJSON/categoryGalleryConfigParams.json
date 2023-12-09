@@ -26,6 +26,26 @@
           "type": "setting",
           "id": "headHTML",
           "defaultValue": ""
+        },
+        {
+          "type": "setting",
+          "defaultValue": true,
+          "express": true,
+          "id": "share",
+          "content": [
+            {
+              "type": "setting",
+              "id": "shareIncludeEmbed",
+              "express": false,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "shareIncludeSocial",
+              "defaultValue": true,
+              "express": false
+            }
+          ]
         }
       ]
     },
@@ -83,7 +103,11 @@
                 {
                   "type": "setting",
                   "id": "filters",
-                  "defaultValue": ["categories", "itemType", "tags"],
+                  "defaultValue": [
+                    "categories",
+                    "itemType",
+                    "tags"
+                  ],
                   "express": true
                 },
                 {
@@ -94,7 +118,13 @@
                 {
                   "type": "setting",
                   "id": "availableItemTypeFilters",
-                  "defaultValue": ["maps", "layers", "scenes", "apps", "files"]
+                  "defaultValue": [
+                    "maps",
+                    "layers",
+                    "scenes",
+                    "apps",
+                    "files"
+                  ]
                 },
                 {
                   "type": "setting",
@@ -143,11 +173,6 @@
                   "id": "itemSummary",
                   "defaultValue": true,
                   "content": [
-                    {
-                      "type": "setting",
-                      "id": "showItemToolTip",
-                      "defaultValue": true
-                    },
                     {
                       "type": "setting",
                       "id": "itemSummaryMaxChar",
@@ -281,8 +306,43 @@
                 },
                 {
                   "type": "setting",
+                  "id": "theme",
+                  "defaultValue": "light",
+                  "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "customTheme",
+                  "express": true,
+                  "config": {
+                    "numOfSections": 1,
+                    "headerOnly": true,
+                    "singleFont": false
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "type": "setting",
                   "id": "customCSS",
                   "defaultValue": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "logo",
+          "content": [
+            {
+              "type": "group",
+              "id": "logo",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "logo",
+                  "express": false,
+                  "defaultValue": null
                 }
               ]
             }
