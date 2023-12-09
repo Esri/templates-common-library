@@ -113,6 +113,29 @@
                   "id": "exportCSV",
                   "express": true,
                   "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "filterPanel",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "expandFilters",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "mapItemFilterConfig",
+                      "express": false,
+                      "defaultValue": null,
+                      "config": {
+                        "mapsFieldName": "mapItemCollection"
+                      }
+                    }
+                  ]
                 }
               ]
             }
