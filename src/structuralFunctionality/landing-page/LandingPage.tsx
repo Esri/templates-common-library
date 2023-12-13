@@ -156,7 +156,7 @@ class LandingPage extends Widget {
   }
 
   private _handleDeprecatedCoverPage(): void {
-    const values = this.base.results.applicationData.value.values;
+    const values = this.base.results.applicationData?.value?.values;
     KEYS.forEach((key) =>
       this._handleUndefined(values, key, this.configurationSettings)
     );
