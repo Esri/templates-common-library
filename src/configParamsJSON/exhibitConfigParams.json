@@ -455,14 +455,6 @@
                 "position": "top-right",
                 "index": 0
               }
-            },
-            {
-              "type": "setting",
-              "id": "legendPosition",
-              "defaultValue": {
-                "position": "bottom-left",
-                "index": 0
-              }
             }
           ]
         }
