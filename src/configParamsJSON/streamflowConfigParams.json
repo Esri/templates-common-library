@@ -88,13 +88,13 @@
                             "type": "setting",
                             "id": "popupFixed",
                             "express": true,
-                            "defaultValue": false,
+                            "defaultValue": true,
                             "content": [
                                 {
                                     "type": "setting",
                                     "id": "popupFixedPosition",
                                     "express": true,
-                                    "defaultValue": "bottom-right"
+                                    "defaultValue": "bottom-left"
                                 }
                             ]
                         }
