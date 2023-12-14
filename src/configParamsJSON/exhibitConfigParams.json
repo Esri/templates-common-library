@@ -154,27 +154,27 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "coverPage",
+                  "id": "landingPage",
                   "express": false,
                   "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "coverPageConfig",
+                      "id": "landingPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "title": "Exhibit",
-                        "titleColor": "#ffffff",
-                        "subtitle": "",
-                        "subtitleColor": "#ffffff",
-                        "textPosition": "center-leading",
-                        "buttonText": "Explore",
-                        "buttonTextColor": "#ffffff",
-                        "background": {
-                          "backgroundType": "color",
-                          "backgroundImage": null,
-                          "backgroundColor": "#0079c1"
-                        }
+                        "titleText": "Title",
+                        "subtitleText": "Subtitle",
+                        "descriptionText": "Description content",
+                        "entryButtonText": "Enter",
+                        "alignment": "center",
+                        "backgroundType": "color",
+                        "textColor": "#FFFFFF",
+                        "entryButtonColor": "#0079C1",
+                        "backgroundColor": "#0079C1",
+                        "iconImage": null,
+                        "iconImageScale": "m",
+                        "backgroundImageSrc": null
                       }
                     }
                   ]
@@ -302,7 +302,15 @@
                   "type": "setting",
                   "id": "share",
                   "express": true,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "shareIncludeSocial",
+                      "defaultValue": true,
+                      "express": false
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
@@ -445,14 +453,6 @@
               "id": "controlPanelPosition",
               "defaultValue": {
                 "position": "top-right",
-                "index": 0
-              }
-            },
-            {
-              "type": "setting",
-              "id": "legendPosition",
-              "defaultValue": {
-                "position": "bottom-left",
                 "index": 0
               }
             }
