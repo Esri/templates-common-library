@@ -24,11 +24,6 @@
         },
         {
           "type": "setting",
-          "id": "headHTML",
-          "defaultValue": ""
-        },
-        {
-          "type": "setting",
           "defaultValue": true,
           "express": true,
           "id": "share",
@@ -46,6 +41,11 @@
               "express": false
             }
           ]
+        },
+        {
+          "type": "setting",
+          "id": "headHTML",
+          "defaultValue": ""
         }
       ]
     },
@@ -317,7 +317,7 @@
                   "config": {
                     "numOfSections": 1,
                     "headerOnly": true,
-                    "singleFont": false
+                    "singleFont": true
                   },
                   "defaultValue": null
                 },
