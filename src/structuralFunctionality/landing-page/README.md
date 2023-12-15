@@ -25,4 +25,4 @@ const landingPage = new LandingPage({
 | portal                | A portal instance.                                                                | Portal                            |
 | handles               | Handles that contain watchers for an instant apps's configuration setting values. | Handles                           |
 | base                  | Needed to access template app data values to handle deprecated cover page.        | ApplicationBase                   |
-| landingPageEl         | Provides access to instant-apps-landing-page node. (Internally set)               | HTMLInstantAppsLandingPageElement |
+| landingPageEl         | Reference to instant-apps-landing-page node. (Internally set)                     | HTMLInstantAppsLandingPageElement |
