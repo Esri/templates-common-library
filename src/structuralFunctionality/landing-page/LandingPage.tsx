@@ -14,7 +14,7 @@ import { property, subclass } from "esri/core/accessorSupport/decorators";
 import { watch } from "esri/core/reactiveUtils";
 import Widget from "esri/widgets/Widget";
 
-import { tsx } from "esri/widgets/support/widget";
+import { storeNode, tsx } from "esri/widgets/support/widget";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
 import ApplicationBase from "../../baseClasses/ApplicationBase";
 import { getLandingPageValues } from "../../functionality/coverPage";
@@ -50,6 +50,10 @@ class LandingPage extends Widget {
   @property()
   base: ApplicationBase;
 
+  @property()
+  landingPageEl;
+
+  @property()
   postInitialize(): void {
     this._handleDeprecatedCoverPage();
     document.body.prepend(this.container);
@@ -86,6 +90,9 @@ class LandingPage extends Widget {
     }
     return (
       <instant-apps-landing-page
+        bind={this}
+        afterCreate={storeNode}
+        data-node-ref="landingPageEl"
         style={styles}
         key="esri-attachment-viewer-landing-page"
         titleText={config?.titleText}
