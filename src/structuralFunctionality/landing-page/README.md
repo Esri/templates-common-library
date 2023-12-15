@@ -18,10 +18,11 @@ const landingPage = new LandingPage({
 
 ## Properties
 
-| Property              | Description                                                                       | Type                  |
-| --------------------- | --------------------------------------------------------------------------------- | --------------------- |
-| container             | A reference to an HTML DOM element.                                               | HTMLElement           |
-| configurationSettings | Configuration settings class that manages app setting values                      | ConfigurationSettings |
-| portal                | A portal instance.                                                                | Portal                |
-| handles               | Handles that contain watchers for an instant apps's configuration setting values. | Handles               |
-| base                  | Needed to access template app data values to handle deprecated cover page.        | ApplicationBase       |
+| Property              | Description                                                                       | Type                              |
+| --------------------- | --------------------------------------------------------------------------------- | --------------------------------- |
+| container             | A reference to an HTML DOM element.                                               | HTMLElement                       |
+| configurationSettings | Configuration settings class that manages app setting values                      | ConfigurationSettings             |
+| portal                | A portal instance.                                                                | Portal                            |
+| handles               | Handles that contain watchers for an instant apps's configuration setting values. | Handles                           |
+| base                  | Needed to access template app data values to handle deprecated cover page.        | ApplicationBase                   |
+| landingPageEl         | Provides access to instant-apps-landing-page node. (Internally set)               | HTMLInstantAppsLandingPageElement |
