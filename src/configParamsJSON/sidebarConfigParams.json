@@ -294,6 +294,12 @@
                 },
                 {
                   "type": "setting",
+                  "id": "orientedImagery",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
                   "id": "details",
                   "defaultValue": true,
                   "express": true,
