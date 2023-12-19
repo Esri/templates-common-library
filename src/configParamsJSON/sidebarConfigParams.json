@@ -91,11 +91,6 @@
                     },
                     {
                       "type": "setting",
-                      "id": "splashOnStart",
-                      "defaultValue": true
-                    },
-                    {
-                      "type": "setting",
                       "id": "splashTitle",
                       "express": true,
                       "defaultValue": "Splash title"
