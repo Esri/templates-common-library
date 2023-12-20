@@ -4,10 +4,10 @@ import {
 } from "../interfaces/commonInterfaces";
 
 const DEFAULT = {
-  titleText: "Title",
-  subtitleText: "Subtitle",
-  descriptionText: "Description content",
-  entryButtonText: "Enter",
+  titleText: "",
+  subtitleText: "",
+  descriptionText: "",
+  entryButtonText: "",
   alignment: "center",
   backgroundType: "color",
   textColor: "#FFFFFF",
