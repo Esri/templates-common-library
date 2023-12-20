@@ -1,5 +1,5 @@
 export const CSS = {
-  base: "esri-interactive-legend-language-switcher"
+  base: "esri-interactive-legend-language-switcher",
 };
 
 export const HANDLES_KEY = "language-switcher-handles";
@@ -43,5 +43,6 @@ export const PREVENT_OVERWRITE = [
   "localeSwitcherLabel",
   "activePanel",
   "relationship",
-  "searchUnits"
+  "searchUnits",
+  "landingPageConfig",
 ];
