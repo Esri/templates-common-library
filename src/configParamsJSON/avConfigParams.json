@@ -43,24 +43,24 @@
               "express": true,
               "defaultValue": false,
               "content": [
-                  {
-                      "type": "setting",
-                      "id": "splashTitle",
-                      "express": true,
-                      "defaultValue": "Title"
-                  },
-                  {
-                      "type": "setting",
-                      "id": "splashContent",
-                      "express": true,
-                      "defaultValue": "Content"
-                  },
-                  {
-                      "type": "setting",
-                      "id": "splashButtonText",
-                      "express": true,
-                      "defaultValue": "Enter"
-                  }
+                {
+                  "type": "setting",
+                  "id": "splashTitle",
+                  "express": true,
+                  "defaultValue": "Title"
+                },
+                {
+                  "type": "setting",
+                  "id": "splashContent",
+                  "express": true,
+                  "defaultValue": "Content"
+                },
+                {
+                  "type": "setting",
+                  "id": "splashButtonText",
+                  "express": true,
+                  "defaultValue": "Enter"
+                }
               ]
             },
             {
@@ -97,7 +97,10 @@
               "id": "appLayout",
               "express": true,
               "config": {
-                "branches": [["hideAttributePanel"], ["thumbnailFormat", "thumbnailHeight", "mapCentricTooltip"]]
+                "branches": [
+                  ["hideAttributePanel"],
+                  ["thumbnailFormat", "thumbnailHeight", "mapCentricTooltip"]
+                ]
               },
               "content": [
                 {
@@ -417,6 +420,25 @@
                   "defaultValue": null
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "languageSwitcher",
+      "express": false,
+      "content": [
+        {
+          "type": "setting",
+          "id": "languageSwitcher",
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "languageSwitcherConfig",
+              "defaultValue": null
             }
           ]
         }
