@@ -159,7 +159,7 @@
                         "titleText": "",
                         "subtitleText": "",
                         "descriptionText": "",
-                        "entryButtonText": "",
+                        "entryButtonText": "Enter",
                         "alignment": "center",
                         "backgroundType": "color",
                         "textColor": "#FFFFFF",
