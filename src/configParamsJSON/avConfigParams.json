@@ -28,57 +28,96 @@
       "id": "about",
       "content": [
         {
-          "type": "group",
+          "type": "subsection",
           "id": "appComprehension",
           "content": [
             {
-              "type": "setting",
-              "id": "title",
-              "express": true,
-              "defaultValue": ""
-            },
-            {
-              "type": "setting",
-              "id": "splash",
-              "express": true,
-              "defaultValue": false,
+              "type": "group",
+              "id": "appComprehension",
               "content": [
                 {
                   "type": "setting",
-                  "id": "splashTitle",
+                  "id": "title",
                   "express": true,
-                  "defaultValue": "Title"
+                  "defaultValue": ""
                 },
                 {
                   "type": "setting",
-                  "id": "splashContent",
+                  "id": "splash",
                   "express": true,
-                  "defaultValue": "Content"
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "splashTitle",
+                      "express": true,
+                      "defaultValue": "Title"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashContent",
+                      "express": true,
+                      "defaultValue": "Content"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashButtonText",
+                      "express": true,
+                      "defaultValue": "Enter"
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
-                  "id": "splashButtonText",
-                  "express": true,
-                  "defaultValue": "Enter"
+                  "id": "legend",
+                  "defaultValue": false,
+                  "express": true
                 }
               ]
             },
             {
-              "type": "setting",
-              "id": "legend",
-              "defaultValue": false,
-              "express": true
+              "type": "group",
+              "id": "mapA11y",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapA11yDesc",
+                  "express": true
+                }
+              ]
             }
           ]
         },
         {
-          "type": "group",
-          "id": "mapA11y",
+          "type": "subsection",
+          "id": "coverPageSettings",
           "content": [
             {
               "type": "setting",
-              "id": "mapA11yDesc",
-              "express": true
+              "id": "landingPage",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "landingPageConfig",
+                  "express": false,
+                  "defaultValue": {
+                    "titleText": "",
+                    "subtitleText": "",
+                    "descriptionText": "",
+                    "entryButtonText": "",
+                    "alignment": "center",
+                    "backgroundType": "color",
+                    "textColor": "#FFFFFF",
+                    "entryButtonColor": "#0079C1",
+                    "backgroundColor": "#0079C1",
+                    "iconImage": null,
+                    "iconImageScale": "m",
+                    "backgroundImageSrc": null
+                  }
+                }
+              ]
             }
           ]
         }
