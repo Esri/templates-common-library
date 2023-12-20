@@ -53,7 +53,7 @@
                 {
                   "type": "setting",
                   "id": "splashButtonText",
-                  "defaultValue": "Close"
+                  "defaultValue": "Okay"
                 },
                 {
                   "type": "setting",

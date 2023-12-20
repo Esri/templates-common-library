@@ -46,12 +46,12 @@
                     {
                       "type": "setting",
                       "id": "splashTitle",
-                      "defaultValue": "Splash title"
+                      "defaultValue": ""
                     },
                     {
                       "type": "setting",
                       "id": "splashContent",
-                      "defaultValue": "Splash content"
+                      "defaultValue": ""
                     },
                     {
                       "type": "setting",
