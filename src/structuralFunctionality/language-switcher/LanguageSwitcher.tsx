@@ -25,6 +25,7 @@ import {
 } from "../../interfaces/applicationBase";
 
 import { getLocale, normalizeMessageBundleLocale } from "esri/intl";
+import * as intl from "esri/intl";
 import PortalItem from "esri/portal/PortalItem";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
 import { LanguageData } from "../../interfaces/commonInterfaces";
@@ -260,6 +261,7 @@ export default class LanguageSwitcher extends Widget {
     const data = e?.detail?.data;
     const isDefault = this._useDefaultLocaleStrings(data);
     if (isDefault) {
+      intl.setLocale(this._getDefaultLanguage());
       try {
         const templateAppData = await this._portalItem.fetchData();
         const values = templateAppData?.values;
@@ -274,6 +276,8 @@ export default class LanguageSwitcher extends Widget {
       } catch (err) {
         console.error("ERROR: ", err);
       }
+    } else {
+      intl.setLocale(e.detail?.locale);
     }
   }
 
@@ -292,8 +296,8 @@ export default class LanguageSwitcher extends Widget {
         const appItemTitle = this.base?.results?.applicationItem?.value?.title;
         const { config, results } = this.base;
         const { webMapItems } = results;
-        const validWebMapItems = webMapItems.map((response) => response.value);
-        const item = validWebMapItems[0];
+        const validWebMapItems = webMapItems?.map((response) => response.value);
+        const item = validWebMapItems?.[0];
         const title = config?.title
           ? config.title
           : appItemTitle
@@ -303,7 +307,7 @@ export default class LanguageSwitcher extends Widget {
           : "";
         return title;
       default:
-        value;
+        return value ?? "";
     }
   }
 
@@ -316,7 +320,7 @@ export default class LanguageSwitcher extends Widget {
 
   private _getDefaultLanguage(): string {
     // User profile - locale set in user profile
-    const userProfileLocale: string = this.base.portal?.get("user.culture");
+    const userProfileLocale: string = this.base.portal?.user?.culture;
     // Browser - window.navigator.language
     const browserLocale: string = window?.navigator?.language;
     // ArcGIS JS API - locale currently set in JS api
