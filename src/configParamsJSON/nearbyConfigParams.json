@@ -156,9 +156,9 @@
                       "id": "coverPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "titleText": "Title",
-                        "subtitleText": "Subtitle",
-                        "descriptionText": "Description content",
+                        "titleText": "",
+                        "subtitleText": "",
+                        "descriptionText": "",
                         "entryButtonText": "Enter",
                         "alignment": "center",
                         "backgroundType": "color",

@@ -31,6 +31,43 @@
       "id": "about",
       "content": [
         {
+          "type": "group",
+          "id": "appComprehension",
+          "content": [
+            {
+              "type": "setting",
+              "id": "splash",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "splashTitle",
+                  "defaultValue": ""
+                },
+                {
+                  "type": "setting",
+                  "id": "splashContent",
+                  "defaultValue": ""
+                },
+                {
+                  "type": "setting",
+                  "id": "splashButtonText",
+                  "defaultValue": "Okay"
+                },
+                {
+                  "type": "setting",
+                  "id": "splashButtonPosition",
+                  "defaultValue": {
+                    "position": "top-right",
+                    "index": 0
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
           "type": "setting",
           "id": "header",
           "defaultValue": false,

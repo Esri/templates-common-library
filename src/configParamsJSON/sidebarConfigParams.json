@@ -93,13 +93,13 @@
                       "type": "setting",
                       "id": "splashTitle",
                       "express": true,
-                      "defaultValue": "Splash title"
+                      "defaultValue": ""
                     },
                     {
                       "type": "setting",
                       "id": "splashContent",
                       "express": true,
-                      "defaultValue": "Splash content",
+                      "defaultValue": "",
                       "config": {
                         "imageUpload": true
                       }
@@ -145,9 +145,9 @@
                       "id": "landingPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "titleText": "Title",
-                        "subtitleText": "Subtitle",
-                        "descriptionText": "Description content",
+                        "titleText": "",
+                        "subtitleText": "",
+                        "descriptionText": "",
                         "entryButtonText": "Enter",
                         "alignment": "center",
                         "backgroundType": "color",
