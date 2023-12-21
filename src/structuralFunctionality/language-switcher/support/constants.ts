@@ -45,5 +45,5 @@ export const PREVENT_OVERWRITE = [
   "localeSwitcherLabel",
   "activePanel",
   "relationship",
-  "searchUnits",
+  "searchUnits"
 ];
