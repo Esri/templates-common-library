@@ -30,6 +30,7 @@ import PortalItem from "esri/portal/PortalItem";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
 import { LanguageData } from "../../interfaces/commonInterfaces";
 import {
+  ALLOW,
   CSS,
   HANDLES_KEY,
   NODE_ID,
@@ -398,10 +399,11 @@ export default class LanguageSwitcher extends Widget {
       const isPosition = keyLowerCase.includes("position");
       const preventOverwrite = PREVENT_OVERWRITE.indexOf(key) !== -1;
       if (
-        typeof config[key] !== "string" ||
-        isColor ||
-        isPosition ||
-        preventOverwrite
+        (typeof config[key] !== "string" ||
+          isColor ||
+          isPosition ||
+          preventOverwrite) &&
+        !ALLOW.includes(key)
       ) {
         delete config[key];
       }

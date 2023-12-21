@@ -8,6 +8,8 @@ export const NODE_ID = "esri-language-switcher";
 
 export const NO_DEFAULT_FIELDS = ["title"];
 
+export const ALLOW = ["landingPageConfig"];
+
 export const PREVENT_OVERWRITE = [
   "portalUrl",
   "appid",
