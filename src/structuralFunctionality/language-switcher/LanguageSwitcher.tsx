@@ -237,7 +237,7 @@ export default class LanguageSwitcher extends Widget {
       ? config?.draft?.[fieldName] ?? config?.[fieldName]
       : config?.[fieldName];
 
-    if (currentValue === undefined || currentValue === null) return;
+    if (currentValue == null) return;
 
     if (isGroupedArray) {
       const [fieldName, value] = this._handleGroupedArrayContent(
