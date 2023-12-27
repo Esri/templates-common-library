@@ -30,7 +30,7 @@ import PortalItem from "esri/portal/PortalItem";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
 import { LanguageData } from "../../interfaces/commonInterfaces";
 import {
-  ALLOW,
+  GROUPED_CONTENT,
   CSS,
   HANDLES_KEY,
   NODE_ID,
@@ -39,6 +39,10 @@ import {
 } from "./support/constants";
 import { Defaults, ProperyNames } from "./support/enums";
 import { autoUpdatedStrings } from "../t9nUtils";
+import {
+  HandleContentArgs,
+  HandleGroupedContentArgs,
+} from "./support/interfaces";
 
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
@@ -186,19 +190,146 @@ export default class LanguageSwitcher extends Widget {
     configurationSettings: any
   ) {
     const t9nData = this.selectedLanguageData?.data;
+    if (!t9nData) return;
 
-    if (t9nData) {
-      const settingKeys = Object.keys(t9nData);
-      settingKeys.forEach((key) => {
-        const withinConfigurationExperience =
-          configurationSettings?.["withinConfigurationExperience"];
-        const defaultLocaleValue = withinConfigurationExperience
-          ? config?.draft?.[key]
-          : config?.[key];
-        const t9nValue = t9nData[key] ?? defaultLocaleValue;
-        configurationSettings.set(key, t9nValue);
-      });
+    const groupedConfigSettings = {};
+    const settingKeys = Object.keys(t9nData);
+
+    const setLanguageSwitcherUICallback = () => {
+      return (key: string) => {
+        const IDs = this._getIDs(key);
+        const isGroup = IDs.length > 1;
+        const args = { key, t9nData, config };
+        if (isGroup) {
+          this._handleGroupedContent({ ...args, IDs, groupedConfigSettings });
+          return;
+        }
+
+        this._handleContent({ ...args, configurationSettings });
+      };
+    };
+
+    settingKeys.forEach(setLanguageSwitcherUICallback());
+
+    const updateGroupedContent = Object.keys(groupedConfigSettings).length > 0;
+    if (updateGroupedContent)
+      Object.assign(configurationSettings, groupedConfigSettings);
+  }
+
+  private _handleGroupedContent({ ...args }: HandleGroupedContentArgs) {
+    const { key, IDs, t9nData, config, groupedConfigSettings } = args;
+
+    // grouped array item - searchConfiguration.sources-s8fg673, filterConfig.layerExpressions.expressions-a3bw528
+    const isGroupedArray = IDs.length > 2;
+
+    // group content - coverPage.titleText, searchConfiguration.allPlaceholder
+    const isFlatGroup = IDs.length === 2;
+
+    const uid = isGroupedArray ? IDs.pop() : null;
+
+    const t9nValue = t9nData[key];
+
+    const withinConfigurationExperience =
+      this.configurationSettings?.["withinConfigurationExperience"];
+
+    const [fieldName] = IDs;
+    const currentValue = withinConfigurationExperience
+      ? config?.draft?.[fieldName]
+      : config?.[fieldName];
+
+    if (isGroupedArray) {
+      const [fieldName, value] = this._handleGroupedArrayContent(
+        IDs,
+        currentValue,
+        uid as string,
+        t9nValue
+      );
+      groupedConfigSettings[fieldName] = value;
+    } else if (isFlatGroup) {
+      const [fieldName, value] = this._handleFlatGroupedContent(
+        IDs,
+        currentValue,
+        t9nValue,
+        groupedConfigSettings
+      );
+      groupedConfigSettings[fieldName] = value;
     }
+  }
+
+  private _handleGroupedArrayContent(
+    IDs: string[],
+    currentValue: any,
+    uid: string,
+    t9nValue: string
+  ) {
+    const [fieldName] = IDs;
+
+    IDs.shift();
+
+    // filterConfig.layerExpressions.expressions-a3bw528
+    if (IDs.length > 2) {
+      const [subsettingID, childSubsettingID, itemPropName] = IDs;
+      const subsetting = currentValue[subsettingID];
+      subsetting.forEach((subsettingItem) => {
+        const childSubsetting = subsettingItem[childSubsettingID];
+        childSubsetting.forEach((childSubsettingItem) => {
+          if (childSubsettingItem["_uid"] === uid) {
+            childSubsettingItem[itemPropName] = t9nValue;
+          }
+        });
+      });
+      return [fieldName, currentValue];
+    }
+    // searchConfiguration.sources-s8fg673
+    else {
+      const [subsettingID, itemPropName] = IDs;
+      const subsetting = currentValue[subsettingID];
+      subsetting.forEach((childSubsetting) => {
+        if (childSubsetting["_uid"] === uid) {
+          childSubsetting[itemPropName] = t9nValue;
+        }
+      });
+      return [fieldName, currentValue];
+    }
+  }
+
+  private _handleFlatGroupedContent(
+    IDs: string[],
+    currentValue: any,
+    t9nValue: string,
+    groupedConfigSettings: { [key: string]: any }
+  ) {
+    const [fieldName, subsettingID] = IDs;
+    currentValue[subsettingID] = t9nValue;
+
+    const doesNotHaveGroupedConfigSetting = !groupedConfigSettings[fieldName];
+    if (doesNotHaveGroupedConfigSetting)
+      groupedConfigSettings[fieldName] = currentValue;
+    const value = {
+      ...groupedConfigSettings[fieldName],
+      [subsettingID]: t9nValue,
+    };
+
+    return [fieldName, value];
+  }
+
+  private _handleContent({ ...args }: HandleContentArgs) {
+    const { configurationSettings, t9nData, key, config } = args;
+
+    const withinConfigurationExperience =
+      configurationSettings?.["withinConfigurationExperience"];
+    const defaultLocaleValue = withinConfigurationExperience
+      ? config?.draft?.[key]
+      : config?.[key];
+    const t9nValue = t9nData[key] ?? defaultLocaleValue;
+    configurationSettings.set(key, t9nValue);
+  }
+
+  private _getIDs(key: string): string[] {
+    const subtrings = key.split("-");
+    const subtrings2 = subtrings[0].split(".");
+    const IDs = [...subtrings2, subtrings[1]].filter(Boolean);
+    return IDs;
   }
 
   private _handleLanguageSwitcher(props: esriWidgetProps): void {
@@ -261,15 +392,15 @@ export default class LanguageSwitcher extends Widget {
 
     const data = e?.detail?.data;
     const isDefault = this._useDefaultLocaleStrings(data);
+    const templateAppData = await this._portalItem.fetchData();
+    const values = templateAppData?.values;
+    const baseConfig = this.base.config;
+    let config: ApplicationConfig = { ...baseConfig, ...values };
+    if (this.configurationSettings.withinConfigurationExperience)
+      config = { ...config, ...values?.draft };
     if (isDefault) {
       intl.setLocale(this._getDefaultLanguage());
       try {
-        const templateAppData = await this._portalItem.fetchData();
-        const values = templateAppData?.values;
-        const baseConfig = this.base.config;
-        let config: ApplicationConfig = { ...baseConfig, ...values };
-        if (this.configurationSettings.withinConfigurationExperience)
-          config = { ...config, ...values?.draft };
         // Iterates fields that do not have a default value set in the app's config params JSON and sets the appropriate value i.e. title
         this._processNoDefaultValues(config);
         this._preventOverwrite(config);
@@ -279,6 +410,7 @@ export default class LanguageSwitcher extends Widget {
       }
     } else {
       intl.setLocale(e.detail?.locale);
+      this._setLanguageSwitcherUI(config, this.configurationSettings);
     }
   }
 
@@ -340,8 +472,6 @@ export default class LanguageSwitcher extends Widget {
     widgetProps.propertyName = propertyName;
     const languageSwitcher = this._handleLanguageSwitcher(widgetProps);
 
-    const handleExists = this.handles.has(HANDLES_KEY);
-
     when(
       () => languageSwitcher,
       () => {
@@ -358,21 +488,6 @@ export default class LanguageSwitcher extends Widget {
       },
       { initial: true, once: true }
     );
-
-    if (!handleExists) {
-      this.handles.add(
-        watch(
-          () => this.selectedLanguageData,
-          () =>
-            this._setLanguageSwitcherUI(
-              this.base.config,
-              this.configurationSettings
-            ),
-          { initial: true }
-        ),
-        HANDLES_KEY
-      );
-    }
   }
 
   private async _languageSwitcherConfigCallback(
@@ -403,7 +518,7 @@ export default class LanguageSwitcher extends Widget {
           isColor ||
           isPosition ||
           preventOverwrite) &&
-        !ALLOW.includes(key)
+        !GROUPED_CONTENT.includes(key)
       ) {
         delete config[key];
       }

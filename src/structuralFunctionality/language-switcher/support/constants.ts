@@ -8,7 +8,11 @@ export const NODE_ID = "esri-language-switcher";
 
 export const NO_DEFAULT_FIELDS = ["title"];
 
-export const ALLOW = ["landingPageConfig"];
+export const GROUPED_CONTENT = [
+  "landingPageConfig",
+  "searchConfiguration",
+  "filterConfig",
+];
 
 export const PREVENT_OVERWRITE = [
   "portalUrl",
@@ -46,5 +50,4 @@ export const PREVENT_OVERWRITE = [
   "activePanel",
   "relationship",
   "searchUnits",
-  "landingPageConfig",
 ];
