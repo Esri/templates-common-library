@@ -51,19 +51,19 @@
                       "type": "setting",
                       "id": "splashTitle",
                       "express": true,
-                      "defaultValue": "Title"
+                      "defaultValue": ""
                     },
                     {
                       "type": "setting",
                       "id": "splashContent",
                       "express": true,
-                      "defaultValue": "Content"
+                      "defaultValue": ""
                     },
                     {
                       "type": "setting",
                       "id": "splashButtonText",
                       "express": true,
-                      "defaultValue": "Enter"
+                      "defaultValue": ""
                     }
                   ]
                 },

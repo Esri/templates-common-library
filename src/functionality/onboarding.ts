@@ -2,9 +2,9 @@ import { IOnboardingValues, ISplash } from "../interfaces/commonInterfaces";
 
 const DEFAULT = {
   splash: false,
-  splashTitle: "Title",
-  splashContent: "Content",
-  splashButtonText: "Enter",
+  splashTitle: "",
+  splashContent: "",
+  splashButtonText: "",
 };
 
 export function getSplashValues(
@@ -20,7 +20,7 @@ export function getSplashValues(
     : onboardingValues
     ? {
         splash: onboarding,
-        splashTitle: "Title",
+        splashTitle: "",
         splashContent:
           customOnboarding && customOnboardingHTML ? customOnboardingHTML : "",
         splashButtonText: onboardingButtonText,
