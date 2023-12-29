@@ -335,6 +335,38 @@
               ]
             }
           ]
+        },
+        {
+          "type": "subsection",
+          "id": "customURLParams",
+          "content": [
+            {
+              "type": "group",
+              "id": "customURLParams",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customURLParamName",
+                  "express": false,
+                  "defaultValue": ""
+                },
+                {
+                  "type": "setting",
+                  "id": "customUrlParam",
+                  "express": false,
+                  "config": {
+                    "layerSelectionMode": "single",
+                    "supportedLayerTypes": "*",
+                    "supportedGeometryTypes": "*",
+                    "supportsFieldSelection": true,
+                    "fieldSelectionMode": "single",
+                    "supportedFieldTypes": "*"
+                  },
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
         }
       ]
     },

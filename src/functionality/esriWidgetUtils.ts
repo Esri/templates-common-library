@@ -396,7 +396,7 @@ export async function addLocateWidget(
 }
 
 /**
- * Watch for changes in search, searchPosition, searchConfiguration, extentSelector, extentSelectorConfig, mapArea
+ * Watch for changes in search, searchOpenAtStart, searchPosition, searchConfiguration, extentSelector, extentSelectorConfig, mapArea
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export async function addSearch(
