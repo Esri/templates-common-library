@@ -96,13 +96,13 @@
                     {
                       "type": "setting",
                       "id": "splashTitle",
-                      "defaultValue": "Welcome!",
+                      "defaultValue": "",
                       "express": false
                     },
                     {
                       "type": "setting",
                       "id": "splashContent",
-                      "defaultValue": "Use forward and back arrows to navigate slides",
+                      "defaultValue": "",
                       "express": true
                     },
                     {

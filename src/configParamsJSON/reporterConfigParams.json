@@ -90,13 +90,13 @@
                     {
                       "type": "setting",
                       "id": "splashTitle",
-                      "defaultValue": "Welcome!",
+                      "defaultValue": "",
                       "express": false
                     },
                     {
                       "type": "setting",
                       "id": "splashContent",
-                      "defaultValue": "View and compare data in noncontiguous locations.",
+                      "defaultValue": "",
                       "express": true
                     },
                     {
