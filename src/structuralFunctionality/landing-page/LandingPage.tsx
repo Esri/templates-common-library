@@ -95,6 +95,7 @@ class LandingPage extends Widget {
         data-node-ref="landingPageEl"
         style={styles}
         key="esri-attachment-viewer-landing-page"
+        fontFamily={this?.configurationSettings?.customTheme?.appFont}
         titleText={config?.titleText}
         subtitleText={config?.subtitleText}
         descriptionText={config?.descriptionText}

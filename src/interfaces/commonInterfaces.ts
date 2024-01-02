@@ -95,6 +95,7 @@ export interface LandingPageConfig {
   iconImage: string;
   iconImageScale: string;
   backgroundImageSrc: string;
+  fontFamily?: string;
 }
 
 export interface IOnboardingValues {
