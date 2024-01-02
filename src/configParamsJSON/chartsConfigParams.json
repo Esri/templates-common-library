@@ -4,9 +4,7 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": [
-          "charts"
-        ]
+        "conditions": ["charts"]
       },
       "content": [
         {
@@ -38,12 +36,7 @@
               "id": "chartsLayout",
               "express": true,
               "config": {
-                "branches": [
-                  [
-                    "panelSize"
-                  ],
-                  []
-                ]
+                "branches": [["panelSize"], []]
               },
               "content": [
                 {
@@ -55,9 +48,7 @@
               ],
               "defaultValue": {
                 "branchValue": "stack",
-                "branchOptionsFieldNames": [
-                  "panelSize"
-                ]
+                "branchOptionsFieldNames": ["panelSize"]
               }
             },
             {
@@ -113,10 +104,10 @@
                       "id": "landingPageConfig",
                       "express": false,
                       "defaultValue": {
-                        "titleText": "Title",
-                        "subtitleText": "Subtitle",
-                        "descriptionText": "Description content",
-                        "entryButtonText": "Enter",
+                        "titleText": "",
+                        "subtitleText": "",
+                        "descriptionText": "",
+                        "entryButtonText": "",
                         "alignment": "center",
                         "backgroundType": "color",
                         "textColor": "#FFFFFF",
@@ -146,14 +137,17 @@
                     {
                       "type": "setting",
                       "id": "splashTitle",
-                      "defaultValue": "Welcome!",
+                      "defaultValue": "",
                       "express": true
                     },
                     {
                       "type": "setting",
                       "id": "splashContent",
-                      "defaultValue": "View and analyze charts in your map!",
-                      "express": true
+                      "defaultValue": "",
+                      "express": true,
+                      "config": {
+                        "imageUpload": true
+                      }
                     },
                     {
                       "type": "setting",
