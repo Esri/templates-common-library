@@ -57,7 +57,10 @@
                       "type": "setting",
                       "id": "splashContent",
                       "express": true,
-                      "defaultValue": ""
+                      "defaultValue": "",
+                      "config": {
+                        "imageUpload": true
+                      }
                     },
                     {
                       "type": "setting",
