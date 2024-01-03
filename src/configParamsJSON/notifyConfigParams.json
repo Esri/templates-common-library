@@ -142,7 +142,10 @@
                     {
                       "type": "setting",
                       "id": "splashContent",
-                      "defaultValue": ""
+                      "defaultValue": "",
+                      "config": {
+                        "imageUpload": true
+                      }
                     },
                     {
                       "type": "setting",
