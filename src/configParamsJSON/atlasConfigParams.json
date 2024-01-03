@@ -56,7 +56,10 @@
                         "type": "setting",
                         "id": "signInOnboardingContent",
                         "express": false,
-                        "defaultValue": "Content"
+                        "defaultValue": "Content",
+                        "config": {
+                          "imageUpload": true
+                        }
                     }
                   ]
                 }
@@ -94,7 +97,10 @@
                     {
                       "type": "setting",
                       "id": "customHeaderHTML",
-                      "defaultValue": ""
+                      "defaultValue": "",
+                      "config": {
+                        "imageUpload": true
+                      }
                     }
                   ]
                 }
