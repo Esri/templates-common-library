@@ -206,7 +206,10 @@
                       "type": "setting",
                       "id": "splashContent",
                       "express": true,
-                      "defaultValue": "Splash content"
+                      "defaultValue": "Splash content",
+                      "config": {
+                        "imageUpload": true
+                      }
                     },
                     {
                       "type": "setting",
