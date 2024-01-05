@@ -80,14 +80,17 @@
                     {
                       "type": "setting",
                       "id": "splashTitle",
-                      "defaultValue": "Welcome!",
+                      "defaultValue": "",
                       "express": false
                     },
                     {
                       "type": "setting",
                       "id": "splashContent",
-                      "defaultValue": "View and compare data in noncontiguous locations.",
-                      "express": true
+                      "defaultValue": "",
+                      "express": true,
+                      "config": {
+                        "imageUpload": true
+                      }
                     },
                     {
                       "type": "setting",
