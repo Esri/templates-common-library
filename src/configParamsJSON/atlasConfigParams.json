@@ -165,6 +165,18 @@
             },
             {
               "type": "setting",
+              "id": "compassWidget",
+              "express": true,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "scalebar",
+              "express": true,
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
               "id": "changeDefaultBasemapCond",
               "defaultValue": false,
               "express": true,
