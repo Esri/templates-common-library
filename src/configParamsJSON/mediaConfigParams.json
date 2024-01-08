@@ -54,7 +54,7 @@
                     {
                       "type": "setting",
                       "id": "splashButtonText",
-                      "defaultValue": "Close"
+                      "defaultValue": ""
                     },
                     {
                       "type": "setting",
@@ -148,7 +148,7 @@
                         "titleText": "",
                         "subtitleText": "",
                         "descriptionText": "",
-                        "entryButtonText": "Enter",
+                        "entryButtonText": "",
                         "alignment": "center",
                         "backgroundType": "color",
                         "textColor": "#FFFFFF",

@@ -56,7 +56,7 @@
                 {
                   "type": "setting",
                   "id": "splashButtonText",
-                  "defaultValue": "Okay"
+                  "defaultValue": ""
                 },
                 {
                   "type": "setting",
