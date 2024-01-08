@@ -162,7 +162,7 @@ export async function addScaleBar(
       ? "dual"
       : portal?.units === "metric"
       ? portal?.units
-      : "non-metric";
+      : "imperial";
     view.ui.move(node, scalebarPosition);
   } else {
     view.ui.add(
@@ -173,7 +173,7 @@ export async function addScaleBar(
           ? "dual"
           : portal?.units === "metric"
           ? portal?.units
-          : "non-metric"
+          : "imperial",
       }),
       scalebarPosition
     );
