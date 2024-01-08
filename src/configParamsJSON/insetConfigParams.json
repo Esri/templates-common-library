@@ -273,6 +273,12 @@
                         "position": "bottom-left",
                         "index": 1
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "scalebarDualMode",
+                      "defaultValue": false,
+                      "express": false
                     }
                   ]
                 },
