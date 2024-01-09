@@ -160,16 +160,17 @@
           "content": [
             {
               "type": "group",
-              "id": "landingPage",
+              "id": "coverPage",
               "content": [
                 {
                   "type": "setting",
-                  "id": "landingPageConfig",
+                  "id": "landingPage",
                   "express": false,
+                  "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "coverPageConfig",
+                      "id": "landingPageConfig",
                       "express": false,
                       "defaultValue": {
                         "titleText": "",
@@ -186,8 +187,7 @@
                         "backgroundImageSrc": null
                       }
                     }
-                  ],
-                  "defaultValue": false
+                  ]
                 }
               ]
             }
