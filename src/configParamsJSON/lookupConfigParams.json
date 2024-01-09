@@ -119,6 +119,22 @@
                   "type": "setting",
                   "id": "mapA11yDesc",
                   "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcuts",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "keyboardShortcutsPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
+                    }
+                  ]
                 }
               ]
             }
@@ -645,22 +661,6 @@
                       "defaultValue": {
                         "position": "top-right",
                         "index": 1
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "keyboardShortcuts",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "keyboardShortcutsPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 0
                       }
                     }
                   ]
