@@ -60,6 +60,22 @@
                         },
                         {
                             "type": "setting",
+                            "id": "help",
+                            "defaultValue": true,
+                            "express": true,
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "helpPosition",
+                                    "defaultValue": {
+                                        "position": "bottom-right",
+                                        "index": 0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "setting",
                             "id": "legend",
                             "defaultValue": true,
                             "content": [
