@@ -185,7 +185,7 @@ class LandingPage extends Widget {
   }
 
   private _setUndefinedForPublish(values: any, key: string, config: any): void {
-    if (!values.hasOwnProperty(key)) {
+    if (!values?.hasOwnProperty(key)) {
       config[key] = undefined;
     }
   }
