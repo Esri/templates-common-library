@@ -133,6 +133,22 @@
                   "type": "setting",
                   "id": "mapA11yDesc",
                   "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcuts",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "keyboardShortcutsPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
+                    }
+                  ]
                 }
               ]
             }
@@ -144,16 +160,17 @@
           "content": [
             {
               "type": "group",
-              "id": "landingPage",
+              "id": "coverPage",
               "content": [
                 {
                   "type": "setting",
-                  "id": "landingPageConfig",
+                  "id": "landingPage",
                   "express": false,
+                  "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "coverPageConfig",
+                      "id": "landingPageConfig",
                       "express": false,
                       "defaultValue": {
                         "titleText": "",
@@ -170,8 +187,7 @@
                         "backgroundImageSrc": null
                       }
                     }
-                  ],
-                  "defaultValue": false
+                  ]
                 }
               ]
             }
@@ -733,22 +749,6 @@
                       "type": "setting",
                       "id": "measureDistancePosition",
                       "defaultValue": "top-right"
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "keyboardShortcuts",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "keyboardShortcutsPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 0
-                      }
                     }
                   ]
                 }
