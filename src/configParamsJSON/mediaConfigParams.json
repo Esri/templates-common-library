@@ -464,6 +464,22 @@
                       "express": false
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "floorFilter",
+                  "defaultValue": false,
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "floorFilterPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    }
+                  ]
                 }
               ]
             },
