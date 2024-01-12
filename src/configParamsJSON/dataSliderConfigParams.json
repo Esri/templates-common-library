@@ -263,6 +263,14 @@
                     "iconImageScale": "m",
                     "backgroundImageSrc": null
                   }
+                },
+                {
+                  "type": "setting",
+                  "id": "landingPagePosition",
+                  "defaultValue": {
+                    "position": "top-right",
+                    "index": 4
+                  }
                 }
               ]
             }
