@@ -264,7 +264,15 @@
                   "type": "setting",
                   "id": "popupPanel",
                   "defaultValue": true,
-                  "express": true
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "classicPanel",
+                      "defaultValue": false,
+                      "express": false
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
