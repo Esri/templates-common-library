@@ -122,8 +122,8 @@ export async function addBookmarks(
       view,
       viewModel: {
         view,
-        capabilities: { time: timeCapability }
-      }
+        capabilities: { time: timeCapability },
+      },
     });
 
     const bookmarksExpand = new Expand({
@@ -132,7 +132,7 @@ export async function addBookmarks(
       id: uniqueId,
       group,
       expandTooltip: tip,
-      collapseTooltip: closeTip
+      collapseTooltip: closeTip,
     });
 
     view.ui.add(bookmarksExpand, bookmarksPosition);
@@ -208,8 +208,8 @@ export async function addLayerList(
     view.ui.move(node, layerListPosition);
   } else {
     const content = new LayerList({
-      style: "modern" as any,
-      view
+      dragEnabled: true,
+      view,
     } as any);
     const layerListExpand = new Expand({
       id: uniqueId,
@@ -219,7 +219,7 @@ export async function addLayerList(
       collapseTooltip: closeTip,
       group,
       mode: "floating",
-      view
+      view,
     });
     view.ui.add(layerListExpand, layerListPosition);
   }
@@ -236,7 +236,7 @@ export async function addBasemap(config: any, view: __esri.MapView) {
   const { originalBasemap, nextBasemap } = await getBasemaps({
     config,
     view,
-    portal
+    portal,
   });
   const node = view.ui.find(uniqueId) as __esri.BasemapToggle;
 
@@ -257,7 +257,7 @@ export async function addBasemap(config: any, view: __esri.MapView) {
     const bmToggle = new BasemapToggle({
       view,
       nextBasemap,
-      id: uniqueId
+      id: uniqueId,
     });
     resetBasemapsInToggle(bmToggle, originalBasemap, nextBasemap);
     view.ui.add(bmToggle, basemapTogglePosition);
@@ -301,7 +301,7 @@ export async function addLegend(
   } else {
     const content = new Legend({
       style: legendConfig?.style,
-      view
+      view,
     });
 
     const legendExpand = new Expand({
@@ -312,7 +312,7 @@ export async function addLegend(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       mode: "floating",
-      view
+      view,
     });
     view.ui.add(legendExpand, legendPosition);
   }
@@ -340,7 +340,7 @@ export async function addFullscreen(
     view.ui.add(
       new FullScreen({
         id: uniqueId,
-        view
+        view,
       }),
       fullScreenPosition
     );
@@ -459,7 +459,7 @@ export async function addSearch(
       mode: "floating",
       collapseTooltip: closeTip,
       expandTooltip: tip,
-      expanded: searchOpenAtStart
+      expanded: searchOpenAtStart,
     });
     view.ui.add(node, searchPosition);
   }
@@ -523,7 +523,7 @@ export async function addShare(
       mode: "floating",
       expandTooltip: tip,
       collapseTooltip: closeTip,
-      view
+      view,
     });
     view.ui.add(shareExpand, sharePosition);
   }
@@ -584,7 +584,7 @@ export async function addKeyboardShortcuts(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       expandIcon: "keyboard",
-      view
+      view,
     });
     view.ui.add(keyboardExpand, keyboardShortcutsPosition);
   }
@@ -643,7 +643,7 @@ export async function addMeasurementTools(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       expandIcon: "measure",
-      view
+      view,
     });
     view.ui.add(measureExpand, measurePosition);
   }
