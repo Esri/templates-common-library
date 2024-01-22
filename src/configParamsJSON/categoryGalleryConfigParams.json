@@ -45,7 +45,10 @@
         {
           "type": "setting",
           "id": "headHTML",
-          "defaultValue": ""
+          "defaultValue": "",
+          "config": {
+            "imageUpload": true
+          }
         }
       ]
     },
