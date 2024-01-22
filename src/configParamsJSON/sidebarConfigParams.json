@@ -52,7 +52,10 @@
                         {
                           "type": "setting",
                           "id": "customHeaderHTML",
-                          "defaultValue": ""
+                          "defaultValue": "",
+                          "config": {
+                            "imageUpload": true
+                          }
                         }
                       ]
                     }
