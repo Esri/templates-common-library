@@ -580,38 +580,6 @@
           ]
         }
       ]
-    },
-    {
-      "type": "section",
-      "id": "languageSwitcher",
-      "express": false,
-      "content": [
-        {
-          "type": "setting",
-          "id": "languageSwitcher",
-          "defaultValue": false,
-          "content": [
-            {
-              "type": "setting",
-              "id": "languageSwitcherOpenAtStart",
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
-              "id": "languageSwitcherConfig",
-              "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "languageSwitcherPosition",
-              "defaultValue": {
-                "position": "top-right",
-                "index": 0
-              }
-            }
-          ]
-        }
-      ]
     }
   ]
 }
