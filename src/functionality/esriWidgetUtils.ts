@@ -211,6 +211,12 @@ export async function addLayerList(
       dragEnabled: true,
       view,
     } as any);
+
+    content?.when(() => {
+      (content as any).dragEnabled =
+        content?.operationalItems?.length <= 1 ? false : true;
+    });
+
     const layerListExpand = new Expand({
       id: uniqueId,
       content,
