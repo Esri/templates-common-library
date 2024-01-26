@@ -245,7 +245,8 @@
                           "map-image",
                           "feature",
                           "imagery",
-                          "group"
+                          "group",
+                          "oriented-imagery"
                         ],
                         "sections": [
                           "addLegend",
