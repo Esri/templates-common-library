@@ -691,6 +691,7 @@
                           "map-image",
                           "feature",
                           "imagery",
+                          "oriented-imagery",
                           "group"
                         ],
                         "sections": [
