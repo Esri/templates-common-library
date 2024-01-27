@@ -114,6 +114,47 @@
             },
             {
               "type": "setting",
+              "id": "splash",
+              "express": true,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "splashButtonPosition",
+                  "defaultValue": {
+                    "position": "top-right",
+                    "index": 0
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "splashOnStart",
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "splashTitle",
+                  "express": true,
+                  "defaultValue": "Splash title"
+                },
+                {
+                  "type": "setting",
+                  "id": "splashContent",
+                  "express": true,
+                  "defaultValue": "Splash content",
+                  "config": {
+                    "imageUpload": true
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "splashButtonText",
+                  "defaultValue": ""
+                }
+              ]
+            },
+            {
+              "type": "setting",
               "id": "landingPage",
               "express": false,
               "defaultValue": false,
