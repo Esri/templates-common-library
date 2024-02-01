@@ -348,6 +348,12 @@
                         "index": 1,
                         "position": "bottom-right"
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "scalebarDualMode",
+                      "defaultValue": false,
+                      "express": false
                     }
                   ]
                 },
