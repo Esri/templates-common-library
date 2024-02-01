@@ -300,6 +300,12 @@
                         "index": 0,
                         "position": "bottom-right"
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "scalebarDualMode",
+                      "defaultValue": false,
+                      "express": false
                     }
                   ],
                   "defaultValue": false
