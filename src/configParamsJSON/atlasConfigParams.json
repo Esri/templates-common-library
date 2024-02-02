@@ -315,6 +315,12 @@
               "id": "showSave",
               "express": false,
               "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "openOnLoad",
+              "express": true,
+              "defaultValue": "none"
             }
           ]
         }
