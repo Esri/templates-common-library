@@ -67,7 +67,7 @@
                                     "type": "setting",
                                     "id": "helpPosition",
                                     "defaultValue": {
-                                        "position": "bottom-right",
+                                        "position": "top-left",
                                         "index": 0
                                     }
                                 }
