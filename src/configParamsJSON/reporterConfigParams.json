@@ -200,21 +200,13 @@
             },
             {
               "type": "setting",
-              "id": "enableNewReports",
-              "defaultValue": true,
-              "express": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "reportSubmittedMessage",
-                  "express": false
-                },
-                {
-                  "type": "setting",
-                  "id": "reportButtonText",
-                  "express": false
-                }
-              ]
+              "id": "reportSubmittedMessage",
+              "express": false
+            },
+            {
+              "type": "setting",
+              "id": "reportButtonText",
+              "express": false
             }
           ]
         }
