@@ -196,7 +196,6 @@
             {
               "type": "setting",
               "id": "reportsHeader",
-              "defaultValue": "Reports",
               "express": false
             },
             {
@@ -208,13 +207,11 @@
                 {
                   "type": "setting",
                   "id": "reportSubmittedMessage",
-                  "defaultValue": "Thank you! Your report was successfully submitted.",
                   "express": false
                 },
                 {
                   "type": "setting",
                   "id": "reportButtonText",
-                  "defaultValue": "Report an incident",
                   "express": false
                 }
               ]
