@@ -195,14 +195,17 @@
             },
             {
               "type": "setting",
-              "id": "loginTitle",
-              "defaultValue": "",
+              "id": "reportsHeader",
               "express": false
             },
             {
               "type": "setting",
-              "id": "description",
-              "defaultValue": "",
+              "id": "reportSubmittedMessage",
+              "express": false
+            },
+            {
+              "type": "setting",
+              "id": "reportButtonText",
               "express": false
             }
           ]
