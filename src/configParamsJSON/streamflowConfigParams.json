@@ -380,25 +380,6 @@
                     "content": [
                         {
                             "type": "group",
-                            "id": "screenshot",
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "screenshot",
-                                    "express": true,
-                                    "defaultValue": false,
-                                    "content": [
-                                        {
-                                            "type": "setting",
-                                            "id": "screenshotPosition",
-                                            "defaultValue": "top-left"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "group",
                             "id": "share",
                             "content": [
                                 {
