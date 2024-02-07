@@ -434,7 +434,8 @@ export async function addSearch(
   } else {
     const map = view.map as __esri.WebMap | __esri.WebScene;
     const portal = map.portalItem?.portal;
-    const searchWidget = createSearch(view, portal, searchConfiguration);
+    const tmpSearchConfig = JSON.parse(JSON.stringify(searchConfiguration));
+    const searchWidget = createSearch(view, portal, tmpSearchConfig);
     searchWidget.on("search-complete", () => {
       if (searchWidget.popupEnabled) {
         // Handle setting focus on popup and then back
