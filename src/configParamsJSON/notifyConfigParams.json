@@ -166,7 +166,7 @@
                     {
                       "type": "setting",
                       "id": "splashButtonText",
-                      "defaultValue": ""
+                      "defaultValue": "Enter"
                     }
                   ],
                   "defaultValue": {
