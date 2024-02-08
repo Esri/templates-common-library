@@ -209,6 +209,10 @@ export async function addLayerList(
   } else {
     const content = new LayerList({
       dragEnabled: true,
+      visibleElements: {
+        errors: true,
+        filter: true,
+      },
       view,
     } as any);
 
