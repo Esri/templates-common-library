@@ -202,13 +202,13 @@
                       "type": "setting",
                       "id": "splashTitle",
                       "express": true,
-                      "defaultValue": "Splash title"
+                      "defaultValue": ""
                     },
                     {
                       "type": "setting",
                       "id": "splashContent",
                       "express": true,
-                      "defaultValue": "Splash content",
+                      "defaultValue": "",
                       "config": {
                         "imageUpload": true
                       }
