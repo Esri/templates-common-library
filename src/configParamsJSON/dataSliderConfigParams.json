@@ -442,9 +442,15 @@
                       "type": "setting",
                       "id": "scalebarPosition",
                       "defaultValue": {
-                        "position": "top-left",
+                        "position": "bottom-left",
                         "index": 0
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "scalebarDualMode",
+                      "defaultValue": false,
+                      "express": false
                     }
                   ]
                 },

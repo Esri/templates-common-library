@@ -213,8 +213,16 @@
             {
               "type": "setting",
               "id": "scalebar",
-              "express": true,
-              "defaultValue": true
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "scalebarDualMode",
+                  "defaultValue": false,
+                  "express": false
+                }
+              ]
             },
             {
               "type": "setting",
