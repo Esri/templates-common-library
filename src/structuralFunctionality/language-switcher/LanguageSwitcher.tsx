@@ -97,7 +97,7 @@ export default class LanguageSwitcher extends Widget {
         "message",
         (e: any) => {
           if (e?.data?.type === "cats-app") {
-            this._setLanguageSwitcherUI(
+            this.setLanguageSwitcherUI(
               this.base.config,
               this.configurationSettings
             );
@@ -119,7 +119,7 @@ export default class LanguageSwitcher extends Widget {
       watch(
         () => this.configurationSettings?.languageSwitcherConfig,
         () => {
-          this._languageSwitcherConfigCallback(widgetProps);
+          this.languageSwitcherConfigCallback(widgetProps);
         },
         { initial: true }
       ),
@@ -129,7 +129,7 @@ export default class LanguageSwitcher extends Widget {
       watch(
         () => this.configurationSettings?.languageSwitcher,
         () =>
-          this._languageSwitcherCallback(
+          this.languageSwitcherCallback(
             widgetProps,
             ProperyNames.LanguageSwitcher
           ),
@@ -138,7 +138,7 @@ export default class LanguageSwitcher extends Widget {
       watch(
         () => this.configurationSettings?.languageSwitcherOpenAtStart,
         () =>
-          this._languageSwitcherCallback(
+          this.languageSwitcherCallback(
             widgetProps,
             ProperyNames.LanguageSwitcherOpenAtStart
           ),
@@ -147,7 +147,7 @@ export default class LanguageSwitcher extends Widget {
       watch(
         () => this.configurationSettings?.languageSwitcherPosition,
         () =>
-          this._languageSwitcherCallback(
+          this.languageSwitcherCallback(
             widgetProps,
             ProperyNames.LanguageSwitcherPosition
           ),
@@ -171,7 +171,7 @@ export default class LanguageSwitcher extends Widget {
         locales={locales}
         portalItem={_portalItem}
         defaultLocale={defaultLocale}
-        onselectedLanguageUpdated={this._handleSelection}
+        onselectedLanguageUpdated={this.handleSelection}
         view={this.view}
         data-node-ref="langSwitcherNode"
       />
@@ -185,7 +185,7 @@ export default class LanguageSwitcher extends Widget {
     languageSwitcher.group = expandGroup;
   }
 
-  async _setLanguageSwitcherUI(
+  async setLanguageSwitcherUI(
     config: ApplicationConfig,
     configurationSettings: any
   ) {
@@ -197,15 +197,15 @@ export default class LanguageSwitcher extends Widget {
 
     const setLanguageSwitcherUICallback = () => {
       return (key: string) => {
-        const IDs = this._getIDs(key);
+        const IDs = this.getIDs(key);
         const isGroup = IDs.length > 1;
         const args = { key, t9nData, config };
         if (isGroup) {
-          this._handleGroupedContent({ ...args, IDs, groupedConfigSettings });
+          this.handleGroupedContent({ ...args, IDs, groupedConfigSettings });
           return;
         }
 
-        this._handleContent({ ...args, configurationSettings });
+        this.handleContent({ ...args, configurationSettings });
       };
     };
 
@@ -216,7 +216,7 @@ export default class LanguageSwitcher extends Widget {
       Object.assign(configurationSettings, groupedConfigSettings);
   }
 
-  _handleGroupedContent({ ...args }: HandleGroupedContentArgs) {
+  handleGroupedContent({ ...args }: HandleGroupedContentArgs) {
     const { key, IDs, t9nData, config, groupedConfigSettings } = args;
 
     // grouped array item - searchConfiguration.sources-s8fg673, filterConfig.layerExpressions.expressions-a3bw528
@@ -240,7 +240,7 @@ export default class LanguageSwitcher extends Widget {
     if (currentValue == null) return;
 
     if (isGroupedArray) {
-      const [fieldName, value] = this._handleGroupedArrayContent(
+      const [fieldName, value] = this.handleGroupedArrayContent(
         IDs,
         currentValue,
         uid as string,
@@ -248,7 +248,7 @@ export default class LanguageSwitcher extends Widget {
       );
       groupedConfigSettings[fieldName] = value;
     } else if (isFlatGroup) {
-      const [fieldName, value] = this._handleFlatGroupedContent(
+      const [fieldName, value] = this.handleFlatGroupedContent(
         IDs,
         currentValue,
         t9nValue,
@@ -258,7 +258,7 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  _handleGroupedArrayContent(
+  handleGroupedArrayContent(
     IDs: string[],
     currentValue: any,
     uid: string,
@@ -295,7 +295,7 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  _handleFlatGroupedContent(
+  handleFlatGroupedContent(
     IDs: string[],
     currentValue: any,
     t9nValue: string,
@@ -315,7 +315,7 @@ export default class LanguageSwitcher extends Widget {
     return [fieldName, value];
   }
 
-  _handleContent({ ...args }: HandleContentArgs) {
+  handleContent({ ...args }: HandleContentArgs) {
     const { configurationSettings, t9nData, key, config } = args;
 
     const withinConfigurationExperience =
@@ -327,14 +327,14 @@ export default class LanguageSwitcher extends Widget {
     configurationSettings.set(key, t9nValue);
   }
 
-  _getIDs(key: string): string[] {
+  getIDs(key: string): string[] {
     const subtrings = key.split("-");
     const subtrings2 = subtrings[0].split(".");
     const IDs = [...subtrings2, subtrings[1]].filter(Boolean);
     return IDs;
   }
 
-  _handleLanguageSwitcher(props: esriWidgetProps): void {
+  handleLanguageSwitcher(props: esriWidgetProps): void {
     const { config, propertyName } = props;
     const {
       languageSwitcher,
@@ -361,7 +361,7 @@ export default class LanguageSwitcher extends Widget {
             config.collapseTooltip = this.collapseTooltip;
           if (this.expandGroup) config.group = this.expandGroup;
           const expand = new Expand(config) as __esri.Expand;
-          this._setupAutoUpdateStrings(expand);
+          this.setupAutoUpdateStrings(expand);
           this.view.ui.add(
             expand,
             languageSwitcherPosition ?? Defaults.Position
@@ -383,17 +383,17 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  async _refresh(): Promise<void> {
+  async refresh(): Promise<void> {
     if (!this.langSwitcherNode) return;
     await this.langSwitcherNode.refresh();
     return Promise.resolve();
   }
 
-  async _handleSelection(e: CustomEvent): Promise<void> {
+  async handleSelection(e: CustomEvent): Promise<void> {
     this._set("selectedLanguageData", e.detail);
 
     const data = e?.detail?.data;
-    const isDefault = this._useDefaultLocaleStrings(data);
+    const isDefault = this.useDefaultLocaleStrings(data);
     const templateAppData = await this._portalItem.fetchData();
     const values = templateAppData?.values;
     const baseConfig = this.base.config;
@@ -401,31 +401,31 @@ export default class LanguageSwitcher extends Widget {
     if (this.configurationSettings.withinConfigurationExperience)
       config = { ...config, ...values?.draft };
     if (isDefault) {
-      intl.setLocale(this._getDefaultLanguage());
+      intl.setLocale(this.getDefaultLanguage());
       try {
         // Iterates fields that do not have a default value set in the app's config params JSON and sets the appropriate value i.e. title
-        this._processNoDefaultValues(config);
-        this._preventOverwrite(config);
+        this.processNoDefaultValues(config);
+        this.preventOverwrite(config);
         Object.assign(this.configurationSettings, config);
       } catch (err) {
         console.error("ERROR: ", err);
       }
     } else {
       intl.setLocale(e.detail?.locale);
-      this._setLanguageSwitcherUI(config, this.configurationSettings);
+      this.setLanguageSwitcherUI(config, this.configurationSettings);
     }
   }
 
-  _processNoDefaultValues(config: ApplicationConfig): void {
+  processNoDefaultValues(config: ApplicationConfig): void {
     NO_DEFAULT_FIELDS.forEach((field) => {
       const value = config[field];
       if (value) return;
-      const processedValue = this._getProcessedValue(field, config[field]);
+      const processedValue = this.getProcessedValue(field, config[field]);
       config[field] = processedValue;
     });
   }
 
-  _getProcessedValue(fieldName: string, value: string): string {
+  getProcessedValue(fieldName: string, value: string): string {
     switch (fieldName) {
       case "title":
         const appItemTitle = this.base?.results?.applicationItem?.value?.title;
@@ -446,14 +446,14 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  _useDefaultLocaleStrings(data: LanguageData): boolean {
-    const defaultLanguage = this._getDefaultLanguage();
+  useDefaultLocaleStrings(data: LanguageData): boolean {
+    const defaultLanguage = this.getDefaultLanguage();
     return (
       data?.locale === defaultLanguage || data === null || data === undefined
     );
   }
 
-  _getDefaultLanguage(): string {
+  getDefaultLanguage(): string {
     // User profile - locale set in user profile
     const userProfileLocale: string = this.base.portal?.user?.culture;
     // Browser - window.navigator.language
@@ -467,12 +467,12 @@ export default class LanguageSwitcher extends Widget {
     ) as string;
   }
 
-  _languageSwitcherCallback(
+  languageSwitcherCallback(
     widgetProps: esriWidgetProps,
     propertyName: string
   ): void {
     widgetProps.propertyName = propertyName;
-    const languageSwitcher = this._handleLanguageSwitcher(widgetProps);
+    const languageSwitcher = this.handleLanguageSwitcher(widgetProps);
 
     when(
       () => languageSwitcher,
@@ -480,7 +480,7 @@ export default class LanguageSwitcher extends Widget {
         when(
           () => this.selectedLanguageData,
           () => {
-            this._setLanguageSwitcherUI(
+            this.setLanguageSwitcherUI(
               this.base.config,
               this.configurationSettings
             );
@@ -492,7 +492,7 @@ export default class LanguageSwitcher extends Widget {
     );
   }
 
-  async _languageSwitcherConfigCallback(
+  async languageSwitcherConfigCallback(
     widgetProps: esriWidgetProps
   ): Promise<void> {
     const expand = widgetProps?.view?.ui?.find(
@@ -504,12 +504,12 @@ export default class LanguageSwitcher extends Widget {
       this.langSwitcherNode.config =
         this.configurationSettings.languageSwitcherConfig;
     }
-    if (isWithinConfigurationExperience()) await this._refresh();
-    this._setLanguageSwitcherUI(this.base.config, this.configurationSettings);
+    if (isWithinConfigurationExperience()) await this.refresh();
+    this.setLanguageSwitcherUI(this.base.config, this.configurationSettings);
   }
 
   // Prevents the current values from being overwritten with a stale value
-  _preventOverwrite(config): void {
+  preventOverwrite(config): void {
     for (const key in config) {
       const keyLowerCase = key.toLowerCase();
       const isColor = keyLowerCase.includes("color");
@@ -527,7 +527,7 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  _setupAutoUpdateStrings(expand: __esri.Expand): void {
+  setupAutoUpdateStrings(expand: __esri.Expand): void {
     if (
       this.messageBundleName &&
       this.expandTooltipKey &&
