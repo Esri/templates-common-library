@@ -185,7 +185,7 @@ export default class LanguageSwitcher extends Widget {
     languageSwitcher.group = expandGroup;
   }
 
-  private async _setLanguageSwitcherUI(
+  async _setLanguageSwitcherUI(
     config: ApplicationConfig,
     configurationSettings: any
   ) {
@@ -216,7 +216,7 @@ export default class LanguageSwitcher extends Widget {
       Object.assign(configurationSettings, groupedConfigSettings);
   }
 
-  private _handleGroupedContent({ ...args }: HandleGroupedContentArgs) {
+  _handleGroupedContent({ ...args }: HandleGroupedContentArgs) {
     const { key, IDs, t9nData, config, groupedConfigSettings } = args;
 
     // grouped array item - searchConfiguration.sources-s8fg673, filterConfig.layerExpressions.expressions-a3bw528
@@ -258,7 +258,7 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  private _handleGroupedArrayContent(
+  _handleGroupedArrayContent(
     IDs: string[],
     currentValue: any,
     uid: string,
@@ -295,7 +295,7 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  private _handleFlatGroupedContent(
+  _handleFlatGroupedContent(
     IDs: string[],
     currentValue: any,
     t9nValue: string,
@@ -315,7 +315,7 @@ export default class LanguageSwitcher extends Widget {
     return [fieldName, value];
   }
 
-  private _handleContent({ ...args }: HandleContentArgs) {
+  _handleContent({ ...args }: HandleContentArgs) {
     const { configurationSettings, t9nData, key, config } = args;
 
     const withinConfigurationExperience =
@@ -327,14 +327,14 @@ export default class LanguageSwitcher extends Widget {
     configurationSettings.set(key, t9nValue);
   }
 
-  private _getIDs(key: string): string[] {
+  _getIDs(key: string): string[] {
     const subtrings = key.split("-");
     const subtrings2 = subtrings[0].split(".");
     const IDs = [...subtrings2, subtrings[1]].filter(Boolean);
     return IDs;
   }
 
-  private _handleLanguageSwitcher(props: esriWidgetProps): void {
+  _handleLanguageSwitcher(props: esriWidgetProps): void {
     const { config, propertyName } = props;
     const {
       languageSwitcher,
@@ -383,13 +383,13 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  private async _refresh(): Promise<void> {
+  async _refresh(): Promise<void> {
     if (!this.langSwitcherNode) return;
     await this.langSwitcherNode.refresh();
     return Promise.resolve();
   }
 
-  private async _handleSelection(e: CustomEvent): Promise<void> {
+  async _handleSelection(e: CustomEvent): Promise<void> {
     this._set("selectedLanguageData", e.detail);
 
     const data = e?.detail?.data;
@@ -416,7 +416,7 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  private _processNoDefaultValues(config: ApplicationConfig): void {
+  _processNoDefaultValues(config: ApplicationConfig): void {
     NO_DEFAULT_FIELDS.forEach((field) => {
       const value = config[field];
       if (value) return;
@@ -425,7 +425,7 @@ export default class LanguageSwitcher extends Widget {
     });
   }
 
-  private _getProcessedValue(fieldName: string, value: string): string {
+  _getProcessedValue(fieldName: string, value: string): string {
     switch (fieldName) {
       case "title":
         const appItemTitle = this.base?.results?.applicationItem?.value?.title;
@@ -446,14 +446,14 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  private _useDefaultLocaleStrings(data: LanguageData): boolean {
+  _useDefaultLocaleStrings(data: LanguageData): boolean {
     const defaultLanguage = this._getDefaultLanguage();
     return (
       data?.locale === defaultLanguage || data === null || data === undefined
     );
   }
 
-  private _getDefaultLanguage(): string {
+  _getDefaultLanguage(): string {
     // User profile - locale set in user profile
     const userProfileLocale: string = this.base.portal?.user?.culture;
     // Browser - window.navigator.language
@@ -467,7 +467,7 @@ export default class LanguageSwitcher extends Widget {
     ) as string;
   }
 
-  private _languageSwitcherCallback(
+  _languageSwitcherCallback(
     widgetProps: esriWidgetProps,
     propertyName: string
   ): void {
@@ -492,7 +492,7 @@ export default class LanguageSwitcher extends Widget {
     );
   }
 
-  private async _languageSwitcherConfigCallback(
+  async _languageSwitcherConfigCallback(
     widgetProps: esriWidgetProps
   ): Promise<void> {
     const expand = widgetProps?.view?.ui?.find(
@@ -509,7 +509,7 @@ export default class LanguageSwitcher extends Widget {
   }
 
   // Prevents the current values from being overwritten with a stale value
-  private _preventOverwrite(config): void {
+  _preventOverwrite(config): void {
     for (const key in config) {
       const keyLowerCase = key.toLowerCase();
       const isColor = keyLowerCase.includes("color");
@@ -527,7 +527,7 @@ export default class LanguageSwitcher extends Widget {
     }
   }
 
-  private _setupAutoUpdateStrings(expand: __esri.Expand): void {
+  _setupAutoUpdateStrings(expand: __esri.Expand): void {
     if (
       this.messageBundleName &&
       this.expandTooltipKey &&
