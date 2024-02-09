@@ -136,12 +136,36 @@
                       }
                     }
                   ]
-                },
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "layerOptions",
+          "content": [
+            {
+              "type": "group",
+              "id": "tableVisibility",
+              "express": false,
+              "content": [
                 {
                   "type": "setting",
-                  "id": "floorFilter",
-                  "defaultValue": false,
-                  "express": false
+                  "id": "mapItemLayerSelector",
+                  "express": false,
+                  "config": {
+                    "layerSelectionMode": "none",
+                    "mapsFieldName": "mapItemCollection",
+                    "supportedGeometryTypes": "*",
+                    "supportedLayerTypes": [
+                      "feature"
+                    ],
+                    "supportsFieldSelection": true,
+                    "fieldSelectionMode": "multiple",
+                    "dragEnabled": true
+                  },
+                  "defaultValue": null
                 }
               ]
             }
