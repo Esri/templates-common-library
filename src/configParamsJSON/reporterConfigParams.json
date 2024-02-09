@@ -172,43 +172,31 @@
       "id": "reporter",
       "content": [
         {
-          "type": "subsection",
-          "id": "layerOptions",
-          "content": [
-            {
-              "type": "group",
-              "id": "reportLayers",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "reportLayers",
-                  "express": true,
-                  "config": {
-                    "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": ["feature"],
-                    "supportedGeometryTypes": "*",
-                    "supportsFieldSelection": false
-                  },
-                  "defaultValue": null
-                }
-              ]
-            },
-            {
-              "type": "setting",
-              "id": "reportsHeader",
-              "express": false
-            },
-            {
-              "type": "setting",
-              "id": "reportSubmittedMessage",
-              "express": false
-            },
-            {
-              "type": "setting",
-              "id": "reportButtonText",
-              "express": false
-            }
-          ]
+          "type": "setting",
+          "id": "reportLayers",
+          "express": true,
+          "config": {
+            "layerSelectionMode": "multiple",
+            "supportedLayerTypes": ["feature"],
+            "supportedGeometryTypes": "*",
+            "supportsFieldSelection": false
+          },
+          "defaultValue": null
+        },
+        {
+          "type": "setting",
+          "id": "reportsHeader",
+          "express": false
+        },
+        {
+          "type": "setting",
+          "id": "reportSubmittedMessage",
+          "express": true
+        },
+        {
+          "type": "setting",
+          "id": "reportButtonText",
+          "express": true
         }
       ]
     },
