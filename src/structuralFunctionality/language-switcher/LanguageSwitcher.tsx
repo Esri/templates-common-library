@@ -448,8 +448,13 @@ export default class LanguageSwitcher extends Widget {
 
   useDefaultLocaleStrings(data: LanguageData): boolean {
     const defaultLanguage = this.getDefaultLanguage();
+    const urlObj = new URL(window.location.href);
+    const localeUrlParam = urlObj.searchParams.get("locale");
     return (
-      data?.locale === defaultLanguage || data === null || data === undefined
+      (data?.locale === defaultLanguage ||
+        data === null ||
+        data === undefined) &&
+      !localeUrlParam
     );
   }
 
