@@ -248,17 +248,8 @@
                   "type": "setting",
                   "id": "rendering",
                   "express": true,
-                  "defaultValue": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "imageryViewerPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 1
-                      }
-                    }
-                  ]
+                  "defaultValue": true
+                  
                 }
               ]
             },
@@ -281,6 +272,14 @@
                       "type": "setting",
                       "id": "linearUnit",
                       "defaultValue": "metric"
+                    },
+										{
+                      "type": "setting",
+                      "id": "imageMeasurementPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 5
+                      }
                     }
                   ]
                 }
@@ -630,7 +629,16 @@
               "type": "setting",
               "id": "customCSS",
               "defaultValue": ""
-            }
+            },
+						{
+							"type": "setting",
+							"id": "imageryViewerPosition",
+							"express": true,
+							"defaultValue": {
+								"position": "bottom-left",
+								"index": 0
+							}
+						}
           ]
         },
         {
