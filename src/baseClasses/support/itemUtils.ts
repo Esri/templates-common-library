@@ -273,6 +273,14 @@ function _updateProxiedLayers(
     webItem.allLayers.forEach((layer: any) => {
       if (layer.url === proxy.sourceUrl) {
         layer.url = proxy.proxyUrl;
+        // TODO for r2 switch the app proxy logic to use a request
+        //interceptor so any time a request is made to the service the
+        // layer is updated.
+        if (layer?.portalItme) {
+          layer.portalItem.when(() => {
+            layer.portalItem.url = proxy.proxyUrl;
+          });
+        }
       }
     });
   });
