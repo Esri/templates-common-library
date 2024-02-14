@@ -4,9 +4,7 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": [
-          "imagery"
-        ]
+        "conditions": ["imagery"]
       }
     },
     {
@@ -249,7 +247,6 @@
                   "id": "rendering",
                   "express": true,
                   "defaultValue": true
-                  
                 }
               ]
             },
@@ -273,7 +270,7 @@
                       "id": "linearUnit",
                       "defaultValue": "metric"
                     },
-										{
+                    {
                       "type": "setting",
                       "id": "imageMeasurementPosition",
                       "defaultValue": {
@@ -303,18 +300,13 @@
                   "express": true,
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": [
-                      "imagery",
-                      "imagery-tile"
-                    ],
+                    "supportedLayerTypes": ["imagery", "imagery-tile"],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "single",
                     "supportedFieldTypes": "*",
                     "isFieldSelectionRequired": true,
-                    "excludeFields": [
-                      "Shape"
-                    ]
+                    "excludeFields": ["Shape"]
                   },
                   "defaultValue": null
                 },
@@ -372,20 +364,13 @@
                   "express": false,
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": [
-                      "imagery",
-                      "imagery-tile"
-                    ],
+                    "supportedLayerTypes": ["imagery", "imagery-tile"],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "single",
-                    "supportedFieldTypes": [
-                      "date"
-                    ],
+                    "supportedFieldTypes": ["date"],
                     "isFieldSelectionRequired": true,
-                    "excludeFields": [
-                      "Shape"
-                    ]
+                    "excludeFields": ["Shape"]
                   },
                   "defaultValue": null
                 }
@@ -413,10 +398,7 @@
                       "express": true,
                       "config": {
                         "layerSelectionMode": "single",
-                        "supportedLayerTypes": [
-                          "imagery",
-                          "imagery-tile"
-                        ],
+                        "supportedLayerTypes": ["imagery", "imagery-tile"],
                         "supportedGeometryTypes": "*",
                         "supportsFieldSelection": false
                       },
@@ -428,10 +410,7 @@
                       "express": true,
                       "config": {
                         "layerSelectionMode": "single",
-                        "supportedLayerTypes": [
-                          "imagery",
-                          "imagery-tile"
-                        ],
+                        "supportedLayerTypes": ["imagery", "imagery-tile"],
                         "supportedGeometryTypes": "*",
                         "supportsFieldSelection": false
                       },
@@ -630,15 +609,15 @@
               "id": "customCSS",
               "defaultValue": ""
             },
-						{
-							"type": "setting",
-							"id": "imageryViewerPosition",
-							"express": true,
-							"defaultValue": {
-								"position": "bottom-left",
-								"index": 0
-							}
-						}
+            {
+              "type": "setting",
+              "id": "imageryViewerPosition",
+              "express": true,
+              "defaultValue": {
+                "position": "bottom-left",
+                "index": 0
+              }
+            }
           ]
         },
         {
