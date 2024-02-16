@@ -116,6 +116,12 @@
                 },
                 {
                   "type": "setting",
+                  "id": "floorFilter",
+                  "defaultValue": false,
+                  "express": false
+                },
+                {
+                  "type": "setting",
                   "id": "filterPanel",
                   "express": false,
                   "defaultValue": false,
@@ -136,12 +142,6 @@
                       }
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "floorFilter",
-                  "defaultValue": false,
-                  "express": false
                 }
               ]
             }
