@@ -136,6 +136,12 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "floorFilter",
+                  "defaultValue": false,
+                  "express": false
                 }
               ]
             }
