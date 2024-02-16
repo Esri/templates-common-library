@@ -420,8 +420,13 @@ export async function addSearch(
   const uniqueId = "esri-searchExpand";
   let node = view.ui.find(uniqueId) as __esri.Expand;
 
+  if (node) {
+    view.ui.remove(node);
+    node?.destroy();
+    node = null;
+  }
+
   if (!search) {
-    if (node) view.ui.remove(node);
     return;
   }
 
@@ -429,51 +434,43 @@ export async function addSearch(
   const tip = commonMessages?.tools?.search;
   const closeTip = commonMessages?.tools?.close?.search;
 
-  if (node) {
-    node.expandTooltip = tip;
-    node.collapseTooltip = closeTip;
-    node.expanded = searchOpenAtStart;
-    node.group = group;
-    view.ui.move(node, searchPosition);
-  } else {
-    const map = view.map as __esri.WebMap | __esri.WebScene;
-    const portal = map.portalItem?.portal;
-    const tmpSearchConfig = JSON.parse(JSON.stringify(searchConfiguration));
-    const searchWidget = createSearch(view, portal, tmpSearchConfig);
-    searchWidget.on("search-complete", () => {
-      if (searchWidget.popupEnabled) {
-        // Handle setting focus on popup and then back
-        // to search box
-        if (popupHover) view.popupEnabled = true;
-        when(
-          () => view?.popup?.viewModel?.active === true,
-          () => {
-            view.popup.focus();
-            when(
-              () => view?.popup?.visible === false,
-              () => {
-                searchWidget.focus();
-                if (popupHover) view.popupEnabled = false;
-              },
-              { initial: true, once: true }
-            );
-          },
-          { initial: true, once: true }
-        );
-      }
-    });
-    node = new Expand({
-      view,
-      content: searchWidget,
-      id: uniqueId,
-      group,
-      mode: "floating",
-      collapseTooltip: closeTip,
-      expandTooltip: tip,
-      expanded: searchOpenAtStart,
-    });
-    view.ui.add(node, searchPosition);
-  }
+  const map = view.map as __esri.WebMap | __esri.WebScene;
+  const portal = map.portalItem?.portal;
+  const tmpSearchConfig = JSON.parse(JSON.stringify(searchConfiguration));
+  const searchWidget = createSearch(view, portal, tmpSearchConfig);
+  searchWidget.on("search-complete", () => {
+    if (searchWidget.popupEnabled) {
+      // Handle setting focus on popup and then back
+      // to search box
+      if (popupHover) view.popupEnabled = true;
+      when(
+        () => view?.popup?.viewModel?.active === true,
+        () => {
+          view.popup.focus();
+          when(
+            () => view?.popup?.visible === false,
+            () => {
+              searchWidget.focus();
+              if (popupHover) view.popupEnabled = false;
+            },
+            { initial: true, once: true }
+          );
+        },
+        { initial: true, once: true }
+      );
+    }
+  });
+  node = new Expand({
+    view,
+    content: searchWidget,
+    id: uniqueId,
+    group,
+    mode: "floating",
+    collapseTooltip: closeTip,
+    expandTooltip: tip,
+    expanded: searchOpenAtStart,
+  });
+  view.ui.add(node, searchPosition);
   handleSearchExtent(config, node.content as __esri.widgetsSearch);
 }
 
