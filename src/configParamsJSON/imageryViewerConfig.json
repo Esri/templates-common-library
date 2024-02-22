@@ -33,6 +33,12 @@
           "content": [
             {
               "type": "setting",
+              "id": "introductionTitle",
+              "express": true,
+              "defaultValue": ""
+            },
+            {
+              "type": "setting",
               "id": "detailsContent",
               "express": true,
               "defaultValue": null
