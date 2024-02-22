@@ -168,7 +168,8 @@
                     ],
                     "supportedGeometryTypes": "*",
                     "supportedLayerTypes": [
-                      "feature"
+                      "feature",
+                      "group"
                     ],
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "multiple",
