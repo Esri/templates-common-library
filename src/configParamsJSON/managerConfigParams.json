@@ -163,9 +163,13 @@
                   "config": {
                     "layerSelectionMode": "none",
                     "mapsFieldName": "mapItemCollection",
+                    "supportedCapabilityTypes": [
+                      "editable"
+                    ],
                     "supportedGeometryTypes": "*",
                     "supportedLayerTypes": [
-                      "feature"
+                      "feature",
+                      "group"
                     ],
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "multiple",
