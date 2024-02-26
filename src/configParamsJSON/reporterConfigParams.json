@@ -439,14 +439,6 @@
                       "id": "shareIncludeSocial",
                       "defaultValue": true,
                       "express": false
-                    },
-                    {
-                      "type": "setting",
-                      "id": "sharePosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 3
-                      }
                     }
                   ],
                   "defaultValue": false,
