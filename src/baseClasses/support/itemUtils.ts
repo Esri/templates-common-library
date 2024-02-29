@@ -276,7 +276,7 @@ function _updateProxiedLayers(
         // TODO for r2 switch the app proxy logic to use a request
         //interceptor so any time a request is made to the service the
         // layer is updated.
-        if (layer?.portalItme) {
+        if (layer?.portalItem) {
           layer.portalItem.when(() => {
             layer.portalItem.url = proxy.proxyUrl;
           });
