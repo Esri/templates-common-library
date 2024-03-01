@@ -961,7 +961,7 @@ export default class ApplicationBase {
         before: function (params) {
           params.url = appProxy.proxyUrl;
           console.log(
-            `Attempted to request proxy URL for : ${appProxy.sourceUrl}`,
+            `Attempted to request proxy URL for: ${appProxy.sourceUrl}`,
             appProxy.proxyUrl
           );
         },
