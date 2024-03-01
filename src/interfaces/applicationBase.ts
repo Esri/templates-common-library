@@ -16,7 +16,7 @@ export interface ApplicationBaseItemPromises {
 }
 
 export interface ApplicationConfigs {
-  defaultValues?:ApplicationConfig;
+  defaultValues?: ApplicationConfig;
   application?: ApplicationConfig;
   config: ApplicationConfig;
   local?: ApplicationConfig;
@@ -68,7 +68,7 @@ export interface ApplicationBaseSettings {
     default?: string;
     fetch?: boolean;
     fetchMultiple?: boolean;
-  }
+  };
 }
 
 export interface ApplicationBaseResult {
@@ -82,7 +82,8 @@ export interface ApplicationBasePortalItemResult extends ApplicationBaseResult {
   promise: Promise<PortalItem>;
 }
 
-export interface ApplicationBasePortalQueryResult extends ApplicationBaseResult {
+export interface ApplicationBasePortalQueryResult
+  extends ApplicationBaseResult {
   value: PortalQueryResult;
   promise: Promise<PortalQueryResult>;
 }
@@ -112,7 +113,7 @@ export interface ApplicationBaseConstructorOptions {
 
 export interface CreateMapFromItemOptions {
   item: PortalItem;
-  mapParams?: __esri.MapProperties,
+  mapParams?: __esri.MapProperties;
   appProxies?: ApplicationProxy[];
 }
 
@@ -129,4 +130,16 @@ export interface ILocalTestCase {
   oauthappid: string;
   desc: string;
   issue: string;
+}
+export interface AppProxyDefinition {
+  /** The original URL of the source */
+  sourceUrl: string;
+  /** The URL of the proxy */
+  proxyUrl: string;
+  /** The ID of the proxy */
+  proxyId: string;
+  /** Rate limit proxy - Allowed hits per interval */
+  hitsPerInterval?: number;
+  /** Rate limit proxy - Interval length (in seconds) */
+  intervalSeconds?: number;
 }
