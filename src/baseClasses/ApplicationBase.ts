@@ -460,6 +460,9 @@ export default class ApplicationBase {
                 error: "application:origin-other"
               });
             }
+
+            this._addReqInterceptorsForProxies();
+
             return this;
           });
       });
@@ -945,5 +948,20 @@ export default class ApplicationBase {
   _getSavedTestCase(): ILocalTestCase {
     const testCase = localStorage.getItem("localtestcase");
     return testCase ? JSON.parse(testCase) : null;
+  }
+
+  _addReqInterceptorsForProxies() {
+    const item = this.results?.applicationItem?.value;
+    const applicationProxies = item?.applicationProxies;
+
+    applicationProxies?.forEach((appProxy) => {
+      esriConfig.request.interceptors.push({
+        urls: appProxy.sourceUrl,
+        before: function (params) {
+          params.url = appProxy.proxyUrl;
+        }
+      });
+    });
+
   }
 }
