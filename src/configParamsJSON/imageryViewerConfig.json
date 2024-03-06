@@ -4,9 +4,7 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": [
-          "imagery"
-        ]
+        "conditions": ["imagery"]
       }
     },
     {
@@ -33,6 +31,12 @@
           "express": true,
           "defaultValue": false,
           "content": [
+            {
+              "type": "setting",
+              "id": "introductionTitle",
+              "express": true,
+              "defaultValue": ""
+            },
             {
               "type": "setting",
               "id": "detailsContent",
@@ -248,17 +252,7 @@
                   "type": "setting",
                   "id": "rendering",
                   "express": true,
-                  "defaultValue": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "imageryViewerPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 1
-                      }
-                    }
-                  ]
+                  "defaultValue": true
                 }
               ]
             },
@@ -281,6 +275,14 @@
                       "type": "setting",
                       "id": "linearUnit",
                       "defaultValue": "metric"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "imageMeasurementPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 5
+                      }
                     }
                   ]
                 }
@@ -304,18 +306,13 @@
                   "express": true,
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": [
-                      "imagery",
-                      "imagery-tile"
-                    ],
+                    "supportedLayerTypes": ["imagery", "imagery-tile"],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "single",
                     "supportedFieldTypes": "*",
                     "isFieldSelectionRequired": true,
-                    "excludeFields": [
-                      "Shape"
-                    ]
+                    "excludeFields": ["Shape"]
                   },
                   "defaultValue": null
                 },
@@ -373,20 +370,13 @@
                   "express": false,
                   "config": {
                     "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": [
-                      "imagery",
-                      "imagery-tile"
-                    ],
+                    "supportedLayerTypes": ["imagery", "imagery-tile"],
                     "supportedGeometryTypes": "*",
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "single",
-                    "supportedFieldTypes": [
-                      "date"
-                    ],
+                    "supportedFieldTypes": ["date"],
                     "isFieldSelectionRequired": true,
-                    "excludeFields": [
-                      "Shape"
-                    ]
+                    "excludeFields": ["Shape"]
                   },
                   "defaultValue": null
                 }
@@ -414,10 +404,7 @@
                       "express": true,
                       "config": {
                         "layerSelectionMode": "single",
-                        "supportedLayerTypes": [
-                          "imagery",
-                          "imagery-tile"
-                        ],
+                        "supportedLayerTypes": ["imagery", "imagery-tile"],
                         "supportedGeometryTypes": "*",
                         "supportsFieldSelection": false
                       },
@@ -429,10 +416,7 @@
                       "express": true,
                       "config": {
                         "layerSelectionMode": "single",
-                        "supportedLayerTypes": [
-                          "imagery",
-                          "imagery-tile"
-                        ],
+                        "supportedLayerTypes": ["imagery", "imagery-tile"],
                         "supportedGeometryTypes": "*",
                         "supportsFieldSelection": false
                       },
@@ -630,6 +614,15 @@
               "type": "setting",
               "id": "customCSS",
               "defaultValue": ""
+            },
+            {
+              "type": "setting",
+              "id": "imageryViewerPosition",
+              "express": true,
+              "defaultValue": {
+                "position": "bottom-left",
+                "index": 0
+              }
             }
           ]
         },
