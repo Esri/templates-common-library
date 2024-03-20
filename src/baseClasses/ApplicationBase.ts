@@ -20,7 +20,7 @@ import {
   ApplicationConfig,
   ApplicationConfigs,
   Direction,
-  ILocalTestCase
+  ILocalTestCase,
 } from "../interfaces/applicationBase";
 import { parseConfig } from "./support/configParser";
 import { eachAlways } from "esri/core/promiseUtils";
@@ -36,7 +36,7 @@ import { prefersRTL } from "esri/intl";
 
 import {
   generateDefaultValuesObj,
-  getConfigParams
+  getConfigParams,
 } from "./support/configParamsUtils";
 import { EAppTemplateType } from "./CompatibilityChecker";
 
@@ -46,8 +46,8 @@ const defaultConfig = {
     geometry: {},
     printTask: {},
     elevationSync: {},
-    geocode: []
-  }
+    geocode: [],
+  },
 };
 
 const defaultSettings = {
@@ -55,7 +55,7 @@ const defaultSettings = {
   portal: {},
   urlParams: [],
   webMap: {},
-  webScene: {}
+  webScene: {},
 };
 
 export default class ApplicationBase {
@@ -80,12 +80,12 @@ export default class ApplicationBase {
 
     const configMixin = {
       ...defaultConfig,
-      ...applicationConfig
+      ...applicationConfig,
     };
 
     const settingsMixin = {
       ...defaultSettings,
-      ...applicationBaseSettings
+      ...applicationBaseSettings,
     };
 
     this._mixinSettingsDefaults(settingsMixin);
@@ -165,7 +165,7 @@ export default class ApplicationBase {
       sortOrder: "desc",
       num: 9,
       start: 1,
-      ...itemParams
+      ...itemParams,
     };
 
     const params = new PortalQueryParams(paramOptions);
@@ -180,7 +180,7 @@ export default class ApplicationBase {
       portal: portalSettings,
       webMap: webMapSettings,
       webScene: websceneSettings,
-      urlParams: urlParamsSettings
+      urlParams: urlParamsSettings,
     } = settings;
 
     const isEsri = await this._isEnvironmentEsri();
@@ -190,7 +190,7 @@ export default class ApplicationBase {
 
     this.config = this._mixinAllConfigs({
       config: this.config,
-      url: urlParams
+      url: urlParams,
     });
 
     if (isEsri) {
@@ -254,7 +254,7 @@ export default class ApplicationBase {
       loadApplicationItem,
       fetchApplicationData,
       loadPortal,
-      checkAppAccess
+      checkAppAccess,
     ])
       .catch((applicationArgs) => applicationArgs)
       .then((applicationArgs) => {
@@ -262,7 +262,7 @@ export default class ApplicationBase {
           applicationItemResponse,
           applicationDataResponse,
           portalResponse,
-          checkAppAccessResponse
+          checkAppAccessResponse,
         ] = applicationArgs;
         const applicationItem = applicationItemResponse
           ? applicationItemResponse.value
@@ -281,11 +281,9 @@ export default class ApplicationBase {
           applicationItem.access !== "public"
         ) {
           // do we have permission to access app
-          if (
-            appAccess &&
-            appAccess.name &&
-            appAccess.name === "identity-manager:not-authorized"
-          ) {
+          if (appAccess?.details?.messageCode === "OAUTH_0070") {
+            return Promise.reject(appAccess.details);
+          } else if (appAccess?.name === "identity-manager:not-authorized") {
             //identity-manager:not-authorized, identity-manager:not-authenticated, identity-manager:invalid-request
             return Promise.reject(appAccess.name);
           }
@@ -327,7 +325,7 @@ export default class ApplicationBase {
         this.config = this._mixinAllConfigs({
           config: this.config,
           url: urlParams,
-          application: applicationConfig
+          application: applicationConfig,
         });
 
         // DEFAULT VALUES WORK STARTS HERE
@@ -342,7 +340,7 @@ export default class ApplicationBase {
           config: this.config,
           defaultValues,
           url: urlParams,
-          application: applicationConfig
+          application: applicationConfig,
         });
 
         delete this.config.localDefaultValues;
@@ -438,7 +436,7 @@ export default class ApplicationBase {
             : Promise.resolve(),
           groupItems: groupItemsPromises
             ? eachAlways(groupItemsPromises)
-            : Promise.resolve()
+            : Promise.resolve(),
         };
 
         return eachAlways(promises)
@@ -461,7 +459,7 @@ export default class ApplicationBase {
             if (!appAccess?.credential && this.invalidContentOrigin) {
               return Promise.reject({
                 appUrl: this._getAppUrl(),
-                error: "application:origin-other"
+                error: "application:origin-other",
               });
             }
             return this;
@@ -485,7 +483,7 @@ export default class ApplicationBase {
       sortField: "modified",
       sortOrder: "desc",
       num: 9,
-      start: 0
+      start: 0,
     } as PortalQueryParams;
 
     settings.group = {
@@ -494,26 +492,26 @@ export default class ApplicationBase {
       fetchItems: true,
       fetchMultiple: true,
       itemParams: itemParams,
-      ...userGroupSettings
+      ...userGroupSettings,
     };
 
     settings.portal = {
       fetch: true,
-      ...userPortalSettings
+      ...userPortalSettings,
     };
 
     settings.webMap = {
       default: "1970c1995b8f44749f4b9b6e81b5ba45",
       fetch: true,
       fetchMultiple: true,
-      ...userWebmapSettings
+      ...userWebmapSettings,
     };
 
     settings.webScene = {
       default: "e8f078ba0c1546b6a6e0727f877742a5",
       fetch: true,
       fetchMultiple: true,
-      ...userWebsceneSettings
+      ...userWebsceneSettings,
     };
   }
 
@@ -580,7 +578,7 @@ export default class ApplicationBase {
     const testingUrl: string = `${esriUrl}/sharing/rest/info`;
     try {
       const res: Response = await fetch(testingUrl, {
-        method: "HEAD"
+        method: "HEAD",
       });
       return res.ok;
     } catch (err) {
@@ -622,14 +620,14 @@ export default class ApplicationBase {
     portal: Portal
   ): Promise<__esri.PortalQueryResult> {
     const params = new PortalQueryParams({
-      query: `id:"${groupId}"`
+      query: `id:"${groupId}"`,
     });
     return (await portal.queryGroups(params)) as __esri.PortalQueryResult;
   }
 
   private _loadItem(id: string): Promise<PortalItem> {
     const item = new PortalItem({
-      id
+      id,
     });
     return item.load();
   }
@@ -682,7 +680,7 @@ export default class ApplicationBase {
       ...defaultValues,
       ...this.config?.localDefaultValues,
       ...appConfig,
-      ...urlConfig
+      ...urlConfig,
     };
   }
 
@@ -738,7 +736,7 @@ export default class ApplicationBase {
       appId,
       portalUrl,
       popup: shouldUsePopup,
-      flowType: shouldUsePopup ? "authorization-code" : "auto"
+      flowType: shouldUsePopup ? "authorization-code" : "auto",
     });
 
     if (!info) {
