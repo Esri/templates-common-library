@@ -290,7 +290,11 @@ export default class ApplicationBase {
             return Promise.reject(appAccess.name);
           }
         } else if (applicationItemResponse.error) {
-          return Promise.reject(applicationItemResponse.error);
+          return Promise.reject(
+            appAccess?.details?.messageCode === "OAUTH_0070"
+              ? appAccess.details
+              : applicationItemResponse.error
+          );
         }
         // user not signed in and contentOrigin is other.
         // If app is within an iframe ignore all of this
