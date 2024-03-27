@@ -30,10 +30,10 @@ import { checkForElement } from "./generalUtils";
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
  */
-export async function addHome(
+export function addHome(
   config: any,
   view: __esri.MapView | __esri.SceneView
-) {
+): void {
   const { home, homePosition, mapArea, mapAreaConfig } = config;
   const uniqueId = "esri-home";
   let node = view.ui.find(uniqueId) as Home;
@@ -62,10 +62,10 @@ export async function addHome(
 /**
  * Watch for changes in mapZoom, mapZoomPosition
  */
-export async function addZoom(
+export function addZoom(
   config: any,
   view: __esri.MapView | __esri.SceneView
-) {
+): void {
   const { mapZoom, mapZoomPosition } = config;
   const uniqueId = "esri-zoom";
   const node = view.ui.find(uniqueId);
@@ -89,12 +89,12 @@ export async function addZoom(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  * @param timeCapability optional param. If true add time capability in the Bookmarks widget.
  */
-export async function addBookmarks(
+export function addBookmarks(
   config: any,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any,
   timeCapability = false
-) {
+): void {
   const { bookmarks, bookmarksPosition } = config;
   const uniqueId = "esri-bookmarksExpand";
   const node = view.ui.find(uniqueId) as __esri.Expand;
@@ -142,10 +142,10 @@ export async function addBookmarks(
 /**
  * Watch for changes in scalebar, scalebarPosition, scalebarDualMode (if applicable)
  */
-export async function addScaleBar(
+export function addScaleBar(
   config: any,
   view: __esri.MapView | __esri.SceneView
-) {
+): void {
   const { scalebar, scalebarPosition, scalebarDualMode } = config;
   const uniqueId = "esri-scale-bar";
   const node = view.ui.find(uniqueId) as __esri.ScaleBar;
@@ -183,11 +183,11 @@ export async function addScaleBar(
 /**
  * Watch for changes in layerList, layerListPosition, layerListOpenAtStart
  */
-export async function addLayerList(
+export function addLayerList(
   config: any,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any
-) {
+): void {
   const { layerList, layerListPosition, layerListOpenAtStart } = config;
   const uniqueId = "esri-layerListExpand";
   const node = view.ui.find(uniqueId) as __esri.Expand;
@@ -238,7 +238,10 @@ export async function addLayerList(
 /**
  * Watch for changes in basemapTogglePosition, basemapToggle, basemapSelector
  */
-export async function addBasemap(config: any, view: __esri.MapView) {
+export async function addBasemap(
+  config: any,
+  view: __esri.MapView
+): Promise<void> {
   const { basemapTogglePosition, basemapToggle, basemapSelector } = config;
   const uniqueId = "esri-basemapWidget";
   const map = view.map as __esri.WebMap | __esri.WebScene;
@@ -278,11 +281,11 @@ export async function addBasemap(config: any, view: __esri.MapView) {
  * Watch for changes in legend, legendPosition, legendOpenAtStart, legendConfig (if applicable)
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
-export async function addLegend(
+export function addLegend(
   config: any,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any
-) {
+): void {
   const { legend, legendPosition, legendOpenAtStart, legendConfig } = config;
   const uniqueId = "esri-legendExpand";
   const node = view.ui.find(uniqueId) as __esri.Expand;
@@ -331,10 +334,10 @@ export async function addLegend(
 /**
  * Watch for changes in fullScreen, fullScreenPosition
  */
-export async function addFullscreen(
+export function addFullscreen(
   config: any,
   view: __esri.MapView | __esri.SceneView
-) {
+): void {
   const { fullScreen, fullScreenPosition } = config;
   const uniqueId = "esri-fullscreen";
   const node = view.ui.find(uniqueId);
@@ -360,10 +363,10 @@ export async function addFullscreen(
 /**
  * Watch for changes in compassWidget, compassWidgetPosition
  */
-export async function addCompass(
+export function addCompass(
   config: any,
   view: __esri.MapView | __esri.SceneView
-) {
+): void {
   const { compassWidget, compassWidgetPosition } = config;
   const uniqueId = "esri-compass";
   const node = view.ui.find(uniqueId);
@@ -383,10 +386,10 @@ export async function addCompass(
 /**
  * Watch for changes in locateWidget, locateWidgetPosition
  */
-export async function addLocateWidget(
+export function addLocateWidget(
   config: any,
   view: __esri.MapView | __esri.SceneView
-) {
+): void {
   const { locateWidget, locateWidgetPosition } = config;
   const uniqueId = "esri-locate";
   const node = view.ui.find(uniqueId);
@@ -409,11 +412,11 @@ export async function addLocateWidget(
  * Watch for changes in search, searchOpenAtStart, searchPosition, searchConfiguration, extentSelector, extentSelectorConfig, mapArea
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
-export async function addSearch(
+export function addSearch(
   config: any,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any
-) {
+): void {
   const { search, searchPosition, searchOpenAtStart, searchConfiguration } =
     config;
   const popupHover = config?.popupHover;

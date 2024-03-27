@@ -264,7 +264,7 @@
                   "type": "setting",
                   "id": "locateWidget",
                   "express": false,
-                  "defaultValue": false,
+                  "defaultValue": true,
                   "content": [
                     {
                       "type": "setting",
@@ -329,6 +329,12 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "zoomToScale",
+                  "express": false,
+                  "defaultValue": 10000
                 }
               ]
             }
