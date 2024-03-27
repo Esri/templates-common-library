@@ -172,31 +172,57 @@
       "id": "reporter",
       "content": [
         {
-          "type": "setting",
-          "id": "reportLayers",
-          "express": true,
-          "config": {
-            "layerSelectionMode": "multiple",
-            "supportedLayerTypes": ["feature"],
-            "supportedGeometryTypes": "*",
-            "supportsFieldSelection": false
-          },
-          "defaultValue": null
+          "type": "subsection",
+          "id": "reporter",
+          "content": [
+            {
+              "type": "setting",
+              "id": "reportLayers",
+              "express": true,
+              "config": {
+                "layerSelectionMode": "multiple",
+                "supportedLayerTypes": ["feature"],
+                "supportedGeometryTypes": "*",
+                "supportsFieldSelection": false
+              },
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "reportsHeader",
+              "express": false
+            },
+            {
+              "type": "setting",
+              "id": "reportSubmittedMessage",
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "reportButtonText",
+              "express": true
+            }
+          ]
         },
         {
-          "type": "setting",
-          "id": "reportsHeader",
-          "express": false
-        },
-        {
-          "type": "setting",
-          "id": "reportSubmittedMessage",
-          "express": true
-        },
-        {
-          "type": "setting",
-          "id": "reportButtonText",
-          "express": true
+          "type": "subsection",
+          "id": "filter",
+          "content": [
+            {
+              "type": "setting",
+              "id": "enableFilter",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "filterConfig",
+                  "express": false,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ]
         }
       ]
     },
