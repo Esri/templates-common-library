@@ -83,6 +83,7 @@ class CompatibilityCheckerUT {
                 CompatibilityChecker.EAppTemplateType.Charts,
                 "This app requires a map with at least one chart configured",
               ],
+              [CompatibilityChecker.EAppTemplateType.Compare, null],
               [CompatibilityChecker.EAppTemplateType.Countdown, null],
               [CompatibilityChecker.EAppTemplateType.Exhibit, null],
               [CompatibilityChecker.EAppTemplateType.Insets, null],
@@ -155,6 +156,7 @@ class CompatibilityCheckerUT {
                 CompatibilityChecker.EAppTemplateType.Charts,
                 ResourceResults.Webmap,
               ],
+              [CompatibilityChecker.EAppTemplateType.Compare, null],
               [CompatibilityChecker.EAppTemplateType.Countdown, null],
               [CompatibilityChecker.EAppTemplateType.Exhibit, null],
               [
@@ -237,6 +239,10 @@ class CompatibilityCheckerUT {
             [
               CompatibilityChecker.EAppTemplateType.Charts,
               ResourceResults.Webmap,
+            ],
+            [
+              CompatibilityChecker.EAppTemplateType.Compare,
+              ResourceResults.WebmapOrWebscene,
             ],
             [
               CompatibilityChecker.EAppTemplateType.Countdown,
