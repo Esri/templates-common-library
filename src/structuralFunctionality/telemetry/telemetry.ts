@@ -192,6 +192,12 @@ export default class Telemetry extends Accessor {
   }
 
   runInit() {
+    // if Portal is Enterprise then disable telemetry
+    if (this?.settings?.portal?.isPortal) {
+      this.state = "ready";
+      return;
+    }
+
     const { googleAnalytics, googleAnalyticsConsent, adobeLaunchAnalytics } =
       this?.settings?.config;
 
