@@ -724,6 +724,9 @@
                     {
                       "type": "setting",
                       "id": "highlightColor",
+                      "config": {
+                        "alpha": true
+                      },
                       "express": false,
                       "defaultValue": "#00FFFF"
                     }
@@ -737,6 +740,9 @@
                     {
                       "type": "setting",
                       "id": "highlightHaloColor",
+                      "config": {
+                        "alpha": true
+                      },
                       "express": false,
                       "defaultValue": "#00FFFF"
                     }
