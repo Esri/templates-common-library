@@ -584,7 +584,7 @@
                   "config": {
                     "alpha": true
                   },
-                  "defaultValue": "#00FFFF"
+                  "defaultValue": "rgba(0, 255, 255, 0.25)"
                 }
               ]
             },
@@ -600,7 +600,7 @@
                   "config": {
                     "alpha": true
                   },
-                  "defaultValue": "#00FFFF"
+                  "defaultValue": "rgba(0, 255, 255, 1)"
                 }
               ]
             },
