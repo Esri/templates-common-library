@@ -23,6 +23,7 @@
 import { subclass, property } from "esri/core/accessorSupport/decorators";
 import Widget from "esri/widgets/Widget";
 import { storeNode, tsx } from "esri/widgets/support/widget";
+import { TelemetrySettings } from "./telemetry";
 
 const CSS = {
   base: "esri-interactive-legend-ga-alert",
@@ -47,9 +48,8 @@ export default class Alert extends Widget {
   @property()
   config: any;
 
-  // @property()
-  // @messageBundle("dist/assets/t9n/widgets/Alert/Alert")
-  // messages = null;
+  @property()
+  settings: TelemetrySettings;
 
   render() {
     const theme =
@@ -87,9 +87,7 @@ export default class Alert extends Widget {
             class={CSS.optOutButton}
             style="margin: auto 18px;"
           >
-            {/* {this.messages.webAnalytics.optIn} */}
-            {/* T9N - HARDCODED EN STRING */}
-            Opt In
+            {this.settings.messages.optIn ?? "Opt In"}
           </calcite-button>
         </calcite-alert>
       </div>
