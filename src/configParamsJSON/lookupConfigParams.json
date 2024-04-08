@@ -720,6 +720,7 @@
                   "type": "setting",
                   "id": "enableHighlightColor",
                   "express": false,
+                  "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
@@ -728,13 +729,14 @@
                         "alpha": true
                       },
                       "express": false,
-                      "defaultValue": "rgba(0, 255, 255, 0.25)"
+                      "defaultValue": "rgba(0, 255, 255, 0.55)"
                     }
                   ]
                 },
                 {
                   "type": "setting",
                   "id": "enableHighlightHaloColor",
+                  "defaultValue": false,
                   "express": false,
                   "content": [
                     {

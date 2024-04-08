@@ -23,17 +23,16 @@ export function handleHighlightColors(
   const colorValue =
     enableHighlightColor && highlightColor
       ? highlightColor
-      : highlightOptions.color;
+      : "rgba(0, 255, 255, 0.25)";
 
   const haloColorValue =
     enableHighlightHaloColor && highlightHaloColor
       ? highlightHaloColor
-      : highlightOptions.haloColor;
+      : "rgba(0,255,255,1)";
 
   const color = new Color(colorValue);
   const haloColor = haloColorValue ? new Color(haloColorValue) : null;
 
-  // https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#highlightOptions
   view.highlightOptions = {
     ...highlightOptions,
     color, // jsapi default value is `#00ffff`
