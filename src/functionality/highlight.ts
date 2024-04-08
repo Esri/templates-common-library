@@ -16,6 +16,10 @@ export function handleHighlightColors(
     highlightHaloColor,
   } = highlightConfig;
 
+  const isColorHex = /^#[0-9A-F]{6}$/i;
+  const highlightHexColor = isColorHex.test(highlightColor);
+  const highlightHaloHexColor = isColorHex.test(highlightHaloColor);
+
   const colorValue =
     enableHighlightColor && highlightColor
       ? highlightColor
@@ -28,12 +32,13 @@ export function handleHighlightColors(
 
   const color = new Color(colorValue);
   const haloColor = haloColorValue ? new Color(haloColorValue) : null;
+
   // https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#highlightOptions
   view.highlightOptions = {
     ...highlightOptions,
     color, // jsapi default value is `#00ffff`
     haloColor, // jsapi default value is `null`, which sets halo to default Cyan color (#00ffff)
-    haloOpacity: haloColor?.a ? haloColor.a : 1, // jsapi default value is 1
-    fillOpacity: color?.a ? color.a : 0.25, // jsapi default value is 0.25
+    haloOpacity: !highlightHaloHexColor && haloColor?.a ? haloColor.a : 1, // jsapi default value is 1
+    fillOpacity: !highlightHexColor && color?.a ? color.a : 0.25, // jsapi default value is 0.25
   };
 }

@@ -776,7 +776,7 @@
                         "alpha": true
                       },
                       "express": false,
-                      "defaultValue": "#00FFFF"
+                      "defaultValue": "rgba(0, 255, 255, 0.25)"
                     }
                   ]
                 },
@@ -792,7 +792,7 @@
                         "alpha": true
                       },
                       "express": false,
-                      "defaultValue": "#00FFFF"
+                      "defaultValue": "rgba(0, 255, 255, 1)"
                     }
                   ]
                 },
