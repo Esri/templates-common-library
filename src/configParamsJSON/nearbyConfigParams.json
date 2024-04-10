@@ -473,12 +473,6 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "relatedRecords",
-                  "express": false,
-                  "defaultValue": null
-                },
-                {
-                  "type": "setting",
                   "id": "includeDistance",
                   "express": false,
                   "defaultValue": true
