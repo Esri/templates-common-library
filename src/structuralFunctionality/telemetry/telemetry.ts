@@ -43,21 +43,11 @@ export interface TelemetryInstance {
 }
 export interface TelemetrySettings {
   portal: __esri.Portal;
-  config: {
-    googleAnalytics: boolean;
-    googleAnalyticsConsent: boolean;
-    adobeLaunchAnalytics: boolean;
-
-    adobeReportSuiteId: string;
-    adobeSSLTrackingServer: string;
-    adobeTrackingServer: string;
-    googleAnalyticsConsentMsg: string;
-    googleAnalyticsKey: string;
-  };
+  config: any;
   appName: string;
   messages: {
     optIn: string;
-  }
+  };
 }
 export interface TelemetryOptions {
   search: boolean;
