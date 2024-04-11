@@ -218,7 +218,10 @@
                   "type": "setting",
                   "id": "filterConfig",
                   "express": false,
-                  "defaultValue": null
+                  "defaultValue": null,
+                  "config": {
+                    "outputLayerExpOnly": true
+                  }
                 }
               ]
             }
