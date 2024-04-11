@@ -3,6 +3,7 @@ import AttachmentViewer from "dojo/text!../../configParamsJSON/avConfigParams.js
 import Basic from "dojo/text!../../configParamsJSON/basicConfigParams.json";
 import CategoryGallery from "dojo/text!../../configParamsJSON/categoryGalleryConfigParams.json";
 import Charts from "dojo/text!../../configParamsJSON/chartsConfigParams.json";
+import Compare from "dojo/text!../../configParamsJSON/compareConfigParams.json";
 import Countdown from "dojo/text!../../configParamsJSON/countdownConfigParams.json";
 import Exhibit from "dojo/text!../../configParamsJSON/exhibitConfigParams.json";
 import Imagery from "dojo/text!../../configParamsJSON/imageryViewerConfig.json";
@@ -30,6 +31,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Basic]: Basic,
   [EAppTemplateType.CategoryGallery]: CategoryGallery,
   [EAppTemplateType.Charts]: Charts,
+  [EAppTemplateType.Compare]: Compare,
   [EAppTemplateType.Countdown]: Countdown,
   [EAppTemplateType.Exhibit]: Exhibit,
   [EAppTemplateType.ImageryApp]: Imagery,
