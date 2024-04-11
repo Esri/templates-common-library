@@ -12,8 +12,9 @@ export interface HandleContentBaseArgs {
 export interface HandleGroupedContentArgs extends HandleContentBaseArgs {
   IDs: string[];
   groupedConfigSettings: { [key: string]: any };
+  withinConfigurationExperience: boolean;
 }
 
 export interface HandleContentArgs extends HandleContentBaseArgs {
-  configurationSettings: any;
+  withinConfigurationExperience: boolean;
 }
