@@ -344,12 +344,6 @@
                 },
                 {
                   "type": "setting",
-                  "id": "relatedRecords",
-                  "express": false,
-                  "defaultValue": null
-                },
-                {
-                  "type": "setting",
                   "id": "exportToPDF",
                   "express": false,
                   "defaultValue": false,
