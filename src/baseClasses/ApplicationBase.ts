@@ -282,18 +282,16 @@ export default class ApplicationBase {
           applicationItem.access !== "public"
         ) {
           // do we have permission to access app
-          if (appAccess?.details?.messageCode === "OAUTH_0070") {
-            return Promise.reject(appAccess.details);
-          } else if (appAccess?.name === "identity-manager:not-authorized") {
+          if (
+            appAccess &&
+            appAccess.name &&
+            appAccess.name === "identity-manager:not-authorized"
+          ) {
             //identity-manager:not-authorized, identity-manager:not-authenticated, identity-manager:invalid-request
             return Promise.reject(appAccess.name);
           }
         } else if (applicationItemResponse.error) {
-          return Promise.reject(
-            appAccess?.details?.messageCode === "OAUTH_0070"
-              ? appAccess.details
-              : applicationItemResponse.error
-          );
+          return Promise.reject(applicationItemResponse.error);
         }
         // user not signed in and contentOrigin is other.
         // If app is within an iframe ignore all of this

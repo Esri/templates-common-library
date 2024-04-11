@@ -13,23 +13,31 @@ export function handleHighlightColors(
     enableHighlightColor,
     highlightColor,
     enableHighlightHaloColor,
-    highlightHaloColor
+    highlightHaloColor,
   } = highlightConfig;
 
-  const color =
+  const isColorHex = /^#[0-9A-F]{6}$/i;
+  const highlightHexColor = isColorHex.test(highlightColor);
+  const highlightHaloHexColor = isColorHex.test(highlightHaloColor);
+
+  const colorValue =
     enableHighlightColor && highlightColor
       ? highlightColor
-      : highlightOptions.color;
+      : "rgba(0, 255, 255, 0.25)";
 
-  const haloColor =
+  const haloColorValue =
     enableHighlightHaloColor && highlightHaloColor
       ? highlightHaloColor
-      : highlightOptions.haloColor;
+      : "rgba(0,255,255,1)";
 
-  // https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#highlightOptions
+  const color = new Color(colorValue);
+  const haloColor = haloColorValue ? new Color(haloColorValue) : null;
+
   view.highlightOptions = {
     ...highlightOptions,
-    color: new Color(color), // jsapi default value is `#00ffff`
-    haloColor: haloColor ? new Color(haloColor) : null // jsapi default value is `null`, which sets halo to default Cyan color (#00ffff)
+    color, // jsapi default value is `#00ffff`
+    haloColor, // jsapi default value is `null`, which sets halo to default Cyan color (#00ffff)
+    haloOpacity: !highlightHaloHexColor && haloColor?.a ? haloColor.a : 1, // jsapi default value is 1
+    fillOpacity: !highlightHexColor && color?.a ? color.a : 0.25, // jsapi default value is 0.25
   };
 }

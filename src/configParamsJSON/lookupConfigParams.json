@@ -720,25 +720,33 @@
                   "type": "setting",
                   "id": "enableHighlightColor",
                   "express": false,
+                  "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
                       "id": "highlightColor",
+                      "config": {
+                        "alpha": true
+                      },
                       "express": false,
-                      "defaultValue": "#00FFFF"
+                      "defaultValue": "rgba(0, 255, 255, 0.55)"
                     }
                   ]
                 },
                 {
                   "type": "setting",
                   "id": "enableHighlightHaloColor",
+                  "defaultValue": false,
                   "express": false,
                   "content": [
                     {
                       "type": "setting",
                       "id": "highlightHaloColor",
+                      "config": {
+                        "alpha": true
+                      },
                       "express": false,
-                      "defaultValue": "#00FFFF"
+                      "defaultValue": "rgba(0, 255, 255, 1)"
                     }
                   ]
                 },

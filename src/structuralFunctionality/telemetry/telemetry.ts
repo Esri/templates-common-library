@@ -43,18 +43,11 @@ export interface TelemetryInstance {
 }
 export interface TelemetrySettings {
   portal: __esri.Portal;
-  config: {
-    googleAnalytics: boolean;
-    googleAnalyticsConsent: boolean;
-    adobeLaunchAnalytics: boolean;
-
-    adobeReportSuiteId: string;
-    adobeSSLTrackingServer: string;
-    adobeTrackingServer: string;
-    googleAnalyticsConsentMsg: string;
-    googleAnalyticsKey: string;
-  };
+  config: any;
   appName: string;
+  messages: {
+    optIn: string;
+  };
 }
 export interface TelemetryOptions {
   search: boolean;
@@ -162,7 +155,7 @@ export default class Telemetry extends Accessor {
     return `analytics-opt-in-${appId != null ? appId : this.settings.appName}`;
   }
 
-  constructor(settings: any) {
+  constructor(settings: TelemetrySettings) {
     super(settings);
     this.settings = settings;
   }
@@ -177,21 +170,15 @@ export default class Telemetry extends Accessor {
         }
       });
     });
-    // Note: Going to exclude this logic for now. It's not important to react to settings changes in the config panel.
-    //          And leaving this in is bug prone.
-    // watch(
-    //   this?.settings?.config,
-    //   [
-    //     "googleAnalytics",
-    //     "googleAnalyticsConsent",
-    //     "adobeLaunchAnalytics"
-    //   ],
-    //   () => {
-    //     this.runInit();
-    //   });
   }
 
   runInit() {
+    // if Portal is Enterprise then disable telemetry
+    if (this?.settings?.portal?.isPortal) {
+      this.state = "ready";
+      return;
+    }
+
     const { googleAnalytics, googleAnalyticsConsent, adobeLaunchAnalytics } =
       this?.settings?.config;
 
@@ -216,6 +203,7 @@ export default class Telemetry extends Accessor {
       container: alertContainer,
       config: this.settings.config,
       appName: this.optInStorageKey,
+      settings: this.settings,
     });
   }
 
