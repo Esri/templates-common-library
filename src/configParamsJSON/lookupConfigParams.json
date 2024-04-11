@@ -345,21 +345,38 @@
                 {
                   "type": "setting",
                   "id": "exportToPDF",
-                  "express": false,
+                  "express": true,
                   "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
                       "id": "exportButtonIcon",
-                      "express": true,
+                      "express": false,
                       "defaultValue": "export",
                       "config": {
                         "iconList": [
                           "export",
                           "file-pdf",
                           "print",
-                          "print-preview"
+                          "print-preview",
+                          "images"
                         ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "screenshot",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "screenshotPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
                       }
                     }
                   ]
@@ -774,28 +791,6 @@
           "type": "subsection",
           "id": "share",
           "content": [
-            {
-              "type": "group",
-              "id": "screenshot",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "screenshot",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "screenshotPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 0
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
             {
               "type": "group",
               "id": "share",
