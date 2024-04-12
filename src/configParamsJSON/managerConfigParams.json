@@ -247,7 +247,7 @@
               "defaultValue": null,
               "config": {
                 "singleFont": false,
-                "numOfSections": 1
+                "numOfSections": 2
               }
             }
           ]
