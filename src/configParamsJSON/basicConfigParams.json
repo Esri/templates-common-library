@@ -358,13 +358,7 @@
                 }
               ],
               "defaultValue": false
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "id": "exportShareResults",
-          "content": [
+            },
             {
               "type": "setting",
               "id": "exportToPDF",
