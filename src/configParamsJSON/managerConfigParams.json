@@ -230,6 +230,12 @@
           "content": [
             {
               "type": "setting",
+              "id": "hideMapOnLoad",
+              "express": false,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
               "id": "theme",
               "express": true,
               "defaultValue": "light"
