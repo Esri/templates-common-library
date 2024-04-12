@@ -753,11 +753,8 @@
                     {
                       "type": "setting",
                       "id": "highlightHaloColor",
-                      "config": {
-                        "alpha": true
-                      },
                       "express": false,
-                      "defaultValue": "rgba(0, 255, 255, 1)"
+                      "defaultValue": "#00FFFF"
                     }
                   ]
                 },
