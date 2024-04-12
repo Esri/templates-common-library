@@ -25,28 +25,106 @@
       "id": "about",
       "content": [
         {
-          "type": "group",
+          "type": "subsection",
           "id": "appComprehension",
           "content": [
             {
-              "type": "setting",
-              "id": "header",
-              "defaultValue": true,
-              "express": true,
+              "type": "group",
+              "id": "appComprehension",
               "content": [
                 {
                   "type": "setting",
-                  "id": "title",
+                  "id": "header",
+                  "defaultValue": true,
                   "express": true,
-                  "defaultValue": ""
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "title",
+                      "express": true,
+                      "defaultValue": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "legend",
+                  "defaultValue": true,
+                  "express": true
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "coverPageOrSplash",
+          "content": [
             {
               "type": "setting",
-              "id": "legend",
-              "defaultValue": true,
-              "express": true
+              "id": "enableSplashOrCover",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "splashModeType",
+                  "config": {
+                    "branches": [
+                      [
+                        "landingPageConfig"
+                      ],
+                      [
+                        "splashTitle",
+                        "splashContent",
+                        "splashButtonText",
+                        "splashIsOpen"
+                      ]
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "landingPageConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "titleText": "",
+                        "subtitleText": "",
+                        "descriptionText": "",
+                        "entryButtonText": "",
+                        "alignment": "center",
+                        "backgroundType": "color",
+                        "textColor": "#FFFFFF",
+                        "entryButtonColor": "#0079C1",
+                        "backgroundColor": "#0079C1",
+                        "iconImage": null,
+                        "iconImageScale": "m",
+                        "backgroundImageSrc": null
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashTitle",
+                      "defaultValue": ""
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashContent",
+                      "defaultValue": "",
+                      "config": {
+                        "imageUpload": true
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "splashButtonText",
+                      "defaultValue": "Enter"
+                    }
+                  ],
+                  "defaultValue": {
+                    "branchValue": "cover-page",
+                    "branchOptionsFieldNames": []
+                  }
+                }
+              ]
             }
           ]
         }
