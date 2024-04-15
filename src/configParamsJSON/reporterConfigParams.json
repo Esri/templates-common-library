@@ -157,6 +157,9 @@
                         "iconImage": null,
                         "iconImageScale": "m",
                         "backgroundImageSrc": null
+                      },
+                      "config": {
+                        "showSignInConfig": true
                       }
                     }
                   ]
