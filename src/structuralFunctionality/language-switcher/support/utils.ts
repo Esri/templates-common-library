@@ -155,7 +155,7 @@ export function parseGroupedConfigSettings(
   const t9nData = data;
 
   const groupedConfigSettings = {};
-  const settingKeys = Object.keys(t9nData);
+  const settingKeys = data ? Object.keys(t9nData) : [];
 
   const setLanguageSwitcherUICallback = () => {
     return (key: string) => {
@@ -185,7 +185,7 @@ export function parseConfigSettings(
 ) {
   const t9nData = languageData?.data;
   const configSettings = {};
-  const settingKeys = Object.keys(t9nData);
+  const settingKeys = t9nData ? Object.keys(t9nData) : [];
   settingKeys.forEach((key) => {
     const defaultLocaleValue = withinConfigurationExperience
       ? applicationConfig?.draft?.[key]
