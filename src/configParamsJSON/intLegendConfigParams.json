@@ -461,6 +461,37 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "exportToPDF",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "exportButtonIcon",
+                      "express": false,
+                      "defaultValue": "export",
+                      "config": {
+                        "iconList": [
+                          "export",
+                          "file-pdf",
+                          "print",
+                          "print-preview",
+                          "images"
+                        ]
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "exportToPDFPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 4
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "screenshot",
                   "express": false,
                   "defaultValue": false,
