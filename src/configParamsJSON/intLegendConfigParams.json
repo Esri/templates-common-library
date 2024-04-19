@@ -461,7 +461,7 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "export",
+                  "id": "exportToPDF",
                   "express": true,
                   "defaultValue": false,
                   "content": [
