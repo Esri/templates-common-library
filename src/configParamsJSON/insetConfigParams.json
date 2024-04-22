@@ -304,6 +304,43 @@
         },
         {
           "type": "subsection",
+          "id": "modify",
+          "content": [
+            {
+              "type": "setting",
+              "id": "enableHighlightColor",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "highlightColor",
+                  "express": false,
+                  "config": {
+                    "alpha": true
+                  },
+                  "defaultValue": "rgba(0, 255, 255, 0.50)"
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "enableHighlightHaloColor",
+              "defaultValue": false,
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "highlightHaloColor",
+                  "express": false,
+                  "defaultValue": "#00FFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "share",
           "content": [
             {

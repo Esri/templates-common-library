@@ -289,7 +289,10 @@
                   "type": "setting",
                   "id": "highlightColor",
                   "express": false,
-                  "defaultValue": "#00FFFF"
+                  "config": {
+                    "alpha": true
+                  },
+                  "defaultValue": "rgba(0, 255, 255, 0.50)"
                 }
               ]
             },
