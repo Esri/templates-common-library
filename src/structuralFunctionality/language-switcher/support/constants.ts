@@ -12,6 +12,7 @@ export const GROUPED_CONTENT = [
   "landingPageConfig",
   "searchConfiguration",
   "filterConfig",
+  "itemCollection",
 ];
 
 export const PREVENT_OVERWRITE = [
@@ -50,4 +51,5 @@ export const PREVENT_OVERWRITE = [
   "activePanel",
   "relationship",
   "searchUnits",
+  "accordionSize",
 ];
