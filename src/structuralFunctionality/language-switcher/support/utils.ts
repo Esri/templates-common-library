@@ -118,6 +118,13 @@ function handleGroupedArrayContent(
       });
     });
     return [fieldName, currentValue];
+  } else if (Array.isArray(currentValue)) {
+    currentValue.forEach((item) => {
+      if (item["_uid"] === uid) {
+        const [itemPropName] = IDs;
+        item[itemPropName] = t9nValue;
+      }
+    });
   }
   // searchConfiguration.sources-s8fg673
   else {
