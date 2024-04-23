@@ -125,6 +125,7 @@ function handleGroupedArrayContent(
         item[itemPropName] = t9nValue;
       }
     });
+    return [fieldName, currentValue];
   }
   // searchConfiguration.sources-s8fg673
   else {
