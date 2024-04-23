@@ -1,5 +1,5 @@
 /*
-  Copyright 2023 Esri
+  Copyright 2024 Esri
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
@@ -27,20 +27,15 @@ import {
 import PortalItem from "esri/portal/PortalItem";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
 import { LanguageData } from "../../interfaces/commonInterfaces";
-import {
-  GROUPED_CONTENT,
-  CSS,
-  HANDLES_KEY,
-  NODE_ID,
-  NO_DEFAULT_FIELDS,
-  PREVENT_OVERWRITE,
-} from "./support/constants";
+import { CSS, HANDLES_KEY, NODE_ID } from "./support/constants";
 import { Defaults, ProperyNames } from "./support/enums";
 import { autoUpdatedStrings } from "../t9nUtils";
 import {
   getDefaultLocale,
   parseConfigSettings,
   parseGroupedConfigSettings,
+  preventOverwrite,
+  processNoDefaultValues,
   updateLocale,
 } from "./support/utils";
 
@@ -284,8 +279,8 @@ export default class LanguageSwitcher extends Widget {
       updateLocale(defaultLocale);
       try {
         // Iterates fields that do not have a default value set in the app's config params JSON and sets the appropriate value i.e. title
-        this.processNoDefaultValues(config);
-        this.preventOverwrite(config);
+        processNoDefaultValues(config, this.base);
+        preventOverwrite(config);
         Object.assign(this.configurationSettings, config);
       } catch (err) {
         console.error("ERROR: ", err);
@@ -294,36 +289,6 @@ export default class LanguageSwitcher extends Widget {
     }
     updateLocale(e.detail?.locale);
     this.setLanguageSwitcherUI(config, this.configurationSettings);
-  }
-
-  processNoDefaultValues(config: ApplicationConfig): void {
-    NO_DEFAULT_FIELDS.forEach((field) => {
-      const value = config[field];
-      if (value) return;
-      const processedValue = this.getProcessedValue(field, config[field]);
-      config[field] = processedValue;
-    });
-  }
-
-  getProcessedValue(fieldName: string, value: string): string {
-    switch (fieldName) {
-      case "title":
-        const appItemTitle = this.base?.results?.applicationItem?.value?.title;
-        const { config, results } = this.base;
-        const { webMapItems } = results;
-        const validWebMapItems = webMapItems?.map((response) => response.value);
-        const item = validWebMapItems?.[0];
-        const title = config?.title
-          ? config.title
-          : appItemTitle
-          ? appItemTitle
-          : item?.title
-          ? item.title
-          : "";
-        return title;
-      default:
-        return value ?? "";
-    }
   }
 
   languageSwitcherCallback(
@@ -367,25 +332,6 @@ export default class LanguageSwitcher extends Widget {
       await this.langSwitcherNode.refresh();
     }
     this.setLanguageSwitcherUI(this.base.config, this.configurationSettings);
-  }
-
-  // Prevents the current values from being overwritten with a stale value
-  preventOverwrite(config): void {
-    for (const key in config) {
-      const keyLowerCase = key.toLowerCase();
-      const isColor = keyLowerCase.includes("color");
-      const isPosition = keyLowerCase.includes("position");
-      const preventOverwrite = PREVENT_OVERWRITE.indexOf(key) !== -1;
-      if (
-        (typeof config[key] !== "string" ||
-          isColor ||
-          isPosition ||
-          preventOverwrite) &&
-        !GROUPED_CONTENT.includes(key)
-      ) {
-        delete config[key];
-      }
-    }
   }
 
   setupAutoUpdateStrings(expand: __esri.Expand): void {
