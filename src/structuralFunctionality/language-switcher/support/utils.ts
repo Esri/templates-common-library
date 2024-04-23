@@ -5,6 +5,12 @@ import {
   setPageLocale,
 } from "../../../baseClasses/support/domHelper";
 import { ApplicationConfig } from "../../../interfaces/applicationBase";
+import {
+  GROUPED_CONTENT,
+  NO_DEFAULT_FIELDS,
+  PREVENT_OVERWRITE,
+} from "./constants";
+import ApplicationBase from "../../../baseClasses/ApplicationBase";
 
 // Determines default locale based on portal or locale url param
 export function getDefaultLocale(portal: __esri.Portal, data: LanguageData) {
@@ -194,4 +200,60 @@ export function parseConfigSettings(
     configSettings[key] = t9nValue;
   });
   return configSettings;
+}
+
+export function processNoDefaultValues(
+  config: ApplicationConfig,
+  base: ApplicationBase
+): void {
+  NO_DEFAULT_FIELDS.forEach((field) => {
+    const value = config[field];
+    if (value) return;
+    const processedValue = getProcessedValue(field, config[field], base);
+    config[field] = processedValue;
+  });
+}
+
+export function getProcessedValue(
+  fieldName: string,
+  value: string,
+  base: ApplicationBase
+): string {
+  switch (fieldName) {
+    case "title":
+      const appItemTitle = base?.results?.applicationItem?.value?.title;
+      const { config, results } = base;
+      const { webMapItems } = results;
+      const validWebMapItems = webMapItems?.map((response) => response.value);
+      const item = validWebMapItems?.[0];
+      const title = config?.title
+        ? config.title
+        : appItemTitle
+        ? appItemTitle
+        : item?.title
+        ? item.title
+        : "";
+      return title;
+    default:
+      return value ?? "";
+  }
+}
+
+// Prevents the current values from being overwritten with a stale value
+export function preventOverwrite(config): void {
+  for (const key in config) {
+    const keyLowerCase = key.toLowerCase();
+    const isColor = keyLowerCase.includes("color");
+    const isPosition = keyLowerCase.includes("position");
+    const preventOverwrite = PREVENT_OVERWRITE.indexOf(key) !== -1;
+    if (
+      (typeof config[key] !== "string" ||
+        isColor ||
+        isPosition ||
+        preventOverwrite) &&
+      !GROUPED_CONTENT.includes(key)
+    ) {
+      delete config[key];
+    }
+  }
 }
