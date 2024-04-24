@@ -11,6 +11,7 @@ import {
   PREVENT_OVERWRITE,
 } from "./constants";
 import ApplicationBase from "../../../baseClasses/ApplicationBase";
+import { isWithinConfigurationExperience } from "../../../functionality/configurationSettings";
 
 // Determines default locale based on portal or locale url param
 export function getDefaultLocale(portal: __esri.Portal, data: LanguageData) {
@@ -222,7 +223,7 @@ export function processNoDefaultValues(
   });
 }
 
-export function getProcessedValue(
+function getProcessedValue(
   fieldName: string,
   value: string,
   base: ApplicationBase
@@ -264,4 +265,57 @@ export function preventOverwrite(config): void {
       delete config[key];
     }
   }
+}
+
+export async function getT9nData(
+  languageData: LanguageData,
+  base: ApplicationBase
+) {
+  const applicationItem = base.results.applicationItem
+    .value as __esri.PortalItem;
+
+  const templateAppData = await applicationItem.fetchData();
+  const values = templateAppData?.values;
+
+  const baseConfig = base.config;
+  let config: ApplicationConfig = { ...baseConfig, ...values };
+  const withinConfigurationExperience = isWithinConfigurationExperience();
+  if (withinConfigurationExperience) {
+    config = { ...config, ...values?.draft };
+  }
+
+  const defaultLocale = getDefaultLocale(base.portal, languageData);
+  const selectedLocale = languageData?.locale;
+  updateLocale(defaultLocale ? defaultLocale : selectedLocale);
+
+  if (defaultLocale) {
+    processNoDefaultValues(config, base);
+    preventOverwrite(config);
+    return config;
+  }
+
+  if (!languageData) return {};
+
+  const groupedConfigSettings = parseGroupedConfigSettings(
+    languageData,
+    config,
+    withinConfigurationExperience
+  );
+
+  const configSettings = parseConfigSettings(
+    languageData,
+    config,
+    withinConfigurationExperience
+  );
+
+  for (const key in configSettings) {
+    if (key.split(".").length > 1) {
+      delete configSettings[key];
+    }
+  }
+
+  return {
+    ...groupedConfigSettings,
+    ...configSettings,
+  };
 }

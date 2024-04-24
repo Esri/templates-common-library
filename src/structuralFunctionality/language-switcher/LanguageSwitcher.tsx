@@ -19,10 +19,7 @@ import Expand from "esri/widgets/Expand";
 import { watch, when } from "esri/core/reactiveUtils";
 
 import ApplicationBase from "../../baseClasses/ApplicationBase";
-import {
-  ApplicationConfig,
-  esriWidgetProps,
-} from "../../interfaces/applicationBase";
+import { esriWidgetProps } from "../../interfaces/applicationBase";
 
 import PortalItem from "esri/portal/PortalItem";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
@@ -30,14 +27,7 @@ import { LanguageData } from "../../interfaces/commonInterfaces";
 import { CSS, HANDLES_KEY, NODE_ID } from "./support/constants";
 import { Defaults, ProperyNames } from "./support/enums";
 import { autoUpdatedStrings } from "../t9nUtils";
-import {
-  getDefaultLocale,
-  parseConfigSettings,
-  parseGroupedConfigSettings,
-  preventOverwrite,
-  processNoDefaultValues,
-  updateLocale,
-} from "./support/utils";
+import { getT9nData } from "./support/utils";
 
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
@@ -103,13 +93,17 @@ export default class LanguageSwitcher extends Widget {
       "message",
       (e: any) => {
         if (e?.data?.type === "cats-app") {
-          this.setLanguageSwitcherUI(
-            this.base.config,
-            this.configurationSettings
-          );
+          this._updateUI();
         }
       },
       false
+    );
+  }
+
+  private async _updateUI() {
+    const t9nData = await getT9nData(this.selectedLanguageData, this.base);
+    Object.keys(t9nData).forEach((key) =>
+      this.configurationSettings.set(key, t9nData[key])
     );
   }
 
@@ -186,33 +180,6 @@ export default class LanguageSwitcher extends Widget {
     languageSwitcher.group = expandGroup;
   }
 
-  async setLanguageSwitcherUI(
-    applicationConfig: ApplicationConfig,
-    configurationSettings: any
-  ) {
-    const { selectedLanguageData } = this;
-
-    if (!selectedLanguageData) return;
-
-    const groupedConfigSettings = parseGroupedConfigSettings(
-      selectedLanguageData,
-      applicationConfig,
-      configurationSettings.withinConfigurationExperience
-    );
-
-    Object.assign(configurationSettings, groupedConfigSettings);
-
-    const configSettings = parseConfigSettings(
-      selectedLanguageData,
-      applicationConfig,
-      configurationSettings.withinConfigurationExperience
-    );
-
-    Object.keys(configSettings).forEach((key) =>
-      configurationSettings.set(key, configSettings[key])
-    );
-  }
-
   handleLanguageSwitcher(props: esriWidgetProps): void {
     const { config, propertyName } = props;
     const {
@@ -263,32 +230,9 @@ export default class LanguageSwitcher extends Widget {
   }
 
   async handleSelection(e: CustomEvent): Promise<void> {
-    this._set("selectedLanguageData", e.detail);
-
-    const data = e?.detail?.data;
-    const templateAppData = await this._portalItem.fetchData();
-    const values = templateAppData?.values;
-    const baseConfig = this.base.config;
-    let config: ApplicationConfig = { ...baseConfig, ...values };
-    if (this.configurationSettings.withinConfigurationExperience)
-      config = { ...config, ...values?.draft };
-
-    const defaultLocale = getDefaultLocale(this.base.portal, data);
-
-    if (defaultLocale) {
-      updateLocale(defaultLocale);
-      try {
-        // Iterates fields that do not have a default value set in the app's config params JSON and sets the appropriate value i.e. title
-        processNoDefaultValues(config, this.base);
-        preventOverwrite(config);
-        Object.assign(this.configurationSettings, config);
-      } catch (err) {
-        console.error("ERROR: ", err);
-      }
-      return;
-    }
-    updateLocale(e.detail?.locale);
-    this.setLanguageSwitcherUI(config, this.configurationSettings);
+    const languageData = e.detail;
+    this._set("selectedLanguageData", languageData);
+    this._updateUI();
   }
 
   languageSwitcherCallback(
@@ -303,12 +247,7 @@ export default class LanguageSwitcher extends Widget {
       () => {
         when(
           () => this.selectedLanguageData,
-          () => {
-            this.setLanguageSwitcherUI(
-              this.base.config,
-              this.configurationSettings
-            );
-          },
+          async () => this._updateUI(),
           { initial: true, once: true }
         );
       },
@@ -331,7 +270,7 @@ export default class LanguageSwitcher extends Widget {
     if (isWithinConfigurationExperience() && this.langSwitcherNode) {
       await this.langSwitcherNode.refresh();
     }
-    this.setLanguageSwitcherUI(this.base.config, this.configurationSettings);
+    this._updateUI();
   }
 
   setupAutoUpdateStrings(expand: __esri.Expand): void {
