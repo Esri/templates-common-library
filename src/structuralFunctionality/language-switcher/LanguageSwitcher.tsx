@@ -91,7 +91,7 @@ export default class LanguageSwitcher extends Widget {
   private _addMessageEventListener() {
     window.addEventListener(
       "message",
-      async (e: any) => {
+      (e: any) => {
         if (e?.data?.type === "cats-app") {
           this._updateUI();
         }
