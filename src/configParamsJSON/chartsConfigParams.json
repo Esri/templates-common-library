@@ -72,161 +72,129 @@
       "id": "about",
       "content": [
         {
-          "type": "subsection",
+          "type": "group",
           "id": "appComprehension",
           "content": [
             {
-              "type": "group",
-              "id": "appComprehension",
+              "type": "setting",
+              "id": "header",
+              "defaultValue": true,
+              "express": true,
               "content": [
                 {
                   "type": "setting",
-                  "id": "header",
-                  "defaultValue": true,
-                  "express": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "title",
-                      "defaultValue": "",
-                      "express": true
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "landingPage",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "landingPageConfig",
-                      "express": false,
-                      "defaultValue": {
-                        "titleText": "",
-                        "subtitleText": "",
-                        "descriptionText": "",
-                        "entryButtonText": "",
-                        "alignment": "center",
-                        "backgroundType": "color",
-                        "textColor": "#FFFFFF",
-                        "entryButtonColor": "#0079C1",
-                        "backgroundColor": "#0079C1",
-                        "iconImage": null,
-                        "iconImageScale": "m",
-                        "backgroundImageSrc": null
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "splash",
-                  "defaultValue": false,
-                  "express": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "splashButtonPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 2
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "splashTitle",
-                      "defaultValue": "",
-                      "express": true
-                    },
-                    {
-                      "type": "setting",
-                      "id": "splashContent",
-                      "defaultValue": "",
-                      "express": true,
-                      "config": {
-                        "imageUpload": true
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "splashButtonText",
-                      "defaultValue": "Explore",
-                      "express": true
-                    }
-                  ]
+                  "id": "title",
+                  "defaultValue": "",
+                  "express": true
                 }
               ]
             },
             {
-              "type": "group",
-              "id": "mapA11y",
+              "type": "setting",
+              "id": "landingPage",
+              "express": false,
+              "defaultValue": false,
               "content": [
                 {
                   "type": "setting",
-                  "id": "mapA11yDesc",
+                  "id": "landingPageConfig",
+                  "express": false,
+                  "defaultValue": {
+                    "titleText": "",
+                    "subtitleText": "",
+                    "descriptionText": "",
+                    "entryButtonText": "",
+                    "alignment": "center",
+                    "backgroundType": "color",
+                    "textColor": "#FFFFFF",
+                    "entryButtonColor": "#0079C1",
+                    "backgroundColor": "#0079C1",
+                    "iconImage": null,
+                    "iconImageScale": "m",
+                    "backgroundImageSrc": null
+                  }
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "splash",
+              "defaultValue": false,
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "splashButtonPosition",
+                  "defaultValue": {
+                    "position": "top-left",
+                    "index": 2
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "splashTitle",
+                  "defaultValue": "",
                   "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "splashContent",
+                  "defaultValue": "",
+                  "express": true,
+                  "config": {
+                    "imageUpload": true
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "splashButtonText",
+                  "defaultValue": "Explore",
+                  "express": true
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "legend",
+              "defaultValue": false,
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "legendConfig",
+                  "express": false,
+                  "defaultValue": {
+                    "style": {
+                      "type": "classic",
+                      "layout": "stack"
+                    }
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "legendPosition",
+                  "defaultValue": {
+                    "position": "top-right",
+                    "index": 0
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "legendOpenAtStart",
+                  "defaultValue": false
                 }
               ]
             }
           ]
         },
         {
-          "type": "subsection",
-          "id": "featureComprehension",
+          "type": "group",
+          "id": "mapA11y",
           "content": [
             {
-              "type": "group",
-              "id": "featureComprehension",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "legend",
-                  "defaultValue": false,
-                  "express": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "legendConfig",
-                      "express": false,
-                      "defaultValue": {
-                        "style": {
-                          "type": "classic",
-                          "layout": "stack"
-                        }
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "legendPosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "legendOpenAtStart",
-                      "defaultValue": false
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "popupFixed",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "popupFixedPosition",
-                      "express": true,
-                      "defaultValue": "bottom-right"
-                    }
-                  ]
-                }
-              ]
+              "type": "setting",
+              "id": "mapA11yDesc",
+              "express": true
             }
           ]
         }
@@ -339,6 +307,20 @@
                         "position": "top-right",
                         "index": 5
                       }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "popupFixed",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "popupFixedPosition",
+                      "express": true,
+                      "defaultValue": "bottom-right"
                     }
                   ]
                 }
