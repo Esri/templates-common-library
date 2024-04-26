@@ -219,6 +219,37 @@
                       "defaultValue": ""
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "legend",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "legendConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "style": {
+                          "type": "classic",
+                          "layout": "stack"
+                        }
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "legendPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "legendOpenAtStart",
+                      "defaultValue": false
+                    }
+                  ]
                 }
               ]
             },
@@ -271,68 +302,6 @@
                     "position": "top-right",
                     "index": 4
                   }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "id": "featureComprehension",
-          "content": [
-            {
-              "type": "group",
-              "id": "featureComprehension",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "popupFixed",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "popupFixedPosition",
-                      "express": true,
-                      "defaultValue": "bottom-right"
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "popupHover",
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "legend",
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "legendConfig",
-                      "express": false,
-                      "defaultValue": {
-                        "style": {
-                          "type": "classic",
-                          "layout": "stack"
-                        }
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "legendPosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "legendOpenAtStart",
-                      "defaultValue": false
-                    }
-                  ]
                 }
               ]
             }
@@ -475,6 +444,25 @@
                   "id": "disableScroll",
                   "defaultValue": false,
                   "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "popupFixed",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "popupFixedPosition",
+                      "express": true,
+                      "defaultValue": "bottom-right"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "popupHover",
+                  "defaultValue": false
                 }
               ]
             }
