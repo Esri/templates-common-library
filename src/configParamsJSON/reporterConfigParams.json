@@ -180,20 +180,23 @@
           "content": [
             {
               "type": "setting",
+              "id": "reportsHeader",
+              "express": false
+            },
+            {
+              "type": "setting",
               "id": "reportLayers",
               "express": true,
               "config": {
                 "layerSelectionMode": "multiple",
                 "supportedLayerTypes": ["feature"],
                 "supportedGeometryTypes": "*",
-                "supportsFieldSelection": false
+                "supportsFieldSelection": false,
+                "supportedCapabilityTypes": ["editable"],
+                "hideNestedSections": true,
+                "reporterApp": true
               },
               "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "reportsHeader",
-              "express": false
             },
             {
               "type": "setting",
