@@ -48,6 +48,26 @@
                                     "id": "titleLink",
                                     "express": false,
                                     "defaultValue": ""
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "legend",
+                                    "defaultValue": true,
+                                    "content": [
+                                        {
+                                            "type": "setting",
+                                            "id": "legendPosition",
+                                            "defaultValue": {
+                                                "position": "top-right",
+                                                "index": 0
+                                            }
+                                        },
+                                        {
+                                            "type": "setting",
+                                            "id": "legendOpenAtStart",
+                                            "defaultValue": false
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -70,26 +90,6 @@
                                         "position": "top-left",
                                         "index": 0
                                     }
-                                }
-                            ]
-                        },
-                        {
-                            "type": "setting",
-                            "id": "legend",
-                            "defaultValue": true,
-                            "content": [
-                                {
-                                    "type": "setting",
-                                    "id": "legendPosition",
-                                    "defaultValue": {
-                                        "position": "top-right",
-                                        "index": 0
-                                    }
-                                },
-                                {
-                                    "type": "setting",
-                                    "id": "legendOpenAtStart",
-                                    "defaultValue": false
                                 }
                             ]
                         },

@@ -84,6 +84,38 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "legend",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "legendConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "style": {
+                          "type": "classic",
+                          "layout": "stack"
+                        }
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "legendPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "legendOpenAtStart",
+                      "defaultValue": false
+                    }
+                  ]
                 }
               ]
             },
@@ -187,70 +219,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "subsection",
-          "id": "featureComprehension",
-          "content": [
-            {
-              "type": "group",
-              "id": "featureComprehension",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "legend",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "legendConfig",
-                      "express": false,
-                      "defaultValue": {
-                        "style": {
-                          "type": "classic",
-                          "layout": "stack"
-                        }
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "legendPosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "legendOpenAtStart",
-                      "defaultValue": false
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "popupHover",
-                  "express": true,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "popupFixed",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "popupFixedPosition",
-                      "express": true,
-                      "defaultValue": "bottom-right"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
         }
       ]
     },
@@ -310,6 +278,26 @@
                       "id": "showElevationProfile",
                       "express": false,
                       "defaultValue": false
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "popupHover",
+                  "express": true,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "popupFixed",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "popupFixedPosition",
+                      "express": true,
+                      "defaultValue": "bottom-right"
                     }
                   ]
                 },
