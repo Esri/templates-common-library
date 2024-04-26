@@ -1,4 +1,5 @@
 import { AppProxyDefinition } from "../interfaces/applicationBase";
+import { upgradeToHttps } from "./urlUtils";
 
 export function joinAppProxies(
   map: __esri.WebMap | __esri.WebScene,
@@ -15,13 +16,13 @@ export function joinAppProxies(
       ).forEach((layer) => {
         if (layer && layer.url === proxy.sourceUrl) {
           // directly change the layer url to the proxy url
-          layer.url = proxy.proxyUrl;
+          layer.url = upgradeToHttps(proxy.proxyUrl);
 
           // Replace the layer's portalItem's url with the proxy url too, otherwise anonymous viewers get a sign-in prompt.
           if (layer.portalItem) {
             layer.portalItem.when(() => {
               // layer.portalItem exists, see above. Not sure why typescript thinks it could be undefined here.
-              layer.portalItem!.url = proxy.proxyUrl;
+              layer.portalItem!.url = upgradeToHttps(proxy.proxyUrl);
             });
           }
 
@@ -32,7 +33,7 @@ export function joinAppProxies(
             before: (params: { url?: string }) => {
               // change requests from the original url to the proxy url
               if (params.url && params.url === proxy.sourceUrl) {
-                params.url = proxy.proxyUrl;
+                params.url = upgradeToHttps(proxy.proxyUrl);
               }
             },
           });
