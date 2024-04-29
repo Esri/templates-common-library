@@ -409,20 +409,6 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "enableFeatureSearchScale",
-                  "express": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "searchScale",
-                      "express": false,
-                      "defaultValue": 10000
-                    }
-                  ],
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
                   "id": "popupHover",
                   "express": false,
                   "defaultValue": false
@@ -529,6 +515,20 @@
                       "express": false
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "enableFeatureSearchScale",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "searchScale",
+                      "express": false,
+                      "defaultValue": 10000
+                    }
+                  ],
+                  "defaultValue": false
                 }
               ]
             },

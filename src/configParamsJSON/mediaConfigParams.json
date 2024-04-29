@@ -79,6 +79,39 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "legend",
+                  "defaultValue": true,
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "legendPosition",
+                      "express": false,
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "legendConfig",
+                      "express": false,
+                      "defaultValue": {
+                        "style": {
+                          "type": "card",
+                          "layout": "stack"
+                        }
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "legendOpenAtStart",
+                      "defaultValue": false
+                    }
+                  ]
                 }
               ]
             },
@@ -183,71 +216,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "subsection",
-          "id": "featureComprehension",
-          "content": [
-            {
-              "type": "group",
-              "id": "featureComprehension",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "legend",
-                  "defaultValue": true,
-                  "express": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "legendPosition",
-                      "express": false,
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "legendConfig",
-                      "express": false,
-                      "defaultValue": {
-                        "style": {
-                          "type": "card",
-                          "layout": "stack"
-                        }
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "legendOpenAtStart",
-                      "defaultValue": false
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "popupHover",
-                  "express": true,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "popupFixed",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "popupFixedPosition",
-                      "express": true,
-                      "defaultValue": "bottom-right"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
         }
       ]
     },
@@ -298,6 +266,26 @@
                         "position": "bottom-right",
                         "index": 0
                       }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "popupHover",
+                  "express": true,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "popupFixed",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "popupFixedPosition",
+                      "express": true,
+                      "defaultValue": "bottom-right"
                     }
                   ]
                 },
