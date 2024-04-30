@@ -292,7 +292,14 @@
               "type": "setting",
               "id": "showLegend",
               "express": false,
-              "defaultValue": true
+              "defaultValue": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "legendType",
+                  "defaultValue": "standard"
+                }                
+              ]
             },
             {
               "type": "setting",
