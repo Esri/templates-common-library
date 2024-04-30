@@ -1,5 +1,5 @@
 import { prefersRTL, setLocale } from "esri/intl";
-import { HandleGroupedContentArgs, LanguageData } from "./interfaces";
+
 import {
   setPageDirection,
   setPageLocale,
@@ -12,6 +12,10 @@ import {
 } from "./constants";
 import ApplicationBase from "../../../baseClasses/ApplicationBase";
 import { isWithinConfigurationExperience } from "../../../functionality/configurationSettings";
+import {
+  HandleGroupedContentArgs,
+  LanguageData,
+} from "../../../interfaces/languageSwitcherInterfaces";
 
 // Determines default locale based on portal or locale url param
 export function getDefaultLocale(portal: __esri.Portal, data: LanguageData) {
