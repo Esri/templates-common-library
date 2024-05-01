@@ -1,6 +1,6 @@
-import Accessor from 'esri/core/Accessor';
-import { property } from 'esri/core/accessorSupport/decorators'
-import { isWithinConfigurationExperience } from '../functionality/configurationSettings';
+import Accessor from "esri/core/Accessor";
+import { property } from "esri/core/accessorSupport/decorators";
+import { isWithinConfigurationExperience } from "../functionality/configurationSettings";
 
 /**
  * Base Class for all instant app's ConfigurationSettings classes. Handles
@@ -15,9 +15,9 @@ export default class ConfigurationSettingsBase extends Accessor {
   private _draftMode: boolean = false;
 
   constructor(params?: any) {
-    super();
+    super(params);
     this._draft = params?.draft;
-    this._draftMode = params?.mode === 'draft';
+    this._draftMode = params?.mode === "draft";
   }
 
   initialize() {
@@ -28,7 +28,7 @@ export default class ConfigurationSettingsBase extends Accessor {
       }
 
       window.addEventListener(
-        'message',
+        "message",
         (e: any) => {
           this._handleConfigurationUpdates(e);
         },
@@ -38,7 +38,7 @@ export default class ConfigurationSettingsBase extends Accessor {
   }
 
   _handleConfigurationUpdates(e: any) {
-    if (e?.data?.type === 'cats-app') {
+    if (e?.data?.type === "cats-app") {
       Object.assign(this, e.data);
     }
   }
