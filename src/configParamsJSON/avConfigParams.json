@@ -140,11 +140,31 @@
               "express": true,
               "config": {
                 "branches": [
-                  ["hideAttributePanel"],
+                  ["hideAttributePanel", "autoPlay", "autoPlayDuration"],
                   ["thumbnailFormat", "thumbnailHeight", "mapCentricTooltip"]
                 ]
               },
               "content": [
+                {
+                  "type": "setting",
+                  "id": "autoPlay",
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "enableAutoPlay",
+                      "express": false,
+                      "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "autoPlayDuration",
+                      "express": false,
+                      "defaultValue": 5
+                    }
+                  ],
+                  "defaultValue": false
+                },
                 {
                   "type": "setting",
                   "id": "hideAttributePanel",
