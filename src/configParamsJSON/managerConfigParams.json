@@ -14,6 +14,12 @@
         },
         {
           "type": "setting",
+          "id": "hideMapOnLoad",
+          "express": false,
+          "defaultValue": false
+        },
+        {
+          "type": "setting",
           "id": "enableInlineEdit",
           "express": true,
           "defaultValue": true
@@ -159,6 +165,12 @@
                   "id": "fullScreen",
                   "express": false,
                   "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "zoomToScale",
+                  "express": false,
+                  "defaultValue": 10000
                 }
               ]
             }
@@ -306,12 +318,6 @@
           "type": "subsection",
           "id": "theme",
           "content": [
-            {
-              "type": "setting",
-              "id": "hideMapOnLoad",
-              "express": false,
-              "defaultValue": false
-            },
             {
               "type": "setting",
               "id": "theme",
