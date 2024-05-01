@@ -159,6 +159,12 @@
                   "id": "fullScreen",
                   "express": false,
                   "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "zoomToScale",
+                  "express": false,
+                  "defaultValue": 10000
                 }
               ]
             }
