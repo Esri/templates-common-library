@@ -140,7 +140,7 @@
               "express": true,
               "config": {
                 "branches": [
-                  ["hideAttributePanel", "autoPlay", "autoPlayDuration"],
+                  ["hideAttributePanel", "autoPlay"],
                   ["thumbnailFormat", "thumbnailHeight", "mapCentricTooltip"]
                 ]
               },
@@ -150,12 +150,6 @@
                   "id": "autoPlay",
                   "express": true,
                   "content": [
-                    {
-                      "type": "setting",
-                      "id": "enableAutoPlay",
-                      "express": false,
-                      "defaultValue": false
-                    },
                     {
                       "type": "setting",
                       "id": "autoPlayDuration",
