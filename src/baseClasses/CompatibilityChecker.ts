@@ -41,12 +41,13 @@ enum EResourceType {
 }
 
 enum ERequirementType {
-  UnsupportedRenderers_FeatureLayer,
-  UnsupportedRenderers_Renderer,
-  PopupDisabled,
-  ImageryCondition,
   AttachmentsCondition,
   ChartsCondition,
+  EditableFeatures,
+  ImageryCondition,
+  PopupDisabled,
+  UnsupportedRenderers_FeatureLayer,
+  UnsupportedRenderers_Renderer,
 }
 
 /** Mapping of all Resource Types to the Templates that they're not compatible with */
@@ -105,6 +106,7 @@ export interface ICompatibilityCheckerProperties {
   requirementsMessages: {
     AttachmentViewer: string;
     ChartViewer: string;
+    EditableFeatures: string;
     ImageryViewer: string;
     InteractiveLegend: string;
     Nearby: string;
@@ -140,7 +142,9 @@ export class CompatibilityChecker {
     [EAppTemplateType.Charts]: this._testChartsCondition,
     [EAppTemplateType.ImageryApp]: this._testImageryCondition,
     [EAppTemplateType.InteractiveLegend]: this._testUnsupportedRenderers,
+    [EAppTemplateType.Manager]: this._testEditableFeatures,
     [EAppTemplateType.Nearby]: this._testPopupDisabled,
+    [EAppTemplateType.Reporter]: this._testEditableFeatures,
     [EAppTemplateType.ZoneLookup]: this._testPopupDisabled,
   };
 
@@ -160,6 +164,8 @@ export class CompatibilityChecker {
       [ERequirementType.UnsupportedRenderers_Renderer]:
         requirementsMessages.InteractiveLegend,
       [ERequirementType.PopupDisabled]: requirementsMessages.Nearby,
+      [ERequirementType.EditableFeatures]:
+        requirementsMessages.EditableFeatures,
     };
 
     this._resourceMessagesMap = {
@@ -392,6 +398,20 @@ export class CompatibilityChecker {
       }, false);
 
     return !atLeastOneImageryLayer ? ERequirementType.ImageryCondition : null;
+  }
+
+  private _testEditableFeatures(
+    webmap: __esri.WebMap
+  ): ERequirementType | null {
+    let atLeastOneEditableLayer: boolean = webmap?.allLayers
+      ?.map((layer) => {
+        return layer.get("editingEnabled") as boolean;
+      })
+      .reduce((acc: boolean, curr: boolean) => {
+        return acc || curr;
+      }, false);
+
+    return !atLeastOneEditableLayer ? ERequirementType.EditableFeatures : null;
   }
 
   /**
