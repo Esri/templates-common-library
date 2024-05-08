@@ -13,6 +13,7 @@ export const GROUPED_CONTENT = [
   "searchConfiguration",
   "filterConfig",
   "itemCollection",
+  "numericSliderConfig",
 ];
 
 export const PREVENT_OVERWRITE = [
