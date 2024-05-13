@@ -2,6 +2,24 @@
   "config": [
     {
       "type": "section",
+      "id": "compare",
+      "content": [
+        {
+          "type": "group",
+          "id": "compare",
+          "content": [
+            {
+              "type": "setting",
+              "id": "compareConfig",
+              "express": true,
+              "defaultValue": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
       "id": "about",
       "content": [
         {
