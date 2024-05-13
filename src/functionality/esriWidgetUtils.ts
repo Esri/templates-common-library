@@ -131,6 +131,7 @@ export function addBookmarks(
       content: bookmarks,
       id: uniqueId,
       group,
+      mode: "floating",
       expandTooltip: tip,
       collapseTooltip: closeTip,
     });
