@@ -329,7 +329,23 @@
               "type": "setting",
               "id": "showSave",
               "express": false,
-              "defaultValue": true
+              "defaultValue": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "showCreate",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "createOptions",
+                      "express": false,
+                      "defaultValue": ["map-viewer", "story-maps", "instant-apps"]
+                    }
+                  ]
+                }
+              ]
             },
             {
               "type": "setting",
