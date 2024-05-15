@@ -301,11 +301,6 @@
                 },
                 {
                   "type": "setting",
-                  "id": "tableOfContents",
-                  "defaultValue": true
-                },
-                {
-                  "type": "setting",
                   "id": "share",
                   "express": true,
                   "defaultValue": false,
