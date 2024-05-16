@@ -105,6 +105,12 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "liveDataType",
+                  "express": true,
+                  "defaultValue": "forecast"
+                },
+                {
+                  "type": "setting",
                   "id": "durationTime",
                   "express": true,
                   "defaultValue": 1,
