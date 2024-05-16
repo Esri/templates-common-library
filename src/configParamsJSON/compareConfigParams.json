@@ -312,6 +312,24 @@
         },
         {
           "type": "subsection",
+          "id": "compareOptions",
+          "content": [
+            {
+              "type": "setting",
+              "id": "compareLayout",
+              "defaultValue": "side-by-side",
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "expandMap",
+              "defaultValue": false,
+              "express": true
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "share",
           "content": [
             {
