@@ -312,7 +312,21 @@
               "type": "setting",
               "id": "enableSketchTools",
               "express": true,
-              "defaultValue": false
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "defaultBufferDistance",
+                  "express": true,
+                  "defaultValue": 0
+                },
+                {
+                  "type": "setting",
+                  "id": "sketchBufferUnits",
+                  "express": true,
+                  "defaultValue": "feet"
+                }
+              ]
             },
             {
               "type": "group",
