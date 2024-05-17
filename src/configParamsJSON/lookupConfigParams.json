@@ -323,7 +323,8 @@
                 {
                   "type": "setting",
                   "id": "sketchBufferUnits",
-                  "express": true
+                  "express": true,
+                  "defaultValue": "feet"
                 }
               ]
             },
