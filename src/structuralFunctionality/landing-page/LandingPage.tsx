@@ -96,7 +96,9 @@ class LandingPage extends Widget {
         style={styles}
         key="esri-attachment-viewer-landing-page"
         fontFamily={this?.configurationSettings?.customTheme?.appFont}
-        titleText={config?.titleText}
+        titleText={
+          config?.titleText || this.base?.results?.applicationItem?.value?.title
+        }
         subtitleText={config?.subtitleText}
         descriptionText={config?.descriptionText}
         entryButtonText={config?.entryButtonText}
