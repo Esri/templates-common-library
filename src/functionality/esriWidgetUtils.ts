@@ -530,7 +530,7 @@ export async function addShare(
     const shareExpand = new Expand({
       id: uniqueId,
       content: container,
-      expandIconClass: "esri-icon-share2",
+      expandIcon: "share",
       group,
       mode: "floating",
       expandTooltip: tip,
