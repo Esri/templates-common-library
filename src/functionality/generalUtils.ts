@@ -56,6 +56,22 @@ export function getBaseUrl(portal?: __esri.Portal): string {
   return `${protocol}//${url}`;
 }
 
+export async function checkForElement(
+  element: HTMLElement | ShadowRoot,
+  selector: string
+): Promise<HTMLElement> {
+  if (!element) return null;
+  let counter = 50;
+  while (element.querySelector(selector) == null) {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+    counter--;
+    if (counter === 0) {
+      return null;
+    }
+  }
+  return element.querySelector(selector) as HTMLElement;
+}
+
 //////////////////////////////////////
 //
 // Helper functions
@@ -129,20 +145,4 @@ function _getSecureUrl(url: string, portal: __esri.Portal): string {
     secureUrl = secureUrl.replace("http:", "https:");
     return secureUrl.replace(/\:80\//, "/").replace(/\:443\//, "/");
   }
-}
-
-export async function checkForElement(
-  element: HTMLElement | ShadowRoot,
-  selector: string
-): Promise<HTMLElement> {
-  if (!element) return null;
-  let counter = 50;
-  while (element.querySelector(selector) == null) {
-    await new Promise((resolve) => requestAnimationFrame(resolve));
-    counter--;
-    if (counter === 0) {
-      return null;
-    }
-  }
-  return element.querySelector(selector) as HTMLElement;
 }

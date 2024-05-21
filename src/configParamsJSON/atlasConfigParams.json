@@ -152,6 +152,28 @@
                   "defaultValue": ""
                 }
               ]
+            },
+            {
+              "type": "group",
+              "id": "mapA11y",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcuts",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "keyboardShortcutsPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 0
+                      }
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
