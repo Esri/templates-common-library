@@ -14,12 +14,6 @@
         },
         {
           "type": "setting",
-          "id": "hideMapOnLoad",
-          "express": false,
-          "defaultValue": false
-        },
-        {
-          "type": "setting",
           "id": "enableInlineEdit",
           "express": true,
           "defaultValue": true
@@ -333,6 +327,12 @@
                 "singleFont": false,
                 "numOfSections": 2
               }
+            },
+            {
+              "type": "setting",
+              "id": "hideMapOnLoad",
+              "express": false,
+              "defaultValue": false
             }
           ]
         },
