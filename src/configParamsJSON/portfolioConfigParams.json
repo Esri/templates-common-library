@@ -192,22 +192,6 @@
                   "id": "showSectionNavigationButtons",
                   "express": false,
                   "defaultValue": true
-                },
-                {
-                  "type": "setting",
-                  "id": "keyboardShortcuts",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "keyboardShortcutsPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 4
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -429,6 +413,22 @@
                       "defaultValue": {
                         "position": "bottom-right",
                         "index": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "keyboardShortcuts",
+                  "express": true,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "keyboardShortcutsPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 4
                       }
                     }
                   ]
