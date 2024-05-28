@@ -370,6 +370,12 @@
                   "id": "zoomToScale",
                   "express": false,
                   "defaultValue": 10000
+                },
+                {
+                  "type": "setting",
+                  "id": "disableScroll",
+                  "express": false,
+                  "defaultValue": false
                 }
               ]
             }
