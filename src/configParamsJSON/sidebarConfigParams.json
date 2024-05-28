@@ -480,6 +480,22 @@
                 },
                 {
                   "type": "setting",
+                  "id": "fullScreen",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "fullScreenPosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "measure",
                   "express": false,
                   "defaultValue": false,
