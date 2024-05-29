@@ -290,7 +290,9 @@ export async function getT9nData(
 
   const defaultLocale = getDefaultLocale(base.portal, languageData);
   const selectedLocale = languageData?.locale;
-  updateLocale(defaultLocale ? defaultLocale : selectedLocale);
+  if (defaultLocale || selectedLocale) {
+    updateLocale(defaultLocale ? defaultLocale : selectedLocale);
+  }
 
   if (defaultLocale) {
     processNoDefaultValues(config, base);
