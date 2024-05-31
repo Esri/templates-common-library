@@ -233,7 +233,7 @@
             },
             {
               "type": "setting",
-              "id": "attachmentsAltText",
+              "id": "attachmentLayers",
               "config": {
                 "layerSelectionMode": "multiple",
                 "supportedLayerTypes": "*",
@@ -246,7 +246,7 @@
             },
             {
               "type": "setting",
-              "id": "attachmentLayers",
+              "id": "attachmentsAltText",
               "config": {
                 "layerSelectionMode": "multiple",
                 "supportedLayerTypes": "*",
