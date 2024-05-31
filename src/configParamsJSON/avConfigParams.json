@@ -233,6 +233,19 @@
             },
             {
               "type": "setting",
+              "id": "attachmentsAltText",
+              "config": {
+                "layerSelectionMode": "multiple",
+                "supportedLayerTypes": "*",
+                "supportedGeometryTypes": "*",
+                "supportsFieldSelection": true,
+                "fieldSelectionMode": "single",
+                "supportedFieldTypes": "*"
+              },
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
               "id": "attachmentLayers",
               "config": {
                 "layerSelectionMode": "multiple",
