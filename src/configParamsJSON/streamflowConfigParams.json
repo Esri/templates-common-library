@@ -453,12 +453,6 @@
                     "id": "theme",
                     "content": [
                         {
-                            "type": "setting",
-                            "id": "theme",
-                            "defaultValue": "light",
-                            "express": true
-                        },
-                        {
                             "type": "group",
                             "id": "headerTheme",
                             "content": [
