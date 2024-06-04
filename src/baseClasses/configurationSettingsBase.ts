@@ -11,6 +11,10 @@ export default class ConfigurationSettingsBase extends Accessor {
   @property()
   withinConfigurationExperience: boolean = isWithinConfigurationExperience();
 
+  /** The number of times the configuration has been updated during browser session */
+  @property()
+  updateCount: number = 0;
+
   private _draft: any = null;
   private _draftMode: boolean = false;
 
@@ -40,6 +44,7 @@ export default class ConfigurationSettingsBase extends Accessor {
   _handleConfigurationUpdates(e: any) {
     if (e?.data?.type === "cats-app") {
       Object.assign(this, e.data);
+      this.updateCount++;
     }
   }
 }
