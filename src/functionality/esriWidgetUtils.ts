@@ -107,7 +107,7 @@ export function addBookmarks(
     return;
   }
 
-  const group = _getPosition(bookmarksPosition);
+  const group = getPosition(bookmarksPosition);
   const tip = commonMessages?.tools?.bookmarks;
   const closeTip = commonMessages?.tools?.close?.bookmarks;
 
@@ -198,7 +198,7 @@ export function addLayerList(
     return;
   }
 
-  const group = _getPosition(layerListPosition);
+  const group = getPosition(layerListPosition);
   const tip = commonMessages?.tools?.layerList;
   const closeTip = commonMessages?.tools?.close?.layerList;
 
@@ -296,7 +296,7 @@ export function addLegend(
     return;
   }
 
-  const group = _getPosition(legendPosition);
+  const group = getPosition(legendPosition);
   const tip = commonMessages?.tools?.legend;
   const closeTip = commonMessages?.tools?.close?.legend;
 
@@ -434,7 +434,7 @@ export function addSearch(
     return;
   }
 
-  const group = _getPosition(searchPosition);
+  const group = getPosition(searchPosition);
   const tip = commonMessages?.tools?.search;
   const closeTip = commonMessages?.tools?.close?.search;
 
@@ -497,7 +497,7 @@ export async function addShare(
     return;
   }
 
-  const group = _getPosition(sharePosition);
+  const group = getPosition(sharePosition);
   let socialShare: any;
   const tip = commonMessages?.tools?.share;
   const closeTip = commonMessages?.tools?.close?.share;
@@ -561,7 +561,7 @@ export async function addKeyboardShortcuts(
     return;
   }
 
-  const group = _getPosition(keyboardShortcutsPosition);
+  const group = getPosition(keyboardShortcutsPosition);
   const tip = commonMessages?.tools?.keyboard;
   const closeTip = commonMessages?.tools?.close?.keyboard;
 
@@ -620,7 +620,7 @@ export async function addMeasurementTools(
     return;
   }
 
-  const group = _getPosition(measurePosition);
+  const group = getPosition(measurePosition);
   let measureTools;
   const tip = commonMessages?.tools?.measureTools;
   const closeTip = commonMessages?.tools?.close?.measureTools;
@@ -661,7 +661,7 @@ export async function addMeasurementTools(
   }
 }
 
-function _getPosition(position: { position: string } | string): string {
+export function getPosition(position: { position: string } | string): string {
   let groupName = "";
   if (typeof position === "string") {
     groupName = position;
