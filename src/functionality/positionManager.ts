@@ -1,4 +1,5 @@
 import { watch, when } from "esri/core/reactiveUtils";
+import { getPosition } from "./esriWidgetUtils";
 
 /**
  * Deals with issue where widgets load at different times and the positions in the
@@ -63,6 +64,7 @@ export function assertWidgetOrdering(
                     const [id, positionLookup] = sortedPair;
                     const el = leftPosition.find((elem) => elem.id === id);
                     view.ui.move({ component: el, ...positionLookup } as any);
+                    updateExpandGroup(el, positionLookup);
                   });
                 }, 200);
               }
@@ -78,4 +80,11 @@ export function assertWidgetOrdering(
       });
     }
   );
+}
+
+function updateExpandGroup(el: any, positionLookup: any): void {
+  if (el?.declaredClass === "esri.widgets.Expand") {
+    const group = getPosition(positionLookup);
+    (el as __esri.Expand).group = group;
+  }
 }
