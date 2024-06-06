@@ -226,7 +226,9 @@
                   "express": false,
                   "defaultValue": null,
                   "config": {
-                    "outputLayerExpOnly": true
+                    "outputLayerExpOnly": true,
+                    "editableLayersOnly": true,
+                    "includeTables": false
                   }
                 }
               ]
