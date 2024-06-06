@@ -379,7 +379,7 @@
                       "id": "searchPosition",
                       "defaultValue": {
                         "position": "top-right",
-                        "index": 1
+                        "index": 0
                       }
                     },
                     {
