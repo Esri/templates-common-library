@@ -32,15 +32,23 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "title",
-                  "defaultValue": "",
-                  "express": true
-                },
-                {
-                  "type": "setting",
-                  "id": "titleLink",
-                  "defaultValue": "",
-                  "express": false
+                  "id": "header",
+                  "defaultValue": true,
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "title",
+                      "express": true,
+                      "defaultValue": ""
+                    },
+                    {
+                      "type": "setting",
+                      "id": "titleLink",
+                      "express": false,
+                      "defaultValue": ""
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
