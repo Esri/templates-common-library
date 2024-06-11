@@ -332,7 +332,17 @@
               "type": "setting",
               "id": "expandMap",
               "defaultValue": false,
-              "express": true
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "expandMapPosition",
+                  "defaultValue": {
+                    "position": "top-left",
+                    "index": 10
+                  }
+                }
+              ]
             }
           ]
         },
