@@ -325,6 +325,26 @@
                   "id": "sketchBufferUnits",
                   "express": true,
                   "defaultValue": "feet"
+                },
+                {
+                  "type": "setting",
+                  "id": "enableBufferColor",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "bufferColor",
+                      "express": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "bufferTransparency",
+                      "express": false,
+                      "defaultValue": 30
+                    }
+                  ]
                 }
               ]
             },
