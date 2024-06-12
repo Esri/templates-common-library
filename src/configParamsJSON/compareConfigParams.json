@@ -94,6 +94,7 @@
                 {
                   "type": "setting",
                   "id": "mapA11yDesc",
+                  "defaultValue": "",
                   "express": true
                 },
                 {
@@ -480,6 +481,22 @@
               "id": "positionManager",
               "express": true,
               "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "syncMapsPosition",
+              "defaultValue": {
+                "position": "top-left",
+                "index": 9
+              }
+            },
+            {
+              "type": "setting",
+              "id": "descriptiveTextBtnPosition",
+              "defaultValue": {
+                "position": "top-left",
+                "index": 11
+              }
             }
           ]
         }
