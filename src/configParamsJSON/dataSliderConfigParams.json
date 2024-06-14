@@ -550,7 +550,7 @@
                       "type": "setting",
                       "id": "filterPosition",
                       "express": false,
-                      "defaultValue": "top-right"
+                      "defaultValue": {"position": "top-right", "index": 10}
                     },
                     {
                       "type": "setting",
