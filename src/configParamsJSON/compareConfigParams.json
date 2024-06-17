@@ -378,46 +378,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "subsection",
-          "id": "search",
-          "content": [
-            {
-              "type": "group",
-              "id": "search",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "search",
-                  "defaultValue": false,
-                  "express": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "searchPosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "searchOpenAtStart",
-                      "defaultValue": false,
-                      "express": false
-                    },
-                    {
-                      "type": "setting",
-                      "id": "searchConfiguration",
-                      "express": true,
-                      "defaultValue": null
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
         }
       ]
     },
