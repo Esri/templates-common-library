@@ -1,4 +1,5 @@
 export function applyImgTokens(innerHTML: string, token: string): string {
+  if (token == null || token === "") return innerHTML;
   const bodyEl = document.createElement("body");
   bodyEl.innerHTML = innerHTML;
   const imageNodes = bodyEl.getElementsByTagName("img");
