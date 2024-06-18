@@ -85,19 +85,6 @@ export default class LanguageSwitcher extends Widget {
 
   private _init() {
     this._portalItem = this.base?.results?.applicationItem?.value as PortalItem;
-    if (isWithinConfigurationExperience()) this._addMessageEventListener();
-  }
-
-  private _addMessageEventListener() {
-    window.addEventListener(
-      "message",
-      (e: any) => {
-        if (e?.data?.type === "cats-app") {
-          this._updateUI();
-        }
-      },
-      false
-    );
   }
 
   private async _updateUI() {
