@@ -296,12 +296,6 @@
                             "content": [
                                 {
                                     "type": "setting",
-                                    "id": "disableScroll",
-                                    "defaultValue": false,
-                                    "express": true
-                                },
-                                {
-                                    "type": "setting",
                                     "id": "scalebar",
                                     "express": false,
                                     "defaultValue": false,
