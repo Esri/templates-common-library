@@ -368,6 +368,12 @@
                       "express": false
                     }
                   ]
+                },
+                {
+                  "type": "setting",
+                  "id": "exportToPDF",
+                  "defaultValue": false,
+                  "express": false
                 }
               ]
             }
