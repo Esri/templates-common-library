@@ -275,11 +275,13 @@ export async function getT9nData(
   languageData: LanguageData,
   base: ApplicationBase
 ) {
-  const applicationItem = base.results.applicationItem
-    .value as __esri.PortalItem;
+  const applicationItem = base?.results?.applicationItem
+    ?.value as __esri.PortalItem;
 
-  const templateAppData = await applicationItem.fetchData();
-  const values = templateAppData?.values;
+  const templateAppData = applicationItem
+    ? await applicationItem.fetchData()
+    : {};
+  const values = templateAppData?.values ?? {};
 
   const baseConfig = base.config;
   let config: ApplicationConfig = { ...baseConfig, ...values };
