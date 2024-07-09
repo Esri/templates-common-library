@@ -186,9 +186,17 @@
                 },
                 {
                   "type": "setting",
-                  "id": "popupFixedPosition",
+                  "id": "popupFixed",
                   "express": true,
-                  "defaultValue": "top-right"
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "popupFixedPosition",
+                      "express": true,
+                      "defaultValue": "bottom-right"
+                    }
+                  ]
                 }
               ]
             }
