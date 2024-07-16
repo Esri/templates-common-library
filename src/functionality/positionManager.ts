@@ -82,6 +82,38 @@ export function assertWidgetOrdering(
   );
 }
 
+export function moveWidgetPositions(
+  view: __esri.View,
+  element: __esri.Widget | HTMLElement | string,
+  uiPosition: { index: number; position: __esri.UIPosition } | __esri.UIPosition
+): void {
+  if (!view || !element || !uiPosition) return;
+
+  const widget = getWidget(view, element);
+
+  view.ui.remove(widget);
+
+  const position =
+    typeof uiPosition === "string" ? uiPosition : uiPosition.position;
+  const positions = view.ui.getComponents(position);
+  const index =
+    typeof uiPosition === "string" ? positions.length : uiPosition.index;
+  positions.splice(index, 0, widget);
+  view.ui.empty(position);
+  view.ui.add(positions, position);
+}
+
+function getWidget(
+  view: __esri.View,
+  element: __esri.Widget | HTMLElement | string
+): __esri.Widget | HTMLElement {
+  if (typeof element === "string") {
+    return view.ui.find(element) as __esri.Widget | HTMLElement;
+  } else {
+    return element;
+  }
+}
+
 function updateExpandGroup(el: any, positionLookup: any): void {
   if (el?.declaredClass === "esri.widgets.Expand") {
     const group = getPosition(positionLookup);

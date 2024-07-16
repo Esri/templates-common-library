@@ -9,23 +9,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.​
 
-import Home from "esri/widgets/Home";
-import Zoom from "esri/widgets/Zoom";
+import Viewpoint from "esri/Viewpoint";
+import { when } from "esri/core/reactiveUtils";
+import BasemapToggle from "esri/widgets/BasemapToggle";
 import Bookmarks from "esri/widgets/Bookmarks";
+import Compass from "esri/widgets/Compass";
 import Expand from "esri/widgets/Expand";
-import Scalebar from "esri/widgets/ScaleBar";
+import FullScreen from "esri/widgets/Fullscreen";
+import Home from "esri/widgets/Home";
 import LayerList from "esri/widgets/LayerList";
 import Legend from "esri/widgets/Legend";
-import BasemapToggle from "esri/widgets/BasemapToggle";
 import Locate from "esri/widgets/Locate";
-import FullScreen from "esri/widgets/Fullscreen";
-import { when } from "esri/core/reactiveUtils";
-import Compass from "esri/widgets/Compass";
-import Viewpoint from "esri/Viewpoint";
+import Scalebar from "esri/widgets/ScaleBar";
+import Zoom from "esri/widgets/Zoom";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
-import { createSearch, handleSearchExtent } from "./search";
 import { checkForElement } from "./generalUtils";
+import { moveWidgetPositions } from "./positionManager";
+import { createSearch, handleSearchExtent } from "./search";
 
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
@@ -45,7 +46,7 @@ export function addHome(
   }
 
   if (node) {
-    view.ui.move(node, homePosition);
+    moveWidgetPositions(view, node, homePosition);
   } else {
     node = new Home({ view, id: uniqueId });
     view.ui.add(node, homePosition);
@@ -78,7 +79,7 @@ export function addZoom(
   }
 
   if (node && mapZoomPosition != null) {
-    view.ui.move(node, mapZoomPosition);
+    moveWidgetPositions(view, node, mapZoomPosition);
   } else {
     view.ui.add(new Zoom({ view, id: uniqueId }), mapZoomPosition);
   }
@@ -116,7 +117,7 @@ export function addBookmarks(
     node.collapseTooltip = closeTip;
     node.expanded = false;
     node.group = group;
-    view.ui.move(node, bookmarksPosition);
+    moveWidgetPositions(view, node, bookmarksPosition);
   } else {
     const bookmarks = new Bookmarks({
       view,
@@ -164,7 +165,7 @@ export function addScaleBar(
       : portal?.units === "metric"
       ? portal?.units
       : "imperial";
-    view.ui.move(node, scalebarPosition);
+    moveWidgetPositions(view, node, scalebarPosition);
   } else {
     view.ui.add(
       new Scalebar({
@@ -206,7 +207,7 @@ export function addLayerList(
     node.expandTooltip = tip;
     node.collapseTooltip = closeTip;
     node.expanded = layerListOpenAtStart;
-    view.ui.move(node, layerListPosition);
+    moveWidgetPositions(view, node, layerListPosition);
   } else {
     const content = new LayerList({
       dragEnabled: true,
@@ -263,7 +264,7 @@ export async function addBasemap(
   }
 
   if (node) {
-    view.ui.move(node, basemapTogglePosition);
+    moveWidgetPositions(view, node, basemapTogglePosition);
     if (basemapSelector != null) {
       resetBasemapsInToggle(node, originalBasemap, nextBasemap);
     }
@@ -310,7 +311,7 @@ export function addLegend(
         l.style = legendConfig?.style;
       }
     }
-    view.ui.move(node, legendPosition);
+    moveWidgetPositions(view, node, legendPosition);
     node.group = group;
   } else {
     const content = new Legend({
@@ -349,7 +350,7 @@ export function addFullscreen(
   }
 
   if (node) {
-    view.ui.move(node, fullScreenPosition);
+    moveWidgetPositions(view, node, fullScreenPosition);
   } else {
     view.ui.add(
       new FullScreen({
@@ -378,7 +379,7 @@ export function addCompass(
   }
 
   if (node) {
-    view.ui.move(node, compassWidgetPosition as any);
+    moveWidgetPositions(view, node, compassWidgetPosition as any);
   } else {
     view.ui.add(new Compass({ view, id: uniqueId }), compassWidgetPosition);
   }
@@ -403,7 +404,7 @@ export function addLocateWidget(
   }
 
   if (node && locateWidgetPosition != null) {
-    view.ui.move(node, locateWidgetPosition);
+    moveWidgetPositions(view, node, locateWidgetPosition);
   } else {
     view.ui.add(new Locate({ view, id: uniqueId }), locateWidgetPosition);
   }
@@ -506,7 +507,7 @@ export async function addShare(
     node.expandTooltip = tip;
     node.collapseTooltip = closeTip;
     node.group = group;
-    view.ui.move(node, sharePosition);
+    moveWidgetPositions(view, node, sharePosition);
     const container = node.container as HTMLElement;
     socialShare = await checkForElement(container, "instant-apps-social-share");
     if (socialShare != null) {
@@ -570,7 +571,7 @@ export async function addKeyboardShortcuts(
     node.collapseTooltip = closeTip;
     node.expanded = false;
     node.group = group;
-    view.ui.move(node, keyboardShortcutsPosition);
+    moveWidgetPositions(view, node, keyboardShortcutsPosition);
     const container = node.container as HTMLElement;
     const keyboard = (await checkForElement(
       container,
@@ -630,7 +631,7 @@ export async function addMeasurementTools(
     node.collapseTooltip = closeTip;
     node.expanded = false;
     node.group = group;
-    view.ui.move(node, measurePosition);
+    moveWidgetPositions(view, node, measurePosition);
     const container = node.container as HTMLElement;
     measureTools = (await checkForElement(
       container,
