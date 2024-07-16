@@ -17,10 +17,7 @@ export function assertWidgetOrdering(
   debug?: boolean
 ) {
   const watchWidgetOrdering = (quadrant: __esri.UIPosition) => {
-    //@ts-ignore  use undocumented internal method to get all componentsa
-    let leftPosition = view.ui.getComponents(quadrant, {
-      includeInternal: true,
-    });
+    let leftPosition = view.ui.getComponents(quadrant);
     let firstAssertion = true;
     watch(
       () => config.updateCount,
