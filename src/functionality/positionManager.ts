@@ -1,5 +1,20 @@
 import { watch, when } from "esri/core/reactiveUtils";
+import { debounce } from "./debounce";
 import { getPosition } from "./esriWidgetUtils";
+
+interface IWidgetPosition {
+  index?: number;
+  position: __esri.UIPosition;
+}
+
+interface IBatchWidgetPositions {
+  [key: number]: Array<{
+    widget: __esri.Widget | HTMLElement;
+    uiPosition: IWidgetPosition;
+  }>;
+}
+
+const batch: IBatchWidgetPositions = {};
 
 /**
  * Deals with issue where widgets load at different times and the positions in the
@@ -82,25 +97,88 @@ export function assertWidgetOrdering(
   );
 }
 
-export function moveWidgetPositions(
-  view: __esri.View,
+/**
+ * This function handles the batch positioning of widgets in a view.
+ * @param {__esri.MapView | __esri.SceneView} view - The view in which the widgets are located.
+ * @param {__esri.Widget | HTMLElement | string} element - The widget, HTML element, or widget id to be positioned.
+ * @param {IWidgetPosition | __esri.UIPosition} uiPosition - The new position for the widget.
+ * @param {number} [viewInstance=0] - The instance of the view. This is useful when you have multiple views and want to specify in which one the widget should be positioned.
+ */
+export function handleBatchWidgetPositions(
+  view: __esri.MapView | __esri.SceneView,
   element: __esri.Widget | HTMLElement | string,
-  uiPosition: { index: number; position: __esri.UIPosition } | __esri.UIPosition
+  uiPosition: IWidgetPosition | __esri.UIPosition,
+  viewInstance: number = 0
 ): void {
-  if (!view || !element || !uiPosition) return;
+  if (!isValidInput(view, element, uiPosition)) return;
+
+  if (batch[viewInstance] == null) {
+    batch[viewInstance] = [];
+  }
 
   const widget = getWidget(view, element);
+  const position = extractPositionAndIndex(uiPosition);
 
-  view.ui.remove(widget);
+  updateBatchWithWidget(viewInstance, widget, position);
+  debounce(
+    () => moveWidgetsInBatch(viewInstance, view),
+    200,
+    false,
+    viewInstance,
+    "widgetPositionBatch"
+  );
+}
 
-  const position =
-    typeof uiPosition === "string" ? uiPosition : uiPosition.position;
-  const positions = view.ui.getComponents(position);
-  const index =
-    typeof uiPosition === "string" ? positions.length : uiPosition.index;
-  positions.splice(index, 0, widget);
-  view.ui.empty(position);
-  view.ui.add(positions, position);
+function isValidInput(
+  view: __esri.View,
+  element: __esri.Widget | HTMLElement | string,
+  uiPosition: IWidgetPosition | __esri.UIPosition
+): boolean {
+  return Boolean(view && element && uiPosition);
+}
+
+function extractPositionAndIndex(
+  uiPosition: IWidgetPosition | string
+): IWidgetPosition {
+  return typeof uiPosition === "string"
+    ? { position: uiPosition as __esri.UIPosition }
+    : { position: uiPosition.position, index: uiPosition.index };
+}
+
+function updateBatchWithWidget(
+  viewInstance: number,
+  widget: __esri.Widget | HTMLElement,
+  uiPosition: IWidgetPosition
+): void {
+  const existingWidgetIndex = batch[viewInstance].findIndex(
+    (el) => el.widget.id === widget.id
+  );
+  if (existingWidgetIndex > -1) {
+    batch[viewInstance][existingWidgetIndex] = { widget, uiPosition };
+  } else {
+    batch[viewInstance].push({ widget, uiPosition });
+  }
+}
+
+function moveWidgetsInBatch(viewInstance: number, view: __esri.View): void {
+  batch[viewInstance].sort((a, b) => {
+    const positionComparison = a.uiPosition.position.localeCompare(
+      b.uiPosition.position
+    );
+    if (positionComparison !== 0) {
+      return positionComparison;
+    }
+
+    return a.uiPosition.index - b.uiPosition.index;
+  });
+
+  batch[viewInstance].forEach((el) => {
+    const position =
+      el.uiPosition.index == null ? el.uiPosition.position : el.uiPosition;
+    view.ui.move(el.widget, position);
+  });
+
+  batch[viewInstance] = [];
 }
 
 function getWidget(

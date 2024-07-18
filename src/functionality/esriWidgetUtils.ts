@@ -25,7 +25,7 @@ import Zoom from "esri/widgets/Zoom";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
-import { moveWidgetPositions } from "./positionManager";
+import { handleBatchWidgetPositions } from "./positionManager";
 import { createSearch, handleSearchExtent } from "./search";
 
 /**
@@ -33,7 +33,8 @@ import { createSearch, handleSearchExtent } from "./search";
  */
 export function addHome(
   config: any,
-  view: __esri.MapView | __esri.SceneView
+  view: __esri.MapView | __esri.SceneView,
+  viewInstance = 0
 ): void {
   const { home, homePosition, mapArea, mapAreaConfig } = config;
   const uniqueId = "esri-home";
@@ -46,7 +47,7 @@ export function addHome(
   }
 
   if (node) {
-    moveWidgetPositions(view, node, homePosition);
+    handleBatchWidgetPositions(view, node, homePosition, viewInstance);
   } else {
     node = new Home({ view, id: uniqueId });
     view.ui.add(node, homePosition);
@@ -65,7 +66,8 @@ export function addHome(
  */
 export function addZoom(
   config: any,
-  view: __esri.MapView | __esri.SceneView
+  view: __esri.MapView | __esri.SceneView,
+  viewInstance = 0
 ): void {
   const { mapZoom, mapZoomPosition } = config;
   const uniqueId = "esri-zoom";
@@ -79,7 +81,7 @@ export function addZoom(
   }
 
   if (node && mapZoomPosition != null) {
-    moveWidgetPositions(view, node, mapZoomPosition);
+    handleBatchWidgetPositions(view, node, mapZoomPosition, viewInstance);
   } else {
     view.ui.add(new Zoom({ view, id: uniqueId }), mapZoomPosition);
   }
@@ -94,7 +96,8 @@ export function addBookmarks(
   config: any,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any,
-  timeCapability = false
+  timeCapability = false,
+  viewInstance = 0
 ): void {
   const { bookmarks, bookmarksPosition } = config;
   const uniqueId = "esri-bookmarksExpand";
@@ -117,7 +120,7 @@ export function addBookmarks(
     node.collapseTooltip = closeTip;
     node.expanded = false;
     node.group = group;
-    moveWidgetPositions(view, node, bookmarksPosition);
+    handleBatchWidgetPositions(view, node, bookmarksPosition, viewInstance);
   } else {
     const bookmarks = new Bookmarks({
       view,
@@ -146,7 +149,8 @@ export function addBookmarks(
  */
 export function addScaleBar(
   config: any,
-  view: __esri.MapView | __esri.SceneView
+  view: __esri.MapView | __esri.SceneView,
+  viewInstance = 0
 ): void {
   const { scalebar, scalebarPosition, scalebarDualMode } = config;
   const uniqueId = "esri-scale-bar";
@@ -165,7 +169,7 @@ export function addScaleBar(
       : portal?.units === "metric"
       ? portal?.units
       : "imperial";
-    moveWidgetPositions(view, node, scalebarPosition);
+    handleBatchWidgetPositions(view, node, scalebarPosition, viewInstance);
   } else {
     view.ui.add(
       new Scalebar({
@@ -188,7 +192,9 @@ export function addScaleBar(
 export function addLayerList(
   config: any,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any
+  commonMessages: any,
+
+  viewInstance = 0
 ): void {
   const { layerList, layerListPosition, layerListOpenAtStart } = config;
   const uniqueId = "esri-layerListExpand";
@@ -207,7 +213,7 @@ export function addLayerList(
     node.expandTooltip = tip;
     node.collapseTooltip = closeTip;
     node.expanded = layerListOpenAtStart;
-    moveWidgetPositions(view, node, layerListPosition);
+    handleBatchWidgetPositions(view, node, layerListPosition, viewInstance);
   } else {
     const content = new LayerList({
       dragEnabled: true,
@@ -242,7 +248,8 @@ export function addLayerList(
  */
 export async function addBasemap(
   config: any,
-  view: __esri.MapView
+  view: __esri.MapView,
+  viewInstance = 0
 ): Promise<void> {
   const { basemapTogglePosition, basemapToggle, basemapSelector } = config;
   const uniqueId = "esri-basemapWidget";
@@ -264,7 +271,7 @@ export async function addBasemap(
   }
 
   if (node) {
-    moveWidgetPositions(view, node, basemapTogglePosition);
+    handleBatchWidgetPositions(view, node, basemapTogglePosition, viewInstance);
     if (basemapSelector != null) {
       resetBasemapsInToggle(node, originalBasemap, nextBasemap);
     }
@@ -286,7 +293,9 @@ export async function addBasemap(
 export function addLegend(
   config: any,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any
+  commonMessages: any,
+
+  viewInstance = 0
 ): void {
   const { legend, legendPosition, legendOpenAtStart, legendConfig } = config;
   const uniqueId = "esri-legendExpand";
@@ -311,7 +320,7 @@ export function addLegend(
         l.style = legendConfig?.style;
       }
     }
-    moveWidgetPositions(view, node, legendPosition);
+    handleBatchWidgetPositions(view, node, legendPosition, viewInstance);
     node.group = group;
   } else {
     const content = new Legend({
@@ -338,7 +347,8 @@ export function addLegend(
  */
 export function addFullscreen(
   config: any,
-  view: __esri.MapView | __esri.SceneView
+  view: __esri.MapView | __esri.SceneView,
+  viewInstance = 0
 ): void {
   const { fullScreen, fullScreenPosition } = config;
   const uniqueId = "esri-fullscreen";
@@ -350,7 +360,7 @@ export function addFullscreen(
   }
 
   if (node) {
-    moveWidgetPositions(view, node, fullScreenPosition);
+    handleBatchWidgetPositions(view, node, fullScreenPosition, viewInstance);
   } else {
     view.ui.add(
       new FullScreen({
@@ -367,7 +377,8 @@ export function addFullscreen(
  */
 export function addCompass(
   config: any,
-  view: __esri.MapView | __esri.SceneView
+  view: __esri.MapView | __esri.SceneView,
+  viewInstance = 0
 ): void {
   const { compassWidget, compassWidgetPosition } = config;
   const uniqueId = "esri-compass";
@@ -379,7 +390,7 @@ export function addCompass(
   }
 
   if (node) {
-    moveWidgetPositions(view, node, compassWidgetPosition as any);
+    handleBatchWidgetPositions(view, node, compassWidgetPosition, viewInstance);
   } else {
     view.ui.add(new Compass({ view, id: uniqueId }), compassWidgetPosition);
   }
@@ -390,7 +401,8 @@ export function addCompass(
  */
 export function addLocateWidget(
   config: any,
-  view: __esri.MapView | __esri.SceneView
+  view: __esri.MapView | __esri.SceneView,
+  viewInstance = 0
 ): void {
   const { locateWidget, locateWidgetPosition } = config;
   const uniqueId = "esri-locate";
@@ -404,7 +416,7 @@ export function addLocateWidget(
   }
 
   if (node && locateWidgetPosition != null) {
-    moveWidgetPositions(view, node, locateWidgetPosition);
+    handleBatchWidgetPositions(view, node, locateWidgetPosition, viewInstance);
   } else {
     view.ui.add(new Locate({ view, id: uniqueId }), locateWidgetPosition);
   }
@@ -486,7 +498,8 @@ export function addSearch(
 export async function addShare(
   config: any,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any
+  commonMessages: any,
+  viewInstance = 0
 ): Promise<any | undefined> {
   const { share, sharePosition, shareIncludeEmbed, shareIncludeSocial } =
     config;
@@ -507,7 +520,7 @@ export async function addShare(
     node.expandTooltip = tip;
     node.collapseTooltip = closeTip;
     node.group = group;
-    moveWidgetPositions(view, node, sharePosition);
+    handleBatchWidgetPositions(view, node, sharePosition, viewInstance);
     const container = node.container as HTMLElement;
     socialShare = await checkForElement(container, "instant-apps-social-share");
     if (socialShare != null) {
@@ -551,7 +564,8 @@ export async function addShare(
 export async function addKeyboardShortcuts(
   config: any,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any
+  commonMessages: any,
+  viewInstance = 0
 ): Promise<void> {
   const { keyboardShortcuts, keyboardShortcutsPosition } = config;
   const uniqueId = "esri-instant-apps-keyboard-shortcuts";
@@ -571,7 +585,12 @@ export async function addKeyboardShortcuts(
     node.collapseTooltip = closeTip;
     node.expanded = false;
     node.group = group;
-    moveWidgetPositions(view, node, keyboardShortcutsPosition);
+    handleBatchWidgetPositions(
+      view,
+      node,
+      keyboardShortcutsPosition,
+      viewInstance
+    );
     const container = node.container as HTMLElement;
     const keyboard = (await checkForElement(
       container,
@@ -610,7 +629,8 @@ export async function addKeyboardShortcuts(
 export async function addMeasurementTools(
   config: any,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any
+  commonMessages: any,
+  viewInstance = 0
 ): Promise<void> {
   const { measure, measurePosition } = config;
   const uniqueId = "esri-instant-apps-measurement";
@@ -631,7 +651,7 @@ export async function addMeasurementTools(
     node.collapseTooltip = closeTip;
     node.expanded = false;
     node.group = group;
-    moveWidgetPositions(view, node, measurePosition);
+    handleBatchWidgetPositions(view, node, measurePosition, viewInstance);
     const container = node.container as HTMLElement;
     measureTools = (await checkForElement(
       container,
