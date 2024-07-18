@@ -98,7 +98,7 @@ export function assertWidgetOrdering(
 }
 
 /**
- * This function handles the batch positioning of widgets in a view.
+ * This function handles the batch positioning of widgets in a view. Replace the `view.ui.move` method with this function to batch the positioning of widgets.
  * @param {__esri.MapView | __esri.SceneView} view - The view in which the widgets are located.
  * @param {__esri.Widget | HTMLElement | string} element - The widget, HTML element, or widget id to be positioned.
  * @param {IWidgetPosition | __esri.UIPosition} uiPosition - The new position for the widget.
