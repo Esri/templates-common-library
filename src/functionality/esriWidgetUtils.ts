@@ -224,6 +224,7 @@ export function addLayerList(
   } else {
     const content = new LayerList({
       dragEnabled: true,
+      visibilityIcon: visibilityIcon ? visibilityIcon : "default",
       visibleElements: {
         errors: true,
         filter: true,
