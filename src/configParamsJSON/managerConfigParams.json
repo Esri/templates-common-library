@@ -17,6 +17,12 @@
           "id": "enableInlineEdit",
           "express": true,
           "defaultValue": true
+        },
+        {
+          "type": "setting",
+          "id": "createFeatures",
+          "express": false,
+          "defaultValue": false
         }
       ]
     },
