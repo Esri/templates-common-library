@@ -588,6 +588,12 @@
                   "id": "layerListAddTable",
                   "express": false,
                   "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "visibilityIcon",
+                  "express": false,
+                  "defaultValue": "eyeball"
                 }
               ]
             },

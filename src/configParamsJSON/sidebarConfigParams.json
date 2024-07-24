@@ -255,6 +255,12 @@
                         ]
                       },
                       "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "visibilityIcon",
+                      "express": false,
+                      "defaultValue": "eyeball"
                     }
                   ]
                 },
