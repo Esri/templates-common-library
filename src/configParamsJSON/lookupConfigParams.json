@@ -502,7 +502,7 @@
                     {
                       "type": "setting",
                       "id": "mapPinIcon",
-                      "defaultValue": "location",
+                      "defaultValue": "esri-pin-1",
                       "express": false
                     },
                     {
