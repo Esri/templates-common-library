@@ -196,7 +196,8 @@ export function addLayerList(
 
   viewInstance = 0
 ): void {
-  const { layerList, layerListPosition, layerListOpenAtStart } = config;
+  const { layerList, layerListPosition, layerListOpenAtStart, visibilityIcon } =
+    config;
   const uniqueId = "esri-layerListExpand";
   const node = view.ui.find(uniqueId) as __esri.Expand;
 
@@ -214,9 +215,16 @@ export function addLayerList(
     node.collapseTooltip = closeTip;
     node.expanded = layerListOpenAtStart;
     handleBatchWidgetPositions(view, node, layerListPosition, viewInstance);
+    if (node?.content) {
+      const layerList = node.content as LayerList;
+      layerList.visibilityAppearance = visibilityIcon
+        ? visibilityIcon
+        : "default";
+    }
   } else {
     const content = new LayerList({
       dragEnabled: true,
+      visibilityIcon: visibilityIcon ? visibilityIcon : "default",
       visibleElements: {
         errors: true,
         filter: true,
