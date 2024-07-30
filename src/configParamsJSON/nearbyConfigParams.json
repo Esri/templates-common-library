@@ -223,6 +223,12 @@
             },
             {
               "type": "setting",
+              "id": "searchUnits",
+              "express": true,
+              "defaultValue": "kilometers"
+            },
+            {
+              "type": "setting",
               "id": "enableBufferSearch",
               "express": true,
               "config": {
@@ -234,7 +240,6 @@
                   [
                     "sliderRange",
                     "precision",
-                    "searchUnits",
                     "inputsEnabled",
                     "enableBufferColor",
                     "enableSearchScale",
@@ -265,12 +270,6 @@
                   "id": "hideMap",
                   "defaultValue": false,
                   "express": false
-                },
-                {
-                  "type": "setting",
-                  "id": "searchUnits",
-                  "express": true,
-                  "defaultValue": "kilometers"
                 },
                 {
                   "type": "setting",
