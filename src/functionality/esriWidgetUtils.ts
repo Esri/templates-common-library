@@ -126,8 +126,8 @@ export function addBookmarks(
       view,
       viewModel: {
         view,
-        capabilities: { time: timeCapability },
-      },
+        capabilities: { time: timeCapability }
+      }
     });
 
     const bookmarksExpand = new Expand({
@@ -137,7 +137,7 @@ export function addBookmarks(
       group,
       mode: "floating",
       expandTooltip: tip,
-      collapseTooltip: closeTip,
+      collapseTooltip: closeTip
     });
 
     view.ui.add(bookmarksExpand, bookmarksPosition);
@@ -179,7 +179,7 @@ export function addScaleBar(
           ? "dual"
           : portal?.units === "metric"
           ? portal?.units
-          : "imperial",
+          : "imperial"
       }),
       scalebarPosition
     );
@@ -196,8 +196,13 @@ export function addLayerList(
 
   viewInstance = 0
 ): void {
-  const { layerList, layerListPosition, layerListOpenAtStart, visibilityIcon } =
-    config;
+  const {
+    layerList,
+    layerListPosition,
+    layerListOpenAtStart,
+    layerListLegend,
+    visibilityIcon
+  } = config;
   const uniqueId = "esri-layerListExpand";
   const node = view.ui.find(uniqueId) as __esri.Expand;
 
@@ -217,6 +222,7 @@ export function addLayerList(
     handleBatchWidgetPositions(view, node, layerListPosition, viewInstance);
     if (node?.content) {
       const layerList = node.content as LayerList;
+      updateListItemLegend(layerList, layerListLegend);
       layerList.visibilityAppearance = visibilityIcon
         ? visibilityIcon
         : "default";
@@ -227,9 +233,12 @@ export function addLayerList(
       visibilityIcon: visibilityIcon ? visibilityIcon : "default",
       visibleElements: {
         errors: true,
-        filter: true,
+        filter: true
       },
       view,
+      listItemCreatedFunction: (e) => {
+        configureListItemPanelLegend(e.item, layerListLegend);
+      }
     } as any);
 
     content?.when(() => {
@@ -245,7 +254,7 @@ export function addLayerList(
       collapseTooltip: closeTip,
       group,
       mode: "floating",
-      view,
+      view
     });
     view.ui.add(layerListExpand, layerListPosition);
   }
@@ -266,7 +275,7 @@ export async function addBasemap(
   const { originalBasemap, nextBasemap } = await getBasemaps({
     config,
     view,
-    portal,
+    portal
   });
   const node = view.ui.find(uniqueId) as __esri.BasemapToggle;
 
@@ -287,7 +296,7 @@ export async function addBasemap(
     const bmToggle = new BasemapToggle({
       view,
       nextBasemap,
-      id: uniqueId,
+      id: uniqueId
     });
     resetBasemapsInToggle(bmToggle, originalBasemap, nextBasemap);
     view.ui.add(bmToggle, basemapTogglePosition);
@@ -333,7 +342,7 @@ export function addLegend(
   } else {
     const content = new Legend({
       style: legendConfig?.style,
-      view,
+      view
     });
 
     const legendExpand = new Expand({
@@ -344,7 +353,7 @@ export function addLegend(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       mode: "floating",
-      view,
+      view
     });
     view.ui.add(legendExpand, legendPosition);
   }
@@ -373,7 +382,7 @@ export function addFullscreen(
     view.ui.add(
       new FullScreen({
         id: uniqueId,
-        view,
+        view
       }),
       fullScreenPosition
     );
@@ -493,7 +502,7 @@ export function addSearch(
     mode: "floating",
     collapseTooltip: closeTip,
     expandTooltip: tip,
-    expanded: searchOpenAtStart,
+    expanded: searchOpenAtStart
   });
   view.ui.add(node, searchPosition);
   handleSearchExtent(config, node.content as __esri.widgetsSearch);
@@ -557,7 +566,7 @@ export async function addShare(
       mode: "floating",
       expandTooltip: tip,
       collapseTooltip: closeTip,
-      view,
+      view
     });
     view.ui.add(shareExpand, sharePosition);
   }
@@ -624,7 +633,7 @@ export async function addKeyboardShortcuts(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       expandIcon: "keyboard",
-      view,
+      view
     });
     view.ui.add(keyboardExpand, keyboardShortcutsPosition);
   }
@@ -684,7 +693,7 @@ export async function addMeasurementTools(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       expandIcon: "measure",
-      view,
+      view
     });
     view.ui.add(measureExpand, measurePosition);
   }
@@ -698,4 +707,21 @@ export function getPosition(position: { position: string } | string): string {
     groupName = position.position;
   }
   return groupName;
+}
+
+function configureListItemPanelLegend(
+  item: __esri.ListItem,
+  layerListLegend: boolean
+): void {
+  const panelContent = layerListLegend ? { content: "legend" } : null;
+  item.panel = panelContent as unknown as __esri.ListItemPanel;
+}
+
+function updateListItemLegend(
+  layerList: __esri.LayerList,
+  layerListLegend: boolean
+): void {
+  layerList?.operationalItems?.forEach((item) => {
+    configureListItemPanelLegend(item, layerListLegend);
+  });
 }
