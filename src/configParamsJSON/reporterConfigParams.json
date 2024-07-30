@@ -353,6 +353,22 @@
                 },
                 {
                   "type": "setting",
+                  "id": "floorFilter",
+                  "defaultValue": false,
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "floorFilterPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "keyboardShortcuts",
                   "express": false,
                   "defaultValue": false,
@@ -418,8 +434,14 @@
                   "id": "layerListPosition",
                   "defaultValue": {
                     "position": "top-right",
-                    "index": 1
+                    "index": 2
                   }
+                },
+                {
+                  "type": "setting",
+                  "id": "layerListLegend",
+                  "express": false,
+                  "defaultValue": false
                 },
                 {
                   "type": "setting",
@@ -458,7 +480,7 @@
                   "id": "searchPosition",
                   "defaultValue": {
                     "position": "top-right",
-                    "index": 2
+                    "index": 3
                   }
                 }
               ]
@@ -569,6 +591,25 @@
               "type": "setting",
               "id": "positionManager",
               "express": true,
+              "defaultValue": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "languageSwitcher",
+      "express": false,
+      "content": [
+        {
+          "type": "setting",
+          "id": "languageSwitcher",
+          "defaultValue": false,
+          "content": [
+            {
+              "type": "setting",
+              "id": "languageSwitcherConfig",
               "defaultValue": null
             }
           ]
