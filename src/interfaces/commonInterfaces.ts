@@ -45,8 +45,14 @@ export interface ITheme {
 export interface ICustomTheme {
   applyPresetTheme: boolean;
   applySharedTheme: boolean;
+  appFont?: string;
   font: string;
-  preset: "shared";
+  logo?: string;
+  logoLink?: string;
+  logoScale?: "s" | "m" | "l";
+  logoSource?: "upload" | "url";
+  logoUrl?: string;
+  preset?: string;
   themes: {
     primary?: ITheme;
     secondary?: ITheme;

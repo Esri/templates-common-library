@@ -346,3 +346,52 @@ export async function handleCustomURLParam(
     });
   }
 }
+
+function applyToken(token: string | undefined, logo: string): string {
+  return logo && token ? `${logo}?token=${token}` : logo;
+}
+
+function getLogoDetails(
+  customTheme: ICustomTheme | undefined,
+  token?: string | undefined
+): {
+  logo: string;
+  link?: string;
+} {
+  const logo =
+    (customTheme?.logoSource === "url"
+      ? customTheme?.logoUrl
+      : customTheme?.logo) ?? "";
+  return {
+    logo: applyToken(token, logo),
+    link: customTheme?.logoLink
+  };
+}
+
+/**
+ * This function is used to get the logo options for a custom theme or a shared theme from a portal.
+ * @param {ICustomTheme | undefined} customTheme - An object representing the custom theme. It may be undefined.
+ * @param {__esri.Portal | undefined} portal - An object representing the portal from which the shared theme is obtained. It may be undefined.
+ * @param {boolean | undefined} applySharedTheme - A flag indicating whether to apply the shared theme from the portal. It is optional and defaults to undefined.
+ * @returns {{ logo: string; link?: string }} An object with two properties: `logo` and `link`. `logo` is a string representing the URL of the logo image. `link` is an optional string representing a link associated with the logo.
+ */
+export function getLogoOptions(
+  customTheme: ICustomTheme | undefined,
+  portal: __esri.Portal | undefined,
+  applySharedTheme?: boolean
+): { logo: string; link?: string } {
+  const token = (portal as any)?.credential?.token;
+  const showSharedLogo = customTheme?.applySharedTheme ?? applySharedTheme;
+
+  if (portal && showSharedLogo) {
+    const sharedTheme = portal.portalProperties?.sharedTheme;
+    if (sharedTheme?.logo) {
+      return {
+        logo: applyToken(token, sharedTheme.logo.small),
+        link: sharedTheme.logo.link
+      };
+    }
+  }
+
+  return getLogoDetails(customTheme, token);
+}
