@@ -313,6 +313,12 @@
                       "id": "elevationProfileOpenAtStart",
                       "express": false,
                       "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "dockElevationProfile",
+                      "express": false,
+                      "defaultValue": false
                     }
                   ]
                 },
