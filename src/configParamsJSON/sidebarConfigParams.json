@@ -216,7 +216,15 @@
                   "type": "setting",
                   "id": "legendPanel",
                   "defaultValue": true,
-                  "express": true
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "legendPanelText",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
@@ -224,6 +232,12 @@
                   "defaultValue": false,
                   "express": true,
                   "content": [
+                    {
+                      "type": "setting",
+                      "id": "layerListPanelText",
+                      "express": false,
+                      "defaultValue": null
+                    },
                     {
                       "type": "setting",
                       "id": "selectedLayers",
@@ -268,7 +282,13 @@
                   "type": "setting",
                   "id": "bookmarksPanel",
                   "express": true,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "content": {
+                    "type": "setting",
+                    "id": "bookmarksPanelText",
+                    "express": false,
+                    "defaultValue": null
+                  }
                 },
                 {
                   "type": "setting",
@@ -281,6 +301,18 @@
                       "id": "classicPanel",
                       "defaultValue": false,
                       "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "popupTipText",
+                      "defaultValue": null,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "popupPanelText",
+                      "express": false,
+                      "defaultValue": null
                     }
                   ]
                 },
@@ -290,6 +322,12 @@
                   "express": false,
                   "defaultValue": false,
                   "content": [
+                    {
+                      "type": "setting",
+                      "id": "layerEditPanelText",
+                      "express": false,
+                      "defaultValue": null
+                    },
                     {
                       "type": "setting",
                       "id": "enableSnap",
@@ -319,13 +357,29 @@
                   "type": "setting",
                   "id": "utilityNetwork",
                   "express": false,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "utilityNetworkText",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
                   "id": "orientedImagery",
                   "express": false,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "orientedImageryText",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
@@ -358,6 +412,12 @@
                           "question-mark"
                         ]
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "detailsText",
+                      "defaultValue": null,
+                      "express": false
                     }
                   ]
                 },
@@ -378,6 +438,12 @@
                       "id": "filterConfig",
                       "express": false,
                       "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "filterPanelText",
+                      "express": false,
+                      "defaultValue": null
                     }
                   ]
                 },
@@ -392,6 +458,12 @@
                       "id": "basemapGalleryConfig",
                       "express": false,
                       "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "basemapGalleryText",
+                      "defaultValue": null,
+                      "express": false
                     }
                   ]
                 }
