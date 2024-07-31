@@ -122,7 +122,7 @@ export function handleBatchWidgetPositions(
   updateBatchWithWidget(viewInstance, widget, position);
   debounce(
     () => moveWidgetsInBatch(viewInstance, view),
-    200,
+    500,
     false,
     viewInstance,
     "widgetPositionBatch"
