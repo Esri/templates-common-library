@@ -9,18 +9,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.​
 
-import Viewpoint from "esri/Viewpoint";
 import { when } from "esri/core/reactiveUtils";
 import BasemapToggle from "esri/widgets/BasemapToggle";
 import Bookmarks from "esri/widgets/Bookmarks";
 import Compass from "esri/widgets/Compass";
 import Expand from "esri/widgets/Expand";
+import FloorFilter from "esri/widgets/FloorFilter";
 import FullScreen from "esri/widgets/Fullscreen";
 import Home from "esri/widgets/Home";
 import LayerList from "esri/widgets/LayerList";
 import Legend from "esri/widgets/Legend";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
+import Viewpoint from "esri/Viewpoint";
 import Zoom from "esri/widgets/Zoom";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
@@ -696,6 +697,37 @@ export async function addMeasurementTools(
       view
     });
     view.ui.add(measureExpand, measurePosition);
+  }
+}
+
+/**
+ * Watch for changes in floorFilter, floorFilterPosition
+ */
+export function addFloorFilter(
+  config: any,
+  view: __esri.MapView | __esri.SceneView,
+  viewInstance = 0
+): void {
+  const { floorFilter, floorFilterPosition } = config;
+  const uniqueId = "esri-floor-filter";
+  const node = view.ui.find(uniqueId) as __esri.FloorFilter;
+
+  if (!floorFilter) {
+    if (node) view.ui.remove(node);
+    return;
+  }
+
+  if (node) {
+    handleBatchWidgetPositions(view, node, floorFilterPosition, viewInstance);
+  } else {
+    view.ui.add(
+      new FloorFilter({
+        id: uniqueId,
+        view,
+        headingLevel: 3
+      }),
+      floorFilterPosition
+    );
   }
 }
 
