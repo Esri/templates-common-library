@@ -283,12 +283,14 @@
                   "id": "bookmarksPanel",
                   "express": true,
                   "defaultValue": false,
-                  "content": {
-                    "type": "setting",
-                    "id": "bookmarksPanelText",
-                    "express": false,
-                    "defaultValue": null
-                  }
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "bookmarksPanelText",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
