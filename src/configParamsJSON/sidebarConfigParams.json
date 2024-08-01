@@ -69,6 +69,11 @@
                   "content": [
                     {
                       "type": "setting",
+                      "id": "splashButtonText",
+                      "defaultValue": ""
+                    },
+                    {
+                      "type": "setting",
                       "id": "splashButtonPosition",
                       "defaultValue": {
                         "position": "top-right",
@@ -106,11 +111,6 @@
                       "config": {
                         "imageUpload": true
                       }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "splashButtonText",
-                      "defaultValue": ""
                     }
                   ]
                 }
@@ -283,12 +283,14 @@
                   "id": "bookmarksPanel",
                   "express": true,
                   "defaultValue": false,
-                  "content": {
-                    "type": "setting",
-                    "id": "bookmarksPanelText",
-                    "express": false,
-                    "defaultValue": null
-                  }
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "bookmarksPanelText",
+                      "express": false,
+                      "defaultValue": null
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
@@ -296,12 +298,6 @@
                   "defaultValue": true,
                   "express": true,
                   "content": [
-                    {
-                      "type": "setting",
-                      "id": "classicPanel",
-                      "defaultValue": false,
-                      "express": false
-                    },
                     {
                       "type": "setting",
                       "id": "popupTipText",
@@ -313,6 +309,12 @@
                       "id": "popupPanelText",
                       "express": false,
                       "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "classicPanel",
+                      "defaultValue": false,
+                      "express": false
                     }
                   ]
                 },
