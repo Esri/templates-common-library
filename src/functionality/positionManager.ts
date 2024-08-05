@@ -7,14 +7,18 @@ interface IWidgetPosition {
   position: __esri.UIPosition;
 }
 
-interface IBatchWidgetPositions {
-  [key: number]: Array<{
-    widget: __esri.Widget | HTMLElement;
+interface PositionManager {
+  [key: string]: {
+    widget: any;
     uiPosition: IWidgetPosition;
-  }>;
+  };
 }
 
-const batch: IBatchWidgetPositions = {};
+interface PositionManagerBatch {
+  [key: number]: PositionManager;
+}
+
+const positionManagerBatch: PositionManagerBatch = {};
 
 /**
  * Deals with issue where widgets load at different times and the positions in the
@@ -108,24 +112,56 @@ export function handleBatchWidgetPositions(
   view: __esri.MapView | __esri.SceneView,
   element: __esri.Widget | HTMLElement | string,
   uiPosition: IWidgetPosition | __esri.UIPosition,
-  viewInstance: number = 0
+  viewInstance = 0
 ): void {
   if (!isValidInput(view, element, uiPosition)) return;
 
-  if (batch[viewInstance] == null) {
-    batch[viewInstance] = [];
+  if (positionManagerBatch[viewInstance] == null) {
+    positionManagerBatch[viewInstance] = {};
   }
 
   const widget = getWidget(view, element);
-  const position = extractPositionAndIndex(uiPosition);
+  if (widget) {
+    const position = extractPositionAndIndex(uiPosition);
+    updatePositionManager(viewInstance, widget, position);
+    debouncePositionUpdate(view, viewInstance, position);
+  }
+}
 
-  updateBatchWithWidget(viewInstance, widget, position);
+function updatePositionManager(
+  viewInstance: number,
+  widget: __esri.Widget | HTMLElement,
+  uiPosition: IWidgetPosition
+): void {
+  const positionManager = positionManagerBatch[viewInstance];
+  positionManager[widget.id] = { uiPosition, widget };
+}
+
+function debouncePositionUpdate(
+  view: __esri.MapView | __esri.SceneView,
+  viewInstance: number,
+  uiPosition: IWidgetPosition
+): void {
+  const { position } = uiPosition;
   debounce(
-    () => moveWidgetsInBatch(viewInstance, view),
-    500,
+    () => {
+      const positionManager = positionManagerBatch[viewInstance];
+      const components = Object.values(positionManager).filter(
+        (el) => el.uiPosition.position === position
+      );
+      components.sort((a, b) => a.uiPosition.index - b.uiPosition.index);
+      components.forEach((component, index) => {
+        const position = {
+          index,
+          position: component.uiPosition.position
+        };
+        view.ui.move(component.widget, position);
+      });
+    },
+    200,
     false,
     viewInstance,
-    "widgetPositionBatch"
+    `widgetPositionBatch-${viewInstance}-${position}`
   );
 }
 
@@ -145,48 +181,12 @@ function extractPositionAndIndex(
     : { position: uiPosition.position, index: uiPosition.index };
 }
 
-function updateBatchWithWidget(
-  viewInstance: number,
-  widget: __esri.Widget | HTMLElement,
-  uiPosition: IWidgetPosition
-): void {
-  const existingWidgetIndex = batch[viewInstance].findIndex(
-    (el) => el.widget.id === widget.id
-  );
-  if (existingWidgetIndex > -1) {
-    batch[viewInstance][existingWidgetIndex] = { widget, uiPosition };
-  } else {
-    batch[viewInstance].push({ widget, uiPosition });
-  }
-}
-
-function moveWidgetsInBatch(viewInstance: number, view: __esri.View): void {
-  batch[viewInstance].sort((a, b) => {
-    const positionComparison = a.uiPosition.position.localeCompare(
-      b.uiPosition.position
-    );
-    if (positionComparison !== 0) {
-      return positionComparison;
-    }
-
-    return a.uiPosition.index - b.uiPosition.index;
-  });
-
-  batch[viewInstance].forEach((el) => {
-    const position =
-      el.uiPosition.index == null ? el.uiPosition.position : el.uiPosition;
-    view.ui.move(el.widget, position);
-  });
-
-  batch[viewInstance] = [];
-}
-
 function getWidget(
   view: __esri.View,
   element: __esri.Widget | HTMLElement | string
 ): __esri.Widget | HTMLElement {
   if (typeof element === "string") {
-    return view.ui.find(element) as __esri.Widget | HTMLElement;
+    return view.ui.find(element);
   } else {
     return element;
   }
