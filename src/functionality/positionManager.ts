@@ -112,7 +112,7 @@ export function handleBatchWidgetPositions(
   view: __esri.MapView | __esri.SceneView,
   element: __esri.Widget | HTMLElement | string,
   uiPosition: IWidgetPosition | __esri.UIPosition,
-  viewInstance = 0
+  viewInstance: number = 0
 ): void {
   if (!isValidInput(view, element, uiPosition)) return;
 

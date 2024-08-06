@@ -447,7 +447,8 @@ export function addLocateWidget(
 export function addSearch(
   config: any,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any
+  commonMessages: any,
+  viewInstance = 0
 ): void {
   const { search, searchPosition, searchOpenAtStart, searchConfiguration } =
     config;
@@ -506,6 +507,7 @@ export function addSearch(
     expanded: searchOpenAtStart
   });
   view.ui.add(node, searchPosition);
+  handleBatchWidgetPositions(view, node, searchPosition, viewInstance);
   handleSearchExtent(config, node.content as __esri.widgetsSearch);
 }
 
