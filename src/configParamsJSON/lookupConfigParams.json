@@ -729,29 +729,23 @@
                   "content": [
                     {
                       "type": "setting",
-                      "id": "layerListConfig",
-                      "express": false,
-                      "config": {
-                        "supportedLayerTypes": [
-                          "map-image",
-                          "feature",
-                          "imagery",
-                          "oriented-imagery",
-                          "group"
-                        ],
-                        "sections": [
-                          "addLegend"
-                        ]
-                      },
-                      "defaultValue": null
-                    },
-                    {
-                      "type": "setting",
                       "id": "layerListPosition",
                       "defaultValue": {
                         "position": "bottom-right",
                         "index": 0
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListAddZoom",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListLegend",
+                      "defaultValue": false,
+                      "express": false
                     },
                     {
                       "type": "setting",
