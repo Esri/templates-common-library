@@ -812,21 +812,15 @@
                   "content": [
                     {
                       "type": "setting",
-                      "id": "layerListConfig",
-                      "express": false,
-                      "config": {
-                        "supportedLayerTypes": [
-                          "map-image",
-                          "feature",
-                          "imagery",
-                          "group",
-                          "oriented-imagery"
-                        ],
-                        "sections": [
-                          "addLegend"
-                        ]
-                      },
-                      "defaultValue": null
+                      "id": "layerListAddZoom",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListLegend",
+                      "defaultValue": false,
+                      "express": false
                     },
                     {
                       "type": "setting",
