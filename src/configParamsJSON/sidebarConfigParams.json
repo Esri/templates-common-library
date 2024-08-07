@@ -240,6 +240,30 @@
                     },
                     {
                       "type": "setting",
+                      "id": "visibilityIcon",
+                      "express": false,
+                      "defaultValue": "eyeball"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListAddTable",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListAddZoom",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListLegend",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
                       "id": "selectedLayers",
                       "express": true,
                       "config": {
@@ -249,32 +273,6 @@
                         "supportsFieldSelection": false
                       },
                       "defaultValue": null
-                    },
-                    {
-                      "type": "setting",
-                      "id": "layerListConfig",
-                      "express": false,
-                      "config": {
-                        "supportedLayerTypes": [
-                          "map-image",
-                          "feature",
-                          "imagery",
-                          "group",
-                          "oriented-imagery"
-                        ],
-                        "sections": [
-                          "addLegend",
-                          "addTable",
-                          "addZoom"
-                        ]
-                      },
-                      "defaultValue": null
-                    },
-                    {
-                      "type": "setting",
-                      "id": "visibilityIcon",
-                      "express": false,
-                      "defaultValue": "eyeball"
                     }
                   ]
                 },
