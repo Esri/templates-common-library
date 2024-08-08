@@ -696,6 +696,44 @@
                 },
                 {
                   "type": "setting",
+                  "id": "measure",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "measurePosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureOpenAtStart",
+                      "express": false,
+                      "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "coordinateFormats",
+                      "express": false,
+                      "defaultValue": "xy"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureAreaUnit",
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "measureLinearUnit",
+                      "express": false
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "bookmarks",
                   "express": false,
                   "defaultValue": false,
