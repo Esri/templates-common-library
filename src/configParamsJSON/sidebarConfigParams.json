@@ -258,9 +258,9 @@
                     },
                     {
                       "type": "setting",
-                      "id": "layerListOpenAtStart",
-                      "express": false,
-                      "defaultValue": false
+                      "id": "layerListAddTable",
+                      "defaultValue": false,
+                      "express": false
                     },
                     {
                       "type": "setting",
