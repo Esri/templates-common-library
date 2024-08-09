@@ -196,6 +196,44 @@
         },
         {
           "type": "subsection",
+          "id": "time",
+          "content": [
+            {
+              "type": "setting",
+              "id": "timeFilter",
+              "defaultValue": false,
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "timeFilterConfig",
+                  "express": false,
+                  "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "timeLoop",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "autoPlayTimeSlider",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "playSpeed",
+                  "express": false,
+                  "defaultValue": [2]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "share",
           "content": [
             {
