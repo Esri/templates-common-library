@@ -11,18 +11,6 @@
           "config": {
             "maxNumItems": 20
           }
-        },
-        {
-          "type": "setting",
-          "id": "enableInlineEdit",
-          "express": true,
-          "defaultValue": true
-        },
-        {
-          "type": "setting",
-          "id": "createFeatures",
-          "express": false,
-          "defaultValue": false
         }
       ]
     },
@@ -333,12 +321,18 @@
                 "singleFont": false,
                 "numOfSections": 2
               }
-            },
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "layout",
+          "content": [
             {
               "type": "setting",
-              "id": "hideMapOnLoad",
-              "express": false,
-              "defaultValue": false
+              "id": "appLayout",
+              "express": true,
+              "defaultValue": "splitView"
             }
           ]
         },
