@@ -27,12 +27,14 @@ import Zoom from "esri/widgets/Zoom";
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
+import ApplicationBase from "../baseClasses/ApplicationBase";
+import { ApplicationConfig } from "../interfaces/applicationBase";
 
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
  */
 export function addHome(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView
 ): void {
   const { home, homePosition, mapArea, mapAreaConfig } = config;
@@ -64,7 +66,7 @@ export function addHome(
  * Watch for changes in mapZoom, mapZoomPosition
  */
 export function addZoom(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView
 ): void {
   const { mapZoom, mapZoomPosition } = config;
@@ -91,7 +93,7 @@ export function addZoom(
  * @param timeCapability optional param. If true add time capability in the Bookmarks widget.
  */
 export function addBookmarks(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any,
   timeCapability = false
@@ -145,7 +147,7 @@ export function addBookmarks(
  * Watch for changes in scalebar, scalebarPosition, scalebarDualMode (if applicable)
  */
 export function addScaleBar(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView
 ): void {
   const { scalebar, scalebarPosition, scalebarDualMode } = config;
@@ -186,7 +188,7 @@ export function addScaleBar(
  * Watch for changes in layerList, layerListPosition, layerListOpenAtStart
  */
 export function addLayerList(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any
 ): void {
@@ -258,7 +260,7 @@ export function addLayerList(
  * Watch for changes in basemapTogglePosition, basemapToggle, basemapSelector
  */
 export async function addBasemap(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView
 ): Promise<void> {
   const { basemapTogglePosition, basemapToggle, basemapSelector } = config;
@@ -301,7 +303,7 @@ export async function addBasemap(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export function addLegend(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any
 ): void {
@@ -354,7 +356,7 @@ export function addLegend(
  * Watch for changes in fullScreen, fullScreenPosition
  */
 export function addFullscreen(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView
 ): void {
   const { fullScreen, fullScreenPosition } = config;
@@ -383,7 +385,7 @@ export function addFullscreen(
  * Watch for changes in compassWidget, compassWidgetPosition
  */
 export function addCompass(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView
 ): void {
   const { compassWidget, compassWidgetPosition } = config;
@@ -406,7 +408,7 @@ export function addCompass(
  * Watch for changes in locateWidget, locateWidgetPosition
  */
 export function addLocateWidget(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView
 ): void {
   const { locateWidget, locateWidgetPosition } = config;
@@ -432,7 +434,7 @@ export function addLocateWidget(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export function addSearch(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any
 ): void {
@@ -501,7 +503,7 @@ export function addSearch(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export async function addShare(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any
 ): Promise<any | undefined> {
@@ -566,7 +568,7 @@ export async function addShare(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export async function addKeyboardShortcuts(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any
 ): Promise<void> {
@@ -625,7 +627,7 @@ export async function addKeyboardShortcuts(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export async function addMeasurementTools(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any
 ): Promise<void> {
@@ -683,7 +685,7 @@ export async function addMeasurementTools(
  * Watch for changes in floorFilter, floorFilterPosition
  */
 export function addFloorFilter(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView
 ): void {
   const { floorFilter, floorFilterPosition } = config;
@@ -707,6 +709,39 @@ export function addFloorFilter(
       floorFilterPosition
     );
   }
+}
+
+/**
+ * Watch for changes in languageSwitcher, languageSwitcherPosition, languageSwitcherConfig
+ */
+export function addLanguageSwitcher(
+  config: ApplicationConfig,
+  base: ApplicationBase,
+  view: __esri.MapView | __esri.SceneView,
+  handleLanguageUpdate: Function
+): void {
+  const { languageSwitcher, languageSwitcherConfig, languageSwitcherPosition } =
+    config;
+  const uniqueId = "esri-language-switcher";
+  let node = view.ui.find(uniqueId) as any;
+
+  if (node) view.ui.remove(node);
+
+  if (!languageSwitcher) {
+    return;
+  }
+
+  node = document.createElement("instant-apps-language-switcher");
+  const defaultLocale = languageSwitcherConfig?.defaultLocale ?? "en";
+  node.id = uniqueId;
+  node.defaultLocale = defaultLocale;
+  const applicationItem = base?.results?.applicationItem
+    ?.value as __esri.PortalItem;
+  node.portalItem = applicationItem;
+  node.icon = languageSwitcherConfig?.icon;
+  node.locales = structuredClone(languageSwitcherConfig?.locales);
+  node.addEventListener("selectedLanguageUpdated", handleLanguageUpdate);
+  view.ui.add(node, languageSwitcherPosition);
 }
 
 export function getPosition(position: { position: string } | string): string {
