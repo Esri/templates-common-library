@@ -125,8 +125,8 @@ export function addBookmarks(
       view,
       viewModel: {
         view,
-        capabilities: { time: timeCapability }
-      }
+        capabilities: { time: timeCapability },
+      },
     });
 
     const bookmarksExpand = new Expand({
@@ -136,7 +136,7 @@ export function addBookmarks(
       group,
       mode: "floating",
       expandTooltip: tip,
-      collapseTooltip: closeTip
+      collapseTooltip: closeTip,
     });
 
     view.ui.add(bookmarksExpand, bookmarksPosition);
@@ -177,7 +177,7 @@ export function addScaleBar(
           ? "dual"
           : portal?.units === "metric"
           ? portal?.units
-          : "imperial"
+          : "imperial",
       }),
       scalebarPosition
     );
@@ -197,7 +197,7 @@ export function addLayerList(
     layerListPosition,
     layerListOpenAtStart,
     layerListLegend,
-    visibilityIcon
+    visibilityIcon,
   } = config;
   const uniqueId = "esri-layerListExpand";
   const node = view.ui.find(uniqueId) as __esri.Expand;
@@ -229,12 +229,12 @@ export function addLayerList(
       visibilityAppearance: visibilityIcon ? visibilityIcon : "default",
       visibleElements: {
         errors: true,
-        filter: true
+        filter: true,
       },
       view,
       listItemCreatedFunction: (e) => {
         configureListItemPanelLegend(e.item, layerListLegend);
-      }
+      },
     } as any);
 
     content?.when(() => {
@@ -250,7 +250,7 @@ export function addLayerList(
       collapseTooltip: closeTip,
       group,
       mode: "floating",
-      view
+      view,
     });
     view.ui.add(layerListExpand, layerListPosition);
   }
@@ -270,7 +270,7 @@ export async function addBasemap(
   const { originalBasemap, nextBasemap } = await getBasemaps({
     config,
     view,
-    portal
+    portal,
   });
   const node = view.ui.find(uniqueId) as __esri.BasemapToggle;
 
@@ -291,7 +291,7 @@ export async function addBasemap(
     const bmToggle = new BasemapToggle({
       view,
       nextBasemap,
-      id: uniqueId
+      id: uniqueId,
     });
     resetBasemapsInToggle(bmToggle, originalBasemap, nextBasemap);
     view.ui.add(bmToggle, basemapTogglePosition);
@@ -335,7 +335,7 @@ export function addLegend(
   } else {
     const content = new Legend({
       style: legendConfig?.style,
-      view
+      view,
     });
 
     const legendExpand = new Expand({
@@ -346,7 +346,7 @@ export function addLegend(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       mode: "floating",
-      view
+      view,
     });
     view.ui.add(legendExpand, legendPosition);
   }
@@ -374,7 +374,7 @@ export function addFullscreen(
     view.ui.add(
       new FullScreen({
         id: uniqueId,
-        view
+        view,
       }),
       fullScreenPosition
     );
@@ -492,7 +492,7 @@ export function addSearch(
     mode: "floating",
     collapseTooltip: closeTip,
     expandTooltip: tip,
-    expanded: searchOpenAtStart
+    expanded: searchOpenAtStart,
   });
   view.ui.add(node, searchPosition);
   handleSearchExtent(config, node.content as __esri.widgetsSearch);
@@ -555,7 +555,7 @@ export async function addShare(
       mode: "floating",
       expandTooltip: tip,
       collapseTooltip: closeTip,
-      view
+      view,
     });
     view.ui.add(shareExpand, sharePosition);
   }
@@ -616,7 +616,7 @@ export async function addKeyboardShortcuts(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       expandIcon: "keyboard",
-      view
+      view,
     });
     view.ui.add(keyboardExpand, keyboardShortcutsPosition);
   }
@@ -675,7 +675,7 @@ export async function addMeasurementTools(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       expandIcon: "measure",
-      view
+      view,
     });
     view.ui.add(measureExpand, measurePosition);
   }
@@ -704,44 +704,94 @@ export function addFloorFilter(
       new FloorFilter({
         id: uniqueId,
         view,
-        headingLevel: 3
+        headingLevel: 3,
       }),
       floorFilterPosition
     );
   }
 }
 
+let languageSwitcherController = new AbortController();
 /**
- * Watch for changes in languageSwitcher, languageSwitcherPosition, languageSwitcherConfig
+ * Watch for changes in languageSwitcher, languageSwitcherConfig, languageSwitcherPosition, languageSwitcherOpenAtStart
  */
-export function addLanguageSwitcher(
+export async function addLanguageSwitcher(
   config: ApplicationConfig,
   base: ApplicationBase,
   view: __esri.MapView | __esri.SceneView,
-  handleLanguageUpdate: Function
-): void {
-  const { languageSwitcher, languageSwitcherConfig, languageSwitcherPosition } =
-    config;
+  handleLanguageUpdate: Function,
+  commonMessages: any
+): Promise<void> {
+  const {
+    languageSwitcher,
+    languageSwitcherConfig,
+    languageSwitcherPosition,
+    languageSwitcherOpenAtStart,
+  } = config;
   const uniqueId = "esri-language-switcher";
-  let node = view.ui.find(uniqueId) as any;
-
-  if (node) view.ui.remove(node);
+  let node = view.ui.find(uniqueId) as __esri.Expand;
 
   if (!languageSwitcher) {
+    if (node) view.ui.remove(node);
     return;
   }
 
-  node = document.createElement("instant-apps-language-switcher");
-  const defaultLocale = languageSwitcherConfig?.defaultLocale ?? "en";
-  node.id = uniqueId;
-  node.defaultLocale = defaultLocale;
-  const applicationItem = base?.results?.applicationItem
-    ?.value as __esri.PortalItem;
-  node.portalItem = applicationItem;
-  node.icon = languageSwitcherConfig?.icon;
-  node.locales = structuredClone(languageSwitcherConfig?.locales);
-  node.addEventListener("selectedLanguageUpdated", handleLanguageUpdate);
-  view.ui.add(node, languageSwitcherPosition);
+  const group = getPosition(languageSwitcherPosition);
+  const tip = commonMessages?.tools?.languageSwitcher;
+  const closeTip = commonMessages?.tools?.close?.languageSwitcher;
+
+  if (node) {
+    const container = node.container as HTMLElement;
+    const ls = (await checkForElement(
+      container,
+      "instant-apps-language-switcher"
+    )) as any;
+    if (ls != null) {
+      ls.icon = languageSwitcherConfig?.icon ?? "language";
+      ls.locales = structuredClone(languageSwitcherConfig?.locales);
+      languageSwitcherController.abort();
+      languageSwitcherController = new AbortController();
+      ls.addEventListener(
+        "selectedLanguageUpdated",
+        handleLanguageUpdate.bind(this),
+        {
+          signal: languageSwitcherController.signal,
+        }
+      );
+    }
+    view.ui.move(node, languageSwitcherPosition);
+  } else {
+    const ls = document.createElement("instant-apps-language-switcher") as any;
+    const defaultLocale = languageSwitcherConfig?.defaultLocale ?? "en";
+    ls.defaultLocale = defaultLocale;
+    const applicationItem = base?.results?.applicationItem
+      ?.value as __esri.PortalItem;
+    ls.portalItem = applicationItem;
+    ls.icon = languageSwitcherConfig?.icon ?? "language";
+    ls.locales = structuredClone(languageSwitcherConfig?.locales);
+    ls.addEventListener(
+      "selectedLanguageUpdated",
+      handleLanguageUpdate.bind(this),
+      {
+        signal: languageSwitcherController.signal,
+      }
+    );
+
+    const container = document.createElement("div");
+    container.prepend(ls);
+    node = new Expand({
+      expandIcon: languageSwitcherConfig?.icon ?? "language",
+      expanded: languageSwitcherOpenAtStart,
+      view,
+      content: container,
+      id: uniqueId,
+      mode: "floating",
+    });
+    view.ui.add(node, languageSwitcherPosition);
+  }
+  node.expandTooltip = tip;
+  node.collapseTooltip = closeTip;
+  node.group = group;
 }
 
 export function getPosition(position: { position: string } | string): string {

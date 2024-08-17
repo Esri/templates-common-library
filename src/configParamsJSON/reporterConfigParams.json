@@ -226,7 +226,6 @@
                   "express": false,
                   "defaultValue": null,
                   "config": {
-                    "outputLayerExpOnly": true,
                     "editableLayersOnly": true,
                     "includeTables": false
                   }
@@ -607,6 +606,11 @@
           "id": "languageSwitcher",
           "defaultValue": false,
           "content": [
+            {
+              "type": "setting",
+              "id": "languageSwitcherOpenAtStart",
+              "defaultValue": false
+            },
             {
               "type": "setting",
               "id": "languageSwitcherConfig",
