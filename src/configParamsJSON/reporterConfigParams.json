@@ -200,6 +200,11 @@
             },
             {
               "type": "setting",
+              "id": "showFeatureSymbol",
+              "express": true
+            },
+            {
+              "type": "setting",
               "id": "reportSubmittedMessage",
               "express": true
             },
