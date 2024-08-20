@@ -40,24 +40,24 @@ export function assertWidgetOrdering(
     () => {
       view.when(() => {
         const watchWidgetOrdering = (quadrant: __esri.UIPosition) => {
-          let leftPosition = view.ui.getComponents(quadrant);
+          let widgets = view.ui.getComponents(quadrant);
           let firstAssertion = true;
           watch(
             () => config.updateCount,
             () => {
-              const leftPositionNew = view.ui.getComponents(quadrant);
+              const widgetsNew = view.ui.getComponents(quadrant);
 
               const positionsHaveChanged: boolean =
-                leftPosition.length !== leftPositionNew.length ||
-                leftPosition.some((el, i) => {
-                  return el !== leftPositionNew[i];
+                widgets.length !== widgetsNew.length ||
+                widgets.some((el, i) => {
+                  return el?.id !== widgetsNew[i]?.id;
                 });
 
               if (positionsHaveChanged || firstAssertion) {
-                leftPosition = leftPositionNew;
+                widgets = widgetsNew;
                 firstAssertion = false;
                 setTimeout(() => {
-                  const sortedPositionList = leftPosition
+                  const sortedPositionList = widgets
                     .map((el) => {
                       const id =
                         positionKeyLookup.get(el.id) != null
@@ -79,9 +79,10 @@ export function assertWidgetOrdering(
                     .sort((a, b) => {
                       return a[1]?.index - b[1]?.index;
                     });
-                  sortedPositionList.forEach((sortedPair) => {
+                  sortedPositionList.forEach((sortedPair, index) => {
                     const [id, positionLookup] = sortedPair;
-                    const el = leftPosition.find((elem) => elem.id === id);
+                    positionLookup.index = index; // override to directly match sorted list
+                    const el = widgets.find((elem) => elem.id === id);
                     view.ui.move({ component: el, ...positionLookup } as any);
                     updateExpandGroup(el, positionLookup);
                   });
@@ -153,7 +154,7 @@ function debouncePositionUpdate(
       components.forEach((component, index) => {
         const position = {
           index,
-          position: component.uiPosition.position
+          position: component.uiPosition.position,
         };
         view.ui.move(component.widget, position);
       });
