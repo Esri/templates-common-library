@@ -289,6 +289,12 @@
                 },
                 {
                   "type": "setting",
+                  "id": "orientedImagery",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
                   "id": "popupHover",
                   "express": true,
                   "defaultValue": false
