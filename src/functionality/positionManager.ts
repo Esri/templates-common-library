@@ -20,10 +20,16 @@ interface PositionManagerBatch {
 
 const positionManagerBatch: PositionManagerBatch = {};
 
+const lastPositionValue: Map<string, string> = new Map(); // positionKey => serializedPosition
+const serializePosition = ({ position, index }: IWidgetPosition = { position: "manual", index: 0 }) => `${position}-${index}`;
+
 /**
  * Deals with issue where widgets load at different times and the positions in the
  * Map UI end up not matching what's prescribed in the Position Manager.
  * https://devtopia.esri.com/WebGIS/arcgis-template-configuration/issues/3105
+ * 
+ * Use debug === true to find the proper positionKeyLookup values 
+ * (note widgets must be present in the UI, which means turned on in the config)
  * @param view
  * @param config
  * @param positionKeyLookup
@@ -40,51 +46,62 @@ export function assertWidgetOrdering(
     () => {
       view.when(() => {
         const watchWidgetOrdering = (quadrant: __esri.UIPosition) => {
-          let widgets = view.ui.getComponents(quadrant);
           let firstAssertion = true;
           watch(
             () => config.updateCount,
             () => {
-              const widgetsNew = view.ui.getComponents(quadrant);
+              let widgets = view.ui.getComponents(quadrant);
+              let positionsHaveChanged = widgets.some((el)=>{
+                  // check last config value for positionValue
+                  const positionKey = getPositionKey(el.id, positionKeyLookup);
+                  const positionValue: IWidgetPosition = config[positionKey];
+                  if(positionValue != null && positionValue?.position !== quadrant){ 
+                    // major side effect - but if the app code doesn't handle moving between quadrants, then this is necessary
+                    view.ui.move(el, positionValue);
+                  }
+                  const serializedPosition = serializePosition(positionValue);
 
-              const positionsHaveChanged: boolean =
-                widgets.length !== widgetsNew.length ||
-                widgets.some((el, i) => {
-                  return el?.id !== widgetsNew[i]?.id;
+                  return lastPositionValue.get(positionKey) !== serializedPosition;
                 });
 
               if (positionsHaveChanged || firstAssertion) {
-                widgets = widgetsNew;
                 firstAssertion = false;
                 setTimeout(() => {
+                  widgets = view.ui.getComponents(quadrant);
                   const sortedPositionList = widgets
                     .map((el) => {
-                      const id =
-                        positionKeyLookup.get(el.id) != null
-                          ? positionKeyLookup.get(el.id)
-                          : el.id;
-                      let positionKey = `${id}Position`;
+                      let positionKey = getPositionKey(el.id, positionKeyLookup);
+                      let positionValue = config[positionKey];
+                      lastPositionValue.set(positionKey, serializePosition(positionValue));
                       if (debug) {
                         console.log(
-                          `id: ${id}, ====> looking in config for: ` +
+                          `id: ${el.id}, ====> looking in config for: ` +
                             `%c${positionKey}`,
                           "font-weight: bold; color: blue;"
                         );
+                        if(positionValue == null){
+                          console.log(
+                              `%c${positionKey} doesn't seem to be a key. Check the ConfigSettings to find what it should be, and update positionKeyLookup with necessary override.`,
+                            "font-weight: bold; color: red;"
+                          );
+                        }
                       }
-                      return [el.id, config[positionKey]] as [
+                      return [el.id, positionValue] as [
                         string,
-                        { index: number; position: string }
+                        IWidgetPosition
                       ];
                     })
                     .sort((a, b) => {
                       return a[1]?.index - b[1]?.index;
                     });
                   sortedPositionList.forEach((sortedPair, index) => {
-                    const [id, positionLookup] = sortedPair;
-                    positionLookup.index = index; // override to directly match sorted list
-                    const el = widgets.find((elem) => elem.id === id);
-                    view.ui.move({ component: el, ...positionLookup } as any);
-                    updateExpandGroup(el, positionLookup);
+                    const [id, positionValue] = sortedPair;
+                    if(positionValue){
+                      positionValue.index = index; // override to directly match sorted list
+                      const el = widgets.find((elem) => elem.id === id);
+                      view.ui.move({ component: el, ...positionValue } as any);
+                      updateExpandGroup(el, positionValue);
+                    }
                   });
                 }, 200);
               }
@@ -98,8 +115,18 @@ export function assertWidgetOrdering(
         watchWidgetOrdering("bottom-left");
         watchWidgetOrdering("bottom-right");
       });
+    }, {
+      initial: true
     }
   );
+}
+
+function getPositionKey(
+  id: string,
+  positionKeyLookup: Map<string, string>
+): string {
+  const correctId = positionKeyLookup.get(id) != null ? positionKeyLookup.get(id) : id;
+  return `${correctId}Position`
 }
 
 /**
