@@ -378,6 +378,12 @@
                 },
                 {
                   "type": "setting",
+                  "id": "openRelatedRecords",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
                   "id": "exportToPDF",
                   "express": true,
                   "defaultValue": false,

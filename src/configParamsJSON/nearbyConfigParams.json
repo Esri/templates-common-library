@@ -461,6 +461,12 @@
                 },
                 {
                   "type": "setting",
+                  "id": "openRelatedRecords",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
                   "id": "restrictNumResults",
                   "express": false
                 }
