@@ -224,8 +224,8 @@
                 },
                 {
                   "type": "setting",
-                  "id": "playSpeed",
-                  "express": false,
+                  "id": "dataSliderSpeed",
+                  "express": true,
                   "defaultValue": [2]
                 }
               ]
