@@ -26,16 +26,16 @@ import Zoom from "esri/widgets/Zoom";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
-import { handleBatchWidgetPositions } from "./positionManager";
 import { createSearch, handleSearchExtent } from "./search";
+import ApplicationBase from "../baseClasses/ApplicationBase";
+import { ApplicationConfig } from "../interfaces/applicationBase";
 
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
  */
 export function addHome(
-  config: any,
-  view: __esri.MapView | __esri.SceneView,
-  viewInstance = 0
+  config: ApplicationConfig,
+  view: __esri.MapView | __esri.SceneView
 ): void {
   const { home, homePosition, mapArea, mapAreaConfig } = config;
   const uniqueId = "esri-home";
@@ -48,7 +48,7 @@ export function addHome(
   }
 
   if (node) {
-    handleBatchWidgetPositions(view, node, homePosition, viewInstance);
+    view.ui.move(node, homePosition);
   } else {
     node = new Home({ view, id: uniqueId });
     view.ui.add(node, homePosition);
@@ -66,9 +66,8 @@ export function addHome(
  * Watch for changes in mapZoom, mapZoomPosition
  */
 export function addZoom(
-  config: any,
-  view: __esri.MapView | __esri.SceneView,
-  viewInstance = 0
+  config: ApplicationConfig,
+  view: __esri.MapView | __esri.SceneView
 ): void {
   const { mapZoom, mapZoomPosition } = config;
   const uniqueId = "esri-zoom";
@@ -82,7 +81,7 @@ export function addZoom(
   }
 
   if (node && mapZoomPosition != null) {
-    handleBatchWidgetPositions(view, node, mapZoomPosition, viewInstance);
+    view.ui.move(node, mapZoomPosition);
   } else {
     view.ui.add(new Zoom({ view, id: uniqueId }), mapZoomPosition);
   }
@@ -94,11 +93,10 @@ export function addZoom(
  * @param timeCapability optional param. If true add time capability in the Bookmarks widget.
  */
 export function addBookmarks(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
   commonMessages: any,
-  timeCapability = false,
-  viewInstance = 0
+  timeCapability = false
 ): void {
   const { bookmarks, bookmarksPosition } = config;
   const uniqueId = "esri-bookmarksExpand";
@@ -121,14 +119,14 @@ export function addBookmarks(
     node.collapseTooltip = closeTip;
     node.expanded = false;
     node.group = group;
-    handleBatchWidgetPositions(view, node, bookmarksPosition, viewInstance);
+    view.ui.move(node, bookmarksPosition);
   } else {
     const bookmarks = new Bookmarks({
       view,
       viewModel: {
         view,
-        capabilities: { time: timeCapability }
-      }
+        capabilities: { time: timeCapability },
+      },
     });
 
     const bookmarksExpand = new Expand({
@@ -138,7 +136,7 @@ export function addBookmarks(
       group,
       mode: "floating",
       expandTooltip: tip,
-      collapseTooltip: closeTip
+      collapseTooltip: closeTip,
     });
 
     view.ui.add(bookmarksExpand, bookmarksPosition);
@@ -149,9 +147,8 @@ export function addBookmarks(
  * Watch for changes in scalebar, scalebarPosition, scalebarDualMode (if applicable)
  */
 export function addScaleBar(
-  config: any,
-  view: __esri.MapView | __esri.SceneView,
-  viewInstance = 0
+  config: ApplicationConfig,
+  view: __esri.MapView | __esri.SceneView
 ): void {
   const { scalebar, scalebarPosition, scalebarDualMode } = config;
   const uniqueId = "esri-scale-bar";
@@ -170,7 +167,7 @@ export function addScaleBar(
       : portal?.units === "metric"
       ? portal?.units
       : "imperial";
-    handleBatchWidgetPositions(view, node, scalebarPosition, viewInstance);
+    view.ui.move(node, scalebarPosition);
   } else {
     view.ui.add(
       new Scalebar({
@@ -180,7 +177,7 @@ export function addScaleBar(
           ? "dual"
           : portal?.units === "metric"
           ? portal?.units
-          : "imperial"
+          : "imperial",
       }),
       scalebarPosition
     );
@@ -191,18 +188,16 @@ export function addScaleBar(
  * Watch for changes in layerList, layerListPosition, layerListOpenAtStart
  */
 export function addLayerList(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any,
-
-  viewInstance = 0
+  commonMessages: any
 ): void {
   const {
     layerList,
     layerListPosition,
     layerListOpenAtStart,
     layerListLegend,
-    visibilityIcon
+    visibilityIcon,
   } = config;
   const uniqueId = "esri-layerListExpand";
   const node = view.ui.find(uniqueId) as __esri.Expand;
@@ -220,7 +215,7 @@ export function addLayerList(
     node.expandTooltip = tip;
     node.collapseTooltip = closeTip;
     node.expanded = layerListOpenAtStart;
-    handleBatchWidgetPositions(view, node, layerListPosition, viewInstance);
+    view.ui.move(node, layerListPosition);
     if (node?.content) {
       const layerList = node.content as LayerList;
       updateListItemLegend(layerList, layerListLegend);
@@ -239,7 +234,7 @@ export function addLayerList(
       view,
       listItemCreatedFunction: (e) => {
         configureListItemPanelLegend(e.item, layerListLegend);
-      }
+      },
     } as any);
 
     content?.when(() => {
@@ -255,7 +250,7 @@ export function addLayerList(
       collapseTooltip: closeTip,
       group,
       mode: "floating",
-      view
+      view,
     });
     view.ui.add(layerListExpand, layerListPosition);
   }
@@ -265,9 +260,8 @@ export function addLayerList(
  * Watch for changes in basemapTogglePosition, basemapToggle, basemapSelector
  */
 export async function addBasemap(
-  config: any,
-  view: __esri.MapView,
-  viewInstance = 0
+  config: ApplicationConfig,
+  view: __esri.MapView
 ): Promise<void> {
   const { basemapTogglePosition, basemapToggle, basemapSelector } = config;
   const uniqueId = "esri-basemapWidget";
@@ -276,7 +270,7 @@ export async function addBasemap(
   const { originalBasemap, nextBasemap } = await getBasemaps({
     config,
     view,
-    portal
+    portal,
   });
   const node = view.ui.find(uniqueId) as __esri.BasemapToggle;
 
@@ -289,7 +283,7 @@ export async function addBasemap(
   }
 
   if (node) {
-    handleBatchWidgetPositions(view, node, basemapTogglePosition, viewInstance);
+    view.ui.move(node, basemapTogglePosition);
     if (basemapSelector != null) {
       resetBasemapsInToggle(node, originalBasemap, nextBasemap);
     }
@@ -297,7 +291,7 @@ export async function addBasemap(
     const bmToggle = new BasemapToggle({
       view,
       nextBasemap,
-      id: uniqueId
+      id: uniqueId,
     });
     resetBasemapsInToggle(bmToggle, originalBasemap, nextBasemap);
     view.ui.add(bmToggle, basemapTogglePosition);
@@ -309,11 +303,9 @@ export async function addBasemap(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export function addLegend(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any,
-
-  viewInstance = 0
+  commonMessages: any
 ): void {
   const { legend, legendPosition, legendOpenAtStart, legendConfig } = config;
   const uniqueId = "esri-legendExpand";
@@ -338,12 +330,12 @@ export function addLegend(
         l.style = legendConfig?.style;
       }
     }
-    handleBatchWidgetPositions(view, node, legendPosition, viewInstance);
+    view.ui.move(node, legendPosition);
     node.group = group;
   } else {
     const content = new Legend({
       style: legendConfig?.style,
-      view
+      view,
     });
 
     const legendExpand = new Expand({
@@ -354,7 +346,7 @@ export function addLegend(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       mode: "floating",
-      view
+      view,
     });
     view.ui.add(legendExpand, legendPosition);
   }
@@ -364,9 +356,8 @@ export function addLegend(
  * Watch for changes in fullScreen, fullScreenPosition
  */
 export function addFullscreen(
-  config: any,
-  view: __esri.MapView | __esri.SceneView,
-  viewInstance = 0
+  config: ApplicationConfig,
+  view: __esri.MapView | __esri.SceneView
 ): void {
   const { fullScreen, fullScreenPosition } = config;
   const uniqueId = "esri-fullscreen";
@@ -378,12 +369,12 @@ export function addFullscreen(
   }
 
   if (node) {
-    handleBatchWidgetPositions(view, node, fullScreenPosition, viewInstance);
+    view.ui.move(node, fullScreenPosition);
   } else {
     view.ui.add(
       new FullScreen({
         id: uniqueId,
-        view
+        view,
       }),
       fullScreenPosition
     );
@@ -394,9 +385,8 @@ export function addFullscreen(
  * Watch for changes in compassWidget, compassWidgetPosition
  */
 export function addCompass(
-  config: any,
-  view: __esri.MapView | __esri.SceneView,
-  viewInstance = 0
+  config: ApplicationConfig,
+  view: __esri.MapView | __esri.SceneView
 ): void {
   const { compassWidget, compassWidgetPosition } = config;
   const uniqueId = "esri-compass";
@@ -408,7 +398,7 @@ export function addCompass(
   }
 
   if (node) {
-    handleBatchWidgetPositions(view, node, compassWidgetPosition, viewInstance);
+    view.ui.move(node, compassWidgetPosition);
   } else {
     view.ui.add(new Compass({ view, id: uniqueId }), compassWidgetPosition);
   }
@@ -418,9 +408,8 @@ export function addCompass(
  * Watch for changes in locateWidget, locateWidgetPosition
  */
 export function addLocateWidget(
-  config: any,
-  view: __esri.MapView | __esri.SceneView,
-  viewInstance = 0
+  config: ApplicationConfig,
+  view: __esri.MapView | __esri.SceneView
 ): void {
   const { locateWidget, locateWidgetPosition } = config;
   const uniqueId = "esri-locate";
@@ -434,7 +423,7 @@ export function addLocateWidget(
   }
 
   if (node && locateWidgetPosition != null) {
-    handleBatchWidgetPositions(view, node, locateWidgetPosition, viewInstance);
+    view.ui.move(node, locateWidgetPosition);
   } else {
     view.ui.add(new Locate({ view, id: uniqueId }), locateWidgetPosition);
   }
@@ -445,10 +434,9 @@ export function addLocateWidget(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export function addSearch(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any,
-  viewInstance = 0
+  commonMessages: any
 ): void {
   const { search, searchPosition, searchOpenAtStart, searchConfiguration } =
     config;
@@ -504,10 +492,9 @@ export function addSearch(
     mode: "floating",
     collapseTooltip: closeTip,
     expandTooltip: tip,
-    expanded: searchOpenAtStart
+    expanded: searchOpenAtStart,
   });
   view.ui.add(node, searchPosition);
-  handleBatchWidgetPositions(view, node, searchPosition, viewInstance);
   handleSearchExtent(config, node.content as __esri.widgetsSearch);
 }
 
@@ -516,10 +503,9 @@ export function addSearch(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export async function addShare(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any,
-  viewInstance = 0
+  commonMessages: any
 ): Promise<any | undefined> {
   const { share, sharePosition, shareIncludeEmbed, shareIncludeSocial } =
     config;
@@ -540,7 +526,7 @@ export async function addShare(
     node.expandTooltip = tip;
     node.collapseTooltip = closeTip;
     node.group = group;
-    handleBatchWidgetPositions(view, node, sharePosition, viewInstance);
+    view.ui.move(node, sharePosition);
     const container = node.container as HTMLElement;
     socialShare = await checkForElement(container, "instant-apps-social-share");
     if (socialShare != null) {
@@ -569,7 +555,7 @@ export async function addShare(
       mode: "floating",
       expandTooltip: tip,
       collapseTooltip: closeTip,
-      view
+      view,
     });
     view.ui.add(shareExpand, sharePosition);
   }
@@ -582,10 +568,9 @@ export async function addShare(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export async function addKeyboardShortcuts(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any,
-  viewInstance = 0
+  commonMessages: any
 ): Promise<void> {
   const { keyboardShortcuts, keyboardShortcutsPosition } = config;
   const uniqueId = "esri-instant-apps-keyboard-shortcuts";
@@ -605,12 +590,7 @@ export async function addKeyboardShortcuts(
     node.collapseTooltip = closeTip;
     node.expanded = false;
     node.group = group;
-    handleBatchWidgetPositions(
-      view,
-      node,
-      keyboardShortcutsPosition,
-      viewInstance
-    );
+    view.ui.move(node, keyboardShortcutsPosition);
     const container = node.container as HTMLElement;
     const keyboard = (await checkForElement(
       container,
@@ -636,7 +616,7 @@ export async function addKeyboardShortcuts(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       expandIcon: "keyboard",
-      view
+      view,
     });
     view.ui.add(keyboardExpand, keyboardShortcutsPosition);
   }
@@ -647,10 +627,9 @@ export async function addKeyboardShortcuts(
  * @param commonMessages add a script to copy the common file from the arcgis-portal-app-templates/instant root folder to your app e.g. `"copyCommon": "ncp ../t9n/ public/assets/t9n/Common"`
  */
 export async function addMeasurementTools(
-  config: any,
+  config: ApplicationConfig,
   view: __esri.MapView | __esri.SceneView,
-  commonMessages: any,
-  viewInstance = 0
+  commonMessages: any
 ): Promise<void> {
   const { measure, measurePosition } = config;
   const uniqueId = "esri-instant-apps-measurement";
@@ -671,7 +650,7 @@ export async function addMeasurementTools(
     node.collapseTooltip = closeTip;
     node.expanded = false;
     node.group = group;
-    handleBatchWidgetPositions(view, node, measurePosition, viewInstance);
+    view.ui.move(node, measurePosition);
     const container = node.container as HTMLElement;
     measureTools = (await checkForElement(
       container,
@@ -696,7 +675,7 @@ export async function addMeasurementTools(
       expandTooltip: tip,
       collapseTooltip: closeTip,
       expandIcon: "measure",
-      view
+      view,
     });
     view.ui.add(measureExpand, measurePosition);
   }
@@ -706,9 +685,8 @@ export async function addMeasurementTools(
  * Watch for changes in floorFilter, floorFilterPosition
  */
 export function addFloorFilter(
-  config: any,
-  view: __esri.MapView | __esri.SceneView,
-  viewInstance = 0
+  config: ApplicationConfig,
+  view: __esri.MapView | __esri.SceneView
 ): void {
   const { floorFilter, floorFilterPosition } = config;
   const uniqueId = "esri-floor-filter";
@@ -720,17 +698,100 @@ export function addFloorFilter(
   }
 
   if (node) {
-    handleBatchWidgetPositions(view, node, floorFilterPosition, viewInstance);
+    view.ui.move(node, floorFilterPosition);
   } else {
     view.ui.add(
       new FloorFilter({
         id: uniqueId,
         view,
-        headingLevel: 3
+        headingLevel: 3,
       }),
       floorFilterPosition
     );
   }
+}
+
+let languageSwitcherController = new AbortController();
+/**
+ * Watch for changes in languageSwitcher, languageSwitcherConfig, languageSwitcherPosition, languageSwitcherOpenAtStart
+ */
+export async function addLanguageSwitcher(
+  config: ApplicationConfig,
+  base: ApplicationBase,
+  view: __esri.MapView | __esri.SceneView,
+  handleLanguageUpdate: Function,
+  commonMessages: any
+): Promise<void> {
+  const {
+    languageSwitcher,
+    languageSwitcherConfig,
+    languageSwitcherPosition,
+    languageSwitcherOpenAtStart,
+  } = config;
+  const uniqueId = "esri-language-switcher";
+  let node = view.ui.find(uniqueId) as __esri.Expand;
+
+  if (!languageSwitcher) {
+    if (node) view.ui.remove(node);
+    return;
+  }
+
+  const group = getPosition(languageSwitcherPosition);
+  const tip = commonMessages?.tools?.languageSwitcher;
+  const closeTip = commonMessages?.tools?.close?.languageSwitcher;
+
+  if (node) {
+    const container = node.container as HTMLElement;
+    const ls = (await checkForElement(
+      container,
+      "instant-apps-language-switcher"
+    )) as any;
+    if (ls != null) {
+      ls.icon = languageSwitcherConfig?.icon ?? "language";
+      ls.locales = structuredClone(languageSwitcherConfig?.locales);
+      languageSwitcherController.abort();
+      languageSwitcherController = new AbortController();
+      ls.addEventListener(
+        "selectedLanguageUpdated",
+        handleLanguageUpdate.bind(this),
+        {
+          signal: languageSwitcherController.signal,
+        }
+      );
+    }
+    view.ui.move(node, languageSwitcherPosition);
+  } else {
+    const ls = document.createElement("instant-apps-language-switcher") as any;
+    const defaultLocale = languageSwitcherConfig?.defaultLocale ?? "en";
+    ls.defaultLocale = defaultLocale;
+    const applicationItem = base?.results?.applicationItem
+      ?.value as __esri.PortalItem;
+    ls.portalItem = applicationItem;
+    ls.icon = languageSwitcherConfig?.icon ?? "language";
+    ls.locales = structuredClone(languageSwitcherConfig?.locales);
+    ls.addEventListener(
+      "selectedLanguageUpdated",
+      handleLanguageUpdate.bind(this),
+      {
+        signal: languageSwitcherController.signal,
+      }
+    );
+
+    const container = document.createElement("div");
+    container.prepend(ls);
+    node = new Expand({
+      expandIcon: languageSwitcherConfig?.icon ?? "language",
+      expanded: languageSwitcherOpenAtStart,
+      view,
+      content: container,
+      id: uniqueId,
+      mode: "floating",
+    });
+    view.ui.add(node, languageSwitcherPosition);
+  }
+  node.expandTooltip = tip;
+  node.collapseTooltip = closeTip;
+  node.group = group;
 }
 
 export function getPosition(position: { position: string } | string): string {

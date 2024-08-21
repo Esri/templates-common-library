@@ -361,9 +361,9 @@ function getLogoDetails(
   const logo =
     (customTheme?.logoSource === "url"
       ? customTheme?.logoUrl
-      : customTheme?.logo) ?? "";
+      : applyToken(token, customTheme?.logo)) ?? "";
   return {
-    logo: applyToken(token, logo),
+    logo,
     link: customTheme?.logoLink
   };
 }
