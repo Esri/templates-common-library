@@ -206,6 +206,12 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "timeFilterOpenAtStart",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
                   "id": "timeFilterConfig",
                   "express": false,
                   "defaultValue": null
