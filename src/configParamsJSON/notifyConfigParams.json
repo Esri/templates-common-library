@@ -186,7 +186,7 @@
       "content": [
         {
           "type": "subsection",
-          "id": "layerOptions",
+          "id": "listOptions",
           "content": [
             {
               "type": "group",
@@ -240,6 +240,24 @@
             {
               "type": "setting",
               "id": "listName",
+              "express": false
+            },
+            {
+              "type": "setting",
+              "id": "showSketchTools",
+              "defaultValue": true,
+              "express": false
+            },
+            {
+              "type": "setting",
+              "id": "showSearchDistance",
+              "defaultValue": true,
+              "express": false
+            },
+            {
+              "type": "setting",
+              "id": "showLayerFeatures",
+              "defaultValue": true,
               "express": false
             }
           ]
