@@ -821,6 +821,12 @@
                   "content": [
                     {
                       "type": "setting",
+                      "id": "swipeConfigurationOpenAtStart",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
                       "id": "swipeConfigurationPosition",
                       "defaultValue": {
                         "position": "bottom-left",
