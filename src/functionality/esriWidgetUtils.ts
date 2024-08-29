@@ -781,7 +781,6 @@ export async function addLanguageSwitcher(
     container.prepend(ls);
     node = new Expand({
       expandIcon: languageSwitcherConfig?.icon ?? "language",
-      expanded: languageSwitcherOpenAtStart,
       view,
       content: container,
       id: uniqueId,
@@ -792,6 +791,7 @@ export async function addLanguageSwitcher(
   node.expandTooltip = tip;
   node.collapseTooltip = closeTip;
   node.group = group;
+  node.expanded = languageSwitcherOpenAtStart;
 }
 
 export function getPosition(position: { position: string } | string): string {

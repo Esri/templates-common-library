@@ -181,6 +181,7 @@
             {
               "type": "setting",
               "id": "reportsHeader",
+              "defaultValue": "Reports",
               "express": false
             },
             {
@@ -201,16 +202,25 @@
             {
               "type": "setting",
               "id": "showFeatureSymbol",
+              "defaultValue": false,
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "showUserImageInCommentsList",
+              "defaultValue": false,
               "express": true
             },
             {
               "type": "setting",
               "id": "reportSubmittedMessage",
+              "defaultValue": "Thank you! Your report was successfully submitted.",
               "express": true
             },
             {
               "type": "setting",
               "id": "reportButtonText",
+              "defaultValue": "Report an incident",
               "express": true
             }
           ]
