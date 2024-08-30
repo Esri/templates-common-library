@@ -331,7 +331,7 @@
                   "type": "setting",
                   "id": "visibilityIcon",
                   "express": false,
-                  "defaultValue": "default"
+                  "defaultValue": "eyeball"
                 }
               ]
             }
