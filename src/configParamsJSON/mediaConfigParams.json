@@ -599,83 +599,7 @@
                   "type": "setting",
                   "id": "visibilityIcon",
                   "express": false,
-                  "defaultValue": "eyeball"
-                }
-              ]
-            },
-            {
-              "type": "setting",
-              "id": "swipe",
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "swipeLeadingLayers",
-                  "config": {
-                    "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": [
-                      "csv",
-                      "map-image",
-                      "feature",
-                      "geojson",
-                      "geo-rss",
-                      "graphics",
-                      "imagery",
-                      "imagery-tile",
-                      "kml",
-                      "map-notes",
-                      "media",
-                      "ogc-feature",
-                      "tile",
-                      "vector-tile",
-                      "web-tile",
-                      "wms",
-                      "wmts"
-                    ],
-                    "supportedGeometryTypes": "*",
-                    "supportsFieldSelection": false
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "type": "setting",
-                  "id": "swipeTrailingLayers",
-                  "config": {
-                    "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": [
-                      "csv",
-                      "map-image",
-                      "feature",
-                      "geojson",
-                      "geo-rss",
-                      "graphics",
-                      "imagery",
-                      "imagery-tile",
-                      "kml",
-                      "map-notes",
-                      "media",
-                      "ogc-feature",
-                      "tile",
-                      "vector-tile",
-                      "web-tile",
-                      "wms",
-                      "wmts"
-                    ],
-                    "supportedGeometryTypes": "*",
-                    "supportsFieldSelection": false
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "type": "setting",
-                  "id": "swipeDirection",
-                  "defaultValue": "horizontal"
-                },
-                {
-                  "type": "setting",
-                  "id": "swipePercentage",
-                  "express": false,
-                  "defaultValue": 35
+                  "defaultValue": "default"
                 }
               ]
             }
@@ -871,30 +795,101 @@
         },
         {
           "type": "subsection",
-          "id": "customURLParams",
+          "id": "swipe",
           "content": [
             {
-              "type": "group",
-              "id": "customURLParams",
-              "express": false,
+              "type": "setting",
+              "id": "swipe",
+              "defaultValue": false,
               "content": [
                 {
                   "type": "setting",
-                  "id": "customURLParamName",
-                  "express": false,
-                  "defaultValue": ""
+                  "id": "swipeDirection",
+                  "defaultValue": "horizontal"
                 },
                 {
                   "type": "setting",
-                  "id": "customUrlParam",
+                  "id": "swipePercentage",
                   "express": false,
+                  "defaultValue": 35
+                },
+                {
+                  "type": "setting",
+                  "id": "swipeConfiguration",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "swipeConfigurationOpenAtStart",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "swipeConfigurationPosition",
+                      "defaultValue": {
+                        "position": "bottom-left",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "swipeLeadingLayers",
                   "config": {
-                    "layerSelectionMode": "single",
-                    "supportedLayerTypes": "*",
+                    "layerSelectionMode": "multiple",
+                    "supportedLayerTypes": [
+                      "csv",
+                      "map-image",
+                      "feature",
+                      "geojson",
+                      "geo-rss",
+                      "graphics",
+                      "imagery",
+                      "imagery-tile",
+                      "kml",
+                      "map-notes",
+                      "media",
+                      "ogc-feature",
+                      "tile",
+                      "vector-tile",
+                      "web-tile",
+                      "wms",
+                      "wmts"
+                    ],
                     "supportedGeometryTypes": "*",
-                    "supportsFieldSelection": true,
-                    "fieldSelectionMode": "single",
-                    "supportedFieldTypes": "*"
+                    "supportsFieldSelection": false
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "swipeTrailingLayers",
+                  "config": {
+                    "layerSelectionMode": "multiple",
+                    "supportedLayerTypes": [
+                      "csv",
+                      "map-image",
+                      "feature",
+                      "geojson",
+                      "geo-rss",
+                      "graphics",
+                      "imagery",
+                      "imagery-tile",
+                      "kml",
+                      "map-notes",
+                      "media",
+                      "ogc-feature",
+                      "tile",
+                      "vector-tile",
+                      "web-tile",
+                      "wms",
+                      "wmts"
+                    ],
+                    "supportedGeometryTypes": "*",
+                    "supportsFieldSelection": false
                   },
                   "defaultValue": null
                 }
@@ -992,6 +987,39 @@
                       ]
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "customURLParams",
+          "content": [
+            {
+              "type": "group",
+              "id": "customURLParams",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "customURLParamName",
+                  "express": false,
+                  "defaultValue": ""
+                },
+                {
+                  "type": "setting",
+                  "id": "customUrlParam",
+                  "express": false,
+                  "config": {
+                    "layerSelectionMode": "single",
+                    "supportedLayerTypes": "*",
+                    "supportedGeometryTypes": "*",
+                    "supportsFieldSelection": true,
+                    "fieldSelectionMode": "single",
+                    "supportedFieldTypes": "*"
+                  },
+                  "defaultValue": null
                 }
               ]
             }

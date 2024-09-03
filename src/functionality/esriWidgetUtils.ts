@@ -219,14 +219,12 @@ export function addLayerList(
     if (node?.content) {
       const layerList = node.content as LayerList;
       updateListItemLegend(layerList, layerListLegend);
-      layerList.visibilityAppearance = visibilityIcon
-        ? visibilityIcon
-        : "default";
+      layerList.visibilityAppearance = visibilityIcon;
     }
   } else {
     const content = new LayerList({
       dragEnabled: true,
-      visibilityAppearance: visibilityIcon ? visibilityIcon : "default",
+      visibilityAppearance: visibilityIcon,
       visibleElements: {
         errors: true,
         filter: true,
