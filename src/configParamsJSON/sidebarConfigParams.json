@@ -959,7 +959,7 @@
               "id": "languageSwitcherPosition",
               "defaultValue": {
                 "position": "top-right",
-                "index": 5
+                "index": 0
               }
             }
           ]

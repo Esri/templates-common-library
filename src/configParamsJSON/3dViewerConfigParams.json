@@ -773,6 +773,21 @@
                 },
                 {
                   "type": "setting",
+                  "id": "viewshed",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "viewshedPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "basemapToggle",
                   "express": false,
                   "defaultValue": false,
