@@ -616,9 +616,15 @@
                 {
                   "type": "setting",
                   "id": "showScoreboard",
-                  "express": true,
-                  "defaultValue": true,
+                  "express": false,
+                  "defaultValue": false,
                   "content": [
+                    {
+                      "type": "setting",
+                      "id": "scoreboardLabel",
+                      "express": false,
+                      "defaultValue": ""
+                    },
                     {
                       "type": "setting",
                       "id": "scoreboardItems",
