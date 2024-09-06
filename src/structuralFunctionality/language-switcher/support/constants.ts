@@ -380,7 +380,7 @@ export const LANGUAGE_DATA = {
       translated: "ગુજરાતી",
     },
     ht: {
-      language: "Haitian",
+      language: "Haitian Creole",
       translated: "Kreyòl Ayisyen",
     },
     ha: {
