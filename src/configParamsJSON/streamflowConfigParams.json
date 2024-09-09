@@ -68,6 +68,22 @@
                                             "defaultValue": false
                                         }
                                     ]
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "popupFixed",
+                                    "defaultValue": true,
+                                    "express": true,
+                                    "content": [
+                                        {
+                                            "type": "setting",
+                                            "id": "popupFixedPosition",
+                                            "defaultValue": {
+                                                "position": "top-right",
+                                                "index": 0
+                                            }
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -369,6 +385,32 @@
                                     "id": "visibilityIcon",
                                     "express": false,
                                     "defaultValue": "default"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "subsection",
+                    "id": "filter",
+                    "content": [
+                        {
+                            "type": "setting",
+                            "id": "enableFilter",
+                            "express": false,
+                            "defaultValue": false,
+                            "content": [
+                                {
+                                    "type": "setting",
+                                    "id": "filterPosition",
+                                    "express": false,
+                                    "defaultValue": "top-right"
+                                },
+                                {
+                                    "type": "setting",
+                                    "id": "filterConfig",
+                                    "express": false,
+                                    "defaultValue": null
                                 }
                             ]
                         }
