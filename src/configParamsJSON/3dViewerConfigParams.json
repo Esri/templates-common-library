@@ -291,7 +291,17 @@
                   "type": "setting",
                   "id": "orientedImagery",
                   "express": false,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "orientedImageryPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 0
+                      }
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
