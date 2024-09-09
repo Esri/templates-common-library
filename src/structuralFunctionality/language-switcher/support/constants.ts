@@ -14,6 +14,7 @@ export const GROUPED_CONTENT = [
   "filterConfig",
   "itemCollection",
   "numericSliderConfig",
+  "scoreboardItems",
 ];
 
 export const PREVENT_OVERWRITE = [
