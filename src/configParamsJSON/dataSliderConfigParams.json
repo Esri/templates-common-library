@@ -550,7 +550,10 @@
                       "type": "setting",
                       "id": "filterPosition",
                       "express": false,
-                      "defaultValue": {"position": "top-right", "index": 10}
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 10
+                      }
                     },
                     {
                       "type": "setting",
@@ -792,21 +795,24 @@
     {
       "type": "section",
       "id": "languageSwitcher",
-      "express": false,
+      "express": true,
       "content": [
         {
           "type": "setting",
           "id": "languageSwitcher",
           "defaultValue": false,
+          "express": true,
           "content": [
             {
               "type": "setting",
               "id": "languageSwitcherOpenAtStart",
+              "express": false,
               "defaultValue": false
             },
             {
               "type": "setting",
               "id": "languageSwitcherConfig",
+              "express": true,
               "defaultValue": null
             },
             {

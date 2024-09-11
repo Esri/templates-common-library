@@ -1117,21 +1117,24 @@
     {
       "type": "section",
       "id": "languageSwitcher",
-      "express": false,
+      "express": true,
       "content": [
         {
           "type": "setting",
           "id": "languageSwitcher",
           "defaultValue": false,
+          "express": true,
           "content": [
             {
               "type": "setting",
               "id": "languageSwitcherOpenAtStart",
-              "defaultValue": false
+              "defaultValue": false,
+              "express": false
             },
             {
               "type": "setting",
               "id": "languageSwitcherConfig",
+              "express": true,
               "defaultValue": null
             },
             {

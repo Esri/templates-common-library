@@ -53,19 +53,18 @@
                       "defaultValue": "Title"
                     },
                     {
-                        "type": "setting",
-                        "id": "signInOnboardingContent",
-                        "express": false,
-                        "defaultValue": "Content",
-                        "config": {
-                          "imageUpload": true
-                        }
+                      "type": "setting",
+                      "id": "signInOnboardingContent",
+                      "express": false,
+                      "defaultValue": "Content",
+                      "config": {
+                        "imageUpload": true
+                      }
                     }
                   ]
                 }
               ]
             }
-
           ]
         },
         {
@@ -320,7 +319,7 @@
                   "type": "setting",
                   "id": "legendType",
                   "defaultValue": "standard"
-                }                
+                }
               ]
             },
             {
@@ -363,7 +362,11 @@
                       "type": "setting",
                       "id": "createOptions",
                       "express": false,
-                      "defaultValue": ["map-viewer", "story-maps", "instant-apps"]
+                      "defaultValue": [
+                        "map-viewer",
+                        "story-maps",
+                        "instant-apps"
+                      ]
                     }
                   ]
                 }
@@ -458,22 +461,25 @@
     {
       "type": "section",
       "id": "languageSwitcher",
-      "express": false,
+      "express": true,
       "content": [
         {
           "type": "setting",
           "id": "languageSwitcher",
           "defaultValue": false,
+          "express": true,
           "content": [
             {
               "type": "setting",
               "id": "languageSwitcherOpenAtStart",
-              "defaultValue": false
+              "defaultValue": false,
+              "express": false
             },
             {
               "type": "setting",
               "id": "languageSwitcherConfig",
-              "defaultValue": null
+              "defaultValue": null,
+              "express": true
             },
             {
               "type": "setting",
