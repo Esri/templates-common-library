@@ -14,9 +14,16 @@
               "express": true,
               "config": {
                 "branches": [
-                  ["header", "descOpenAtStart"],
-                  ["descOpenAtStart"],
-                  ["accordionSize"]
+                  [
+                    "header",
+                    "descOpenAtStart"
+                  ],
+                  [
+                    "descOpenAtStart"
+                  ],
+                  [
+                    "accordionSize"
+                  ]
                 ]
               },
               "content": [
@@ -49,7 +56,9 @@
               "express": true,
               "config": {
                 "maxNumItems": 20,
-                "disallowList": ["portfolio"]
+                "disallowList": [
+                  "portfolio"
+                ]
               },
               "defaultValue": []
             }
@@ -563,16 +572,18 @@
     {
       "type": "section",
       "id": "languageSwitcher",
-      "express": false,
+      "express": true,
       "content": [
         {
           "type": "setting",
           "id": "languageSwitcher",
           "defaultValue": false,
+          "express": true,
           "content": [
             {
               "type": "setting",
               "id": "languageSwitcherConfig",
+              "express": true,
               "defaultValue": null
             }
           ]

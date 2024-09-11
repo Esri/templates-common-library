@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": ["3d"]
+        "itemTypes": [
+          "3d"
+        ]
       },
       "content": [
         {
@@ -252,7 +254,9 @@
                   "type": "setting",
                   "id": "dataSliderSpeed",
                   "express": true,
-                  "defaultValue": [2]
+                  "defaultValue": [
+                    2
+                  ]
                 }
               ]
             }
@@ -398,16 +402,18 @@
     {
       "type": "section",
       "id": "languageSwitcher",
-      "express": false,
+      "express": true,
       "content": [
         {
           "type": "setting",
           "id": "languageSwitcher",
           "defaultValue": false,
+          "express": true,
           "content": [
             {
               "type": "setting",
               "id": "languageSwitcherConfig",
+              "express": true,
               "defaultValue": null
             }
           ]

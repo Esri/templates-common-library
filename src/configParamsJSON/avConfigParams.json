@@ -4,7 +4,9 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": ["attachments"]
+        "conditions": [
+          "attachments"
+        ]
       },
       "content": [
         {
@@ -140,8 +142,15 @@
               "express": true,
               "config": {
                 "branches": [
-                  ["hideAttributePanel", "autoPlay"],
-                  ["thumbnailFormat", "thumbnailHeight", "mapCentricTooltip"]
+                  [
+                    "hideAttributePanel",
+                    "autoPlay"
+                  ],
+                  [
+                    "thumbnailFormat",
+                    "thumbnailHeight",
+                    "mapCentricTooltip"
+                  ]
                 ]
               },
               "content": [
@@ -497,16 +506,18 @@
     {
       "type": "section",
       "id": "languageSwitcher",
-      "express": false,
+      "express": true,
       "content": [
         {
           "type": "setting",
           "id": "languageSwitcher",
           "defaultValue": false,
+          "express": true,
           "content": [
             {
               "type": "setting",
               "id": "languageSwitcherConfig",
+              "express": true,
               "defaultValue": null
             }
           ]

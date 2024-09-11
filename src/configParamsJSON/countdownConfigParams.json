@@ -4,8 +4,13 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": ["2d", "3d"],
-        "conditions": ["supportsOrderBy"]
+        "itemTypes": [
+          "2d",
+          "3d"
+        ],
+        "conditions": [
+          "supportsOrderBy"
+        ]
       },
       "content": [
         {
@@ -412,16 +417,18 @@
     {
       "type": "section",
       "id": "languageSwitcher",
-      "express": false,
+      "express": true,
       "content": [
         {
           "type": "setting",
           "id": "languageSwitcher",
           "defaultValue": false,
+          "express": true,
           "content": [
             {
               "type": "setting",
               "id": "languageSwitcherConfig",
+              "express": true,
               "defaultValue": null
             },
             {
