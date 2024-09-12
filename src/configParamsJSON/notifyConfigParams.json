@@ -252,13 +252,25 @@
               "type": "setting",
               "id": "showSearchDistance",
               "defaultValue": true,
-              "express": false
+              "express": false,
+              "content": [{
+                "type": "setting",
+                "id": "showSearchDistanceOnLoad",
+                "defaultValue": false,
+                "express": false
+              }]
             },
             {
               "type": "setting",
               "id": "showLayerFeatures",
               "defaultValue": true,
-              "express": false
+              "express": false,
+              "content": [{
+                "type": "setting",
+                "id": "showLayerFeaturesOnLoad",
+                "defaultValue": false,
+                "express": false
+              }]
             }
           ]
         },
