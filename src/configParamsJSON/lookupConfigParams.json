@@ -575,6 +575,31 @@
         },
         {
           "type": "subsection",
+          "id": "scoreboard",
+          "content": [
+            {
+              "type": "setting",
+              "id": "showScoreboard",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "scoreboardLabel",
+                  "express": false,
+                  "defaultValue": ""
+                },
+                {
+                  "type": "setting",
+                  "id": "scoreboardItems",
+                  "express": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "filter",
           "content": [
             {
@@ -613,25 +638,6 @@
               "type": "group",
               "id": "explore",
               "content": [
-                {
-                  "type": "setting",
-                  "id": "showScoreboard",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "scoreboardLabel",
-                      "express": false,
-                      "defaultValue": ""
-                    },
-                    {
-                      "type": "setting",
-                      "id": "scoreboardItems",
-                      "express": false
-                    }
-                  ]
-                },
                 {
                   "type": "setting",
                   "id": "scalebar",
@@ -683,6 +689,22 @@
                       "defaultValue": {
                         "position": "top-right",
                         "index": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "fullScreen",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "fullScreenPosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
                       }
                     }
                   ]
@@ -898,7 +920,10 @@
                     {
                       "type": "setting",
                       "id": "sharePosition",
-                      "defaultValue": "top-right"
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 1
+                      }
                     },
                     {
                       "type": "setting",

@@ -240,7 +240,8 @@
             {
               "type": "setting",
               "id": "listName",
-              "express": false
+              "express": false,
+              "defaultValue": ""
             },
             {
               "type": "setting",
