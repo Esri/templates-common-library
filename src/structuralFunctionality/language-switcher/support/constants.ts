@@ -125,6 +125,7 @@ export const LANGUAGE_DATA = {
     id: {
       language: "Indonesian",
       translated: "Bahasa Indonesia",
+      supportsAutoTranslate: true,
     },
     it: {
       language: "Italian",
@@ -231,6 +232,7 @@ export const LANGUAGE_DATA = {
     af: {
       language: "Afrikaans",
       translated: "Afrikaans",
+      supportsAutoTranslate: true,
     },
     ak: {
       language: "Akan",
@@ -239,10 +241,12 @@ export const LANGUAGE_DATA = {
     sq: {
       language: "Albanian",
       translated: "Shqip",
+      supportsAutoTranslate: true,
     },
     am: {
       language: "Amharic",
       translated: "አማርኛ",
+      supportsAutoTranslate: true,
     },
     an: {
       language: "Aragonese",
@@ -251,10 +255,12 @@ export const LANGUAGE_DATA = {
     hy: {
       language: "Armenian",
       translated: "Հայերեն",
+      supportsAutoTranslate: true,
     },
     as: {
       language: "Assamese",
       translated: "অসমীয়া",
+      supportsAutoTranslate: true,
     },
     av: {
       language: "Avaric",
@@ -279,10 +285,12 @@ export const LANGUAGE_DATA = {
     ba: {
       language: "Bashkir",
       translated: "Башҡорт теле",
+      supportsAutoTranslate: true,
     },
     eu: {
       language: "Basque",
       translated: "euskara",
+      supportsAutoTranslate: true,
     },
     be: {
       language: "Belarusian",
@@ -343,6 +351,7 @@ export const LANGUAGE_DATA = {
     dv: {
       language: "Divehi",
       translated: "ދިވެހި",
+      supportsAutoTranslate: true,
     },
     eo: {
       language: "Esperanto",
@@ -355,6 +364,7 @@ export const LANGUAGE_DATA = {
     fo: {
       language: "Faroese",
       translated: "føroyskt",
+      supportsAutoTranslate: true,
     },
     fj: {
       language: "Fijian",
@@ -367,10 +377,12 @@ export const LANGUAGE_DATA = {
     gl: {
       language: "Galician",
       translated: "galego",
+      supportsAutoTranslate: true,
     },
     ka: {
       language: "Georgian",
       translated: "ქართული",
+      supportsAutoTranslate: true,
     },
     gn: {
       language: "Guarani",
@@ -379,14 +391,17 @@ export const LANGUAGE_DATA = {
     gu: {
       language: "Gujarati",
       translated: "ગુજરાતી",
+      supportsAutoTranslate: true,
     },
     ht: {
       language: "Haitian Creole",
       translated: "Kreyòl Ayisyen",
+      supportsAutoTranslate: true,
     },
     ha: {
       language: "Hausa",
       translated: "هَوُسَ",
+      supportsAutoTranslate: true,
     },
     hz: {
       language: "Herero",
@@ -403,6 +418,7 @@ export const LANGUAGE_DATA = {
     is: {
       language: "Icelandic",
       translated: "Íslenska",
+      supportsAutoTranslate: true,
     },
     io: {
       language: "Ido",
@@ -411,6 +427,7 @@ export const LANGUAGE_DATA = {
     ig: {
       language: "Igbo",
       translated: "Asụsụ Igbo",
+      supportsAutoTranslate: true,
     },
     ia: {
       language: "Interlingua",
@@ -423,6 +440,7 @@ export const LANGUAGE_DATA = {
     iu: {
       language: "Inuktitut",
       translated: "ᐃᓄᒃᑎᑐᑦ",
+      supportsAutoTranslate: true,
     },
     ip: {
       language: "Inupiaq",
@@ -431,6 +449,7 @@ export const LANGUAGE_DATA = {
     ga: {
       language: "Irish",
       translated: "Gaeilge",
+      supportsAutoTranslate: true,
     },
     jv: {
       language: "Javanese",
@@ -443,6 +462,7 @@ export const LANGUAGE_DATA = {
     kn: {
       language: "Kannada",
       translated: "ಕನ್ನಡ",
+      supportsAutoTranslate: true,
     },
     kr: {
       language: "Kanuri",
@@ -451,14 +471,17 @@ export const LANGUAGE_DATA = {
     ks: {
       language: "Kashmiri",
       translated: "कश्मीरी",
+      supportsAutoTranslate: true,
     },
     kk: {
       language: "Kazakh",
       translated: "қазақ тілі",
+      supportsAutoTranslate: true,
     },
     km: {
       language: "Khmer",
       translated: "ខ្មែរ",
+      supportsAutoTranslate: true,
     },
     ki: {
       language: "Kikuyu",
@@ -467,6 +490,7 @@ export const LANGUAGE_DATA = {
     rw: {
       language: "Kinyarwanda",
       translated: "Kinyarwanda",
+      supportsAutoTranslate: true,
     },
     rn: {
       language: "Kirundi",
@@ -483,6 +507,7 @@ export const LANGUAGE_DATA = {
     ku: {
       language: "Kurdish",
       translated: "Kurdî",
+      supportsAutoTranslate: true,
     },
     kj: {
       language: "Kwanyama",
@@ -495,6 +520,7 @@ export const LANGUAGE_DATA = {
     lo: {
       language: "Lao",
       translated: "ພາສາລາວ",
+      supportsAutoTranslate: true,
     },
     la: {
       language: "Latin",
@@ -523,22 +549,27 @@ export const LANGUAGE_DATA = {
     mk: {
       language: "Macedonian",
       translated: "македонски јазик",
+      supportsAutoTranslate: true,
     },
     mg: {
       language: "Malagasy",
       translated: "fiteny malagasy",
+      supportsAutoTranslate: true,
     },
     ms: {
       language: "Malay",
       translated: "Bahasa Melayu",
+      supportsAutoTranslate: true,
     },
     ml: {
       language: "Malayalam",
       translated: "മലയാളം",
+      supportsAutoTranslate: true,
     },
     mt: {
       language: "Maltese",
       translated: "Malti",
+      supportsAutoTranslate: true,
     },
     gv: {
       language: "Manx",
@@ -547,10 +578,12 @@ export const LANGUAGE_DATA = {
     mi: {
       language: "Maori",
       translated: "te reo Māori",
+      supportsAutoTranslate: true,
     },
     mr: {
       language: "Marathi",
       translated: "मराठी",
+      supportsAutoTranslate: true,
     },
     mh: {
       language: "Marshallese",
@@ -575,6 +608,7 @@ export const LANGUAGE_DATA = {
     ne: {
       language: "Nepali",
       translated: "नेपाली",
+      supportsAutoTranslate: true,
     },
     nd: {
       language: "North Ndebele",
@@ -607,6 +641,7 @@ export const LANGUAGE_DATA = {
     or: {
       language: "Oriya",
       translated: "ଓଡ଼ିଆ",
+      supportsAutoTranslate: true,
     },
     om: {
       language: "Oromo",
@@ -627,10 +662,12 @@ export const LANGUAGE_DATA = {
     ps: {
       language: "Pashto",
       translated: "پښتو",
+      supportsAutoTranslate: true,
     },
     fa: {
       language: "Persian",
       translated: "فارسی",
+      supportsAutoTranslate: true,
     },
     qu: {
       language: "Quechua",
@@ -643,6 +680,7 @@ export const LANGUAGE_DATA = {
     sm: {
       language: "Samoan",
       translated: "gagana fa'a Samoa",
+      supportsAutoTranslate: true,
     },
     sg: {
       language: "Sango",
@@ -667,14 +705,17 @@ export const LANGUAGE_DATA = {
     sd: {
       language: "Sindhi",
       translated: "सिन्धी",
+      supportsAutoTranslate: true,
     },
     si: {
       language: "Sinhala",
       translated: "සිංහල",
+      supportsAutoTranslate: true,
     },
     so: {
       language: "Somali",
       translated: "Soomaaliga",
+      supportsAutoTranslate: true,
     },
     nr: {
       language: "South Ndebele",
@@ -691,6 +732,7 @@ export const LANGUAGE_DATA = {
     sw: {
       language: "Swahili",
       translated: "Kiswahili",
+      supportsAutoTranslate: true,
     },
     ss: {
       language: "Swati",
@@ -703,6 +745,7 @@ export const LANGUAGE_DATA = {
     ty: {
       language: "Tahitian",
       translated: "Reo Tahiti",
+      supportsAutoTranslate: true,
     },
     tg: {
       language: "Tajik",
@@ -711,26 +754,32 @@ export const LANGUAGE_DATA = {
     ta: {
       language: "Tamil",
       translated: "தமிழ்",
+      supportsAutoTranslate: true,
     },
     tt: {
       language: "Tatar",
       translated: "татар теле",
+      supportsAutoTranslate: true,
     },
     te: {
       language: "Telugu",
       translated: "తెలుగు",
+      supportsAutoTranslate: true,
     },
     bo: {
       language: "Tibetan",
       translated: "བོད་ཡིག",
+      supportsAutoTranslate: true,
     },
     ti: {
       language: "Tigrinya",
       translated: "ትግርኛ",
+      supportsAutoTranslate: true,
     },
     to: {
       language: "Tonga",
       translated: "faka Tonga",
+      supportsAutoTranslate: true,
     },
     ts: {
       language: "Tsonga",
@@ -743,6 +792,7 @@ export const LANGUAGE_DATA = {
     tk: {
       language: "Turkmen",
       translated: "Türkmen",
+      supportsAutoTranslate: true,
     },
     tw: {
       language: "Twi",
@@ -755,10 +805,12 @@ export const LANGUAGE_DATA = {
     ur: {
       language: "Urdu",
       translated: "اردو",
+      supportsAutoTranslate: true,
     },
     uz: {
       language: "Uzbek",
       translated: "O'zbek",
+      supportsAutoTranslate: true,
     },
     ve: {
       language: "Venda",
@@ -775,6 +827,7 @@ export const LANGUAGE_DATA = {
     cy: {
       language: "Welsh",
       translated: "Cymraeg",
+      supportsAutoTranslate: true,
     },
     fy: {
       language: "Western Frisian",
@@ -787,6 +840,7 @@ export const LANGUAGE_DATA = {
     xh: {
       language: "Xhosa",
       translated: "isiXhosa",
+      supportsAutoTranslate: true,
     },
     yi: {
       language: "Yiddish",
@@ -795,6 +849,7 @@ export const LANGUAGE_DATA = {
     yo: {
       language: "Yoruba",
       translated: "Yorùbá",
+      supportsAutoTranslate: true,
     },
     za: {
       language: "Zhuang",
@@ -803,6 +858,7 @@ export const LANGUAGE_DATA = {
     zu: {
       language: "Zulu",
       translated: "isiZulu",
+      supportsAutoTranslate: true,
     },
   },
 };
