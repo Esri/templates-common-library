@@ -42,6 +42,11 @@
                 },
                 {
                   "type": "setting",
+                  "id": "customInfoText",
+                  "express": false
+                },
+                {
+                  "type": "setting",
                   "id": "legend",
                   "defaultValue": true,
                   "express": true
