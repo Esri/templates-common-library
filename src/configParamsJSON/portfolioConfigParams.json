@@ -14,16 +14,9 @@
               "express": true,
               "config": {
                 "branches": [
-                  [
-                    "header",
-                    "descOpenAtStart"
-                  ],
-                  [
-                    "descOpenAtStart"
-                  ],
-                  [
-                    "accordionSize"
-                  ]
+                  ["header", "descOpenAtStart"],
+                  ["descOpenAtStart"],
+                  ["accordionSize"]
                 ]
               },
               "content": [
@@ -56,9 +49,7 @@
               "express": true,
               "config": {
                 "maxNumItems": 20,
-                "disallowList": [
-                  "portfolio"
-                ]
+                "disallowList": []
               },
               "defaultValue": []
             }
