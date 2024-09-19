@@ -228,6 +228,18 @@
               "id": "reportButtonText",
               "defaultValue": "Report an incident",
               "express": true
+            },
+            {
+              "type": "setting",
+              "id": "commentSubmittedMessage",
+              "defaultValue": "Comment submitted",
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "commentButtonText",
+              "defaultValue": "Comment",
+              "express": true
             }
           ]
         },
