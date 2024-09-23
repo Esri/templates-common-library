@@ -4,9 +4,7 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": [
-          "2d"
-        ]
+        "itemTypes": ["2d"]
       },
       "content": [
         {
@@ -192,14 +190,10 @@
               "express": true,
               "config": {
                 "layerSelectionMode": "multiple",
-                "supportedLayerTypes": [
-                  "feature"
-                ],
+                "supportedLayerTypes": ["feature"],
                 "supportedGeometryTypes": "*",
                 "supportsFieldSelection": false,
-                "supportedCapabilityTypes": [
-                  "editable"
-                ],
+                "supportedCapabilityTypes": ["editable"],
                 "hideNestedSections": true,
                 "reporterApp": true
               },
@@ -216,7 +210,13 @@
               "id": "showUserImageInCommentsList",
               "defaultValue": false,
               "express": true
-            },
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "panelText",
+          "content": [
             {
               "type": "setting",
               "id": "reportSubmittedMessage",
