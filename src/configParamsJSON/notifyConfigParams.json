@@ -186,7 +186,7 @@
       "content": [
         {
           "type": "subsection",
-          "id": "listOptions",
+          "id": "layerOptions",
           "content": [
             {
               "type": "group",
@@ -236,7 +236,13 @@
                   "defaultValue": null
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "listTools",
+          "content": [
             {
               "type": "setting",
               "id": "listName",
@@ -254,12 +260,25 @@
               "id": "showSearchDistance",
               "defaultValue": true,
               "express": false,
-              "content": [{
-                "type": "setting",
-                "id": "showSearchDistanceOnLoad",
-                "defaultValue": false,
-                "express": false
-              }]
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "showSearchDistanceOnLoad",
+                  "defaultValue": false,
+                  "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "defaultDistance",
+                  "defaultValue": 0,
+                  "min": 0
+                },
+                {
+                  "type": "setting",
+                  "id": "searchUnits",
+                  "defaultValue": "kilometers"
+                }
+              ]
             },
             {
               "type": "setting",
@@ -299,23 +318,6 @@
                   "id": "noResultsMessage",
                   "defaultValue": "",
                   "express": true
-                }
-              ]
-            },
-            {
-              "type": "group",
-              "id": "searchOptions",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "defaultDistance",
-                  "defaultValue": 0,
-                  "min": 0
-                },
-                {
-                  "type": "setting",
-                  "id": "searchUnits",
-                  "defaultValue": "kilometers"
                 }
               ]
             }
