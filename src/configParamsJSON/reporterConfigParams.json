@@ -180,12 +180,6 @@
           "content": [
             {
               "type": "setting",
-              "id": "reportsHeader",
-              "defaultValue": "Reports",
-              "express": false
-            },
-            {
-              "type": "setting",
               "id": "reportLayers",
               "express": true,
               "config": {
@@ -217,6 +211,12 @@
           "type": "subsection",
           "id": "panelText",
           "content": [
+            {
+              "type": "setting",
+              "id": "reportsHeader",
+              "defaultValue": "Reports",
+              "express": false
+            },
             {
               "type": "setting",
               "id": "reportSubmittedMessage",

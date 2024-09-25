@@ -78,10 +78,7 @@
                                         {
                                             "type": "setting",
                                             "id": "popupFixedPosition",
-                                            "defaultValue": {
-                                                "position": "top-right",
-                                                "index": 0
-                                            }
+                                            "defaultValue": "top-right"
                                         }
                                     ]
                                 }
