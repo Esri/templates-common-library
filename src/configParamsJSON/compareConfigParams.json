@@ -101,17 +101,7 @@
                   "type": "setting",
                   "id": "keyboardShortcuts",
                   "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "keyboardShortcutsPosition",
-                      "defaultValue": {
-                        "position": "bottom-right",
-                        "index": 1
-                      }
-                    }
-                  ]
+                  "defaultValue": false
                 }
               ]
             }
@@ -452,14 +442,6 @@
             },
             {
               "type": "setting",
-              "id": "syncMapsPosition",
-              "defaultValue": {
-                "position": "top-left",
-                "index": 9
-              }
-            },
-            {
-              "type": "setting",
               "id": "descriptiveTextBtnPosition",
               "defaultValue": {
                 "position": "top-left",
@@ -486,14 +468,6 @@
               "id": "languageSwitcherConfig",
               "express": true,
               "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "languageSwitcherPosition",
-              "defaultValue": {
-                "position": "top-right",
-                "index": 1
-              }
             }
           ]
         }
