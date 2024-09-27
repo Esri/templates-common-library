@@ -15,6 +15,9 @@ import { isWithinConfigurationExperience } from "../../../functionality/configur
 import {
   HandleGroupedContentArgs,
   LanguageData,
+  ProcessTranslationNestedValueArgs,
+  ProcessTranslationValueArgs,
+  UpdateValueFromTranslationArgs,
 } from "../../../interfaces/languageSwitcherInterfaces";
 
 // Determines default locale based on portal or locale url param
@@ -326,4 +329,170 @@ export async function getT9nData(
     ...groupedConfigSettings,
     ...configSettings,
   };
+}
+
+export function convertT9nToConfigData(
+  data: { [key: string]: string },
+  base: ApplicationBase
+): { [key: string]: any } {
+  const config = structuredClone(base.config);
+  const t9nData = {};
+
+  for (const key in data) {
+    const { fieldName, value } = getValuesToWrite(key, data[key], config);
+    t9nData[fieldName] = value;
+  }
+
+  return t9nData;
+}
+
+function getValuesToWrite(
+  fieldName: string,
+  value: string,
+  config: ApplicationConfig
+): { fieldName: string; value: any } {
+  const { idItems } = getNestedIDs(fieldName);
+  let fieldNameToUse = fieldName;
+  let valueToUse = value;
+
+  if (idItems.length > 1) {
+    const parentID = idItems[0];
+    const parentValue = getDefaultValue(parentID, config);
+    fieldNameToUse = parentID;
+    valueToUse = updateValueFromTranslation({
+      fieldName,
+      stringValue: value,
+      parentValue,
+    });
+  }
+  return { fieldName: fieldNameToUse, value: valueToUse };
+}
+
+export function updateValueFromTranslation({
+  ...args
+}: UpdateValueFromTranslationArgs): any {
+  const { fieldName, stringValue, parentValue } = args;
+  const params = fieldName.split(".");
+  if (
+    Array.isArray(parentValue) ||
+    (typeof parentValue === "object" && parentValue !== null)
+  ) {
+    params.shift();
+    processValueFromTranslation({
+      parentValue,
+      params,
+      stringValue,
+      updateBatch: false,
+    });
+    return parentValue;
+  } else {
+    return stringValue;
+  }
+}
+
+function processValueFromTranslation({
+  ...args
+}: ProcessTranslationValueArgs): boolean {
+  const { parentValue, params, stringValue, updateBatch } = args;
+  const [param, ...restParams] = params;
+  if (Array.isArray(parentValue)) {
+    processArrayFromTranslation({
+      parentValue,
+      param,
+      params: restParams,
+      stringValue,
+      updateBatch,
+    });
+  } else if (typeof parentValue === "object" && parentValue !== null) {
+    processObjectFromTranslation({
+      parentValue,
+      param,
+      params: restParams,
+      stringValue,
+      updateBatch,
+    });
+  }
+  return updateBatch;
+}
+
+function processArrayFromTranslation({
+  ...args
+}: ProcessTranslationNestedValueArgs): void {
+  let { parentValue, param, params, stringValue, updateBatch } = args;
+  const [key, uid] = param.split("-");
+  for (const item of parentValue) {
+    if (item._uid === uid) {
+      if (typeof item[key] === "string" && item[key] !== stringValue) {
+        item[key] = stringValue;
+        updateBatch = true;
+        break;
+      }
+      processValueFromTranslation({
+        parentValue: item[key],
+        params,
+        stringValue,
+        updateBatch,
+      });
+    }
+  }
+}
+
+function processObjectFromTranslation({
+  ...args
+}: ProcessTranslationNestedValueArgs): void {
+  let { parentValue, param, params, stringValue, updateBatch } = args;
+  const result = parentValue[param];
+  if (Array.isArray(result)) {
+    processArrayFromTranslation({
+      parentValue: result,
+      param: params[0],
+      params: params.slice(1),
+      stringValue,
+      updateBatch,
+    });
+  } else if (typeof result === "object" && result !== null) {
+    processValueFromTranslation({
+      parentValue: result,
+      params,
+      stringValue,
+      updateBatch,
+    });
+  } else if (result !== stringValue) {
+    parentValue[param] = stringValue;
+    updateBatch = true;
+  }
+}
+
+export function getNestedIDs(key: string): {
+  idItems: string[];
+  uid: string | null;
+} {
+  const IDs = getNestedIDsArray(key);
+  const uid = IDs.length > 2 ? IDs[IDs.length - 1] : null;
+  if (uid) IDs.pop();
+  const data: { idItems: string[]; uid: string | null } = {
+    idItems: IDs,
+    uid: null,
+  };
+  if (uid) data.uid = uid;
+  return data;
+}
+
+function getNestedIDsArray(key: string): string[] {
+  const subtrings = key.split("-");
+  const subtrings2 = subtrings[0].split(".");
+  const IDs = [...subtrings2, subtrings[1]].filter(Boolean);
+  return IDs;
+}
+
+function getDefaultValue(
+  fieldName: string,
+  templateAppDataValues: ApplicationConfig
+): any {
+  return templateAppDataValues?.draft &&
+    fieldName in templateAppDataValues.draft
+    ? templateAppDataValues.draft[fieldName]
+    : fieldName in templateAppDataValues
+    ? templateAppDataValues[fieldName]
+    : null;
 }
