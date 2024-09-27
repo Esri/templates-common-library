@@ -382,7 +382,6 @@ export function updateValueFromTranslation({
       parentValue,
       params,
       stringValue,
-      updateBatch: false,
     });
     return parentValue;
   } else {
@@ -392,8 +391,8 @@ export function updateValueFromTranslation({
 
 function processValueFromTranslation({
   ...args
-}: ProcessTranslationValueArgs): boolean {
-  const { parentValue, params, stringValue, updateBatch } = args;
+}: ProcessTranslationValueArgs): void {
+  const { parentValue, params, stringValue } = args;
   const [param, ...restParams] = params;
   if (Array.isArray(parentValue)) {
     processArrayFromTranslation({
@@ -401,7 +400,6 @@ function processValueFromTranslation({
       param,
       params: restParams,
       stringValue,
-      updateBatch,
     });
   } else if (typeof parentValue === "object" && parentValue !== null) {
     processObjectFromTranslation({
@@ -409,29 +407,25 @@ function processValueFromTranslation({
       param,
       params: restParams,
       stringValue,
-      updateBatch,
     });
   }
-  return updateBatch;
 }
 
 function processArrayFromTranslation({
   ...args
 }: ProcessTranslationNestedValueArgs): void {
-  let { parentValue, param, params, stringValue, updateBatch } = args;
+  let { parentValue, param, params, stringValue } = args;
   const [key, uid] = param.split("-");
   for (const item of parentValue) {
     if (item._uid === uid) {
       if (typeof item[key] === "string" && item[key] !== stringValue) {
         item[key] = stringValue;
-        updateBatch = true;
         break;
       }
       processValueFromTranslation({
         parentValue: item[key],
         params,
         stringValue,
-        updateBatch,
       });
     }
   }
@@ -440,7 +434,7 @@ function processArrayFromTranslation({
 function processObjectFromTranslation({
   ...args
 }: ProcessTranslationNestedValueArgs): void {
-  let { parentValue, param, params, stringValue, updateBatch } = args;
+  let { parentValue, param, params, stringValue } = args;
   const result = parentValue[param];
   if (Array.isArray(result)) {
     processArrayFromTranslation({
@@ -448,18 +442,15 @@ function processObjectFromTranslation({
       param: params[0],
       params: params.slice(1),
       stringValue,
-      updateBatch,
     });
   } else if (typeof result === "object" && result !== null) {
     processValueFromTranslation({
       parentValue: result,
       params,
       stringValue,
-      updateBatch,
     });
   } else if (result !== stringValue) {
     parentValue[param] = stringValue;
-    updateBatch = true;
   }
 }
 

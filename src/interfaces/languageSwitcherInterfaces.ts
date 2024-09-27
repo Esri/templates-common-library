@@ -28,7 +28,6 @@ export interface ProcessTranslationValueArgs {
   parentValue: any;
   params: string[];
   stringValue: string;
-  updateBatch: boolean;
 }
 
 export interface ProcessTranslationNestedValueArgs {
@@ -36,5 +35,4 @@ export interface ProcessTranslationNestedValueArgs {
   param: string;
   params: string[];
   stringValue: string;
-  updateBatch: boolean;
 }
