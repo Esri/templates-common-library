@@ -729,7 +729,7 @@ export async function addLanguageSwitcher(
   const uniqueId = "esri-language-switcher";
   let node = view.ui.find(uniqueId) as __esri.Expand;
 
-  if (!languageSwitcher) {
+  if (!languageSwitcher || !languageSwitcherConfig?.locales?.length) {
     if (node) view.ui.remove(node);
     return;
   }
