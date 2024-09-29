@@ -556,7 +556,7 @@
             {
               "type": "setting",
               "id": "noResultsMessage",
-              "defaultValue": "No results found that meet the search criteria",
+              "defaultValue": "",
               "express": true
             },
             {
