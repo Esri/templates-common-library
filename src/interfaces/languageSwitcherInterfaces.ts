@@ -18,3 +18,21 @@ export interface HandleGroupedContentArgs extends HandleContentBaseArgs {
 export interface HandleContentArgs extends HandleContentBaseArgs {
   withinConfigurationExperience: boolean;
 }
+
+export interface UpdateValueFromTranslationArgs {
+  fieldName: string;
+  stringValue: string;
+  parentValue: any;
+}
+export interface ProcessTranslationValueArgs {
+  parentValue: any;
+  params: string[];
+  stringValue: string;
+}
+
+export interface ProcessTranslationNestedValueArgs {
+  parentValue: any;
+  param: string;
+  params: string[];
+  stringValue: string;
+}
