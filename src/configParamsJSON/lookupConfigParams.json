@@ -601,6 +601,11 @@
                   "type": "setting",
                   "id": "scoreboardItems",
                   "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "statsPerPage",
+                  "defaultValue": 4
                 }
               ]
             }
