@@ -211,6 +211,22 @@
         },
         {
             "type": "section",
+            "id": "streamflow",
+            "content": [
+                {
+                    "type": "setting",
+                    "id": "streamflowServiceType",
+                    "express": true,
+                    "config": {
+                        "branches": []
+                    },
+                    "content": [],
+                    "defaultValue": "global"
+                }
+            ]
+        },
+        {
+            "type": "section",
             "id": "interactivity",
             "content": [
                 {
