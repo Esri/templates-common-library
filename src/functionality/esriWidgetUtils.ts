@@ -333,6 +333,7 @@ export function addLegend(
   } else {
     const content = new Legend({
       style: legendConfig?.style,
+      respectLayerDefinitionExpression: true,
       view,
     });
 
