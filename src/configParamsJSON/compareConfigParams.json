@@ -157,6 +157,7 @@
                 {
                   "type": "setting",
                   "id": "legend",
+                  "express": true,
                   "defaultValue": false,
                   "content": [
                     {
@@ -170,6 +171,7 @@
                     {
                       "type": "setting",
                       "id": "legendOpenAtStart",
+                      "express": true,
                       "defaultValue": false
                     }
                   ]
