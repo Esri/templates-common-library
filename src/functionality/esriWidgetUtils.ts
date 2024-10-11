@@ -324,6 +324,7 @@ export function addLegend(
     legendOpenAtStart ? node.expand() : node.collapse();
     if (legendConfig != null) {
       const l = node.content as __esri.Legend;
+      l.respectLayerDefinitionExpression = true;
       if (legendConfig?.style) {
         l.style = legendConfig?.style;
       }
