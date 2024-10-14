@@ -228,6 +228,26 @@
                 },
                 {
                   "type": "setting",
+                  "id": "infoPanel",
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "infoPanelOpenAtStart",
+                      "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "infoPanelPosition",
+                      "defaultValue": {
+                        "position": "top-right",
+                        "index": 10
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "legend",
                   "defaultValue": false,
                   "content": [
@@ -516,6 +536,12 @@
                       "id": "layerListOpenAtStart",
                       "express": false,
                       "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "visibilityIcon",
+                      "express": false,
+                      "defaultValue": "default"
                     }
                   ]
                 },
