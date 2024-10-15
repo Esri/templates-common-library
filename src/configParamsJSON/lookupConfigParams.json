@@ -366,9 +366,17 @@
                 },
                 {
                   "type": "setting",
-                  "id": "showNonResultPopups",
+                  "id": "clearResultsButton",
                   "express": false,
-                  "defaultValue": true
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "showNonResultPopups",
+                      "express": false,
+                      "defaultValue": true
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
@@ -556,7 +564,7 @@
             {
               "type": "setting",
               "id": "noResultsMessage",
-              "defaultValue": "No results found that meet the search criteria",
+              "defaultValue": "",
               "express": true
             },
             {
@@ -593,6 +601,11 @@
                   "type": "setting",
                   "id": "scoreboardItems",
                   "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "statsPerPage",
+                  "defaultValue": 4
                 }
               ]
             }
