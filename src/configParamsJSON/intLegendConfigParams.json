@@ -4,9 +4,7 @@
       "type": "section",
       "id": "map",
       "config": {
-        "conditions": [
-          "renderer"
-        ]
+        "conditions": ["renderer"]
       },
       "content": [
         {
@@ -188,12 +186,8 @@
           "express": true,
           "config": {
             "branches": [
-              [
-                "interactiveLegendOpenAtStart"
-              ],
-              [
-                "interactiveLegendPanelLocation"
-              ]
+              ["interactiveLegendOpenAtStart"],
+              ["interactiveLegendPanelLocation"]
             ]
           },
           "content": [
@@ -214,6 +208,12 @@
             "branchValue": "floating",
             "branchOptionsFieldNames": []
           }
+        },
+        {
+          "type": "setting",
+          "id": "compact",
+          "express": true,
+          "defaultValue": false
         },
         {
           "type": "setting",
