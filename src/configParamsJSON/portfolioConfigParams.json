@@ -332,6 +332,12 @@
                         "index": 0,
                         "position": "bottom-right"
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "visibilityIcon",
+                      "express": false,
+                      "defaultValue": "default"
                     }
                   ]
                 },
