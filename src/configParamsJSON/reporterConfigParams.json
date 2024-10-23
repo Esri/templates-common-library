@@ -587,6 +587,11 @@
                     "headerOnly": true,
                     "fontAlwaysEditable": true
                   }
+                },
+                {
+                  "type": "setting",
+                  "id": "customCSS",
+                  "defaultValue": ""
                 }
               ]
             },
