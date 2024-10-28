@@ -12,16 +12,23 @@
 import { when } from "esri/core/reactiveUtils";
 import BasemapToggle from "esri/widgets/BasemapToggle";
 import Bookmarks from "esri/widgets/Bookmarks";
+import BuildingExplorer from "esri/widgets/BuildingExplorer";
 import Compass from "esri/widgets/Compass";
+import Daylight from "esri/widgets/Daylight";
 import Expand from "esri/widgets/Expand";
 import FloorFilter from "esri/widgets/FloorFilter";
 import FullScreen from "esri/widgets/Fullscreen";
 import Home from "esri/widgets/Home";
 import LayerList from "esri/widgets/LayerList";
 import Legend from "esri/widgets/Legend";
+import LineOfSight from "esri/widgets/LineOfSight";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
+import ShadowCast from "esri/widgets/ShadowCast";
+import Slice from "esri/widgets/Slice";
 import Viewpoint from "esri/Viewpoint";
+import Viewshed from "esri/analysis/Viewshed";
+import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
