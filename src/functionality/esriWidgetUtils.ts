@@ -827,3 +827,17 @@ function updateListItemLegend(
     configureListItemPanelLegend(item, layerListLegend);
   });
 }
+
+export function addBuildingExplorer(): void { console.info("Building Explorer"); }
+
+export function addDaylight(): void { console.info("Daylight"); }
+
+export function addLineOfSight(): void { console.info("Line of Sight"); }
+
+export function addShadowCast(): void { console.info("Shadow Cast"); }
+
+export function addSlice(): void { console.info("Slice"); }
+
+export function addViewshed(): void { console.info("Viewshed"); }
+
+export function addWeather(): void { console.info("Weather"); }
