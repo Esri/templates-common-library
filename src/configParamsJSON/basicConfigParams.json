@@ -135,12 +135,6 @@
             },
             {
               "type": "setting",
-              "id": "enableHighContrastBasemap",
-              "express": true,
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
               "id": "keyboardShortcuts",
               "express": true,
               "defaultValue": false,
