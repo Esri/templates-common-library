@@ -4,9 +4,7 @@
       "type": "section",
       "id": "map",
       "config": {
-        "itemTypes": [
-          "3d"
-        ]
+        "itemTypes": ["3d"]
       },
       "content": [
         {
@@ -159,7 +157,15 @@
                   "type": "setting",
                   "id": "layerList",
                   "express": true,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "visibilityIcon",
+                      "express": false,
+                      "defaultValue": "default"
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
@@ -254,9 +260,7 @@
                   "type": "setting",
                   "id": "dataSliderSpeed",
                   "express": true,
-                  "defaultValue": [
-                    2
-                  ]
+                  "defaultValue": [2]
                 }
               ]
             }

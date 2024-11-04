@@ -337,7 +337,7 @@
               "type": "setting",
               "id": "appLayout",
               "express": true,
-              "defaultValue": "splitView"
+              "defaultValue": null
             }
           ]
         },

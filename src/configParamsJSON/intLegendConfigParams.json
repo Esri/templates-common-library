@@ -428,6 +428,12 @@
                         "position": "bottom-right",
                         "index": 1
                       }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "visibilityIcon",
+                      "express": false,
+                      "defaultValue": "default"
                     }
                   ]
                 },
