@@ -14,21 +14,15 @@ import BasemapToggle from "esri/widgets/BasemapToggle";
 import Bookmarks from "esri/widgets/Bookmarks";
 import BuildingExplorer from "esri/widgets/BuildingExplorer";
 import Compass from "esri/widgets/Compass";
-import Daylight from "esri/widgets/Daylight";
 import Expand from "esri/widgets/Expand";
 import FloorFilter from "esri/widgets/FloorFilter";
 import FullScreen from "esri/widgets/Fullscreen";
 import Home from "esri/widgets/Home";
 import LayerList from "esri/widgets/LayerList";
 import Legend from "esri/widgets/Legend";
-import LineOfSight from "esri/widgets/LineOfSight";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
-import ShadowCast from "esri/widgets/ShadowCast";
-import Slice from "esri/widgets/Slice";
 import Viewpoint from "esri/Viewpoint";
-import Viewshed from "esri/analysis/Viewshed";
-import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
 import { autoUpdatedStrings } from "../structuralFunctionality/t9nUtils";
@@ -840,16 +834,15 @@ function _findNode(className: string): HTMLElement {
   return node ? node : null;
 }
 
-export async function addBuildingExplorer(props: {
+export function addBuildingExplorer(props: {
   config: ApplicationConfig;
   view?: __esri.SceneView;
   portal?: __esri.Portal;
   propertyName?: string;
   telemetry?: any;
-}): Promise<void> {
+}) {
   const { view, config, propertyName } = props;
   const { buildingExplorer, buildingExplorerPosition, appBundle } = config;
-  const BuildingExplorer = await import("esri/widgets/BuildingExplorer");
   if (!BuildingExplorer) return;
 
   const node = view.ui.find("buildingExplorerExpand") as __esri.Expand;
@@ -879,7 +872,7 @@ export async function addBuildingExplorer(props: {
         }
       }
     });
-    const buildingExplorerWidget = new BuildingExplorer.default({ view, layers: buildingLayers });
+    const buildingExplorerWidget = new BuildingExplorer({ view, layers: buildingLayers });
     const tip = appBundle.tools.buildingExplorer;
     const expand = new Expand({
       id: "buildingExplorerExpand",
@@ -906,15 +899,3 @@ export async function addBuildingExplorer(props: {
     });
   }
 }
-
-export function addDaylight(): void { console.info("Daylight"); }
-
-export function addLineOfSight(): void { console.info("Line of Sight"); }
-
-export function addShadowCast(): void { console.info("Shadow Cast"); }
-
-export function addSlice(): void { console.info("Slice"); }
-
-export function addViewshed(): void { console.info("Viewshed"); }
-
-export function addWeather(): void { console.info("Weather"); }
