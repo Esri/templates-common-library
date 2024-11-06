@@ -31,11 +31,14 @@ import Viewshed from "esri/analysis/Viewshed";
 import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
+import { autoUpdatedStrings } from "../structuralFunctionality/t9nUtils";
+const bundleName = "dist/assets/t9n/common";
+
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
 import ApplicationBase from "../baseClasses/ApplicationBase";
-import { ApplicationConfig } from "../interfaces/applicationBase";
+import { ApplicationConfig, esriWidgetProps } from "../interfaces/applicationBase";
 
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
@@ -828,7 +831,81 @@ function updateListItemLegend(
   });
 }
 
-export function addBuildingExplorer(): void { console.info("Building Explorer"); }
+function _findNode(className: string): HTMLElement {
+  const mainNodes = document.getElementsByClassName(className);
+  let node = null;
+  for (let j = 0; j < mainNodes.length; j++) {
+    node = mainNodes[j] as HTMLElement;
+  }
+  return node ? node : null;
+}
+
+export async function addBuildingExplorer(props: {
+  config: ApplicationConfig;
+  view?: __esri.SceneView;
+  portal?: __esri.Portal;
+  propertyName?: string;
+  telemetry?: any;
+}): Promise<void> {
+  const { view, config, propertyName } = props;
+  const { buildingExplorer, buildingExplorerPosition, appBundle } = config;
+  const BuildingExplorer = await import("esri/widgets/BuildingExplorer");
+  if (!BuildingExplorer) return;
+
+  const node = view.ui.find("buildingExplorerExpand") as __esri.Expand;
+
+  if (!buildingExplorer) {
+    if (node) view.ui.remove(node);
+    return;
+  }
+  const group = getPosition(buildingExplorerPosition);
+
+  // move the node if it exists
+  if (propertyName === "buildingExplorerPosition" && node) {
+    node.group = group;
+  } else if (propertyName === "buildingExplorer") {
+    if (node || _findNode("esri-building-explorer")) return;
+    const buildingLayers = [];
+    view.map.layers?.filter((l) => {
+      if (l?.type === "group") {
+        return (l as __esri.GroupLayer)?.layers?.some((subLayer) => {
+          if (subLayer?.type === "building-scene") {
+            buildingLayers.push(subLayer);
+          }
+        });
+      } else {
+        if (l?.type === "building-scene") {
+          buildingLayers.push(l);
+        }
+      }
+    });
+    const buildingExplorerWidget = new BuildingExplorer.default({ view, layers: buildingLayers });
+    const tip = appBundle.tools.buildingExplorer;
+    const expand = new Expand({
+      id: "buildingExplorerExpand",
+      view,
+      mode: "auto",
+      group,
+      collapseTooltip: tip,
+      expandTooltip: tip,
+      content: buildingExplorerWidget
+    });
+
+    view.ui.add(expand, buildingExplorerPosition);
+    autoUpdatedStrings.add({
+      obj: expand,
+      property: "collapseTooltip",
+      bundleName: bundleName,
+      key: "tools.buildingExplorer"
+    });
+    autoUpdatedStrings.add({
+      obj: expand,
+      property: "expandTooltip",
+      bundleName: bundleName,
+      key: "tools.buildingExplorer"
+    });
+  }
+}
 
 export function addDaylight(): void { console.info("Daylight"); }
 
