@@ -32,7 +32,7 @@ import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
 import ApplicationBase from "../baseClasses/ApplicationBase";
-import { ApplicationConfig, esriWidgetProps } from "../interfaces/applicationBase";
+import { ApplicationConfig } from "../interfaces/applicationBase";
 
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
