@@ -23,6 +23,7 @@ import Legend from "esri/widgets/Legend";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
 import Viewpoint from "esri/Viewpoint";
+import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
 import { autoUpdatedStrings } from "../structuralFunctionality/t9nUtils";
@@ -33,7 +34,13 @@ import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
 import ApplicationBase from "../baseClasses/ApplicationBase";
 import { ApplicationConfig } from "../interfaces/applicationBase";
-import { esriWidgetProps } from "../interfaces/commonInterfaces";
+
+interface esriSceneWidgetProps {
+  config: ApplicationConfig;
+  view: __esri.SceneView;
+  commonMessages: any;
+  propertyName: string;
+}
 
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
@@ -864,7 +871,6 @@ export function addBuildingExplorer(
     });
 
     const buildingExplorerWidget = new BuildingExplorer({ view, layers: buildingLayers });
-    const tip = commonMessages?.tools?.buildingExplorer;
     const expand = new Expand({
       id: expandId,
       view,
@@ -874,7 +880,6 @@ export function addBuildingExplorer(
       expandTooltip: tip,
       content: buildingExplorerWidget
     });
-    view.ui.add(expand, buildingExplorerPosition);
 
     const tooltipProps = {
       obj: expand,
@@ -884,5 +889,54 @@ export function addBuildingExplorer(
 
     autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip" });
     autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
+  }
+}
+
+/**
+ * Watch for changes in showWeather, weatherPosition
+ */
+export function addWeather(props: esriSceneWidgetProps) {
+  if(!Weather) return;
+  const { config, view, commonMessages, propertyName } = props;
+  const { showWeather, weatherPosition } = config;
+  const expandId = "weatherExpand";
+  const node = view.ui.find(expandId) as __esri.Expand;
+
+  if (!showWeather) {
+    if (node) view.ui.remove(node);
+    return;
+  }
+
+  const group = getPosition(weatherPosition);
+  const tip = commonMessages?.tools?.weather;
+
+  if (propertyName === "weatherPosition" && node) {
+    node.collapseTooltip = tip;
+    node.expandTooltip = tip;
+    node.group = group;
+    view.ui.move(node, weatherPosition);
+  } else if (propertyName === "showWeather") {
+    if (node) return;
+    const content = new Weather({ view });
+    const weatherExpand = new Expand({
+      id: expandId,
+      content,
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      group,
+      expandIcon: "rain-snow",
+      view
+    });
+
+    const tooltipProps = {
+      obj: weatherExpand,
+      bundleName: bundleName,
+      key: "tools.weather"
+    };
+
+    autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip" });
+    autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
+    view.ui.add(weatherExpand, weatherPosition);
   }
 }
