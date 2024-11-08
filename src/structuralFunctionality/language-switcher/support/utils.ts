@@ -1,4 +1,4 @@
-import { prefersRTL, setLocale } from "esri/intl";
+import { prefersRTL, setLocale, normalizeMessageBundleLocale } from "esri/intl";
 
 import {
   setPageDirection,
@@ -23,11 +23,12 @@ import {
 // Determines default locale based on portal or locale url param
 export function getDefaultLocale(portal: __esri.Portal, data: LanguageData) {
   const defaultLanguage = calculateDefaultLocaleFromPortal(portal);
+  const defaultLocaleCode = normalizeMessageBundleLocale(defaultLanguage);
   const urlObj = new URL(window.location.href);
   const localeUrlParam = urlObj.searchParams.get("locale");
   const useDefault =
     (data?.locale === defaultLanguage || data === null || data === undefined) &&
-    !localeUrlParam;
+    (defaultLocaleCode === localeUrlParam || !localeUrlParam);
   return useDefault ? defaultLanguage : null;
 }
 
