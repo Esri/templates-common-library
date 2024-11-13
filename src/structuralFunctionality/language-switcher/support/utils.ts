@@ -337,8 +337,9 @@ export function convertT9nToConfigData(
   base: ApplicationBase,
   useStructuredClone?: boolean
 ): { [key: string]: any } {
-  const config =
-    useStructuredClone === false ? base.config : structuredClone(base.config);
+  const config = useStructuredClone
+    ? structuredClone(base.config)
+    : base.config;
   const t9nData = {};
 
   for (const key in data) {
