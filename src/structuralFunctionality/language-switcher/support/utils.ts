@@ -334,9 +334,11 @@ export async function getT9nData(
 
 export function convertT9nToConfigData(
   data: { [key: string]: string },
-  base: ApplicationBase
+  base: ApplicationBase,
+  useStructuredClone?: boolean
 ): { [key: string]: any } {
-  const config = structuredClone(base.config);
+  const config =
+    useStructuredClone === false ? base.config : structuredClone(base.config);
   const t9nData = {};
 
   for (const key in data) {
