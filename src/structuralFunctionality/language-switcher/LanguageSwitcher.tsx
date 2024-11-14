@@ -27,7 +27,7 @@ import { LanguageData } from "../../interfaces/commonInterfaces";
 import { CSS, HANDLES_KEY, NODE_ID } from "./support/constants";
 import { Defaults, ProperyNames } from "./support/enums";
 import { autoUpdatedStrings } from "../t9nUtils";
-import { convertT9nToConfigData } from "./support/utils";
+import { convertT9nToConfigData, getT9nData } from "./support/utils";
 
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
@@ -90,12 +90,18 @@ export default class LanguageSwitcher extends Widget {
   private async _updateUI() {
     const t9nData = this.selectedLanguageData?.data
       ? convertT9nToConfigData(this.selectedLanguageData.data, this.base)
-      : isWithinConfigurationExperience()
-      ? { ...this.base.config, ...this.base.config.draft }
-      : { ...this.base.config };
-    Object.keys(t9nData).forEach((key) =>
-      this.configurationSettings.set(key, t9nData[key])
-    );
+      : await getT9nData(this.selectedLanguageData, this.base);
+
+    Object.keys(t9nData).forEach((key) => {
+      const value = t9nData[key];
+      // This ensures that the filterConfig and searchConfiguration watcher callback functions are fired
+      if (key === "filterConfig" || key === "searchConfiguration") {
+        this.configurationSettings[key] = null;
+        setTimeout(() => (this.configurationSettings[key] = value), 50);
+      } else {
+        this.configurationSettings[key] = value;
+      }
+    });
   }
 
   getLanguageSwitcherHandles(
