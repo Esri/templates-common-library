@@ -92,7 +92,6 @@ export default class LanguageSwitcher extends Widget {
       ? convertT9nToConfigData(this.selectedLanguageData.data, this.base)
       : await getT9nData(this.selectedLanguageData, this.base);
 
-    // Check if the keys and values match
     Object.keys(t9nData).forEach((key) => {
       const value = t9nData[key];
       // This ensures that the filterConfig and searchConfiguration watcher callback functions are fired
