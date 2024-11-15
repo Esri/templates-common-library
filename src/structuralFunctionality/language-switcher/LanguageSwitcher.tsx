@@ -27,7 +27,12 @@ import { LanguageData } from "../../interfaces/commonInterfaces";
 import { CSS, HANDLES_KEY, NODE_ID } from "./support/constants";
 import { Defaults, ProperyNames } from "./support/enums";
 import { autoUpdatedStrings } from "../t9nUtils";
-import { convertT9nToConfigData, getT9nData } from "./support/utils";
+import {
+  convertT9nToConfigData,
+  getT9nData,
+  updateLocale,
+} from "./support/utils";
+import { normalizeMessageBundleLocale } from "esri/intl";
 
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
@@ -88,6 +93,15 @@ export default class LanguageSwitcher extends Widget {
   }
 
   private async _updateUI() {
+    const localeCode = this.selectedLanguageData?.locale;
+    const calculatedLocale =
+      localeCode ??
+      this.configurationSettings?.languageSwitcherConfig?.defaultLocale ??
+      "en";
+    const codeToUse = normalizeMessageBundleLocale(calculatedLocale);
+
+    updateLocale(codeToUse);
+
     const t9nData = this.selectedLanguageData?.data
       ? convertT9nToConfigData(this.selectedLanguageData.data, this.base)
       : await getT9nData(this.selectedLanguageData, this.base);
