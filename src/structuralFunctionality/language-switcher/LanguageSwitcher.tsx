@@ -98,7 +98,7 @@ export default class LanguageSwitcher extends Widget {
       localeCode ??
       this.configurationSettings?.languageSwitcherConfig?.defaultLocale ??
       "en";
-    const codeToUse = normalizeMessageBundleLocale(calculatedLocale);
+    const codeToUse = normalizeMessageBundleLocale(calculatedLocale) ?? "en";
 
     updateLocale(codeToUse);
 
