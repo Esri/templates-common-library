@@ -1,4 +1,4 @@
-import { setLocale, prefersRTL } from "esri/intl";
+import { setLocale, prefersRTL, normalizeMessageBundleLocale } from "esri/intl";
 import {
   setPageDirection,
   setPageLocale,
@@ -25,5 +25,5 @@ function _calculateLocale(portal) {
         ? user.culture || navigator.language
         : portal.culture || navigator.language;
   }
-  return locale;
+  return locale ? normalizeMessageBundleLocale(locale) : "en";
 }
