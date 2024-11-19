@@ -33,6 +33,11 @@ import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
 import ApplicationBase from "../baseClasses/ApplicationBase";
 import { ApplicationConfig } from "../interfaces/applicationBase";
+import { esriWidgetProps } from "../interfaces/commonInterfaces";
+
+interface esriSceneWidgetProps extends Omit<esriWidgetProps, 'view'> {
+  view?: __esri.SceneView;
+}
 
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
@@ -834,13 +839,7 @@ function _findNode(className: string): HTMLElement {
   return node ? node : null;
 }
 
-export function addBuildingExplorer(props: {
-  config: ApplicationConfig;
-  view?: __esri.SceneView;
-  portal?: __esri.Portal;
-  propertyName?: string;
-  telemetry?: any;
-}) {
+export function addBuildingExplorer(props: esriSceneWidgetProps) {
   const { view, config, propertyName } = props;
   const { buildingExplorer, buildingExplorerPosition, appBundle } = config;
   if (!BuildingExplorer) return;
