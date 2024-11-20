@@ -98,10 +98,12 @@ export default class LanguageSwitcher extends Widget {
 
     if (!this.configurationSettings?.languageSwitcher) return;
 
-    const localeExists =
-      this.configurationSettings?.languageSwitcherConfig?.locales?.find(
-        (localeItem) => localeItem.locale === currentLocale
-      );
+    const locales =
+      this.configurationSettings?.languageSwitcherConfig?.locales ?? [];
+
+    const localeExists = locales.find(
+      (localeItem) => localeItem.locale === currentLocale
+    );
 
     const defaultLocale =
       this.configurationSettings?.languageSwitcherConfig?.defaultLocale;
