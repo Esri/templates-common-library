@@ -484,7 +484,8 @@ function getDefaultValue(
   fieldName: string,
   templateAppDataValues: ApplicationConfig
 ): any {
-  return templateAppDataValues?.draft &&
+  return isWithinConfigurationExperience() &&
+    templateAppDataValues?.draft &&
     fieldName in templateAppDataValues.draft
     ? templateAppDataValues.draft[fieldName]
     : fieldName in templateAppDataValues
