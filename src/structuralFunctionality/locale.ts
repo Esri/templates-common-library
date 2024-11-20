@@ -4,6 +4,7 @@ import {
   setPageLocale,
 } from "../baseClasses/support/domHelper";
 import { esriWidgetProps } from "../interfaces/commonInterfaces";
+import { LANGUAGE_DATA } from "./language-switcher/support/constants";
 export function defineLocale(props: esriWidgetProps) {
   const { config, portal } = props;
   let { locale } = config;
@@ -25,5 +26,16 @@ function _calculateLocale(portal) {
         ? user.culture || navigator.language
         : portal.culture || navigator.language;
   }
-  return locale ? normalizeMessageBundleLocale(locale) : "en";
+  return calculateLocale(locale);
+}
+
+export function calculateLocale(locale: string): string {
+  if (!locale) return "en";
+  const isPartial = !!LANGUAGE_DATA?.partial?.[locale];
+  if (isPartial) {
+    return locale;
+  } else {
+    const normalizedLocale = normalizeMessageBundleLocale(locale);
+    return normalizedLocale == null ? "en" : normalizedLocale;
+  }
 }
