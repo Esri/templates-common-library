@@ -6,7 +6,8 @@
       "config": {
         "itemTypes": [
           "2d",
-          "3d"
+          "3d",
+          "weblinkchart"
         ]
       },
       "content": [
