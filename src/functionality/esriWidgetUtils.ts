@@ -12,6 +12,7 @@
 import { when } from "esri/core/reactiveUtils";
 import BasemapToggle from "esri/widgets/BasemapToggle";
 import Bookmarks from "esri/widgets/Bookmarks";
+import BuildingExplorer from "esri/widgets/BuildingExplorer";
 import Compass from "esri/widgets/Compass";
 import Expand from "esri/widgets/Expand";
 import FloorFilter from "esri/widgets/FloorFilter";
@@ -24,11 +25,19 @@ import Scalebar from "esri/widgets/ScaleBar";
 import Viewpoint from "esri/Viewpoint";
 import Zoom from "esri/widgets/Zoom";
 
+import { autoUpdatedStrings } from "../structuralFunctionality/t9nUtils";
+const bundleName = "dist/assets/t9n/common";
+
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
 import ApplicationBase from "../baseClasses/ApplicationBase";
 import { ApplicationConfig } from "../interfaces/applicationBase";
+import { esriWidgetProps } from "../interfaces/commonInterfaces";
+
+interface esriSceneWidgetProps extends Omit<esriWidgetProps, 'view'> {
+  view?: __esri.SceneView;
+}
 
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
@@ -819,4 +828,73 @@ function updateListItemLegend(
   layerList?.operationalItems?.forEach((item) => {
     configureListItemPanelLegend(item, layerListLegend);
   });
+}
+
+function _findNode(className: string): HTMLElement {
+  const mainNodes = document.getElementsByClassName(className);
+  let node = null;
+  for (let j = 0; j < mainNodes.length; j++) {
+    node = mainNodes[j] as HTMLElement;
+  }
+  return node ? node : null;
+}
+
+export function addBuildingExplorer(props: esriSceneWidgetProps) {
+  const { view, config, propertyName } = props;
+  const { buildingExplorer, buildingExplorerPosition, appBundle } = config;
+  if (!BuildingExplorer) return;
+
+  const node = view.ui.find("buildingExplorerExpand") as __esri.Expand;
+
+  if (!buildingExplorer) {
+    if (node) view.ui.remove(node);
+    return;
+  }
+  const group = getPosition(buildingExplorerPosition);
+
+  // move the node if it exists
+  if (propertyName === "buildingExplorerPosition" && node) {
+    node.group = group;
+  } else if (propertyName === "buildingExplorer") {
+    if (node || _findNode("esri-building-explorer")) return;
+    const buildingLayers = [];
+    view.map.layers?.filter((l) => {
+      if (l?.type === "group") {
+        return (l as __esri.GroupLayer)?.layers?.some((subLayer) => {
+          if (subLayer?.type === "building-scene") {
+            buildingLayers.push(subLayer);
+          }
+        });
+      } else {
+        if (l?.type === "building-scene") {
+          buildingLayers.push(l);
+        }
+      }
+    });
+    const buildingExplorerWidget = new BuildingExplorer({ view, layers: buildingLayers });
+    const tip = appBundle.tools.buildingExplorer;
+    const expand = new Expand({
+      id: "buildingExplorerExpand",
+      view,
+      mode: "auto",
+      group,
+      collapseTooltip: tip,
+      expandTooltip: tip,
+      content: buildingExplorerWidget
+    });
+
+    view.ui.add(expand, buildingExplorerPosition);
+    autoUpdatedStrings.add({
+      obj: expand,
+      property: "collapseTooltip",
+      bundleName: bundleName,
+      key: "tools.buildingExplorer"
+    });
+    autoUpdatedStrings.add({
+      obj: expand,
+      property: "expandTooltip",
+      bundleName: bundleName,
+      key: "tools.buildingExplorer"
+    });
+  }
 }
