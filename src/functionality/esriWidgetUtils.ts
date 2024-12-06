@@ -23,9 +23,11 @@ import Legend from "esri/widgets/Legend";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
 import Viewpoint from "esri/Viewpoint";
+import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
 import { autoUpdatedStrings } from "../structuralFunctionality/t9nUtils";
+import { handleBatchWidgetPositions } from "./positionManager";
 const bundleName = "dist/assets/t9n/common";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
@@ -896,5 +898,51 @@ export function addBuildingExplorer(props: esriSceneWidgetProps) {
       bundleName: bundleName,
       key: "tools.buildingExplorer"
     });
+  }
+}
+
+export function addWeather(props: esriSceneWidgetProps) {
+  const { view, config, propertyName } = props;
+  const { showWeather, weatherPosition, appBundle } = config;
+
+  const node = view.ui.find("weatherExpand") as __esri.Expand;
+  if (!showWeather) {
+    if (node) {
+      view.ui.remove(node);
+    }
+    return;
+  }
+
+  // move the node if it exists
+  const group = getPosition(weatherPosition);
+  if (propertyName === "weatherPosition" && node) {
+    handleBatchWidgetPositions(view, node, weatherPosition);
+    node.group = group;
+  } else if (propertyName === "showWeather") {
+    const content = new Weather({ view });
+    const tip = appBundle.tools.weather;
+    const weatherExpand = new Expand({
+      id: "weatherExpand",
+      content,
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      group,
+      expandIcon: "rain-snow",
+      view
+    });
+    autoUpdatedStrings.add({
+      obj: weatherExpand,
+      property: "collapseTooltip",
+      bundleName: bundleName,
+      key: "tools.weather"
+    });
+    autoUpdatedStrings.add({
+      obj: weatherExpand,
+      property: "expandTooltip",
+      bundleName: bundleName,
+      key: "tools.weather"
+    });
+    view.ui.add(weatherExpand, weatherPosition);
   }
 }
