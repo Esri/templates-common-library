@@ -32,7 +32,8 @@ import {
   getT9nData,
   updateLocale,
 } from "./support/utils";
-import { normalizeMessageBundleLocale } from "esri/intl";
+import { getLocale } from "esri/intl";
+import { calculateLocale } from "../locale";
 
 @subclass("LanguageSwitcher")
 export default class LanguageSwitcher extends Widget {
@@ -93,13 +94,26 @@ export default class LanguageSwitcher extends Widget {
   }
 
   private async _updateUI() {
-    const localeCode = this.selectedLanguageData?.locale;
-    const calculatedLocale =
-      localeCode ??
-      this.configurationSettings?.languageSwitcherConfig?.defaultLocale ??
-      "en";
-    const codeToUse = normalizeMessageBundleLocale(calculatedLocale) ?? "en";
+    const currentLocale = getLocale();
 
+    if (!this.configurationSettings?.languageSwitcher) return;
+
+    const locales =
+      this.configurationSettings?.languageSwitcherConfig?.locales ?? [];
+
+    const localeExists = locales.find(
+      (localeItem) => localeItem.locale === currentLocale
+    );
+
+    const defaultLocale =
+      this.configurationSettings?.languageSwitcherConfig?.defaultLocale;
+
+    const isDefault = currentLocale === defaultLocale;
+    if (!localeExists && !isDefault) return;
+
+    const localeCode = this.selectedLanguageData?.locale;
+    const calculatedLocale = localeCode ?? defaultLocale ?? "en";
+    const codeToUse = calculateLocale(calculatedLocale);
     updateLocale(codeToUse);
 
     const t9nData = this.selectedLanguageData?.data

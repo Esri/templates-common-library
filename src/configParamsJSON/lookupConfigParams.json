@@ -835,18 +835,6 @@
                     },
                     {
                       "type": "setting",
-                      "id": "layerListAddZoom",
-                      "defaultValue": false,
-                      "express": false
-                    },
-                    {
-                      "type": "setting",
-                      "id": "layerListLegend",
-                      "defaultValue": false,
-                      "express": false
-                    },
-                    {
-                      "type": "setting",
                       "id": "layerListOpenAtStart",
                       "express": false,
                       "defaultValue": false
@@ -856,6 +844,18 @@
                       "id": "visibilityIcon",
                       "express": false,
                       "defaultValue": "default"
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListAddZoom",
+                      "defaultValue": false,
+                      "express": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "layerListLegend",
+                      "defaultValue": false,
+                      "express": false
                     }
                   ]
                 },
