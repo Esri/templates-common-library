@@ -6,6 +6,7 @@ import Charts from "dojo/text!../../configParamsJSON/chartsConfigParams.json";
 import Compare from "dojo/text!../../configParamsJSON/compareConfigParams.json";
 import Countdown from "dojo/text!../../configParamsJSON/countdownConfigParams.json";
 import Exhibit from "dojo/text!../../configParamsJSON/exhibitConfigParams.json";
+import General from "dojo/text!../../configParamsJSON/generalConfigParams.json";
 import Imagery from "dojo/text!../../configParamsJSON/imageryViewerConfig.json";
 import Insets from "dojo/text!../../configParamsJSON/insetConfigParams.json";
 import InteractiveLegend from "dojo/text!../../configParamsJSON/intLegendConfigParams.json";
@@ -34,6 +35,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Compare]: Compare,
   [EAppTemplateType.Countdown]: Countdown,
   [EAppTemplateType.Exhibit]: Exhibit,
+  [EAppTemplateType.General]: General,
   [EAppTemplateType.ImageryApp]: Imagery,
   [EAppTemplateType.InteractiveLegend]: InteractiveLegend,
   [EAppTemplateType.Insets]: Insets,
