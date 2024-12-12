@@ -1,4 +1,4 @@
-{
+export default {
   "config": [
     {
       "type": "section",
@@ -671,4 +671,4 @@
       ]
     }
   ]
-}
+};

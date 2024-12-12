@@ -21,10 +21,7 @@ const updateFiles = (files) => {
         updatedFile = updatedFile.replaceAll("@@arcgis/core/", "@esri/");
         // esm needs different telemetry file
         updatedFile = updatedFile.replaceAll("\"./telemetry.dojo.min\"", "\"./telemetry.min\"");
-        // Takes out the dojo logic for injecting json file info
-        updatedFile = updatedFile.replaceAll("dojo/text!", "");
-        // Takes out the JSON.parse - esm apps don't need it
-        updatedFile = updatedFile.replaceAll("JSON.parse(INSTANT_APPS", "(INSTANT_APPS");
+
         return fse.writeFile(filePath, updatedFile);
       });
   });
