@@ -85,6 +85,7 @@ class CompatibilityCheckerUT {
               [CompatibilityChecker.EAppTemplateType.Compare, null],
               [CompatibilityChecker.EAppTemplateType.Countdown, null],
               [CompatibilityChecker.EAppTemplateType.Exhibit, null],
+              [CompatibilityChecker.EAppTemplateType.General, null],
               [CompatibilityChecker.EAppTemplateType.Insets, null],
               [
                 CompatibilityChecker.EAppTemplateType.InteractiveLegend,
@@ -158,6 +159,10 @@ class CompatibilityCheckerUT {
               [CompatibilityChecker.EAppTemplateType.Compare, null],
               [CompatibilityChecker.EAppTemplateType.Countdown, null],
               [CompatibilityChecker.EAppTemplateType.Exhibit, null],
+              [
+                CompatibilityChecker.EAppTemplateType.General,
+                ResourceResults.Webmap,
+              ],
               [
                 CompatibilityChecker.EAppTemplateType.Insets,
                 ResourceResults.Webmap,
@@ -250,6 +255,10 @@ class CompatibilityCheckerUT {
             [
               CompatibilityChecker.EAppTemplateType.Exhibit,
               ResourceResults.WebmapOrWebscene,
+            ],
+            [
+              CompatibilityChecker.EAppTemplateType.General,
+              ResourceResults.Webmap,
             ],
             [
               CompatibilityChecker.EAppTemplateType.Insets,
