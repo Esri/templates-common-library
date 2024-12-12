@@ -118,6 +118,7 @@ export interface ICompatibilityCheckerProperties {
 
   resourceMessages: {
     Webmap: string;
+    WebmapOrGroup: string;
     Webscene: string;
     Group: string;
     WebmapOrWebscene: string;
@@ -173,7 +174,7 @@ export class CompatibilityChecker {
 
     this._resourceMessagesMap = {
       [EAppTemplateType.AttachmentViewer]: resourceMessages.Webmap,
-      [EAppTemplateType.Atlas]: resourceMessages.Group,
+      [EAppTemplateType.Atlas]: resourceMessages.WebmapOrGroup,
       [EAppTemplateType.Basic]: resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.CategoryGallery]: resourceMessages.Group,
       [EAppTemplateType.Charts]: resourceMessages.Webmap,
