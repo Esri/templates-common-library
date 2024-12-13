@@ -15,6 +15,7 @@ export enum EAppTemplateType {
   Compare = "/apps/instant/compare/index.html",
   Countdown = "/apps/instant/countdown/index.html",
   Exhibit = "/apps/instant/exhibit/index.html",
+  General = "/apps/instant/general/index.html",
   Insets = "/apps/instant/insets/index.html",
   InteractiveLegend = "/apps/instant/interactivelegend/index.html",
   ImageryApp = "/apps/instant/imageryviewer/index.html",
@@ -62,6 +63,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Atlas,
     EAppTemplateType.CategoryGallery,
     EAppTemplateType.Charts,
+    EAppTemplateType.General,
     EAppTemplateType.ImageryApp,
     EAppTemplateType.Insets,
     EAppTemplateType.InteractiveLegend,
@@ -83,6 +85,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Compare,
     EAppTemplateType.Countdown,
     EAppTemplateType.Exhibit,
+    EAppTemplateType.General,
     EAppTemplateType.ImageryApp,
     EAppTemplateType.Insets,
     EAppTemplateType.InteractiveLegend,
@@ -115,6 +118,7 @@ export interface ICompatibilityCheckerProperties {
 
   resourceMessages: {
     Webmap: string;
+    WebmapOrGroup: string;
     Webscene: string;
     Group: string;
     WebmapOrWebscene: string;
@@ -170,13 +174,14 @@ export class CompatibilityChecker {
 
     this._resourceMessagesMap = {
       [EAppTemplateType.AttachmentViewer]: resourceMessages.Webmap,
-      [EAppTemplateType.Atlas]: resourceMessages.Group,
+      [EAppTemplateType.Atlas]: resourceMessages.WebmapOrGroup,
       [EAppTemplateType.Basic]: resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.CategoryGallery]: resourceMessages.Group,
       [EAppTemplateType.Charts]: resourceMessages.Webmap,
       [EAppTemplateType.Compare]: resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.Countdown]: resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.Exhibit]: resourceMessages.WebmapOrWebscene,
+      [EAppTemplateType.General]: resourceMessages.Webmap,
       [EAppTemplateType.ImageryApp]: resourceMessages.Webmap,
       [EAppTemplateType.Insets]: resourceMessages.Webmap,
       [EAppTemplateType.InteractiveLegend]: resourceMessages.Webmap,
