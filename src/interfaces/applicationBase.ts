@@ -3,9 +3,6 @@ import PortalItem from "esri/portal/PortalItem";
 import PortalQueryResult from "esri/portal/PortalQueryResult";
 import PortalQueryParams from "esri/portal/PortalQueryParams";
 
-import WebMap from "esri/WebMap";
-import WebScene from "esri/WebScene";
-
 export type Direction = "ltr" | "rtl";
 
 export interface ApplicationBaseItemPromises {

@@ -11,6 +11,7 @@ const { suite, test } = intern.getPlugin("interface.tdd");
 
 enum ResourceResults {
   Webmap = "This app requires a webmap",
+  WebmapOrGroup = "This app requires a webmap or a group",
   Webscene = "This app requires a webscene",
   Group = "This app requires a group",
   WebmapOrWebscene = "This app requires a webmap or a webscene",
@@ -23,6 +24,7 @@ class CompatibilityCheckerUT {
         new CompatibilityChecker.CompatibilityChecker({
           resourceMessages: {
             Webmap: ResourceResults.Webmap,
+            WebmapOrGroup: ResourceResults.WebmapOrGroup,
             Webscene: ResourceResults.Webscene,
             Group: ResourceResults.Group,
             WebmapOrWebscene: ResourceResults.WebmapOrWebscene,
@@ -69,10 +71,7 @@ class CompatibilityCheckerUT {
                 CompatibilityChecker.EAppTemplateType.ThreeDViewer,
                 ResourceResults.Webscene,
               ],
-              [
-                CompatibilityChecker.EAppTemplateType.Atlas,
-                ResourceResults.Group,
-              ],
+              [CompatibilityChecker.EAppTemplateType.Atlas, null,],
               [CompatibilityChecker.EAppTemplateType.AttachmentViewer, null],
               [CompatibilityChecker.EAppTemplateType.Basic, null],
               [
@@ -86,6 +85,7 @@ class CompatibilityCheckerUT {
               [CompatibilityChecker.EAppTemplateType.Compare, null],
               [CompatibilityChecker.EAppTemplateType.Countdown, null],
               [CompatibilityChecker.EAppTemplateType.Exhibit, null],
+              [CompatibilityChecker.EAppTemplateType.General, null],
               [CompatibilityChecker.EAppTemplateType.Insets, null],
               [
                 CompatibilityChecker.EAppTemplateType.InteractiveLegend,
@@ -141,7 +141,7 @@ class CompatibilityCheckerUT {
               [CompatibilityChecker.EAppTemplateType.ThreeDViewer, null],
               [
                 CompatibilityChecker.EAppTemplateType.Atlas,
-                ResourceResults.Group,
+                ResourceResults.WebmapOrGroup,
               ],
               [
                 CompatibilityChecker.EAppTemplateType.AttachmentViewer,
@@ -159,6 +159,10 @@ class CompatibilityCheckerUT {
               [CompatibilityChecker.EAppTemplateType.Compare, null],
               [CompatibilityChecker.EAppTemplateType.Countdown, null],
               [CompatibilityChecker.EAppTemplateType.Exhibit, null],
+              [
+                CompatibilityChecker.EAppTemplateType.General,
+                ResourceResults.Webmap,
+              ],
               [
                 CompatibilityChecker.EAppTemplateType.Insets,
                 ResourceResults.Webmap,
@@ -251,6 +255,10 @@ class CompatibilityCheckerUT {
             [
               CompatibilityChecker.EAppTemplateType.Exhibit,
               ResourceResults.WebmapOrWebscene,
+            ],
+            [
+              CompatibilityChecker.EAppTemplateType.General,
+              ResourceResults.Webmap,
             ],
             [
               CompatibilityChecker.EAppTemplateType.Insets,
