@@ -35,10 +35,6 @@ import ApplicationBase from "../baseClasses/ApplicationBase";
 import { ApplicationConfig } from "../interfaces/applicationBase";
 import { esriWidgetProps } from "../interfaces/commonInterfaces";
 
-interface esriSceneWidgetProps extends Omit<esriWidgetProps, 'view'> {
-  view?: __esri.SceneView;
-}
-
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
  */
@@ -830,33 +826,28 @@ function updateListItemLegend(
   });
 }
 
-function _findNode(className: string): HTMLElement {
-  const mainNodes = document.getElementsByClassName(className);
-  let node = null;
-  for (let j = 0; j < mainNodes.length; j++) {
-    node = mainNodes[j] as HTMLElement;
-  }
-  return node ? node : null;
-}
-
-export function addBuildingExplorer(props: esriSceneWidgetProps) {
-  const { view, config, propertyName } = props;
-  const { buildingExplorer, buildingExplorerPosition, appBundle } = config;
+export function addBuildingExplorer(
+  config: ApplicationConfig,
+  view: __esri.SceneView,
+  commonMessages: any
+) {
   if (!BuildingExplorer) return;
-
-  const node = view.ui.find("buildingExplorerExpand") as __esri.Expand;
+  const { buildingExplorer, buildingExplorerPosition } = config;
+  const expandId = "esri-building-explorerExpand";
+  const node = view.ui.find(expandId) as __esri.Expand;
 
   if (!buildingExplorer) {
     if (node) view.ui.remove(node);
     return;
   }
+
   const group = getPosition(buildingExplorerPosition);
 
-  // move the node if it exists
-  if (propertyName === "buildingExplorerPosition" && node) {
+  if (node) {
+    view.ui.move(node, buildingExplorerPosition);
     node.group = group;
-  } else if (propertyName === "buildingExplorer") {
-    if (node || _findNode("esri-building-explorer")) return;
+  }
+  else {
     const buildingLayers = [];
     view.map.layers?.filter((l) => {
       if (l?.type === "group") {
@@ -871,10 +862,11 @@ export function addBuildingExplorer(props: esriSceneWidgetProps) {
         }
       }
     });
+
     const buildingExplorerWidget = new BuildingExplorer({ view, layers: buildingLayers });
-    const tip = appBundle.tools.buildingExplorer;
+    const tip = commonMessages?.tools?.buildingExplorer;
     const expand = new Expand({
-      id: "buildingExplorerExpand",
+      id: expandId,
       view,
       mode: "auto",
       group,
@@ -882,19 +874,15 @@ export function addBuildingExplorer(props: esriSceneWidgetProps) {
       expandTooltip: tip,
       content: buildingExplorerWidget
     });
-
     view.ui.add(expand, buildingExplorerPosition);
-    autoUpdatedStrings.add({
+
+    const tooltipProps = {
       obj: expand,
-      property: "collapseTooltip",
       bundleName: bundleName,
       key: "tools.buildingExplorer"
-    });
-    autoUpdatedStrings.add({
-      obj: expand,
-      property: "expandTooltip",
-      bundleName: bundleName,
-      key: "tools.buildingExplorer"
-    });
+    }
+
+    autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip" });
+    autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
   }
 }
