@@ -833,28 +833,32 @@ function updateListItemLegend(
   });
 }
 
-export function addBuildingExplorer(
-  config: ApplicationConfig,
-  view: __esri.SceneView,
-  commonMessages: any
-) {
+/**
+ * Watch for changes in buildingExplorer, buildingExplorerPosition
+ */
+export function addBuildingExplorer(props: esriSceneWidgetProps) {
   if (!BuildingExplorer) return;
+  const { config, view, commonMessages, propertyName } = props;
   const { buildingExplorer, buildingExplorerPosition } = config;
   const expandId = "esri-building-explorerExpand";
-  const node = view.ui.find(expandId) as __esri.Expand;
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
 
   if (!buildingExplorer) {
-    if (node) view.ui.remove(node);
+    if (expandNode) view.ui.remove(expandNode);
     return;
   }
 
   const group = getPosition(buildingExplorerPosition);
+  const tip = commonMessages?.tools?.buildingExplorer;
 
-  if (node) {
-    view.ui.move(node, buildingExplorerPosition);
-    node.group = group;
+  if (propertyName === "buildingExplorerPosition" && expandNode) {
+    expandNode.collapseTooltip = tip;
+    expandNode.expandTooltip = tip;
+    expandNode.group = group;
+    view.ui.move(expandNode, buildingExplorerPosition);
   }
-  else {
+  else if (propertyName === "buildingExplorer") {
+    if (expandNode) return;
     const buildingLayers = [];
     view.map.layers?.filter((l) => {
       if (l?.type === "group") {
@@ -889,6 +893,7 @@ export function addBuildingExplorer(
 
     autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip" });
     autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
+    view.ui.add(expand, buildingExplorerPosition);
   }
 }
 
@@ -900,23 +905,23 @@ export function addWeather(props: esriSceneWidgetProps) {
   const { config, view, commonMessages, propertyName } = props;
   const { showWeather, weatherPosition } = config;
   const expandId = "weatherExpand";
-  const node = view.ui.find(expandId) as __esri.Expand;
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
 
   if (!showWeather) {
-    if (node) view.ui.remove(node);
+    if (expandNode) view.ui.remove(expandNode);
     return;
   }
 
   const group = getPosition(weatherPosition);
   const tip = commonMessages?.tools?.weather;
 
-  if (propertyName === "weatherPosition" && node) {
-    node.collapseTooltip = tip;
-    node.expandTooltip = tip;
-    node.group = group;
-    view.ui.move(node, weatherPosition);
+  if (propertyName === "weatherPosition" && expandNode) {
+    expandNode.collapseTooltip = tip;
+    expandNode.expandTooltip = tip;
+    expandNode.group = group;
+    view.ui.move(expandNode, weatherPosition);
   } else if (propertyName === "showWeather") {
-    if (node) return;
+    if (expandNode) return;
     const content = new Weather({ view });
     const weatherExpand = new Expand({
       id: expandId,
