@@ -14,6 +14,7 @@ import BasemapToggle from "esri/widgets/BasemapToggle";
 import Bookmarks from "esri/widgets/Bookmarks";
 import BuildingExplorer from "esri/widgets/BuildingExplorer";
 import Compass from "esri/widgets/Compass";
+import Daylight from "esri/widgets/Daylight";
 import Expand from "esri/widgets/Expand";
 import FloorFilter from "esri/widgets/FloorFilter";
 import FullScreen from "esri/widgets/Fullscreen";
@@ -22,6 +23,7 @@ import LayerList from "esri/widgets/LayerList";
 import Legend from "esri/widgets/Legend";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
+import SceneView from "esri/views/SceneView";
 import Viewpoint from "esri/Viewpoint";
 import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
@@ -943,5 +945,108 @@ export function addWeather(props: esriSceneWidgetProps) {
     autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip" });
     autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
     view.ui.add(weatherExpand, weatherPosition);
+  }
+}
+
+function containsExpandedComponent(position, view): boolean {
+  let group = position;
+  if (position === "mobile-top" || position === "mobile-bottom") {
+    group = position === "mobile-top" ? ["top-right", "top-left"] : ["bottom-right", "bottom-left"];
+  }
+  return view?.ui?.getComponents(group)?.some((c) => {
+    return c?.expanded;
+  });
+}
+
+export function addDaylight(props: esriSceneWidgetProps) {
+  if (!Daylight) return;
+  const { view, config, commonMessages, propertyName } = props;
+  const {
+    daylight,
+    daylightShadows,
+    daylightPosition,
+    daylightTime,
+    daylightDate,
+    daylightDateOrSeason,
+    daylightOpenAtStart
+  } = config;
+  const expandId = "daylightExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+
+  if (!daylight) {
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  const sv = view as __esri.SceneView;
+  const group = getPosition(daylightPosition);
+  const tip = commonMessages?.tools?.daylight;
+  const expanded = daylightOpenAtStart && !containsExpandedComponent(group, view);
+
+  if (
+    (propertyName === "daylightDate" ||
+      propertyName === "daylightTime" ||
+      propertyName === "daylightDateOrSeason" ||
+      propertyName === "daylightPosition" ||
+      propertyName === "daylightOpenAtStart" ||
+      propertyName === "daylightShadows") &&
+      expandNode
+  ) {
+    if (propertyName === "daylightOpenAtStart") {
+      expanded ? expandNode.expand() : expandNode.collapse();
+    }
+    if (propertyName === "daylightShadows") {
+      sv.environment.lighting.directShadowsEnabled = daylightShadows;
+    }
+    if (
+      (propertyName === "daylightDate" && daylightDate && daylightDate !== "") ||
+      (propertyName === "daylightTime" && daylightTime)
+    ) {
+      let date;
+      if (daylightTime && daylightDate) {
+        date = new Date(`${daylightDate}T${daylightTime}Z`);
+      }
+      const lighting = sv.environment.lighting as __esri.SunLighting;
+      lighting.date = date;
+    }
+
+    if (propertyName === "daylightDateOrSeason") {
+      const content = expandNode.content as any;
+      content.dateOrSeason = daylightDateOrSeason;
+    }
+    if (propertyName === "daylightPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, daylightPosition);
+    }
+  } else if (propertyName === "daylight") {
+    sv.environment.lighting.directShadowsEnabled = daylightShadows;
+    const content = new Daylight({
+      view,
+      dateOrSeason: daylightDateOrSeason
+    });
+
+    const daylightExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      expandIcon: "brightness",
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      view,
+      expanded
+    });
+
+    const tooltipProps = {
+      obj: daylightExpand,
+      bundleName: bundleName,
+      key: "tools.daylight"
+    };
+
+    autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip"});
+    autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
+    view.ui.add(daylightExpand, daylightPosition);
   }
 }
