@@ -875,7 +875,7 @@ export function addBuildingExplorer(props: esriSceneWidgetProps) {
     });
 
     const buildingExplorerWidget = new BuildingExplorer({ view, layers: buildingLayers });
-    const expand = new Expand({
+    const buildingExplorerExpand = new Expand({
       id: expandId,
       view,
       mode: "auto",
@@ -886,14 +886,14 @@ export function addBuildingExplorer(props: esriSceneWidgetProps) {
     });
 
     const tooltipProps = {
-      obj: expand,
+      obj: buildingExplorerExpand,
       bundleName: bundleName,
       key: "tools.buildingExplorer"
     }
 
     autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip" });
     autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
-    view.ui.add(expand, buildingExplorerPosition);
+    view.ui.add(buildingExplorerExpand, buildingExplorerPosition);
   }
 }
 
