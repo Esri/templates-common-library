@@ -958,6 +958,9 @@ function containsExpandedComponent(position, view): boolean {
   });
 }
 
+/**
+ * Watch for changes in daylight, daylightPosition, daylightShadows, daylightDate, daylightTime, daylightDateOrSeason, daylightOpenAtStart
+ */
 export function addDaylight(props: esriSceneWidgetProps) {
   if (!Daylight) return;
   const { view, config, commonMessages, propertyName } = props;
