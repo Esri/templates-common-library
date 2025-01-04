@@ -28,9 +28,6 @@ import Viewpoint from "esri/Viewpoint";
 import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
-import { autoUpdatedStrings } from "../structuralFunctionality/t9nUtils";
-const bundleName = "dist/assets/t9n/common";
-
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
@@ -887,14 +884,6 @@ export function addBuildingExplorer(props: esriSceneWidgetProps) {
       content: buildingExplorerWidget
     });
 
-    const tooltipProps = {
-      obj: buildingExplorerExpand,
-      bundleName: bundleName,
-      key: "tools.buildingExplorer"
-    }
-
-    autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip" });
-    autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
     view.ui.add(buildingExplorerExpand, buildingExplorerPosition);
   }
 }
@@ -936,14 +925,6 @@ export function addWeather(props: esriSceneWidgetProps) {
       view
     });
 
-    const tooltipProps = {
-      obj: weatherExpand,
-      bundleName: bundleName,
-      key: "tools.weather"
-    };
-
-    autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip" });
-    autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
     view.ui.add(weatherExpand, weatherPosition);
   }
 }
@@ -1042,14 +1023,6 @@ export function addDaylight(props: esriSceneWidgetProps) {
       expanded
     });
 
-    const tooltipProps = {
-      obj: daylightExpand,
-      bundleName: bundleName,
-      key: "tools.daylight"
-    };
-
-    autoUpdatedStrings.add({ ...tooltipProps, property: "collapseTooltip"});
-    autoUpdatedStrings.add({ ...tooltipProps, property: "expandTooltip" });
     view.ui.add(daylightExpand, daylightPosition);
   }
 }
