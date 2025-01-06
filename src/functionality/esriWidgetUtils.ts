@@ -23,7 +23,6 @@ import LayerList from "esri/widgets/LayerList";
 import Legend from "esri/widgets/Legend";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
-import SceneView from "esri/views/SceneView";
 import Viewpoint from "esri/Viewpoint";
 import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
