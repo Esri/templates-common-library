@@ -12,7 +12,9 @@
 import { when } from "esri/core/reactiveUtils";
 import BasemapToggle from "esri/widgets/BasemapToggle";
 import Bookmarks from "esri/widgets/Bookmarks";
+import BuildingExplorer from "esri/widgets/BuildingExplorer";
 import Compass from "esri/widgets/Compass";
+import Daylight from "esri/widgets/Daylight";
 import Expand from "esri/widgets/Expand";
 import FloorFilter from "esri/widgets/FloorFilter";
 import FullScreen from "esri/widgets/Fullscreen";
@@ -21,7 +23,9 @@ import LayerList from "esri/widgets/LayerList";
 import Legend from "esri/widgets/Legend";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
+import SceneView from "esri/views/SceneView";
 import Viewpoint from "esri/Viewpoint";
+import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
@@ -29,6 +33,13 @@ import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
 import ApplicationBase from "../baseClasses/ApplicationBase";
 import { ApplicationConfig } from "../interfaces/applicationBase";
+
+interface esriSceneWidgetProps {
+  config: ApplicationConfig;
+  view: __esri.SceneView;
+  commonMessages: any;
+  propertyName: string;
+}
 
 /**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
@@ -819,4 +830,199 @@ function updateListItemLegend(
   layerList?.operationalItems?.forEach((item) => {
     configureListItemPanelLegend(item, layerListLegend);
   });
+}
+
+/**
+ * Watch for changes in buildingExplorer, buildingExplorerPosition
+ */
+export function addBuildingExplorer(props: esriSceneWidgetProps) {
+  if (!BuildingExplorer) return;
+  const { config, view, commonMessages, propertyName } = props;
+  const { buildingExplorer, buildingExplorerPosition } = config;
+  const expandId = "esri-building-explorerExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+
+  if (!buildingExplorer) {
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  const group = getPosition(buildingExplorerPosition);
+  const tip = commonMessages?.tools?.buildingExplorer;
+
+  if (propertyName === "buildingExplorerPosition" && expandNode) {
+    expandNode.collapseTooltip = tip;
+    expandNode.expandTooltip = tip;
+    expandNode.group = group;
+    view.ui.move(expandNode, buildingExplorerPosition);
+  }
+  else if (propertyName === "buildingExplorer") {
+    if (expandNode) return;
+    const buildingLayers = [];
+    view.map.layers?.filter((l) => {
+      if (l?.type === "group") {
+        return (l as __esri.GroupLayer)?.layers?.some((subLayer) => {
+          if (subLayer?.type === "building-scene") {
+            buildingLayers.push(subLayer);
+          }
+        });
+      } else {
+        if (l?.type === "building-scene") {
+          buildingLayers.push(l);
+        }
+      }
+    });
+
+    const buildingExplorerWidget = new BuildingExplorer({ view, layers: buildingLayers });
+    const buildingExplorerExpand = new Expand({
+      id: expandId,
+      view,
+      mode: "auto",
+      group,
+      collapseTooltip: tip,
+      expandTooltip: tip,
+      content: buildingExplorerWidget
+    });
+
+    view.ui.add(buildingExplorerExpand, buildingExplorerPosition);
+  }
+}
+
+/**
+ * Watch for changes in showWeather, weatherPosition
+ */
+export function addWeather(props: esriSceneWidgetProps) {
+  if(!Weather) return;
+  const { config, view, commonMessages, propertyName } = props;
+  const { showWeather, weatherPosition } = config;
+  const expandId = "weatherExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+
+  if (!showWeather) {
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  const group = getPosition(weatherPosition);
+  const tip = commonMessages?.tools?.weather;
+
+  if (propertyName === "weatherPosition" && expandNode) {
+    expandNode.collapseTooltip = tip;
+    expandNode.expandTooltip = tip;
+    expandNode.group = group;
+    view.ui.move(expandNode, weatherPosition);
+  } else if (propertyName === "showWeather") {
+    if (expandNode) return;
+    const content = new Weather({ view });
+    const weatherExpand = new Expand({
+      id: expandId,
+      content,
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      group,
+      expandIcon: "rain-snow",
+      view
+    });
+
+    view.ui.add(weatherExpand, weatherPosition);
+  }
+}
+
+function containsExpandedComponent(position, view): boolean {
+  let group = position;
+  if (position === "mobile-top" || position === "mobile-bottom") {
+    group = position === "mobile-top" ? ["top-right", "top-left"] : ["bottom-right", "bottom-left"];
+  }
+  return view?.ui?.getComponents(group)?.some((c) => {
+    return c?.expanded;
+  });
+}
+
+/**
+ * Watch for changes in daylight, daylightPosition, daylightShadows, daylightDate, daylightTime, daylightDateOrSeason, daylightOpenAtStart
+ */
+export function addDaylight(props: esriSceneWidgetProps) {
+  if (!Daylight) return;
+  const { view, config, commonMessages, propertyName } = props;
+  const {
+    daylight,
+    daylightShadows,
+    daylightPosition,
+    daylightTime,
+    daylightDate,
+    daylightDateOrSeason,
+    daylightOpenAtStart
+  } = config;
+  const expandId = "daylightExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+
+  if (!daylight) {
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  const sv = view as __esri.SceneView;
+  const group = getPosition(daylightPosition);
+  const tip = commonMessages?.tools?.daylight;
+  const expanded = daylightOpenAtStart && !containsExpandedComponent(group, view);
+
+  if (
+    (propertyName === "daylightDate" ||
+      propertyName === "daylightTime" ||
+      propertyName === "daylightDateOrSeason" ||
+      propertyName === "daylightPosition" ||
+      propertyName === "daylightOpenAtStart" ||
+      propertyName === "daylightShadows") &&
+      expandNode
+  ) {
+    if (propertyName === "daylightOpenAtStart") {
+      expanded ? expandNode.expand() : expandNode.collapse();
+    }
+    if (propertyName === "daylightShadows") {
+      sv.environment.lighting.directShadowsEnabled = daylightShadows;
+    }
+    if (
+      (propertyName === "daylightDate" && daylightDate && daylightDate !== "") ||
+      (propertyName === "daylightTime" && daylightTime)
+    ) {
+      let date;
+      if (daylightTime && daylightDate) {
+        date = new Date(`${daylightDate}T${daylightTime}Z`);
+      }
+      const lighting = sv.environment.lighting as __esri.SunLighting;
+      lighting.date = date;
+    }
+
+    if (propertyName === "daylightDateOrSeason") {
+      const content = expandNode.content as any;
+      content.dateOrSeason = daylightDateOrSeason;
+    }
+    if (propertyName === "daylightPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, daylightPosition);
+    }
+  } else if (propertyName === "daylight") {
+    sv.environment.lighting.directShadowsEnabled = daylightShadows;
+    const content = new Daylight({
+      view,
+      dateOrSeason: daylightDateOrSeason
+    });
+
+    const daylightExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      expandIcon: "brightness",
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      view,
+      expanded
+    });
+
+    view.ui.add(daylightExpand, daylightPosition);
+  }
 }
