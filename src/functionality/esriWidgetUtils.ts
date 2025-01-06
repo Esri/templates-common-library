@@ -23,9 +23,12 @@ import LayerList from "esri/widgets/LayerList";
 import Legend from "esri/widgets/Legend";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
+import Slice from "esri/widgets/Slice";
 import Viewpoint from "esri/Viewpoint";
 import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
+
+import SlicePanel from "../structuralFunctionality/widgets/slice/SlicePanel";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
@@ -894,7 +897,7 @@ export function addWeather(props: esriSceneWidgetProps) {
   if(!Weather) return;
   const { config, view, commonMessages, propertyName } = props;
   const { showWeather, weatherPosition } = config;
-  const expandId = "weatherExpand";
+  const expandId = "esri-weatherExpand";
   const expandNode = view.ui.find(expandId) as __esri.Expand;
 
   if (!showWeather) {
@@ -953,7 +956,7 @@ export function addDaylight(props: esriSceneWidgetProps) {
     daylightDateOrSeason,
     daylightOpenAtStart
   } = config;
-  const expandId = "daylightExpand";
+  const expandId = "esri-daylightExpand";
   const expandNode = view.ui.find(expandId) as __esri.Expand;
 
   if (!daylight) {
@@ -1023,5 +1026,61 @@ export function addDaylight(props: esriSceneWidgetProps) {
     });
 
     view.ui.add(daylightExpand, daylightPosition);
+  }
+}
+
+/**
+ * Watch for changes in slice, slicePosition, sliceOpenAtStart
+ */
+export async function addSlice(props: esriSceneWidgetProps) {
+  if (!Slice) return;
+  const { view, config, commonMessages, propertyName } = props;
+  const { slice, slicePosition, sliceOpenAtStart } = config;
+  const sceneView = view as __esri.SceneView;
+
+  const expandId = "esri-sliceExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+  if (!slice) {
+    if (expandNode) {
+      const slicePanel = expandNode?.content as any;
+      if (slicePanel) slicePanel.destroy();
+      view.ui.remove(expandNode);
+    }
+    return;
+  }
+
+  const group = getPosition(slicePosition);
+  const expanded = sliceOpenAtStart && !containsExpandedComponent(group, view);
+  const tip = commonMessages?.tools?.slice;
+
+  if ((propertyName === "slicePosition" || propertyName === "sliceOpenAtStart") && expandNode) {
+    if (propertyName === "sliceOpenAtStart") {
+      expanded ? expandNode.expand() : expandNode.collapse();
+    }
+    if (propertyName === "slicePosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, slicePosition);
+    }
+  } else if (propertyName === "slice") {
+    const content = new SlicePanel({
+      config,
+      view: sceneView
+    });
+
+    const sliceExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      expandIcon: "slice",
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      expanded,
+      view
+    });
+
+    view.ui.add(sliceExpand, slicePosition);
   }
 }
