@@ -23,12 +23,15 @@ import Slice from "esri/widgets/Slice";
 import { ApplicationConfig } from "../../../interfaces/applicationBase";
 
 interface SliceProps extends __esri.WidgetProperties {
-  config: any;
+  config: ApplicationConfig;
   view: __esri.SceneView;
 }
 
 const CSS = {
-  base: "slice-panel"
+  base: "slice-panel",
+  esriButton: "esri-button",
+  esriSecondaryButton: "esri-button--secondary",
+  sliceButton: "slice-button"
 };
 
 @subclass("SlicePanel")
@@ -46,10 +49,25 @@ class SlicePanel extends Widget {
   @messageBundle("dist/assets/t9n/common")
   messages: any = null;
 
-  @property()
-  rootNode: any = null;
   sliceTool: __esri.Slice = null;
 
+  private _createSliceTool(container: string | HTMLElement): void {
+    this.sliceTool = new Slice({
+      view: this.view,
+      container
+    });
+    this.sliceTool.viewModel.tiltEnabled = true;
+  }
+  private _handleSliceClear(): void {
+    if (!this.sliceTool) {
+      return;
+    }
+    this.sliceTool.viewModel.clear();
+  }
+
+  /**
+   * Lifecycle Methods
+   */
   constructor(params: SliceProps) {
     super(params);
   }
@@ -63,7 +81,7 @@ class SlicePanel extends Widget {
         <div bind={this} afterCreate={this._createSliceTool}></div>
         <div style="margin:0 15px 8px 15px;">
           <button
-            class="esri-button esri-button--secondary slice-button"
+            class={this.classes(CSS.esriButton, CSS.esriSecondaryButton, CSS.sliceButton)}
             disabled={this.state === "sliced" ? false : true}
             onclick={this._handleSliceClear}
             bind={this}
@@ -75,27 +93,20 @@ class SlicePanel extends Widget {
       </calcite-panel>
     );
   }
-  _createSliceTool(container) {
-    this.sliceTool = new Slice({
-      view: this.view,
-      container
-    });
-    this.sliceTool.viewModel.tiltEnabled = true;
-    watch(
-      () => this?.sliceTool?.viewModel?.state,
-      (state) => {
-        this.state = state;
-      },
-      { initial: true }
-    );
+
+  postInitialize(): void {
+    this.addHandles([
+      watch(
+        () => this?.sliceTool?.viewModel?.state,
+        (state) => {
+          this.state = state;
+        },
+        { initial: true }
+      )
+    ]);
   }
-  _handleSliceClear() {
-    if (!this.sliceTool) {
-      return;
-    }
-    this.sliceTool.viewModel.clear();
-  }
-  destroy() {
+
+  destroy(): void {
     this?.sliceTool?.destroy();
   }
 }
