@@ -256,6 +256,7 @@ export default {
                     ],
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "multiple",
+                    "honorMapFieldSettings": true,
                     "dragEnabled": true
                   },
                   "defaultValue": null
