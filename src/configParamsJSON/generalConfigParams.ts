@@ -718,7 +718,7 @@ export default {
                   "config": {
                     "singleFont": false
                   }
-                },
+                }
               ]
             }
           ]
