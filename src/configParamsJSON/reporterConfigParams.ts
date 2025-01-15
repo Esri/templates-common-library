@@ -207,7 +207,7 @@ export default {
             },
             {
               "type": "setting",
-              "id": "sortReports",
+              "id": "sortOption",
               "defaultValue": "newest",
               "express": true
             }
