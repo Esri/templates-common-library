@@ -204,6 +204,12 @@ export default {
               "id": "showUserImageInCommentsList",
               "defaultValue": false,
               "express": true
+            },
+            {
+              "type": "setting",
+              "id": "sortReports",
+              "defaultValue": "newest",
+              "express": true
             }
           ]
         },
