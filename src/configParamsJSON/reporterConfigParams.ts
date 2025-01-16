@@ -207,6 +207,12 @@ export default {
             },
             {
               "type": "setting",
+              "id": "filterByExtent",
+              "defaultValue": false,
+              "express": true
+            },
+            {
+              "type": "setting",
               "id": "sortOption",
               "defaultValue": "newest",
               "express": true
