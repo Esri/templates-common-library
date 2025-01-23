@@ -25,7 +25,6 @@ export function getDefaultLocale(portal: __esri.Portal, data: LanguageData) {
   const defaultLanguage = calculateDefaultLocaleFromPortal(portal);
   let defaultLocaleCode = normalizeMessageBundleLocale(defaultLanguage);
   defaultLocaleCode = defaultLocaleCode === "no" ? "nb" : defaultLocaleCode;
-
   const urlObj = new URL(window.location.href);
   const localeUrlParam = urlObj.searchParams.get("locale");
   const useDefault =
