@@ -35,22 +35,13 @@ import { ApplicationConfig } from "../interfaces/applicationBase";
  * @param config - ConfigSettings Object
  * @param keys
  */
-export function handleDeprecatedProps(
-  config: any,
-  keys: {
-    screenshot: string;
-    screenshotPosition: string;
-    exportValue: string;
-    exportPosition: string;
-  }
-): void {
-  const { screenshot, screenshotPosition, exportValue, exportPosition } =
-    keys || {};
-  if (config[screenshot] && !config[exportValue]) {
+export function handleDeprecatedProps(config: any): void {
+  const { screenshot, screenshotPosition, exportToPDF } = config || {};
+  if (screenshot && exportToPDF) {
     // Screenshot is now deprecated - https://devtopia.esri.com/WebGIS/arcgis-template-configuration/issues/5063
     // Will show exportToPDF instead for apps which have not had their values auto updated via the config panel
-    config[exportValue] = true;
-    config[exportPosition] = config[screenshotPosition];
+    config.exportToPDF = true;
+    config.exportToPDFPosition = screenshotPosition;
   }
 }
 
