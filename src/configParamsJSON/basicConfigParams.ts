@@ -1,4 +1,4 @@
-{
+export default {
   "config": [
     {
       "type": "section",
@@ -6,7 +6,8 @@
       "config": {
         "itemTypes": [
           "2d",
-          "3d"
+          "3d",
+          "weblinkchart"
         ]
       },
       "content": [
@@ -395,22 +396,6 @@
                   }
                 }
               ]
-            },
-            {
-              "type": "setting",
-              "id": "screenshot",
-              "express": false,
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "screenshotPosition",
-                  "defaultValue": {
-                    "position": "top-left",
-                    "index": 0
-                  }
-                }
-              ]
             }
           ]
         },
@@ -549,4 +534,4 @@
       ]
     }
   ]
-}
+};

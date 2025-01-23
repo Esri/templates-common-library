@@ -31,6 +31,30 @@ import ApplicationBase from "../baseClasses/ApplicationBase";
 import { ApplicationConfig } from "../interfaces/applicationBase";
 
 /**
+ * Enforces deprecated widget property rules
+ * @param config - ConfigSettings Object
+ * @param keys
+ */
+export function handleDeprecatedProps(
+  config: any,
+  keys: {
+    screenshot: string;
+    screenshotPosition: string;
+    exportValue: string;
+    exportPosition: string;
+  }
+): void {
+  const { screenshot, screenshotPosition, exportValue, exportPosition } =
+    keys || {};
+  if (config[screenshot] && !config[exportValue]) {
+    // Screenshot is now deprecated - https://devtopia.esri.com/WebGIS/arcgis-template-configuration/issues/5063
+    // Will show exportToPDF instead for apps which have not had their values auto updated via the config panel
+    config[exportValue] = true;
+    config[exportPosition] = config[screenshotPosition];
+  }
+}
+
+/**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
  */
 export function addHome(

@@ -1,4 +1,4 @@
-{
+export default {
   "config": [
     {
       "type": "section",
@@ -203,6 +203,18 @@
               "type": "setting",
               "id": "showUserImageInCommentsList",
               "defaultValue": false,
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "filterByExtent",
+              "defaultValue": false,
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "sortOption",
+              "defaultValue": "newest",
               "express": true
             }
           ]
@@ -671,4 +683,4 @@
       ]
     }
   ]
-}
+};

@@ -1,27 +1,28 @@
-import Atlas from "dojo/text!../../configParamsJSON/atlasConfigParams.json";
-import AttachmentViewer from "dojo/text!../../configParamsJSON/avConfigParams.json";
-import Basic from "dojo/text!../../configParamsJSON/basicConfigParams.json";
-import CategoryGallery from "dojo/text!../../configParamsJSON/categoryGalleryConfigParams.json";
-import Charts from "dojo/text!../../configParamsJSON/chartsConfigParams.json";
-import Compare from "dojo/text!../../configParamsJSON/compareConfigParams.json";
-import Countdown from "dojo/text!../../configParamsJSON/countdownConfigParams.json";
-import Exhibit from "dojo/text!../../configParamsJSON/exhibitConfigParams.json";
-import Imagery from "dojo/text!../../configParamsJSON/imageryViewerConfig.json";
-import Insets from "dojo/text!../../configParamsJSON/insetConfigParams.json";
-import InteractiveLegend from "dojo/text!../../configParamsJSON/intLegendConfigParams.json";
-import Manager from "dojo/text!../../configParamsJSON/managerConfigParams.json";
-import Media from "dojo/text!../../configParamsJSON/mediaConfigParams.json";
-import Minimalist from "dojo/text!../../configParamsJSON/minimalistConfigParams.json";
-import Nearby from "dojo/text!../../configParamsJSON/nearbyConfigParams.json";
-import Notify from "dojo/text!../../configParamsJSON/notifyConfigParams.json";
-import Observer from "dojo/text!../../configParamsJSON/observerConfigParams.json";
-import Portfolio from "dojo/text!../../configParamsJSON/portfolioConfigParams.json";
-import Reporter from "dojo/text!../../configParamsJSON/reporterConfigParams.json";
-import Sidebar from "dojo/text!../../configParamsJSON/sidebarConfigParams.json";
-import Slider from "dojo/text!../../configParamsJSON/dataSliderConfigParams.json";
-import Streamflow from "dojo/text!../../configParamsJSON/streamflowConfigParams.json";
-import ThreeDViewer from "dojo/text!../../configParamsJSON/3dViewerConfigParams.json";
-import ZoneLookup from "dojo/text!../../configParamsJSON/lookupConfigParams.json";
+import Atlas from "../../configParamsJSON/atlasConfigParams";
+import AttachmentViewer from "../../configParamsJSON/avConfigParams";
+import Basic from "../../configParamsJSON/basicConfigParams";
+import CategoryGallery from "../../configParamsJSON/categoryGalleryConfigParams";
+import Charts from "../../configParamsJSON/chartsConfigParams";
+import Compare from "../../configParamsJSON/compareConfigParams";
+import Countdown from "../../configParamsJSON/countdownConfigParams";
+import Exhibit from "../../configParamsJSON/exhibitConfigParams";
+import General from "../../configParamsJSON/generalConfigParams";
+import Imagery from "../../configParamsJSON/imageryViewerConfig";
+import Insets from "../../configParamsJSON/insetConfigParams";
+import InteractiveLegend from "../../configParamsJSON/intLegendConfigParams";
+import Manager from "../../configParamsJSON/managerConfigParams";
+import Media from "../../configParamsJSON/mediaConfigParams";
+import Minimalist from "../../configParamsJSON/minimalistConfigParams";
+import Nearby from "../../configParamsJSON/nearbyConfigParams";
+import Notify from "../../configParamsJSON/notifyConfigParams";
+import Observer from "../../configParamsJSON/observerConfigParams";
+import Portfolio from "../../configParamsJSON/portfolioConfigParams";
+import Reporter from "../../configParamsJSON/reporterConfigParams";
+import Sidebar from "../../configParamsJSON/sidebarConfigParams";
+import Slider from "../../configParamsJSON/dataSliderConfigParams";
+import Streamflow from "../../configParamsJSON/streamflowConfigParams";
+import ThreeDViewer from "../../configParamsJSON/3dViewerConfigParams";
+import ZoneLookup from "../../configParamsJSON/lookupConfigParams";
 
 import { EAppTemplateType } from "../CompatibilityChecker";
 
@@ -34,6 +35,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Compare]: Compare,
   [EAppTemplateType.Countdown]: Countdown,
   [EAppTemplateType.Exhibit]: Exhibit,
+  [EAppTemplateType.General]: General,
   [EAppTemplateType.ImageryApp]: Imagery,
   [EAppTemplateType.InteractiveLegend]: InteractiveLegend,
   [EAppTemplateType.Insets]: Insets,
@@ -53,7 +55,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
 };
 
 export function getConfigParams(template: EAppTemplateType) {
-  return JSON.parse(INSTANT_APPS_CONFIG_PARAMS_MAP[template]);
+  return structuredClone(INSTANT_APPS_CONFIG_PARAMS_MAP[template]);
 }
 
 export function generateDefaultValuesObj(configParamsObj) {

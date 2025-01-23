@@ -19,7 +19,6 @@ import {
   ApplicationBaseSettings,
   ApplicationConfig,
   ApplicationConfigs,
-  ApplicationProxy,
   Direction,
   ILocalTestCase,
 } from "../interfaces/applicationBase";
@@ -751,10 +750,6 @@ export default class ApplicationBase {
       popup: shouldUsePopup,
       flowType: shouldUsePopup ? "authorization-code" : "auto",
     });
-
-    if (!info) {
-      return;
-    }
 
     IdentityManager.registerOAuthInfos([info]);
   }

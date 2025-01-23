@@ -1,4 +1,4 @@
-{
+export default {
   "config": [
     {
       "type": "section",
@@ -19,7 +19,7 @@
           "defaultValue": false
         }
       ]
-    },
+    },    
     {
       "type": "section",
       "id": "about",
@@ -43,21 +43,6 @@
                       "id": "title",
                       "defaultValue": "",
                       "express": true
-                    },
-                    {
-                      "type": "setting",
-                      "id": "customHeader",
-                      "defaultValue": false,
-                      "content": [
-                        {
-                          "type": "setting",
-                          "id": "customHeaderHTML",
-                          "defaultValue": "",
-                          "config": {
-                            "imageUpload": true
-                          }
-                        }
-                      ]
                     }
                   ]
                 },
@@ -185,17 +170,11 @@
           ]
         }
       ]
-    },
+    },    
     {
       "type": "section",
       "id": "sidebar",
       "content": [
-        {
-          "type": "setting",
-          "id": "sidebarPosition",
-          "express": false,
-          "defaultValue": "start"
-        },
         {
           "type": "setting",
           "id": "sidebarExpanded",
@@ -318,71 +297,6 @@
                 },
                 {
                   "type": "setting",
-                  "id": "layerEditPanel",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "layerEditPanelText",
-                      "express": false,
-                      "defaultValue": null
-                    },
-                    {
-                      "type": "setting",
-                      "id": "enableSnap",
-                      "express": false,
-                      "defaultValue": true
-                    },
-                    {
-                      "type": "setting",
-                      "id": "editableLayers",
-                      "express": false,
-                      "config": {
-                        "layerSelectionMode": "multiple",
-                        "supportedLayerTypes": [
-                          "feature"
-                        ],
-                        "supportedCapabilityTypes": [
-                          "editable"
-                        ],
-                        "supportedGeometryTypes": "*",
-                        "supportsFieldSelection": false
-                      },
-                      "defaultValue": null
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "utilityNetwork",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "utilityNetworkText",
-                      "express": false,
-                      "defaultValue": null
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "orientedImagery",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "orientedImageryText",
-                      "express": false,
-                      "defaultValue": null
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
                   "id": "details",
                   "defaultValue": true,
                   "express": true,
@@ -487,12 +401,6 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "popupHover",
-                  "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
                   "id": "home",
                   "defaultValue": true,
                   "express": false,
@@ -504,6 +412,22 @@
                       "defaultValue": {
                         "position": "top-left",
                         "index": 0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "mapZoom",
+                  "defaultValue": true,
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "mapZoomPosition",
+                      "defaultValue": {
+                        "position": "top-left",
+                        "index": 1
                       }
                     }
                   ]
@@ -536,22 +460,6 @@
                       "defaultValue": {
                         "position": "top-right",
                         "index": 0
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "mapZoom",
-                  "defaultValue": true,
-                  "express": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "mapZoomPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 1
                       }
                     }
                   ]
@@ -696,28 +604,6 @@
                   "defaultValue": "#00FFFF"
                 }
               ]
-            },
-            {
-              "type": "setting",
-              "id": "basemapToggle",
-              "defaultValue": false,
-              "express": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "basemapTogglePosition",
-                  "defaultValue": {
-                    "position": "bottom-right",
-                    "index": 0
-                  }
-                },
-                {
-                  "type": "setting",
-                  "id": "basemapSelector",
-                  "express": false,
-                  "defaultValue": "streets-vector"
-                }
-              ]
             }
           ]
         },
@@ -744,22 +630,6 @@
                       "print-preview",
                       "images"
                     ]
-                  }
-                }
-              ]
-            },
-            {
-              "type": "setting",
-              "id": "screenshot",
-              "express": false,
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "screenshotPosition",
-                  "defaultValue": {
-                    "position": "top-left",
-                    "index": 0
                   }
                 }
               ]
@@ -819,38 +689,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "subsection",
-          "id": "customURLParams",
-          "content": [
-            {
-              "type": "group",
-              "id": "customURLParams",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "customURLParamName",
-                  "express": false,
-                  "defaultValue": ""
-                },
-                {
-                  "type": "setting",
-                  "id": "customUrlParam",
-                  "express": false,
-                  "config": {
-                    "layerSelectionMode": "single",
-                    "supportedLayerTypes": "*",
-                    "supportedGeometryTypes": "*",
-                    "supportsFieldSelection": true,
-                    "fieldSelectionMode": "single",
-                    "supportedFieldTypes": "*"
-                  },
-                  "defaultValue": null
-                }
-              ]
-            }
-          ]
         }
       ]
     },
@@ -858,18 +696,6 @@
       "type": "section",
       "id": "themeLayout",
       "content": [
-        {
-          "type": "subsection",
-          "id": "layout",
-          "content": [
-            {
-              "type": "setting",
-              "id": "panelSize",
-              "express": false,
-              "defaultValue": "m"
-            }
-          ]
-        },
         {
           "type": "subsection",
           "id": "theme",
@@ -892,11 +718,6 @@
                   "config": {
                     "singleFont": false
                   }
-                },
-                {
-                  "type": "setting",
-                  "id": "customCSS",
-                  "defaultValue": ""
                 }
               ]
             }
@@ -917,18 +738,6 @@
                   "defaultValue": null
                 }
               ]
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "id": "positionManager",
-          "content": [
-            {
-              "type": "setting",
-              "id": "positionManager",
-              "express": true,
-              "defaultValue": null
             }
           ]
         }
@@ -970,4 +779,4 @@
       ]
     }
   ]
-}
+};

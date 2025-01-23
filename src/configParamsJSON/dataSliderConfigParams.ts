@@ -1,4 +1,4 @@
-{
+export default {
   "config": [
     {
       "type": "section",
@@ -625,22 +625,6 @@
                 },
                 {
                   "type": "setting",
-                  "id": "screenshot",
-                  "defaultValue": false,
-                  "express": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "screenshotPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 0
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
                   "id": "exportToPDF",
                   "express": true,
                   "defaultValue": false,
@@ -854,4 +838,4 @@
       ]
     }
   ]
-}
+};

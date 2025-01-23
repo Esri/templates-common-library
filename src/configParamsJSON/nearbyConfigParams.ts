@@ -1,4 +1,4 @@
-{
+export default {
   "config": [
     {
       "type": "section",
@@ -78,38 +78,52 @@
               ]
             },
             {
-              "type": "setting",
-              "id": "introductionTitle",
-              "express": true,
-              "defaultValue": ""
-            },
-            {
-              "type": "setting",
-              "id": "introductionContent",
-              "express": true,
-              "defaultValue": "Search to learn more about a location and its surrounding area.</br> Use one of the following search methods: <ul><li>Click the search box and type in an address or choose <b>Use current location </b></li><li>Click within the map <div></div></li></ul></br> Results will include information about features of interest.",
-              "config": {
-                "imageUpload": true
-              }
-            },
-            {
-              "type": "setting",
-              "id": "infoAsModal",
-              "express": false,
-              "defaultValue": false,
+              "type": "group",
+              "id": "appComprehension",
               "content": [
                 {
                   "type": "setting",
-                  "id": "splashButtonText",
-                  "defaultValue": ""
+                  "id": "showIntroduction",
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "introductionTitle",
+                      "express": true,
+                      "defaultValue": ""
+                    },
+                    {
+                      "type": "setting",
+                      "id": "introductionContent",
+                      "express": true,
+                      "defaultValue": "Search to learn more about a location and its surrounding area.</br> Use one of the following search methods: <ul><li>Click the search box and type in an address or choose <b>Use current location </b></li><li>Click within the map <div></div></li></ul></br> Results will include information about features of interest.",
+                      "config": {
+                        "imageUpload": true
+                      }
+                    },
+                    {
+                      "type": "setting",
+                      "id": "infoAsModal",
+                      "express": false,
+                      "defaultValue": false,
+                      "content": [
+                        {
+                          "type": "setting",
+                          "id": "splashButtonText",
+                          "defaultValue": ""
+                        }
+                      ]
+                    },
+                    {
+                      "type": "setting",
+                      "id": "infoIncludeLocation",
+                      "express": false,
+                      "defaultValue": false
+                    }
+                  ],
+                  "defaultValue": true
                 }
               ]
-            },
-            {
-              "type": "setting",
-              "id": "infoIncludeLocation",
-              "express": false,
-              "defaultValue": false
             },
             {
               "type": "group",
@@ -183,53 +197,296 @@
     },
     {
       "type": "section",
-      "id": "lookup",
+      "id": "nearby",
       "content": [
         {
           "type": "subsection",
-          "id": "results",
+          "id": "searchMode",
           "content": [
             {
               "type": "setting",
-              "id": "enableSearchLayer",
+              "id": "lookupLayers",
+              "express": true,
+              "config": {
+                "layerSelectionMode": "multiple",
+                "supportedLayerTypes": [
+                  "map-image",
+                  "feature",
+                  "group",
+                  "csv",
+                  "geojson"
+                ],
+                "supportedGeometryTypes": "*",
+                "supportsFieldSelection": false
+              },
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "searchUnits",
+              "express": true,
+              "defaultValue": "kilometers"
+            },
+            {
+              "type": "setting",
+              "id": "enableBufferSearch",
               "express": true,
               "config": {
                 "branches": [
                   [
-                    "zoneLookupLayers"
+                    "showAll",
+                    "enableSearchScale"
                   ],
                   [
-                    "searchLayer",
-                    "lookupLayers",
-                    "showDirections",
-                    "spatialRelationship"
+                    "sliderRange",
+                    "precision",
+                    "inputsEnabled",
+                    "enableBufferColor",
+                    "enableSearchScale",
+                    "hideMap"
                   ]
                 ]
               },
               "content": [
                 {
                   "type": "setting",
-                  "id": "searchLayer",
+                  "id": "sliderRange",
                   "express": true,
-                  "config": {
-                    "layerSelectionMode": "single",
-                    "supportedLayerTypes": [
-                      "map-image",
-                      "feature",
-                      "group"
-                    ],
-                    "supportedGeometryTypes": [
-                      "esriGeometryPolygon"
-                    ],
-                    "supportsFieldSelection": false
+                  "defaultValue": {
+                    "default": 1,
+                    "minimum": 0,
+                    "maximum": 2
                   },
+                  "config": {
+                    "defaultMinValue": 0,
+                    "defaultMaxValue": 2,
+                    "absoluteMinVal": 0,
+                    "includeDefaultValInput": true,
+                    "defaultDefaultVal": 1
+                  }
+                },
+                {
+                  "type": "setting",
+                  "id": "hideMap",
+                  "defaultValue": false,
+                  "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "precision",
+                  "express": false,
+                  "defaultValue": 1
+                },
+                {
+                  "type": "setting",
+                  "id": "inputsEnabled",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "enableBufferColor",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "bufferColor",
+                      "express": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "type": "setting",
+                      "id": "bufferTransparency",
+                      "express": false,
+                      "defaultValue": 30
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "enableSearchScale",
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "searchScale",
+                      "express": false,
+                      "defaultValue": 10000
+                    }
+                  ],
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "showAll",
+                  "express": false,
+                  "defaultValue": false
+                }
+              ],
+              "defaultValue": {
+                "branchValue": "search-extent",
+                "branchOptionsFieldNames": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "nearbyResults",
+          "content": [
+            {
+              "type": "setting",
+              "id": "mapPin",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapPinIcon",
+                  "defaultValue": "esri-pin-1",
+                  "express": false
+                },
+                {
+                  "type": "setting",
+                  "id": "mapPinColor",
+                  "express": false,
                   "defaultValue": null
                 },
                 {
                   "type": "setting",
-                  "id": "spatialRelationship",
+                  "id": "mapPinSize",
                   "express": false,
-                  "defaultValue": "contains"
+                  "defaultValue": 24
+                }
+              ],
+              "defaultValue": true
+            },
+            {
+              "type": "setting",
+              "id": "mapPinLabel",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapPinLabelColor",
+                  "express": false,
+                  "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "mapPinLabelSize",
+                  "express": false,
+                  "defaultValue": 12
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "mapOptions",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "applyLayerEffects",
+                  "express": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "presetLayerEffects",
+                      "express": true,
+                      "defaultValue": {
+                        "id": "lift-1",
+                        "data": {
+                          "includedEffect": "drop-shadow(4px, 4px, 4px, #000000)",
+                          "excludedEffect": ""
+                        }
+                      }
+                    }
+                  ],
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "hideLayers",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "interactiveResults",
+                  "express": false,
+                  "defaultValue": true
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "popupBehavior",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "showNonResultPopups",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "showPopupsOnZoom",
+                  "express": false,
+                  "defaultValue": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "nearbyPanelResults",
+          "content": [
+            {
+              "type": "group",
+              "id": "panelOptions",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "groupResultsByLayer",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "collapseIndividualResults",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "openRelatedRecords",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "restrictNumResults",
+                  "express": false
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "addOns",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "includeDistance",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "showElevationProfile",
+                  "express": false,
+                  "defaultValue": false
                 },
                 {
                   "type": "setting",
@@ -251,7 +508,9 @@
                         "supportedLayerTypes": [
                           "map-image",
                           "feature",
-                          "group"
+                          "group",
+                          "csv",
+                          "geojson"
                         ],
                         "supportedGeometryTypes": [
                           "esriGeometryPoint"
@@ -267,345 +526,6 @@
                       "express": true
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "zoneLookupLayers",
-                  "express": true,
-                  "config": {
-                    "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": [
-                      "map-image",
-                      "feature",
-                      "group"
-                    ],
-                    "supportedGeometryTypes": [
-                      "esriGeometryPolygon"
-                    ],
-                    "supportsFieldSelection": false
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "type": "setting",
-                  "id": "lookupLayers",
-                  "express": true,
-                  "config": {
-                    "layerSelectionMode": "multiple",
-                    "supportedLayerTypes": [
-                      "map-image",
-                      "feature",
-                      "group"
-                    ],
-                    "supportedGeometryTypes": "*",
-                    "supportsFieldSelection": false
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "defaultValue": {
-                "branchValue": "search-zone",
-                "branchOptionsFieldNames": []
-              }
-            },
-            {
-              "type": "setting",
-              "id": "enableSketchTools",
-              "express": true,
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "defaultBufferDistance",
-                  "express": true,
-                  "defaultValue": 0
-                },
-                {
-                  "type": "setting",
-                  "id": "sketchBufferUnits",
-                  "express": true,
-                  "defaultValue": "feet"
-                },
-                {
-                  "type": "setting",
-                  "id": "enableBufferColor",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "bufferColor",
-                      "express": false,
-                      "defaultValue": null
-                    },
-                    {
-                      "type": "setting",
-                      "id": "bufferTransparency",
-                      "express": false,
-                      "defaultValue": 30
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "group",
-              "id": "results",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "groupResultsByLayer",
-                  "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "collapseIndividualResults",
-                  "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "clearResultsButton",
-                  "express": false,
-                  "defaultValue": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "showNonResultPopups",
-                      "express": false,
-                      "defaultValue": true
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "showPopupsOnZoom",
-                  "express": false,
-                  "defaultValue": true
-                },
-                {
-                  "type": "setting",
-                  "id": "openRelatedRecords",
-                  "express": false,
-                  "defaultValue": false
-                },
-                {
-                  "type": "setting",
-                  "id": "exportToPDF",
-                  "express": true,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "exportButtonIcon",
-                      "express": false,
-                      "defaultValue": "export",
-                      "config": {
-                        "iconList": [
-                          "export",
-                          "file-pdf",
-                          "print",
-                          "print-preview",
-                          "images"
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "screenshot",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "screenshotPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 0
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "exportCSV",
-                  "express": false,
-                  "defaultValue": false
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "id": "resultsMap",
-          "content": [
-            {
-              "type": "setting",
-              "id": "applyLayerEffects",
-              "express": true,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "presetLayerEffects",
-                  "express": true,
-                  "defaultValue": {
-                    "id": "lift-1",
-                    "data": {
-                      "includedEffect": "drop-shadow(4px, 4px, 4px, #000000)",
-                      "excludedEffect": ""
-                    }
-                  }
-                }
-              ],
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
-              "id": "enableSearchScale",
-              "express": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "searchScale",
-                  "express": false,
-                  "defaultValue": 10000
-                }
-              ],
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
-              "id": "hideLayers",
-              "express": false,
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
-              "id": "interactiveResults",
-              "express": false,
-              "defaultValue": true,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "showSelectedOnly",
-                  "defaultValue": false,
-                  "express": false
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "id": "resultsGraphics",
-          "content": [
-            {
-              "type": "group",
-              "id": "resultsGraphics",
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "mapPin",
-                  "express": false,
-                  "defaultValue": true,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "mapPinIcon",
-                      "defaultValue": "esri-pin-1",
-                      "express": false
-                    },
-                    {
-                      "type": "setting",
-                      "id": "mapPinColor",
-                      "express": false,
-                      "defaultValue": null
-                    },
-                    {
-                      "type": "setting",
-                      "id": "mapPinSize",
-                      "express": false,
-                      "defaultValue": 24
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "mapPinLabel",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "mapPinLabelColor",
-                      "express": false,
-                      "defaultValue": null
-                    },
-                    {
-                      "type": "setting",
-                      "id": "mapPinLabelSize",
-                      "express": false,
-                      "defaultValue": 12
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "id": "resultsText",
-          "content": [
-            {
-              "type": "setting",
-              "id": "noResultsMessage",
-              "defaultValue": "",
-              "express": true
-            },
-            {
-              "type": "setting",
-              "id": "resultsPanelPreText",
-              "express": false,
-              "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "resultsPanelPostText",
-              "express": false,
-              "defaultValue": null
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "id": "scoreboard",
-          "content": [
-            {
-              "type": "setting",
-              "id": "showScoreboard",
-              "express": false,
-              "defaultValue": false,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "scoreboardLabel",
-                  "express": false,
-                  "defaultValue": ""
-                },
-                {
-                  "type": "setting",
-                  "id": "scoreboardItems",
-                  "express": false
-                },
-                {
-                  "type": "setting",
-                  "id": "statsPerPage",
-                  "defaultValue": 4
                 }
               ]
             }
@@ -634,6 +554,71 @@
                   "defaultValue": null
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "exportShareResults",
+          "content": [
+            {
+              "type": "setting",
+              "id": "shareSelected",
+              "express": false,
+              "defaultValue": false
+            },
+            {
+              "type": "setting",
+              "id": "exportToPDF",
+              "express": true,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "exportButtonIcon",
+                  "express": false,
+                  "defaultValue": "export",
+                  "config": {
+                    "iconList": [
+                      "export",
+                      "file-pdf",
+                      "print",
+                      "print-preview",
+                      "images"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "exportCSV",
+              "express": false,
+              "defaultValue": false
+            }
+          ]
+        },
+        {
+          "type": "subsection",
+          "id": "resultsText",
+          "content": [
+            {
+              "type": "setting",
+              "id": "noResultsMessage",
+              "defaultValue": "No results found that meet the search criteria",
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "resultsPanelPreText",
+              "express": false,
+              "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "resultsPanelPostText",
+              "express": false,
+              "defaultValue": null
             }
           ]
         }
@@ -701,7 +686,7 @@
                       "id": "homePosition",
                       "defaultValue": {
                         "position": "top-right",
-                        "index": 2
+                        "index": 0
                       }
                     }
                   ]
@@ -756,44 +741,6 @@
                 },
                 {
                   "type": "setting",
-                  "id": "measure",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "measurePosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 0
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "measureOpenAtStart",
-                      "express": false,
-                      "defaultValue": false
-                    },
-                    {
-                      "type": "setting",
-                      "id": "coordinateFormats",
-                      "express": false,
-                      "defaultValue": "xy"
-                    },
-                    {
-                      "type": "setting",
-                      "id": "measureAreaUnit",
-                      "express": false
-                    },
-                    {
-                      "type": "setting",
-                      "id": "measureLinearUnit",
-                      "express": false
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
                   "id": "bookmarks",
                   "express": false,
                   "defaultValue": false,
@@ -805,6 +752,19 @@
                         "position": "top-right",
                         "index": 1
                       }
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "measureDistance",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "measureDistancePosition",
+                      "defaultValue": "top-right"
                     }
                   ]
                 }
@@ -822,16 +782,51 @@
               "content": [
                 {
                   "type": "setting",
+                  "id": "enableHighlightColor",
+                  "defaultValue": false,
+                  "express": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "highlightColor",
+                      "config": {
+                        "alpha": true
+                      },
+                      "express": false,
+                      "defaultValue": "rgba(0, 255, 255, 0.50)"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "enableHighlightHaloColor",
+                  "express": false,
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "highlightHaloColor",
+                      "express": false,
+                      "defaultValue": "#00FFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
                   "id": "layerList",
                   "defaultValue": false,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "layerListPosition",
-                      "defaultValue": {
-                        "position": "bottom-right",
-                        "index": 0
-                      }
+                      "id": "layerListOpenAtStart",
+                      "express": false,
+                      "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
+                      "id": "visibilityIcon",
+                      "express": false,
+                      "defaultValue": "default"
                     },
                     {
                       "type": "setting",
@@ -847,46 +842,11 @@
                     },
                     {
                       "type": "setting",
-                      "id": "layerListOpenAtStart",
-                      "express": false,
-                      "defaultValue": false
-                    },
-                    {
-                      "type": "setting",
-                      "id": "visibilityIcon",
-                      "express": false,
-                      "defaultValue": "default"
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "enableHighlightColor",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "highlightColor",
-                      "config": {
-                        "alpha": true
-                      },
-                      "express": false,
-                      "defaultValue": "rgba(0, 255, 255, 0.55)"
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
-                  "id": "enableHighlightHaloColor",
-                  "defaultValue": false,
-                  "express": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "highlightHaloColor",
-                      "express": false,
-                      "defaultValue": "#00FFFF"
+                      "id": "layerListPosition",
+                      "defaultValue": {
+                        "position": "bottom-right",
+                        "index": 0
+                      }
                     }
                   ]
                 },
@@ -933,10 +893,7 @@
                     {
                       "type": "setting",
                       "id": "sharePosition",
-                      "defaultValue": {
-                        "position": "top-right",
-                        "index": 1
-                      }
+                      "defaultValue": "top-right"
                     },
                     {
                       "type": "setting",
@@ -1035,12 +992,6 @@
               "content": [
                 {
                   "type": "setting",
-                  "id": "hideMap",
-                  "defaultValue": false,
-                  "express": true
-                },
-                {
-                  "type": "setting",
                   "id": "panelSize",
                   "express": false,
                   "defaultValue": "m"
@@ -1091,7 +1042,7 @@
               "id": "languageSwitcherPosition",
               "defaultValue": {
                 "position": "top-right",
-                "index": 5
+                "index": 0
               }
             }
           ]
@@ -1099,4 +1050,4 @@
       ]
     }
   ]
-}
+};

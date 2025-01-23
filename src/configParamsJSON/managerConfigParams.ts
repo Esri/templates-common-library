@@ -1,4 +1,4 @@
-{
+export default {
   "config": [
     {
       "type": "section",
@@ -256,6 +256,7 @@
                     ],
                     "supportsFieldSelection": true,
                     "fieldSelectionMode": "multiple",
+                    "honorMapFieldSettings": true,
                     "dragEnabled": true
                   },
                   "defaultValue": null
@@ -362,4 +363,4 @@
       ]
     }
   ]
-}
+};
