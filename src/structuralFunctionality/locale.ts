@@ -35,7 +35,8 @@ export function calculateLocale(locale: string): string {
   if (isPartial) {
     return locale;
   } else {
-    const normalizedLocale = normalizeMessageBundleLocale(locale);
+    let normalizedLocale = normalizeMessageBundleLocale(locale);
+    normalizedLocale = normalizedLocale === "no" ? "nb" : normalizedLocale;
     return normalizedLocale == null ? "en" : normalizedLocale;
   }
 }
