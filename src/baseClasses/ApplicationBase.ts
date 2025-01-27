@@ -31,8 +31,10 @@ import Portal from "esri/portal/Portal";
 import PortalItem from "esri/portal/PortalItem";
 import PortalQueryParams from "esri/portal/PortalQueryParams";
 import esriConfig from "esri/config";
-import { defineLocale } from "../structuralFunctionality/locale";
 import { prefersRTL } from "esri/intl";
+
+import { defineLocale } from "../structuralFunctionality/locale";
+import { handleDeprecatedProps } from "../functionality/esriWidgetUtils";
 
 import {
   generateDefaultValuesObj,
@@ -340,6 +342,8 @@ export default class ApplicationBase {
           url: urlParams,
           application: applicationConfig,
         });
+
+        handleDeprecatedProps(this.config);
 
         delete this.config.localDefaultValues;
 
