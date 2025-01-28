@@ -40,6 +40,7 @@ export function handleDeprecatedProps(config: any): void {
   if (screenshot && !exportToPDF) {
     // Screenshot is now deprecated - https://devtopia.esri.com/WebGIS/arcgis-template-configuration/issues/5063
     // Will show exportToPDF instead for apps which have not had their values updated via the config panel
+    config.screenshot = false;
     config.exportToPDF = true;
     config.exportToPDFPosition = screenshotPosition;
   }
