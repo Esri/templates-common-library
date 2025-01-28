@@ -443,6 +443,29 @@ export default {
         },
         {
           "type": "subsection",
+          "id": "filter",
+          "content": [
+            {
+              "type": "setting",
+              "id": "enableFilter",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "filterConfig",
+                  "express": false,
+                  "defaultValue": null,
+                  "config": {
+                    "streamflowLayers": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "subsection",
           "id": "share",
           "content": [
             {
