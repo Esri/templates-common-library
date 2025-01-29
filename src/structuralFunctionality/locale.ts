@@ -6,11 +6,6 @@ import {
 import { esriWidgetProps } from "../interfaces/commonInterfaces";
 import { LANGUAGE_DATA } from "./language-switcher/support/constants";
 
-// TODO: Remove when "no" locale files are available in the apps
-// @ts-ignore
-import { messageBundlesLocaleMap } from "esri/intl/messages";
-messageBundlesLocaleMap["nb"] = true;
-
 export function defineLocale(props: esriWidgetProps) {
   const { config, portal } = props;
   let { locale } = config;
