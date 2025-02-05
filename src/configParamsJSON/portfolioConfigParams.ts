@@ -15,8 +15,8 @@ export default {
               "config": {
                 "branches": [
                   ["header", "descOpenAtStart"],
-                  ["descOpenAtStart"],
-                  ["accordionSize"]
+                  ["header", "descOpenAtStart"],
+                  ["header", "accordionSize"]
                 ]
               },
               "content": [
