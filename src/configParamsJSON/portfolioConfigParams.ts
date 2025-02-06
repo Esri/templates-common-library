@@ -23,7 +23,7 @@ export default {
                 {
                   "type": "setting",
                   "id": "header",
-                  "defaultValue": false,
+                  "defaultValue": true,
                   "express": true
                 },
                 {
