@@ -66,7 +66,7 @@ export default {
                       "type": "setting",
                       "id": "splashTitle",
                       "defaultValue": "",
-                      "express": false
+                      "express": true
                     },
                     {
                       "type": "setting",
