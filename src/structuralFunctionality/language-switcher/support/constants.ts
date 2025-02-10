@@ -147,7 +147,7 @@ export const LANGUAGE_DATA = {
       language: "Latvian",
       translated: "Latviešu",
     },
-    nb: {
+    no: {
       language: "Norwegian",
       translated: "Norsk",
     },
@@ -618,13 +618,13 @@ export const LANGUAGE_DATA = {
       language: "Northern Sami",
       translated: "Davvisámegiella",
     },
-    no: {
+    nb: {
       language: "Norwegian",
-      translated: "Norsk",
+      translated: "Bokmål",
     },
     nn: {
-      language: "Norwegian Nynorsk",
-      translated: "Norsk nynorsk",
+      language: "Norwegian",
+      translated: "Nynorsk nynorsk",
     },
     ii: {
       language: "Nuosu",
