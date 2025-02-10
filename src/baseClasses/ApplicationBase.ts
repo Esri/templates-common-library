@@ -317,6 +317,11 @@ export default class ApplicationBase {
         const portal = portalResponse ? portalResponse.value : null;
         this.portal = portal;
 
+        // portal banner setup
+        if (portal.isPortal) {
+          _handlePortalBanner(applicationItem);
+        }
+
         // Detect IE 11 and older
         this.isIE = this._detectIE();
         this.locale = defineLocale({ portal, config: this.config });
@@ -962,4 +967,70 @@ export default class ApplicationBase {
     const testCase = localStorage.getItem("localtestcase");
     return testCase ? JSON.parse(testCase) : null;
   }
+}
+
+function _handlePortalBanner(portalItem: __esri.PortalItem) {
+  const bannerTop = document.createElement(
+    "arcgis-portal-classification-banner"
+  );
+  bannerTop.setAttribute("id", "top");
+  const bannerBottom = document.createElement(
+    "arcgis-portal-classification-banner"
+  );
+  bannerBottom.setAttribute("id", "bottom");
+  document.body.prepend(bannerTop);
+  document.body.appendChild(bannerBottom);
+
+  // create calcite-buttons and append them to each of the banners shadow dom
+  const topButton = document.createElement("calcite-button");
+  topButton.setAttribute("appearance", "outline-fill");
+  topButton.setAttribute("kind", "neutral");
+  topButton.setAttribute("icon-start", "x");
+  topButton.onclick = () => {
+    bannerTop.classList.add("hide-top");
+  };
+
+  const bottomButton = document.createElement("calcite-button");
+  bottomButton.setAttribute("appearance", "outline-fill");
+  bottomButton.setAttribute("kind", "neutral");
+  bottomButton.setAttribute("icon-start", "x");
+  bottomButton.onclick = () => {
+    bannerBottom.classList.add("hide-bottom");
+  };
+
+  const style = document.createElement("style");
+  style.innerHTML = `
+    arcgis-portal-classification-banner{
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+    }
+    arcgis-portal-classification-banner#top {
+      top: 0;
+    }
+    arcgis-portal-classification-banner#bottom {
+      bottom: 0;
+    }
+    arcgis-portal-classification-banner.hide-top {
+      transition: top 0.5s ease-in-out;
+      top: -130px !important;
+    }
+    arcgis-portal-classification-banner.hide-bottom {
+      transition: bottom 0.5s ease-in-out;
+      bottom: -130px !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  setTimeout(() => {
+    (bannerTop as any).portalItem = portalItem;
+    (bannerBottom as any).portalItem = portalItem;
+
+    setTimeout(() => {
+      // need to give time for the banners to render before buttons get appended
+      bannerTop.shadowRoot.appendChild(topButton);
+      bannerBottom.shadowRoot.prepend(bottomButton);
+    }, 1000);
+  });
 }
