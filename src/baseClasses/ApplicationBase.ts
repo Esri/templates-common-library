@@ -318,7 +318,7 @@ export default class ApplicationBase {
         this.portal = portal;
 
         // portal banner setup
-        if (portal.isPortal) {
+        if (portal.isPortal && applicationItem) {
           _handlePortalBanner(applicationItem);
         }
 
@@ -970,12 +970,37 @@ export default class ApplicationBase {
 }
 
 function _handlePortalBanner(portalItem: __esri.PortalItem) {
-  _createBanner("top", portalItem);
-  _createBanner("bottom", portalItem);
+  const bannerTop = document.createElement(
+    "arcgis-portal-classification-banner"
+  );
+  bannerTop.setAttribute("id", "top");
+  const bannerBottom = document.createElement(
+    "arcgis-portal-classification-banner"
+  );
+  bannerBottom.setAttribute("id", "bottom");
+  document.body.prepend(bannerTop);
+  document.body.appendChild(bannerBottom);
+
+  // create calcite-buttons and append them to each of the banners shadow dom
+  const topButton = document.createElement("calcite-button");
+  topButton.setAttribute("appearance", "outline-fill");
+  topButton.setAttribute("kind", "neutral");
+  topButton.setAttribute("icon-start", "x");
+  topButton.onclick = () => {
+    bannerTop.classList.add("hide-top");
+  };
+
+  const bottomButton = document.createElement("calcite-button");
+  bottomButton.setAttribute("appearance", "outline-fill");
+  bottomButton.setAttribute("kind", "neutral");
+  bottomButton.setAttribute("icon-start", "x");
+  bottomButton.onclick = () => {
+    bannerBottom.classList.add("hide-bottom");
+  };
 
   const style = document.createElement("style");
   style.innerHTML = `
-    arcgis-portal-classification-banner{
+    arcgis-portal-classification-banner {
       position: fixed;
       left: 0;
       right: 0;
@@ -991,67 +1016,25 @@ function _handlePortalBanner(portalItem: __esri.PortalItem) {
       transition: top 0.5s ease-in-out;
       top: -130px !important;
     }
+    arcgis-portal-classification-banner.hide-top {
+      transition: top 0.5s ease-in-out;
+      top: -130px !important;
+    }
     arcgis-portal-classification-banner.hide-bottom {
       transition: bottom 0.5s ease-in-out;
       bottom: -130px !important;
     }
   `;
   document.head.appendChild(style);
-}
 
-function _createBanner(
-  position: "top" | "bottom",
-  portalItem: __esri.PortalItem
-) {
-  const banner = document.createElement("arcgis-portal-classification-banner");
-  banner.setAttribute("id", position);
-  document.body.appendChild(banner);
+  setTimeout(() => {
+    (bannerTop as any).portalItem = portalItem;
+    (bannerBottom as any).portalItem = portalItem;
 
-  const observer = new MutationObserver(async () => {
-    if (document.body.contains(banner)) {
-      observer.disconnect();
-
-      (banner as any).portalItem = portalItem;
-
-      const closeButton = _createCloseButton(banner, position);
-
-      // wait until the banner is in the shadowDOM before adding the close button
-      const checkBanner = new Promise((res, rej) => {
-        let count = 0;
-        const bannerInterval = setInterval(() => {
-          if (banner.shadowRoot.querySelector(".banner") != null) {
-            clearInterval(bannerInterval);
-            res(true);
-          }
-          if (count > 10) {
-            clearInterval(bannerInterval);
-            rej(false);
-          }
-          count++;
-        }, 100);
-      });
-      await checkBanner;
-
-      if (position === "top") {
-        banner.shadowRoot.appendChild(closeButton);
-      } else {
-        banner.shadowRoot.prepend(closeButton);
-      }
-    }
+    setTimeout(() => {
+      // need to give time for the banners to render before buttons get appended
+      bannerTop.shadowRoot.appendChild(topButton);
+      bannerBottom.shadowRoot.prepend(bottomButton);
+    }, 1000);
   });
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  });
-}
-
-function _createCloseButton(banner: HTMLElement, position: "top" | "bottom") {
-  const button = document.createElement("calcite-button");
-  button.setAttribute("appearance", "outline-fill");
-  button.setAttribute("kind", "neutral");
-  button.setAttribute("icon-start", "x");
-  button.onclick = () => {
-    banner.classList.add(`hide-${position}`);
-  };
-  return button;
 }
