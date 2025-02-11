@@ -506,6 +506,7 @@ export function addSearch(
     id: uniqueId,
     group,
     mode: "floating",
+    focusTrapDisabled: true,
     collapseTooltip: closeTip,
     expandTooltip: tip,
     expanded: searchOpenAtStart,
