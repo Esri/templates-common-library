@@ -317,6 +317,11 @@ export default class ApplicationBase {
         const portal = portalResponse ? portalResponse.value : null;
         this.portal = portal;
 
+        // portal banner setup
+        if (portal.isPortal) {
+          _handlePortalBanner(applicationItem);
+        }
+
         // Detect IE 11 and older
         this.isIE = this._detectIE();
         this.locale = defineLocale({ portal, config: this.config });
@@ -962,4 +967,91 @@ export default class ApplicationBase {
     const testCase = localStorage.getItem("localtestcase");
     return testCase ? JSON.parse(testCase) : null;
   }
+}
+
+function _handlePortalBanner(portalItem: __esri.PortalItem) {
+  _createBanner("top", portalItem);
+  _createBanner("bottom", portalItem);
+
+  const style = document.createElement("style");
+  style.innerHTML = `
+    arcgis-portal-classification-banner{
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+    }
+    arcgis-portal-classification-banner#top {
+      top: 0;
+    }
+    arcgis-portal-classification-banner#bottom {
+      bottom: 0;
+    }
+    arcgis-portal-classification-banner.hide-top {
+      transition: top 0.5s ease-in-out;
+      top: -130px !important;
+    }
+    arcgis-portal-classification-banner.hide-bottom {
+      transition: bottom 0.5s ease-in-out;
+      bottom: -130px !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function _createBanner(
+  position: "top" | "bottom",
+  portalItem: __esri.PortalItem
+) {
+  const banner = document.createElement("arcgis-portal-classification-banner");
+  banner.setAttribute("id", position);
+  document.body.appendChild(banner);
+
+  const observer = new MutationObserver(async () => {
+    if (document.body.contains(banner)) {
+      observer.disconnect();
+
+      (banner as any).portalItem = portalItem;
+
+      const closeButton = _createCloseButton(banner, position);
+
+      // wait until the banner is in the shadowDOM before adding the close button
+      const checkBanner = new Promise((res, rej) => {
+        let count = 0;
+        const bannerInterval = setInterval(() => {
+          if (banner.shadowRoot.querySelector(".banner") != null) {
+            clearInterval(bannerInterval);
+            res(true);
+          }
+          if (count > 10) {
+            clearInterval(bannerInterval);
+            rej(false);
+          }
+          count++;
+        }, 100);
+      });
+      await checkBanner;
+
+      if (position === "top") {
+        banner.shadowRoot.appendChild(closeButton);
+      } else {
+        banner.shadowRoot.prepend(closeButton);
+      }
+    }
+  });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+}
+
+function _createCloseButton(banner: HTMLElement, position: "top" | "bottom") {
+  const button = document.createElement("calcite-button");
+  button.setAttribute("appearance", "outline-fill");
+  button.setAttribute("kind", "neutral");
+  button.setAttribute("icon-start", "x");
+  button.onclick = () => {
+    banner.classList.add(`hide-${position}`);
+  };
+  return button;
 }
