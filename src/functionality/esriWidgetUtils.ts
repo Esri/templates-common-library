@@ -510,7 +510,7 @@ export function addSearch(
     collapseTooltip: closeTip,
     expandTooltip: tip,
     expanded: searchOpenAtStart,
-  });
+  } as any);
   view.ui.add(node, searchPosition);
   handleSearchExtent(config, node.content as __esri.widgetsSearch);
 }
