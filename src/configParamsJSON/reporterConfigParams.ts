@@ -252,12 +252,6 @@ export default {
               "id": "commentButtonText",
               "defaultValue": "Comment",
               "express": true
-            },
-            {
-              "type": "setting",
-              "id": "submitNewReportsMessage",
-              "defaultValue": "Submit new reports below",
-              "express": true
             }
           ]
         },
