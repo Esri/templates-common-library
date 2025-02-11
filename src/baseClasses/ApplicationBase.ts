@@ -975,7 +975,7 @@ function _handlePortalBanner(portalItem: __esri.PortalItem) {
 
   const style = document.createElement("style");
   style.innerHTML = `
-    arcgis-portal-classification-banner {
+    arcgis-portal-classification-banner{
       position: fixed;
       left: 0;
       right: 0;
