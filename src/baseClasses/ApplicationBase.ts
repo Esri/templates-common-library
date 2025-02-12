@@ -318,7 +318,7 @@ export default class ApplicationBase {
         this.portal = portal;
 
         // portal banner setup
-        if (portal.isPortal) {
+        if (portal.isPortal && applicationItem) {
           _handlePortalBanner(applicationItem);
         }
 
