@@ -222,6 +222,7 @@ export default class LanguageSwitcher extends Widget {
           const config = {
             id: NODE_ID,
             content: this,
+            focusTrapDisabled: true,
             expandIcon: languageSwitcherConfig?.icon ?? Defaults.Icon,
             expanded: languageSwitcherOpenAtStart,
             view: this.view,
@@ -231,6 +232,7 @@ export default class LanguageSwitcher extends Widget {
           if (this.collapseTooltip)
             config.collapseTooltip = this.collapseTooltip;
           if (this.expandGroup) config.group = this.expandGroup;
+
           const expand = new Expand(config) as __esri.Expand;
           this.setupAutoUpdateStrings(expand);
           this.view.ui.add(
