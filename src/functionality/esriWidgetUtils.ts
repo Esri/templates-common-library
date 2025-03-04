@@ -803,7 +803,7 @@ export async function addLanguageSwitcher(
       id: uniqueId,
       mode: "floating",
       focusTrapDisabled: true,
-    });
+    } as any);
     view.ui.add(node, languageSwitcherPosition);
   }
   node.expandTooltip = tip;
