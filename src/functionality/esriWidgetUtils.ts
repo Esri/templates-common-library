@@ -802,6 +802,7 @@ export async function addLanguageSwitcher(
       content: container,
       id: uniqueId,
       mode: "floating",
+      focusTrapDisabled: true,
     });
     view.ui.add(node, languageSwitcherPosition);
   }
