@@ -127,7 +127,7 @@ export function handleExtentSelector(
     const isMapAreaOn = mapArea == null ? true : mapArea;
     if (isMapAreaOn && extentSelector && extentSelectorConfig) {
       const { constraints, mapRotation } = extentSelectorConfig;
-      const tempConstraints: __esri.MapViewConstraints = {
+      const tempConstraints: __esri.View2DConstraints = {
         ...constraints,
         geometry: fromJSON(constraints?.geometry)?.extent
       };
@@ -171,7 +171,7 @@ function handleExtentSelectorLVFilter(
 
   if (isMapAreaOn && extentSelector && extentSelectorConfig != null) {
     const { constraints, mapRotation } = extentSelectorConfig;
-    const tempConstraints: __esri.MapViewConstraints = {
+    const tempConstraints: __esri.View2DConstraints = {
       ...constraints,
       geometry: fromJSON(constraints?.geometry)?.extent
     };
