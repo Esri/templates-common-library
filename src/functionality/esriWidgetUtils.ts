@@ -42,6 +42,22 @@ interface esriSceneWidgetProps {
 }
 
 /**
+ * Enforces deprecated widget property rules
+ * @param config - ConfigSettings Object
+ * @param keys
+ */
+export function handleDeprecatedProps(config: any): void {
+  const { screenshot, screenshotPosition, exportToPDF } = config || {};
+  if (screenshot && !exportToPDF) {
+    // Screenshot is now deprecated - https://devtopia.esri.com/WebGIS/arcgis-template-configuration/issues/5063
+    // Will show exportToPDF instead for apps which have not had their values updated via the config panel
+    config.screenshot = false;
+    config.exportToPDF = true;
+    config.exportToPDFPosition = screenshotPosition;
+  }
+}
+
+/**
  * Watch for changes in home, homePosition, mapArea, mapAreaConfig
  */
 export function addHome(
@@ -501,10 +517,11 @@ export function addSearch(
     id: uniqueId,
     group,
     mode: "floating",
+    focusTrapDisabled: true,
     collapseTooltip: closeTip,
     expandTooltip: tip,
     expanded: searchOpenAtStart,
-  });
+  } as any);
   view.ui.add(node, searchPosition);
   handleSearchExtent(config, node.content as __esri.widgetsSearch);
 }
@@ -796,7 +813,8 @@ export async function addLanguageSwitcher(
       content: container,
       id: uniqueId,
       mode: "floating",
-    });
+      focusTrapDisabled: true,
+    } as any);
     view.ui.add(node, languageSwitcherPosition);
   }
   node.expandTooltip = tip;

@@ -15,15 +15,15 @@ export default {
               "config": {
                 "branches": [
                   ["header", "descOpenAtStart"],
-                  ["descOpenAtStart"],
-                  ["accordionSize"]
+                  ["header", "descOpenAtStart"],
+                  ["header", "accordionSize"]
                 ]
               },
               "content": [
                 {
                   "type": "setting",
                   "id": "header",
-                  "defaultValue": false,
+                  "defaultValue": true,
                   "express": true
                 },
                 {
@@ -85,7 +85,7 @@ export default {
                       "type": "setting",
                       "id": "splashTitle",
                       "defaultValue": "",
-                      "express": false
+                      "express": true
                     },
                     {
                       "type": "setting",

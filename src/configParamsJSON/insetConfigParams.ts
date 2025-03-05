@@ -81,7 +81,7 @@ export default {
                       "type": "setting",
                       "id": "splashTitle",
                       "defaultValue": "",
-                      "express": false
+                      "express": true
                     },
                     {
                       "type": "setting",
@@ -550,14 +550,6 @@ export default {
               "id": "languageSwitcherConfig",
               "express": true,
               "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "languageSwitcherPosition",
-              "defaultValue": {
-                "position": "top-right",
-                "index": 1
-              }
             }
           ]
         }

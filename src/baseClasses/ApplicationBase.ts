@@ -31,8 +31,10 @@ import Portal from "esri/portal/Portal";
 import PortalItem from "esri/portal/PortalItem";
 import PortalQueryParams from "esri/portal/PortalQueryParams";
 import esriConfig from "esri/config";
-import { defineLocale } from "../structuralFunctionality/locale";
 import { prefersRTL } from "esri/intl";
+
+import { defineLocale } from "../structuralFunctionality/locale";
+import { handleDeprecatedProps } from "../functionality/esriWidgetUtils";
 
 import {
   generateDefaultValuesObj,
@@ -281,16 +283,18 @@ export default class ApplicationBase {
           applicationItem.access !== "public"
         ) {
           // do we have permission to access app
-          if (
-            appAccess &&
-            appAccess.name &&
-            appAccess.name === "identity-manager:not-authorized"
-          ) {
+          if (appAccess?.details?.messageCode === "OAUTH_0070") {
+            return Promise.reject(appAccess.details);
+          } else if (appAccess?.name === "identity-manager:not-authorized") {
             //identity-manager:not-authorized, identity-manager:not-authenticated, identity-manager:invalid-request
             return Promise.reject(appAccess.name);
           }
         } else if (applicationItemResponse.error) {
-          return Promise.reject(applicationItemResponse.error);
+          return Promise.reject(
+            appAccess?.details?.messageCode === "OAUTH_0070"
+              ? appAccess.details
+              : applicationItemResponse.error
+          );
         }
         // user not signed in and contentOrigin is other.
         // If app is within an iframe ignore all of this
@@ -312,6 +316,11 @@ export default class ApplicationBase {
 
         const portal = portalResponse ? portalResponse.value : null;
         this.portal = portal;
+
+        // portal banner setup
+        if (portal.isPortal && applicationItem) {
+          _handlePortalBanner(applicationItem);
+        }
 
         // Detect IE 11 and older
         this.isIE = this._detectIE();
@@ -340,6 +349,8 @@ export default class ApplicationBase {
           url: urlParams,
           application: applicationConfig,
         });
+
+        handleDeprecatedProps(this.config);
 
         delete this.config.localDefaultValues;
 
@@ -956,4 +967,35 @@ export default class ApplicationBase {
     const testCase = localStorage.getItem("localtestcase");
     return testCase ? JSON.parse(testCase) : null;
   }
+}
+
+function _handlePortalBanner(portalItem: __esri.PortalItem) {
+  document.body.classList.add("portal-banners");
+  _createBanner("top", portalItem);
+  _createBanner("bottom", portalItem);
+}
+
+function _createBanner(
+  position: "top" | "bottom",
+  portalItem: __esri.PortalItem
+) {
+  const banner = document.createElement("arcgis-portal-classification-banner");
+  banner.setAttribute("id", `portal-banner-${position}`);
+  if(position === "bottom"){
+    document.body.appendChild(banner);
+  }else{
+    document.body.insertBefore(banner, document.body.firstChild);
+  }
+
+  const observer = new MutationObserver(async () => {
+    if (document.body.contains(banner)) {
+      observer.disconnect();
+      (banner as any).portalItem = portalItem;
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
 }

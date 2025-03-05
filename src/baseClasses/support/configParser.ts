@@ -31,7 +31,7 @@ export function parseConfig(config: ApplicationConfig): ApplicationConfig {
 
 
 export interface IExtentSelectorOutput {
-    constraints: __esri.MapViewConstraints;
+    constraints: __esri.View2DConstraints;
     mapRotation: number;
 }
 

@@ -415,22 +415,6 @@ export default {
                 },
                 {
                   "type": "setting",
-                  "id": "screenshot",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "screenshotPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 0
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "setting",
                   "id": "exportCSV",
                   "express": false,
                   "defaultValue": false
