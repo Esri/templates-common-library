@@ -91,7 +91,7 @@ export default {
                       "type": "setting",
                       "id": "splashTitle",
                       "defaultValue": "",
-                      "express": false
+                      "express": true
                     },
                     {
                       "type": "setting",
@@ -203,6 +203,18 @@ export default {
               "type": "setting",
               "id": "showUserImageInCommentsList",
               "defaultValue": false,
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "filterByExtent",
+              "defaultValue": false,
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "sortOption",
+              "defaultValue": "newest",
               "express": true
             }
           ]

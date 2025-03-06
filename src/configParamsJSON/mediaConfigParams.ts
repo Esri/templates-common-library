@@ -739,22 +739,6 @@ export default {
                       }
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "screenshot",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "screenshotPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 0
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -801,11 +785,13 @@ export default {
               "type": "setting",
               "id": "swipe",
               "defaultValue": false,
+              "express": true,
               "content": [
                 {
                   "type": "setting",
                   "id": "swipeDirection",
-                  "defaultValue": "horizontal"
+                  "defaultValue": "horizontal",
+                  "express": true
                 },
                 {
                   "type": "setting",
@@ -823,7 +809,7 @@ export default {
                       "type": "setting",
                       "id": "swipeConfigurationOpenAtStart",
                       "defaultValue": false,
-                      "express": false
+                      "express": true
                     },
                     {
                       "type": "setting",
@@ -838,6 +824,7 @@ export default {
                 {
                   "type": "setting",
                   "id": "swipeLeadingLayers",
+                  "express": true,
                   "config": {
                     "layerSelectionMode": "multiple",
                     "supportedLayerTypes": [
@@ -867,6 +854,7 @@ export default {
                 {
                   "type": "setting",
                   "id": "swipeTrailingLayers",
+                  "express": true,
                   "config": {
                     "layerSelectionMode": "multiple",
                     "supportedLayerTypes": [

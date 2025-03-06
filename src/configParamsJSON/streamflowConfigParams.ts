@@ -221,7 +221,9 @@ export default {
             "branches": []
           },
           "content": [],
-          "defaultValue": "global"
+          "defaultValue": {
+            "branchValue": "global"
+          }
         }
       ]
     },

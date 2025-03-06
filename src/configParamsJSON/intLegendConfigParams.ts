@@ -556,46 +556,6 @@ export default {
                       }
                     }
                   ]
-                },
-                {
-                  "type": "setting",
-                  "id": "screenshot",
-                  "express": false,
-                  "defaultValue": false,
-                  "content": [
-                    {
-                      "type": "setting",
-                      "id": "screenshotPosition",
-                      "defaultValue": {
-                        "position": "top-left",
-                        "index": 3
-                      }
-                    },
-                    {
-                      "type": "setting",
-                      "id": "enableLegendOption",
-                      "defaultValue": true,
-                      "content": [
-                        {
-                          "type": "setting",
-                          "id": "includeLegendInScreenshot",
-                          "defaultValue": true
-                        }
-                      ]
-                    },
-                    {
-                      "type": "setting",
-                      "id": "enablePopupOption",
-                      "defaultValue": false,
-                      "content": [
-                        {
-                          "type": "setting",
-                          "id": "includePopupInScreenshot",
-                          "defaultValue": false
-                        }
-                      ]
-                    }
-                  ]
                 }
               ]
             }

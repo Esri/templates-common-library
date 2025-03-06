@@ -5,6 +5,7 @@ import {
 } from "../baseClasses/support/domHelper";
 import { esriWidgetProps } from "../interfaces/commonInterfaces";
 import { LANGUAGE_DATA } from "./language-switcher/support/constants";
+
 export function defineLocale(props: esriWidgetProps) {
   const { config, portal } = props;
   let { locale } = config;
