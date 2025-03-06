@@ -21,6 +21,7 @@ import FullScreen from "esri/widgets/Fullscreen";
 import Home from "esri/widgets/Home";
 import LayerList from "esri/widgets/LayerList";
 import Legend from "esri/widgets/Legend";
+import LineOfSight from "esri/widgets/LineOfSight";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
 import Slice from "esri/widgets/Slice";
@@ -1102,5 +1103,55 @@ export async function addSlice(props: esriSceneWidgetProps) {
     });
 
     view.ui.add(sliceExpand, slicePosition);
+  }
+}
+
+export async function addLineOfSight(props: esriSceneWidgetProps) {
+  if (!LineOfSight) return;
+  const { view, config, commonMessages, propertyName } = props;
+  const { lineOfSight, lineOfSightPosition, lineOfSightOpenAtStart } = config;
+
+  const expandId = "esri-line-of-sightExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+
+  if (!lineOfSight) {
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  // move the node if it exists
+  const group = getPosition(lineOfSightPosition);
+  const expanded = lineOfSightOpenAtStart && !containsExpandedComponent(group, view);
+  const tip = commonMessages?.tools?.los;
+
+  if ((propertyName === "lineOfSightPosition" || propertyName === "lineOfSightOpenAtStart") && expandNode) {
+    if (propertyName === "lineOfSightOpenAtStart") {
+      expanded ? expandNode.expand() : expandNode.collapse();
+    }
+
+    if (propertyName === "lineOfSightPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, lineOfSightPosition);
+    }
+  } else if (propertyName === "lineOfSight") {
+    const content = new LineOfSight({
+      view
+    });
+
+    const lineOfSightExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      expandIcon: "line-of-sight",
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      view,
+      expanded
+    });
+
+    view.ui.add(lineOfSightExpand, lineOfSightPosition);
   }
 }
