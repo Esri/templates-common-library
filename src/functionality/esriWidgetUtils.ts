@@ -24,12 +24,14 @@ import Legend from "esri/widgets/Legend";
 import LineOfSight from "esri/widgets/LineOfSight";
 import Locate from "esri/widgets/Locate";
 import Scalebar from "esri/widgets/ScaleBar";
+import ShadowCast from "esri/widgets/ShadowCast";
 import Slice from "esri/widgets/Slice";
 import Viewpoint from "esri/Viewpoint";
 import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
 import SlicePanel from "../structuralFunctionality/widgets/slice/SlicePanel";
+import "@esri/calcite-components";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
@@ -1153,5 +1155,83 @@ export async function addLineOfSight(props: esriSceneWidgetProps) {
     });
 
     view.ui.add(lineOfSightExpand, lineOfSightPosition);
+  }
+}
+
+export async function addShadowCast(props: esriSceneWidgetProps) {
+  if (!ShadowCast) return;
+  const { view, config, commonMessages, propertyName } = props;
+  const { shadowCastOpenAtStart, shadowCast, shadowCastPosition } = config;
+
+  const expandId = "esri-shadow-castExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+  if (!shadowCast) {
+    const btn = document.getElementById("clearShadows");
+    btn?.click();
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  // move the node if it exists
+  const group = getPosition(shadowCastPosition);
+  const expanded = shadowCastOpenAtStart && !containsExpandedComponent(group, view);
+  const tip = commonMessages?.tools?.shadowCast;
+
+  if (propertyName === "shadowCastPosition" && expandNode) {
+    if (propertyName === "shadowCastPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip
+      expandNode.group = group;
+      view.ui.move(expandNode, shadowCastPosition);
+    }
+  } else if (propertyName === "shadowCastOpenAtStart" && expandNode) {
+    expandNode.expanded = expanded;
+  } else if (propertyName === "shadowCast") {
+    const content = document.createElement("div");
+
+    const shadowCast = new ShadowCast({ view, container: document.createElement("div") });
+    content.append(shadowCast.container);
+    const buttonContainer = document.createElement("div");
+    content.append(buttonContainer);
+    const clearButton = document.createElement("calcite-button") as any;
+    clearButton.id = "clearShadows";
+    clearButton.classList.add("esri-button");
+    clearButton.classList.add("esri-themed-button");
+
+    clearButton.appearance = "outline-fill";
+    clearButton.innerHTML = commonMessages?.clear;
+    clearButton.addEventListener("click", () => {
+      // how do we remove shadows?
+      shadowCast.viewModel.stop();
+    });
+    const applyShadow = document.createElement("calcite-button") as any
+    applyShadow.classList.add("esri-button");
+    applyShadow.classList.add("esri-themed-button");
+
+    applyShadow.appearance = "solid";
+    applyShadow.innerHTML = commonMessages?.applyAnalysis;
+    applyShadow.addEventListener("click", () => {
+      // how do we remove shadows?
+      shadowCast.viewModel.start();
+      view.extent = view.extent;
+    });
+
+    buttonContainer.append(applyShadow);
+    buttonContainer.append(clearButton);
+    shadowCast.viewModel.stop();
+
+    const shadowCastExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      expandIcon: "measure-building-height-shadow",
+      view,
+      expanded
+    });
+
+    view.ui.add(shadowCastExpand, shadowCastPosition);
   }
 }
