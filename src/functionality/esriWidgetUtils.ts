@@ -31,6 +31,7 @@ import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
 import SlicePanel from "../structuralFunctionality/widgets/slice/SlicePanel";
+import ViewshedPanel from "../structuralFunctionality/widgets/viewshed/ViewshedPanel";
 import "@esri/calcite-components/dist/components/calcite-button";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
@@ -1233,5 +1234,54 @@ export async function addShadowCast(props: esriSceneWidgetProps) {
     });
 
     view.ui.add(shadowCastExpand, shadowCastPosition);
+  }
+}
+
+export async function addViewshed(props: esriSceneWidgetProps) {
+  const { view, config, commonMessages, propertyName } = props;
+  const sceneView = view as __esri.SceneView;
+  const { viewshed, viewshedPosition } = config;
+
+  const expandId = "esri-viewshedExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+  if (!viewshed) {
+    if (expandNode) {
+      const panel = expandNode?.content as any;
+      if (panel) panel.destroy();
+      view.ui.remove(expandNode);
+    }
+    return;
+  }
+
+  // move the node if it exists
+  const group = getPosition(viewshedPosition);
+  const expanded = !containsExpandedComponent(group, view);
+  const tip = commonMessages?.tools?.viewshed.expand;
+
+  if (propertyName === "viewshedPosition" && expandNode) {
+    if (propertyName === "viewshedPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, viewshedPosition);
+    }
+  } else if (propertyName === "viewshed") {
+    const content = new ViewshedPanel({
+      config: config,
+      view: sceneView
+    });
+
+    const viewshedExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      expandIcon: "viewshed",
+      mode: "auto",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      view
+    });
+
+    view.ui.add(viewshedExpand, viewshedPosition);
   }
 }
