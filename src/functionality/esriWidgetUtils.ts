@@ -31,7 +31,7 @@ import Weather from "esri/widgets/Weather";
 import Zoom from "esri/widgets/Zoom";
 
 import SlicePanel from "../structuralFunctionality/widgets/slice/SlicePanel";
-import "@esri/calcite-components";
+import "@esri/calcite-components/dist/components/calcite-button";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
