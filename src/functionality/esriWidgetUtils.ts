@@ -719,30 +719,62 @@ export async function addMeasurementTools(
 /**
  * Watch for changes in floorFilter, floorFilterPosition
  */
-export function addFloorFilter(
-  config: ApplicationConfig,
-  view: __esri.MapView | __esri.SceneView
-): void {
+export function addFloorFilter(props: esriSceneWidgetProps): void {
+  if (!FloorFilter) return;
+  const { config, view, commonMessages, propertyName } = props;
   const { floorFilter, floorFilterPosition } = config;
-  const uniqueId = "esri-floor-filter";
-  const node = view.ui.find(uniqueId) as __esri.FloorFilter;
+
+  const expandId = "esri-floor-filterExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+  const widgetId = "esri-floor-filter";
+
+  /*** TODO: (Joe) - confirm whether or not this widget should be within an expand. If not...
+   * 1. get a reference to the widgetNode
+   *    const widgetNode = view.ui.find(widgetId) as FloorFilter;
+   * 2. when the widgetNode is already exists on load, remove it from the view.ui
+   *    if (widgetNode) view.ui.remove(widgetNode);
+   * 3. the widget should be moved to the correct position in the view.ui
+   *    view.ui.move(widgetNode, floorFilterPosition);
+   * 4. the widget should be added to the view.ui
+   *    view.ui.add(widgetNode, floorFilterPosition);
+  */
+
 
   if (!floorFilter) {
-    if (node) view.ui.remove(node);
+    if (expandNode) view.ui.remove(expandNode);
     return;
   }
 
-  if (node) {
-    view.ui.move(node, floorFilterPosition);
-  } else {
-    view.ui.add(
-      new FloorFilter({
-        id: uniqueId,
-        view,
-        headingLevel: 3,
-      }),
-      floorFilterPosition
-    );
+  // move the node if it exists
+  const group = getPosition(floorFilterPosition);
+  const expanded = !containsExpandedComponent(group, view);
+  const tip = commonMessages?.tools?.floorFilter;
+
+  if (propertyName === "floorFilterPosition" && expandNode) {
+    if (propertyName === "floorFilterPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, floorFilterPosition);
+    }
+  } else if (propertyName === "floorFilter") {
+    const content = new FloorFilter({
+      id: widgetId,
+      view
+    });
+
+    const floorFilterExpand = new Expand({
+      id: expandId,
+      view,
+      content,
+      mode: "floating",
+      group,
+      collapseTooltip: tip,
+      expandTooltip: tip,
+      expandIcon: "urban-model",
+    });
+
+    view.ui.add(floorFilterExpand, floorFilterPosition);
   }
 }
 
