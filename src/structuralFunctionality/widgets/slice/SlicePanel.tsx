@@ -57,7 +57,16 @@ class SlicePanel extends Widget {
       container
     });
     this.sliceTool.viewModel.tiltEnabled = true;
+
+    watch(
+      () => this?.sliceTool?.viewModel?.state,
+      (state) => {
+        this.state = state;
+      },
+      { initial: true }
+    );
   }
+
   private _handleSliceClear(): void {
     if (!this.sliceTool) {
       return;
