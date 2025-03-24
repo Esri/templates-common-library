@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
     "sourceMap": false,
-    "lib": ["es6", "dom", "scripthost"],
-    "declaration": false,
+    "lib": ["ES6", "DOM", "ScriptHost"],
+    "declaration": true,
     "noImplicitAny": false,
-    "module": "amd",
+    "module": "ESNext",
     "target": "ES2020",
     "outDir": "./dist",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "react",
-    "jsxFactory": "tsx"
+    "jsxFactory": "tsx",
+    "skipLibCheck": true,
   },
-  "files": ["./node_modules/arcgis-js-api/index.d.ts"],
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
   "exclude": ["./node_modules", "./dist", "./distESM", "./tests"]
 }

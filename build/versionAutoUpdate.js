@@ -24,11 +24,11 @@ axios
     
     const amdPackageJson = readDirR("./amd"); 
     await updatePackageJson(amdPackageJson, newVersion, "amd");
-    console.log(`amd package.json updated to ${newVersion}`);
+    console.log(`amd package.json updated to ${newVersion}-amd`);
 
     const esmPackageJson = readDirR("./esm"); 
     await updatePackageJson(esmPackageJson, newVersion, "esm");
-    console.log(`esm package.json updated to ${newVersion}-esm`);
+    console.log(`esm package.json updated to ${newVersion}`);
 
   })
   .catch(error => {
@@ -50,7 +50,7 @@ const updatePackageJson = (files, version, type) => {
   const updateFiles = map(filePath => {
     return fse.readFile(filePath, "utf-8")
       .then(fileTxt => {
-        updatedFile = fileTxt.replace(/\"version\":.*\".*\"/, `"version": "${version}${type === "esm" ? "-esm" : ""}"`);
+        updatedFile = fileTxt.replace(/\"version\":.*\".*\"/, `"version": "${version}${type === "amd" ? "-amd" : ""}"`);
 
         return fse.writeFile(filePath, updatedFile);
       });

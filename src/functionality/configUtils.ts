@@ -1,8 +1,8 @@
-import FeatureFilter from "esri/layers/support/FeatureFilter";
-import { fromJSON } from "esri/geometry/support/jsonUtils";
-import LayerSearchSource from "esri/widgets/Search/LayerSearchSource";
-import Search from "esri/widgets/Search";
-import * as urlUtils from "esri/core/urlUtils";
+import FeatureFilter from "@arcgis/core/layers/support/FeatureFilter";
+import { fromJSON } from "@arcgis/core/geometry/support/jsonUtils";
+import LayerSearchSource from "@arcgis/core/widgets/Search/LayerSearchSource";
+import Search from "@arcgis/core/widgets/Search";
+import * as urlUtils from "@arcgis/core/core/urlUtils";
 
 import {
   ExtentLayerView,

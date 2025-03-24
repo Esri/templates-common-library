@@ -1,4 +1,4 @@
-import { fromJSON } from "esri/geometry/support/jsonUtils";
+import { fromJSON } from "@arcgis/core/geometry/support/jsonUtils";
 import { ApplicationConfig } from "../../interfaces/applicationBase";
 
 /**
@@ -72,7 +72,7 @@ export function _extentSelectorConfigValidate(extentSelectorConfig: IExtentSelec
                     minScale: MIN_SCALE_DEFAULT,
                     maxScale: MAX_SCALE_DEFAULT,
                     rotationEnabled: true
-                },
+                } as __esri.View2DConstraints,
                 mapRotation: 0
             };
         }

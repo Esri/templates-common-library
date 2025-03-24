@@ -20,10 +20,10 @@
   limitations under the License.​
 */
 
-import { whenOnce } from "esri/core/reactiveUtils";
+import { whenOnce } from "@arcgis/core/core/reactiveUtils";
 
-import PortalItem from "esri/portal/PortalItem";
-import * as projection from "esri/geometry/projection";
+import PortalItem from "@arcgis/core/portal/PortalItem";
+import * as projection from "@arcgis/core/geometry/projection";
 
 import {
   CreateMapFromItemOptions,
@@ -41,11 +41,11 @@ import {
   parseLevel,
   parseBasemap,
 } from "./urlUtils";
-import MapView from "esri/views/MapView";
-import SceneView from "esri/views/SceneView";
-import WebMap from "esri/WebMap";
-import WebScene from "esri/WebScene";
-import Search from "esri/widgets/Search";
+import MapView from "@arcgis/core/views/MapView";
+import SceneView from "@arcgis/core/views/SceneView";
+import WebMap from "@arcgis/core/WebMap";
+import WebScene from "@arcgis/core/WebScene";
+import Search from "@arcgis/core/widgets/Search";
 import esri = __esri;
 //--------------------------------------------------------------------------
 //

@@ -1,4 +1,4 @@
-import { registerMessageBundleLoader, onLocaleChange, createJSONLoader, fetchMessageBundle } from "esri/intl";
+import { registerMessageBundleLoader, onLocaleChange, createJSONLoader, fetchMessageBundle } from "@arcgis/core/intl";
 export async function handleT9N(pattern: string | RegExp, base: string, bundleLocation: string) {
 
     registerMessageBundleLoader(

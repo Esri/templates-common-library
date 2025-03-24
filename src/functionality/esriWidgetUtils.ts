@@ -9,20 +9,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.​
 
-import { when } from "esri/core/reactiveUtils";
-import BasemapToggle from "esri/widgets/BasemapToggle";
-import Bookmarks from "esri/widgets/Bookmarks";
-import Compass from "esri/widgets/Compass";
-import Expand from "esri/widgets/Expand";
-import FloorFilter from "esri/widgets/FloorFilter";
-import FullScreen from "esri/widgets/Fullscreen";
-import Home from "esri/widgets/Home";
-import LayerList from "esri/widgets/LayerList";
-import Legend from "esri/widgets/Legend";
-import Locate from "esri/widgets/Locate";
-import Scalebar from "esri/widgets/ScaleBar";
-import Viewpoint from "esri/Viewpoint";
-import Zoom from "esri/widgets/Zoom";
+import { when } from "@arcgis/core/core/reactiveUtils";
+import BasemapToggle from "@arcgis/core/widgets/BasemapToggle";
+import Bookmarks from "@arcgis/core/widgets/Bookmarks";
+import Compass from "@arcgis/core/widgets/Compass";
+import Expand from "@arcgis/core/widgets/Expand";
+import FloorFilter from "@arcgis/core/widgets/FloorFilter";
+import FullScreen from "@arcgis/core/widgets/Fullscreen";
+import Home from "@arcgis/core/widgets/Home";
+import LayerList from "@arcgis/core/widgets/LayerList";
+import Legend from "@arcgis/core/widgets/Legend";
+import Locate from "@arcgis/core/widgets/Locate";
+import Scalebar from "@arcgis/core/widgets/ScaleBar";
+import Viewpoint from "@arcgis/core/Viewpoint";
+import Zoom from "@arcgis/core/widgets/Zoom";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";

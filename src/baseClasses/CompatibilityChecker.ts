@@ -1,5 +1,5 @@
-import Collection from "esri/core/Collection";
-import { eachAlways } from "esri/core/promiseUtils";
+import Collection from "@arcgis/core/core/Collection";
+import { eachAlways } from "@arcgis/core/core/promiseUtils";
 
 // Note: "group" is good enough because there are no Requirements to check for any app templates that function with groups
 export type ResourceForCheck = __esri.WebMap | __esri.WebScene | "group";
@@ -318,16 +318,17 @@ export class CompatibilityChecker {
       let isLayerRendererSupported: boolean = true;
 
       // PROPS SET BY ARCADE
-      const field2 = featureLayer?.renderer?.get("field2");
-      const field3 = featureLayer?.renderer?.get("field3");
-      const fieldDelimiter = featureLayer?.renderer?.get("fieldDelimiter");
+      const renderer = featureLayer?.renderer as __esri.UniqueValueRenderer;
+      const field2 = renderer?.field2;
+      const field3 = renderer?.field3;
+      const fieldDelimiter = renderer?.fieldDelimiter;
       if ((field2 || field3) && fieldDelimiter) {
         isLayerRendererSupported = false;
       }
 
       if (
-        featureLayer?.renderer?.type === "unique-value" ||
-        featureLayer?.renderer?.type === "class-breaks"
+        renderer?.type === "unique-value" ||
+        renderer?.type === "class-breaks"
       ) {
         // CHECK VISUAL VARIABLES for color ramp, size ramp, opacity ramp
         const renderer = featureLayer.renderer as any;
@@ -409,8 +410,8 @@ export class CompatibilityChecker {
     webmap: __esri.WebMap
   ): ERequirementType | null {
     let atLeastOneEditableLayer: boolean = webmap?.allLayers
-      ?.map((layer) => {
-        return layer.get("editingEnabled") as boolean;
+      ?.map((layer: __esri.FeatureLayer) => {
+        return layer.editingEnabled;
       })
       .reduce((acc: boolean, curr: boolean) => {
         return acc || curr;
@@ -460,8 +461,8 @@ export class CompatibilityChecker {
       webmap?.allLayers
         .filter((layer) => layer.type === "feature")
         .some((flayer: __esri.FeatureLayer) => {
-          const flayerWithCharts = flayer.get("charts");
-          return flayerWithCharts;
+          const flayerWithCharts = flayer.charts;
+          return flayerWithCharts?.length > 0;
         }) ||
       webmap?.allTables
         .filter((table) => table.type === "feature")
@@ -491,7 +492,7 @@ export class CompatibilityChecker {
         return !excludeTypes.includes(layer.type);
       })
       .map((layer) => {
-        return layer.get("popupEnabled") as boolean;
+        return "popupEnabled" in layer && layer.popupEnabled;
       })
       .reduce((acc: boolean, curr: boolean) => {
         return acc || curr;
