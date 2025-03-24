@@ -769,6 +769,7 @@ export async function addLanguageSwitcher(
   const closeTip = commonMessages?.tools?.close?.languageSwitcher;
 
   if (node) {
+    node.expandIcon = languageSwitcherConfig?.icon ?? "language";
     const container = node.container as HTMLElement;
     const ls = (await checkForElement(
       container,
