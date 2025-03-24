@@ -49,7 +49,7 @@ class SlicePanel extends Widget {
   @messageBundle("dist/assets/t9n/common")
   messages: any = null;
 
-  sliceTool: __esri.Slice = null;
+  private sliceTool: __esri.Slice = null;
 
   private _createSliceTool(container: string | HTMLElement): void {
     this.sliceTool = new Slice({
@@ -74,7 +74,7 @@ class SlicePanel extends Widget {
 
   render() {
     const { theme } = this.config;
-    let themeClass = theme === "dark" ? "calcite-mode-dark" : "calcite-mode-light";
+    const themeClass = theme === "dark" ? "calcite-mode-dark" : "calcite-mode-light";
 
     return (
       <calcite-panel class={this.classes([theme, CSS.base, themeClass])}>

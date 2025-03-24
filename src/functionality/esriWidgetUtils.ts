@@ -35,6 +35,7 @@ import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
 import ApplicationBase from "../baseClasses/ApplicationBase";
 import { ApplicationConfig } from "../interfaces/applicationBase";
+import Widget from "esri/widgets/Widget";
 
 interface esriSceneWidgetProps {
   config: ApplicationConfig;
@@ -1061,7 +1062,7 @@ export async function addSlice(props: esriSceneWidgetProps) {
   const expandNode = view.ui.find(expandId) as __esri.Expand;
   if (!slice) {
     if (expandNode) {
-      const slicePanel = expandNode?.content as any;
+      const slicePanel = expandNode?.content as Widget;
       if (slicePanel) slicePanel.destroy();
       view.ui.remove(expandNode);
     }
