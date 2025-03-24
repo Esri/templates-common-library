@@ -2,8 +2,8 @@
   "name": "templates-common-library",
   "description": "Contains reusable utilities for all ArcGIS Instant apps",
   "scripts": {
-    "build:amd": "tsc -p ./tsconfig.amd.json && npm run generateTypes:amd  && node ./build/amdBuild.js && npm run filesCopy:amd",
-    "build:esm": "tsc && npm run filesCopy:esm",
+    "build:amd": "tsc -p ./tsconfig.amd.json && npm run generateTypes:amd && node ./build/amdBuild.js && npm run filesCopy:amd",
+    "build:esm": "tsc && node ./build/esmBuild.js && npm run filesCopy:esm",
     "build:test": "tsc -p ./tests/tsconfig.tests.json",
     "watch:amd": "tsc --watch",
     "watch:tests": "tsc -p ./tests/tsconfig.tests.json --watch",
