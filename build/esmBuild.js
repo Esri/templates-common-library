@@ -35,5 +35,5 @@ const updateFiles = (files) => {
 
 const files = readDirR("./dist"); 
 updateFiles(files).then(()=>{
-  console.log("AMD string replacement finished");
+  console.log("ESM string replacement finished");
 });
