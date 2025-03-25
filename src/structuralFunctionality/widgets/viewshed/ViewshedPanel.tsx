@@ -135,8 +135,6 @@ class ViewshedPanel extends Widget {
     }
     this.state = "disabled";
   }
-
-  destroy() {}
 }
 
 export default ViewshedPanel;
