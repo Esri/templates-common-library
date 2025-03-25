@@ -17,11 +17,11 @@
 
 import { subclass, property } from "esri/core/accessorSupport/decorators";
 import Widget from "esri/widgets/Widget";
-import { ApplicationConfig  } from "../../../interfaces/applicationBase";//AppConfig from "../ConfigurationSettings";
-
+import { ApplicationConfig } from "../../../interfaces/applicationBase";
 import { tsx, messageBundle } from "esri/widgets/support/widget";
 import Viewshed from "esri/analysis/Viewshed";
 import ViewshedAnalysis from "esri/analysis/ViewshedAnalysis";
+import ViewshedAnalysisView3D from "esri/views/3d/analysis/ViewshedAnalysisView3D";
 
 interface ViewshedPanelProps extends __esri.WidgetProperties {
   config: any;
@@ -29,7 +29,11 @@ interface ViewshedPanelProps extends __esri.WidgetProperties {
 }
 
 const CSS = {
-  base: "viewshed-panel"
+  base: "viewshed-panel",
+  component: "viewshed-component",
+  esriButton: "esri-button",
+  esriSecondaryButton: "esri-button--secondary",
+  viewshedButton: "viewshed-button"
 };
 
 @subclass("ViewshedPanel")
@@ -49,18 +53,20 @@ class ViewshedPanel extends Widget {
 
   @property()
   rootNode: any = null;
+
   @property()
-  viewshedAnalysisView: any;
+  viewshedAnalysisView: ViewshedAnalysisView3D;
 
   @property()
   viewshedAnalysis: ViewshedAnalysis;
 
   @property()
-  viewshed: any;
+  viewshed: Viewshed;
 
   constructor(params: ViewshedPanelProps) {
     super(params);
   }
+
   postInitialize(): void {
     this?.view?.when(() => {
       // Create the viewshed shape.
@@ -76,15 +82,16 @@ class ViewshedPanel extends Widget {
       this.view.analyses.add(this.viewshedAnalysis);
     });
   }
+
   render() {
     const { theme } = this.config;
-    let themeClass = theme === "dark" ? "calcite-mode-dark" : "calcite-mode-light";
+    const themeClass = theme === "dark" ? "calcite-mode-dark" : "calcite-mode-light";
 
     return (
-      <div class={this.classes([theme, CSS.base, themeClass, "viewshed-component"])}>
+      <div class={this.classes([theme, CSS.base, themeClass, CSS.component])}>
         <calcite-block open>
           <calcite-button
-            class="esri-button esri-button--secondary viewshed-button"
+            class={this.classes([CSS.esriButton, CSS.esriSecondaryButton, CSS.viewshedButton])}
             onclick={this._createViewshed}
             bind={this}
             theme={theme}
@@ -95,7 +102,7 @@ class ViewshedPanel extends Widget {
             <div slot="message">{this?.messages?.tools?.viewshed?.instructions}</div>
           </calcite-notice>
           <calcite-button
-            class="esri-button esri-button--secondary viewshed-button"
+            class={this.classes([CSS.esriButton, CSS.esriSecondaryButton, CSS.viewshedButton])}
             disabled={this.state === "active" ? false : true}
             onclick={this._handleViewshedClear}
             bind={this}
@@ -107,7 +114,8 @@ class ViewshedPanel extends Widget {
       </div>
     );
   }
-  async _createViewshed() {
+
+  private async _createViewshed() {
     if (!this.viewshedAnalysisView) {
       this.viewshedAnalysisView = await this?.view.whenAnalysisView(this?.viewshedAnalysis);
       this.viewshedAnalysisView.interactive = true;
@@ -116,7 +124,8 @@ class ViewshedPanel extends Widget {
     this.viewshedAnalysisView.createViewsheds();
     this.state = "active";
   }
-  _handleViewshedClear() {
+
+  private _handleViewshedClear() {
     if (this?.viewshedAnalysis?.viewsheds?.length > 0) {
       const views = this.viewshedAnalysis.viewsheds;
       views.removeAll();
@@ -126,6 +135,7 @@ class ViewshedPanel extends Widget {
     }
     this.state = "disabled";
   }
+
   destroy() {}
 }
 
