@@ -728,18 +728,6 @@ export function addFloorFilter(props: esriSceneWidgetProps): void {
   const expandNode = view.ui.find(expandId) as __esri.Expand;
   const widgetId = "esri-floor-filter";
 
-  /*** TODO: (Joe) - confirm whether or not this widget should be within an expand. If not...
-   * 1. get a reference to the widgetNode
-   *    const widgetNode = view.ui.find(widgetId) as FloorFilter;
-   * 2. when the widgetNode is already exists on load, remove it from the view.ui
-   *    if (widgetNode) view.ui.remove(widgetNode);
-   * 3. the widget should be moved to the correct position in the view.ui
-   *    view.ui.move(widgetNode, floorFilterPosition);
-   * 4. the widget should be added to the view.ui
-   *    view.ui.add(widgetNode, floorFilterPosition);
-  */
-
-
   if (!floorFilter) {
     if (expandNode) view.ui.remove(expandNode);
     return;
@@ -747,7 +735,6 @@ export function addFloorFilter(props: esriSceneWidgetProps): void {
 
   // move the node if it exists
   const group = getPosition(floorFilterPosition);
-  const expanded = !containsExpandedComponent(group, view);
   const tip = commonMessages?.tools?.floorFilter;
 
   if (propertyName === "floorFilterPosition" && expandNode) {
@@ -1234,8 +1221,7 @@ export function addShadowCast(props: esriSceneWidgetProps) {
     content.append(buttonContainer);
     const clearButton = document.createElement("calcite-button") as any;
     clearButton.id = "clearShadows";
-    clearButton.classList.add("esri-button");
-    clearButton.classList.add("esri-themed-button");
+    clearButton.classList.add("esri-button", "esri-themed-button");
 
     clearButton.appearance = "outline-fill";
     clearButton.innerHTML = commonMessages?.clear;
@@ -1244,8 +1230,7 @@ export function addShadowCast(props: esriSceneWidgetProps) {
       shadowCast.viewModel.stop();
     });
     const applyShadow = document.createElement("calcite-button") as any
-    applyShadow.classList.add("esri-button");
-    applyShadow.classList.add("esri-themed-button");
+    applyShadow.classList.add("esri-button", "esri-themed-button");
 
     applyShadow.appearance = "solid";
     applyShadow.innerHTML = commonMessages?.applyAnalysis;
@@ -1287,7 +1272,7 @@ export function addViewshed(props: esriSceneWidgetProps) {
   const expandNode = view.ui.find(expandId) as __esri.Expand;
   if (!viewshed) {
     if (expandNode) {
-      const panel = expandNode?.content as any;
+      const panel = expandNode?.content as ViewshedPanel;
       if (panel) panel.destroy();
       view.ui.remove(expandNode);
     }
