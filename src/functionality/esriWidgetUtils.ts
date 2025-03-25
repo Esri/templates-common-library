@@ -1179,6 +1179,30 @@ export function addLineOfSight(props: esriSceneWidgetProps) {
   }
 }
 
+function createWidgetActionButton(props: {
+  appearance: string;
+  classes?: string[];
+  id: string;
+  innerHTML: string;
+  onClick: Function;
+}): HTMLButtonElement {
+  const {
+    appearance,
+    classes = ["esri-button", "esri-themed-button"],
+    id,
+    innerHTML,
+    onClick
+  } = props;
+  const button = document.createElement("calcite-button") as any;
+
+  button.id = id;
+  button.classList.add(...classes);
+  button.appearance = appearance;
+  button.innerHTML = innerHTML;
+  button.addEventListener("click", onClick);
+  return button;
+}
+
 /**
  * Watch for changes in shadowCastOpenAtStart, shadowCast, shadowCastPosition
  */
@@ -1211,37 +1235,29 @@ export function addShadowCast(props: esriSceneWidgetProps) {
     expandNode.expanded = expanded;
   } else if (propertyName === "shadowCast") {
     const content = document.createElement("div");
-
     const shadowCast = new ShadowCast({ view, container: document.createElement("div") });
-    content.append(shadowCast.container);
-
     const buttonContainer = document.createElement("div");
-    content.append(buttonContainer);
-
-    // Clear button
-    const clearButton = document.createElement("calcite-button") as any;
-    clearButton.id = "clearShadows";
-    clearButton.classList.add("esri-button", "esri-themed-button");
-
-    clearButton.appearance = "outline-fill";
-    clearButton.innerHTML = commonMessages?.clear;
-    clearButton.addEventListener("click", () => {
-      shadowCast.viewModel.stop();
+    const clearButton: HTMLButtonElement = createWidgetActionButton({
+      appearance: "outline-fill",
+      id: "clearShadows",
+      innerHTML: commonMessages?.clear,
+      onClick: () => {
+        shadowCast.viewModel.stop();
+      }
     });
 
-    // Apply Shadow button
-    const applyShadow = document.createElement("calcite-button") as any
-    applyShadow.classList.add("esri-button", "esri-themed-button");
-
-    applyShadow.appearance = "solid";
-    applyShadow.innerHTML = commonMessages?.applyAnalysis;
-    applyShadow.addEventListener("click", () => {
-      shadowCast.viewModel.start();
-      view.extent = view.extent;
+    const applyShadowButton: HTMLButtonElement = createWidgetActionButton({
+      appearance: "solid",
+      id: "applyShadows",
+      innerHTML: commonMessages?.applyAnalysis,
+      onClick: () => {
+        shadowCast.viewModel.start();
+        view.extent = view.extent;
+      }
     });
 
-    buttonContainer.append(applyShadow);
-    buttonContainer.append(clearButton);
+    content.append(shadowCast.container, buttonContainer);
+    buttonContainer.append(applyShadowButton, clearButton);
     shadowCast.viewModel.stop();
 
     const shadowCastExpand = new Expand({
