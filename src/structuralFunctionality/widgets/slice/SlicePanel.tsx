@@ -47,7 +47,7 @@ class SlicePanel extends Widget {
 
   @property()
   @messageBundle("dist/assets/t9n/common")
-  messages: any = null;
+  messages: { [key: string]: any } = null;
 
   private sliceTool: __esri.Slice = null;
 

@@ -24,7 +24,7 @@ import ViewshedAnalysis from "esri/analysis/ViewshedAnalysis";
 import ViewshedAnalysisView3D from "esri/views/3d/analysis/ViewshedAnalysisView3D";
 
 interface ViewshedPanelProps extends __esri.WidgetProperties {
-  config: any;
+  config: ApplicationConfig;
   view: __esri.SceneView;
 }
 
@@ -49,10 +49,10 @@ class ViewshedPanel extends Widget {
 
   @property()
   @messageBundle("dist/assets/t9n/common")
-  messages: any = null;
+  messages: { [key: string]: any } = null;
 
   @property()
-  rootNode: any = null;
+  rootNode: HTMLElement = null;
 
   @property()
   viewshedAnalysisView: ViewshedAnalysisView3D;
