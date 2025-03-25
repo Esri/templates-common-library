@@ -1,4 +1,4 @@
-// Copyright 2022 Esri
+// Copyright 2025 Esri
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -733,7 +733,6 @@ export function addFloorFilter(props: esriSceneWidgetProps): void {
     return;
   }
 
-  // move the node if it exists
   const group = getPosition(floorFilterPosition);
   const tip = commonMessages?.tools?.floorFilter;
 
@@ -1144,7 +1143,6 @@ export function addLineOfSight(props: esriSceneWidgetProps) {
     return;
   }
 
-  // move the node if it exists
   const group = getPosition(lineOfSightPosition);
   const expanded = lineOfSightOpenAtStart && !containsExpandedComponent(group, view);
   const tip = commonMessages?.tools?.los;
@@ -1198,7 +1196,6 @@ export function addShadowCast(props: esriSceneWidgetProps) {
     return;
   }
 
-  // move the node if it exists
   const group = getPosition(shadowCastPosition);
   const expanded = shadowCastOpenAtStart && !containsExpandedComponent(group, view);
   const tip = commonMessages?.tools?.shadowCast;
@@ -1217,8 +1214,11 @@ export function addShadowCast(props: esriSceneWidgetProps) {
 
     const shadowCast = new ShadowCast({ view, container: document.createElement("div") });
     content.append(shadowCast.container);
+
     const buttonContainer = document.createElement("div");
     content.append(buttonContainer);
+
+    // Clear button
     const clearButton = document.createElement("calcite-button") as any;
     clearButton.id = "clearShadows";
     clearButton.classList.add("esri-button", "esri-themed-button");
@@ -1226,16 +1226,16 @@ export function addShadowCast(props: esriSceneWidgetProps) {
     clearButton.appearance = "outline-fill";
     clearButton.innerHTML = commonMessages?.clear;
     clearButton.addEventListener("click", () => {
-      // how do we remove shadows?
       shadowCast.viewModel.stop();
     });
+
+    // Apply Shadow button
     const applyShadow = document.createElement("calcite-button") as any
     applyShadow.classList.add("esri-button", "esri-themed-button");
 
     applyShadow.appearance = "solid";
     applyShadow.innerHTML = commonMessages?.applyAnalysis;
     applyShadow.addEventListener("click", () => {
-      // how do we remove shadows?
       shadowCast.viewModel.start();
       view.extent = view.extent;
     });
@@ -1279,7 +1279,6 @@ export function addViewshed(props: esriSceneWidgetProps) {
     return;
   }
 
-  // move the node if it exists
   const group = getPosition(viewshedPosition);
   const expanded = !containsExpandedComponent(group, view);
   const tip = commonMessages?.tools?.viewshed.expand;
