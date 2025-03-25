@@ -28,6 +28,22 @@ interface ViewshedPanelProps extends __esri.WidgetProperties {
   view: __esri.SceneView;
 }
 
+interface ViewshedProps {
+  farDistance: number;
+  heading: number;
+  horizontalFieldOfView: number;
+  tilt: number;
+  verticalFieldOfView: number;
+}
+
+const defaultViewshedProps: ViewshedProps = {
+  farDistance: 900,
+  heading: 63,
+  horizontalFieldOfView: 85,
+  tilt: 84,
+  verticalFieldOfView: 52
+};
+
 const CSS = {
   base: "viewshed-panel",
   component: "viewshed-component",
@@ -68,16 +84,16 @@ class ViewshedPanel extends Widget {
   }
 
   postInitialize(): void {
-    this?.view?.when(() => {
-      // Create the viewshed shape.
+    this.view?.when(() => {
+      const { farDistance, heading, horizontalFieldOfView, tilt, verticalFieldOfView } = defaultViewshedProps;
       this.viewshed = new Viewshed({
-        farDistance: 900,
-        tilt: 84,
-        heading: 63,
-        horizontalFieldOfView: 85,
-        verticalFieldOfView: 52
+        farDistance,
+        tilt,
+        heading,
+        horizontalFieldOfView,
+        verticalFieldOfView
       });
-      // Initialize viewshed analysis with the created viewshed shape and add it to the view.
+
       this.viewshedAnalysis = new ViewshedAnalysis({ viewsheds: [this?.viewshed] });
       this.view.analyses.add(this.viewshedAnalysis);
     });
