@@ -32,7 +32,6 @@ import Zoom from "esri/widgets/Zoom";
 
 import SlicePanel from "../structuralFunctionality/widgets/slice/SlicePanel";
 import ViewshedPanel from "../structuralFunctionality/widgets/viewshed/ViewshedPanel";
-import "@esri/calcite-components/dist/components/calcite-button";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
