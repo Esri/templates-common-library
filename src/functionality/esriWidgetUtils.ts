@@ -1088,7 +1088,7 @@ export function addDaylight(props: esriSceneWidgetProps) {
 /**
  * Watch for changes in slice, slicePosition, sliceOpenAtStart
  */
-export async function addSlice(props: esriSceneWidgetProps) {
+export function addSlice(props: esriSceneWidgetProps) {
   if (!Slice) return;
   const { view, config, commonMessages, propertyName } = props;
   const { slice, slicePosition, sliceOpenAtStart } = config;
@@ -1141,7 +1141,10 @@ export async function addSlice(props: esriSceneWidgetProps) {
   }
 }
 
-export async function addLineOfSight(props: esriSceneWidgetProps) {
+/**
+ * Watch for changes in lineOfSight, lineOfSightPosition, lineOfSightOpenAtStart
+ */
+export function addLineOfSight(props: esriSceneWidgetProps) {
   if (!LineOfSight) return;
   const { view, config, commonMessages, propertyName } = props;
   const { lineOfSight, lineOfSightPosition, lineOfSightOpenAtStart } = config;
@@ -1191,7 +1194,10 @@ export async function addLineOfSight(props: esriSceneWidgetProps) {
   }
 }
 
-export async function addShadowCast(props: esriSceneWidgetProps) {
+/**
+ * Watch for changes in shadowCastOpenAtStart, shadowCast, shadowCastPosition
+ */
+export function addShadowCast(props: esriSceneWidgetProps) {
   if (!ShadowCast) return;
   const { view, config, commonMessages, propertyName } = props;
   const { shadowCastOpenAtStart, shadowCast, shadowCastPosition } = config;
@@ -1269,7 +1275,10 @@ export async function addShadowCast(props: esriSceneWidgetProps) {
   }
 }
 
-export async function addViewshed(props: esriSceneWidgetProps) {
+/**
+ * Watch for changes in viewshed, viewshedPosition
+ */
+export function addViewshed(props: esriSceneWidgetProps) {
   const { view, config, commonMessages, propertyName } = props;
   const sceneView = view as __esri.SceneView;
   const { viewshed, viewshedPosition } = config;
