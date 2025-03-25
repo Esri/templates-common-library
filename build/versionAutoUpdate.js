@@ -50,7 +50,7 @@ const updatePackageJson = (files, version, type) => {
   const updateFiles = map(filePath => {
     return fse.readFile(filePath, "utf-8")
       .then(fileTxt => {
-        updatedFile = fileTxt.replace(/\"version\":.*\".*\"/, `"version": "${version}${type === "amd" ? "-amd" : ""}"`);
+        const updatedFile = fileTxt.replace(/\"version\":.*\".*\"/, `"version": "${version}${type === "amd" ? "-amd" : ""}"`);
 
         return fse.writeFile(filePath, updatedFile);
       });

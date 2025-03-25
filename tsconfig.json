@@ -13,6 +13,7 @@
     "jsx": "react",
     "jsxFactory": "tsx",
     "skipLibCheck": true,
+    "noUnusedLocals": false
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
   "exclude": ["./node_modules", "./dist", "./distESM", "./tests"]
