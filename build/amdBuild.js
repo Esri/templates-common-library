@@ -16,7 +16,7 @@ const updateFiles = (files) => {
     return fse.readFile(filePath, "utf-8")
       .then(fileTxt => {
         // esm uses @arcgis/core package for JS API and the references are different
-        let updatedFile = fileTxt.replaceAll(/@arcgis\/core\//g, "esri/");
+        let updatedFile = fileTxt.replaceAll(/TemplatesCommonLib\/@arcgis\/core\//g, "esri/");
 
         // amd needs different telemetry file
         updatedFile = updatedFile.replaceAll("\"./telemetry.min\"", "\"./telemetry.dojo.min\"");
