@@ -1,9 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "esnext",
-    "outDir": "./distESM",
+    "module": "AMD",
+    "outDir": "./distAMD",
     "target": "ES2020",
-    "declaration": true
+    "declaration": false
   }
 }

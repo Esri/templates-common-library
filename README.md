@@ -18,22 +18,22 @@ This library contains reusable utilities for use in any ArcGIS Instant app
 
 1. Clone repo locally
 2. npm install 
-3. npm run prepare - builds both AMD and ESM versions
+3. npm run prepare - builds both ESM and AMD versions
 
-## AMD vs ESM
+## ESM vs AMD
 
-We publish this library in two forms: AMD and ESM. We do this so that you can match with the Esri JS API versions that you use. 
+We publish this library in two forms: ESM and AMD. We do this so that you can match with the Esri JS API versions that you use. 
 
-- If you are using the [AMD JS API](https://developers.arcgis.com/javascript/latest/get-started/#1-install-and-set-up), then you should use the AMD templates-common-library version. 
+- If you are using the [ESM JS API](https://developers.arcgis.com/javascript/latest/get-started-npm/), then you should use the ESM templates-common-library version. 
    - This version is published to npm with normal version numbering: ex: "1.0.1" 
-- If you are using the [ESM JS API](https://developers.arcgis.com/javascript/latest/es-modules/#introduction), then you should use the ESM templates-common-library version.
-   - This version is published to npm with normal version numbering but also has a -esm on the end: ex: "1.0.1-esm". Note: In your package.json, you need to strip the caret "^" off the beginning of the version number for this package, or else the AMD version will be installed when `npm install` is run.
+- If you are using the [AMD JS API](https://developers.arcgis.com/javascript/latest/get-started-cdn/), then you should use the AMD templates-common-library version.
+   - This version is published to npm with normal version numbering but also has a -amd on the end: ex: "1.0.1-amd". Note: In your package.json, you need to strip the caret "^" off the beginning of the version number for this package, or else the ESM version will be installed when `npm install` is run.
 
-For each version of this library, both an AMD and an ESM style version with be published. For example, both version "1.1.7" and "1.1.7-esm" will be published.
+For each version of this library, both an AMD and an ESM style version with be published. For example, both version "1.1.7" and "1.1.7-amd" will be published.
 
 ## Requirements
 
-* Most functions and utilities avaliable here are strongly coupled to the ArcGIS Instant Apps ecosystem. So it is recommended that you only use these utilities if you are working within this product ecosystem.
+* Most functions and utilities available here are strongly coupled to the ArcGIS Instant Apps ecosystem. So it is recommended that you only use these utilities if you are working within this product ecosystem.
 
 ## Resources
 

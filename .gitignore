@@ -1,5 +1,5 @@
 dist
-distESM
+distAMD
 node_modules
 coverage
 .vscode

@@ -4,7 +4,7 @@
  */
 
 import { esriWidgetProps } from "../interfaces/commonInterfaces";
-import Basemap from "esri/Basemap";
+import Basemap from "@arcgis/core/Basemap";
 
 //////////////////////////////
 // Public Interfaces
@@ -32,7 +32,7 @@ export async function getBasemaps(props: esriWidgetProps): Promise<IBasemapToggl
     /** Depending on which is defined, use "basemapSelector"
      * (which is an id, ex: db6a43e20e09486b9444edcd77e0f906) or "nextBasemap" 
      * (which is a well-known-basemap-id: https://developers.arcgis.com/javascript/latest/api-reference/esri-Map.html#basemap).
-     * The "nextBasemap" config variable is kept for backward compatibilty with the Config Panel,
+     * The "nextBasemap" config variable is kept for backward compatibility with the Config Panel,
      * whereas "basemapSelector" is the new config variable */
     const alternateBasemapId: string = basemapSelector || nextBasemap;
 
