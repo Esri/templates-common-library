@@ -91,7 +91,9 @@ export async function createView(
   if (!map) {
     return Promise.reject(`properties does not contain a "map"`);
   }
-
+  if (!("displayFilterEnabled" in properties)) {
+    properties.displayFilterEnabled = false;
+  }
   const isWebMap = map.declaredClass === "esri.WebMap";
   const isWebScene = map.declaredClass === "esri.WebScene";
 
