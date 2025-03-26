@@ -500,6 +500,35 @@ export default {
                   "defaultValue": "default"
                 }
               ]
+            },
+            {
+              "type": "setting",
+              "id": "enableHighlightColor",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "highlightColor",
+                  "express": false,
+                  "config": {
+                    "alpha": true
+                  },
+                  "defaultValue": "rgba(0, 255, 255, 0.50)"
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "enableHighlightHaloColor",
+              "express": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "highlightHaloColor",
+                  "express": false,
+                  "defaultValue": "#00FFFF"
+                }
+              ]
             }
           ]
         },
