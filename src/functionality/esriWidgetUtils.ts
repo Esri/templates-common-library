@@ -1202,6 +1202,36 @@ function createWidgetActionButton(props: {
   return button;
 }
 
+function createShadowCastContent(view: __esri.SceneView, commonMessages: any): HTMLDivElement {
+  const content = document.createElement("div");
+  const shadowCast = new ShadowCast({ view, container: document.createElement("div") });
+  const buttonContainer = document.createElement("div");
+  const clearButton: HTMLButtonElement = createWidgetActionButton({
+    appearance: "outline-fill",
+    id: "clearShadows",
+    innerHTML: commonMessages?.clear,
+    onClick: () => {
+      shadowCast.viewModel.stop();
+    }
+  });
+
+  const applyShadowButton: HTMLButtonElement = createWidgetActionButton({
+    appearance: "solid",
+    id: "applyShadows",
+    innerHTML: commonMessages?.applyAnalysis,
+    onClick: () => {
+      shadowCast.viewModel.start();
+      view.extent = view.extent;
+    }
+  });
+
+  shadowCast.viewModel.stop();
+  buttonContainer.append(applyShadowButton, clearButton);
+  content.append(shadowCast.container, buttonContainer);
+
+  return content;
+}
+
 /**
  * Watch for changes in shadowCastOpenAtStart, shadowCast, shadowCastPosition
  */
@@ -1233,32 +1263,7 @@ export function addShadowCast(props: esriSceneWidgetProps) {
   } else if (propertyName === "shadowCastOpenAtStart" && expandNode) {
     expandNode.expanded = expanded;
   } else if (propertyName === "shadowCast") {
-    const content = document.createElement("div");
-    const shadowCast = new ShadowCast({ view, container: document.createElement("div") });
-    const buttonContainer = document.createElement("div");
-    const clearButton: HTMLButtonElement = createWidgetActionButton({
-      appearance: "outline-fill",
-      id: "clearShadows",
-      innerHTML: commonMessages?.clear,
-      onClick: () => {
-        shadowCast.viewModel.stop();
-      }
-    });
-
-    const applyShadowButton: HTMLButtonElement = createWidgetActionButton({
-      appearance: "solid",
-      id: "applyShadows",
-      innerHTML: commonMessages?.applyAnalysis,
-      onClick: () => {
-        shadowCast.viewModel.start();
-        view.extent = view.extent;
-      }
-    });
-
-    content.append(shadowCast.container, buttonContainer);
-    buttonContainer.append(applyShadowButton, clearButton);
-    shadowCast.viewModel.stop();
-
+    const content: HTMLDivElement = createShadowCastContent(view, commonMessages);
     const shadowCastExpand = new Expand({
       id: expandId,
       content,
