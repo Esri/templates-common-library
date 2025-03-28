@@ -5,6 +5,7 @@ import CategoryGallery from "../../configParamsJSON/categoryGalleryConfigParams"
 import Charts from "../../configParamsJSON/chartsConfigParams";
 import Compare from "../../configParamsJSON/compareConfigParams";
 import Countdown from "../../configParamsJSON/countdownConfigParams";
+import DataExplorer from "../../configParamsJSON/dataExplorerConfigParams";
 import Exhibit from "../../configParamsJSON/exhibitConfigParams";
 import General from "../../configParamsJSON/generalConfigParams";
 import Imagery from "../../configParamsJSON/imageryViewerConfig";
@@ -34,6 +35,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Charts]: Charts,
   [EAppTemplateType.Compare]: Compare,
   [EAppTemplateType.Countdown]: Countdown,
+  [EAppTemplateType.DataExplorer]: DataExplorer,
   [EAppTemplateType.Exhibit]: Exhibit,
   [EAppTemplateType.General]: General,
   [EAppTemplateType.ImageryApp]: Imagery,
