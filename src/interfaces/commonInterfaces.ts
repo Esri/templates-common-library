@@ -1,6 +1,6 @@
 export interface esriWidgetProps extends __esri.WidgetProperties {
   config: any;
-  view?: __esri.MapView;
+  view?: __esri.MapView | __esri.SceneView;
   portal?: __esri.Portal;
   propertyName?: string;
 }

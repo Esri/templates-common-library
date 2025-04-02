@@ -23,15 +23,15 @@ import {
   ILocalTestCase,
 } from "../interfaces/applicationBase";
 import { parseConfig } from "./support/configParser";
-import { eachAlways } from "esri/core/promiseUtils";
+import { eachAlways } from "@arcgis/core/core/promiseUtils";
 
-import IdentityManager from "esri/identity/IdentityManager";
-import OAuthInfo from "esri/identity/OAuthInfo";
-import Portal from "esri/portal/Portal";
-import PortalItem from "esri/portal/PortalItem";
-import PortalQueryParams from "esri/portal/PortalQueryParams";
-import esriConfig from "esri/config";
-import { prefersRTL } from "esri/intl";
+import IdentityManager from "@arcgis/core/identity/IdentityManager";
+import OAuthInfo from "@arcgis/core/identity/OAuthInfo";
+import Portal from "@arcgis/core/portal/Portal";
+import PortalItem from "@arcgis/core/portal/PortalItem";
+import PortalQueryParams from "@arcgis/core/portal/PortalQueryParams";
+import esriConfig from "@arcgis/core/config";
+import { prefersRTL } from "@arcgis/core/intl";
 
 import { defineLocale } from "../structuralFunctionality/locale";
 import { handleDeprecatedProps } from "../functionality/esriWidgetUtils";

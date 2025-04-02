@@ -1,4 +1,4 @@
-import { toJSON, fromJSON } from "esri/layers/effects/jsonUtils";
+import { toJSON, fromJSON } from "@arcgis/core/layers/effects/jsonUtils";
 import { FeatureLayerFeatureEffect } from "../interfaces/commonInterfaces";
 
 export function getMergedEffect(

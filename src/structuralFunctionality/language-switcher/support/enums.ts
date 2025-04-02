@@ -1,4 +1,4 @@
-export enum ProperyNames {
+export enum PropertyNames {
   LanguageSwitcher = "languageSwitcher",
   LanguageSwitcherConfig = "languageSwitcherConfig",
   LanguageSwitcherPosition = "languageSwitcherPosition",

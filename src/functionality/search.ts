@@ -1,10 +1,10 @@
-import Search from "esri/widgets/Search";
-import FeatureLayer from "esri/layers/FeatureLayer";
-import { fromJSON } from "esri/geometry/support/jsonUtils";
+import Search from "@arcgis/core/widgets/Search";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import { fromJSON } from "@arcgis/core/geometry/support/jsonUtils";
 
-import { when } from "esri/core/reactiveUtils";
+import { when } from "@arcgis/core/core/reactiveUtils";
 
-import Portal from "esri/portal/Portal";
+import Portal from "@arcgis/core/portal/Portal";
 
 interface SearchSourceConfigItem {
   maxResults: number;
@@ -136,7 +136,7 @@ export function handleSearchExtent(
 ): void {
   const { extentSelector, extentSelectorConfig, mapArea } = config;
   if (searchWidget.sources != null) {
-    let extent: __esri.Geometry | undefined;
+    let extent: __esri.Extent | undefined;
     if (
       (mapArea === true && extentSelector) ||
       (mapArea == null && extentSelector)

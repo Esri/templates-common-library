@@ -17,7 +17,7 @@ const timeouts: TimeoutMap = {};
  */
 export function debounce(
   func: () => void,
-  wait = 100,
+  wait: number = 100,
   immediate: boolean = false,
   instance: string | number = "default",
   key: string = "default"

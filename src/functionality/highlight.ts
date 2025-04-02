@@ -1,4 +1,4 @@
-import Color from "esri/Color";
+import Color from "@arcgis/core/Color";
 
 import { HighlightConfig } from "../interfaces/commonInterfaces";
 

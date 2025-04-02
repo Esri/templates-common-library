@@ -11,28 +11,28 @@
   limitations under the License.​
 */
 
-import { property, subclass } from "esri/core/accessorSupport/decorators";
-import { tsx, storeNode } from "esri/widgets/support/widget";
-import Handles from "esri/core/Handles";
-import Widget from "esri/widgets/Widget";
-import Expand from "esri/widgets/Expand";
-import { watch, when } from "esri/core/reactiveUtils";
+import { property, subclass } from "@arcgis/core/core/accessorSupport/decorators";
+import { tsx, storeNode } from "@arcgis/core/widgets/support/widget";
+import Handles from "@arcgis/core/core/Handles";
+import Widget from "@arcgis/core/widgets/Widget";
+import Expand from "@arcgis/core/widgets/Expand";
+import { watch, when } from "@arcgis/core/core/reactiveUtils";
 
 import ApplicationBase from "../../baseClasses/ApplicationBase";
 import { esriWidgetProps } from "../../interfaces/applicationBase";
 
-import PortalItem from "esri/portal/PortalItem";
+import PortalItem from "@arcgis/core/portal/PortalItem";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
 import { LanguageData } from "../../interfaces/commonInterfaces";
 import { CSS, HANDLES_KEY, NODE_ID } from "./support/constants";
-import { Defaults, ProperyNames } from "./support/enums";
+import { Defaults, PropertyNames } from "./support/enums";
 import { autoUpdatedStrings } from "../t9nUtils";
 import {
   convertT9nToConfigData,
   getT9nData,
   updateLocale,
 } from "./support/utils";
-import { getLocale } from "esri/intl";
+import { getLocale } from "@arcgis/core/intl";
 import { calculateLocale } from "../locale";
 
 @subclass("LanguageSwitcher")
@@ -151,7 +151,7 @@ export default class LanguageSwitcher extends Widget {
         () =>
           this.languageSwitcherCallback(
             widgetProps,
-            ProperyNames.LanguageSwitcher
+            PropertyNames.LanguageSwitcher
           ),
         { initial: true }
       ),
@@ -160,7 +160,7 @@ export default class LanguageSwitcher extends Widget {
         () =>
           this.languageSwitcherCallback(
             widgetProps,
-            ProperyNames.LanguageSwitcherOpenAtStart
+            PropertyNames.LanguageSwitcherOpenAtStart
           ),
         { initial: true }
       ),
@@ -169,7 +169,7 @@ export default class LanguageSwitcher extends Widget {
         () =>
           this.languageSwitcherCallback(
             widgetProps,
-            ProperyNames.LanguageSwitcherPosition
+            PropertyNames.LanguageSwitcherPosition
           ),
         { initial: true }
       ),
@@ -216,7 +216,7 @@ export default class LanguageSwitcher extends Widget {
 
     const node = this.view.ui.find(NODE_ID) as __esri.Expand;
 
-    if (propertyName === ProperyNames.LanguageSwitcher) {
+    if (propertyName === PropertyNames.LanguageSwitcher) {
       if (languageSwitcher) {
         if (!node) {
           const config = {
@@ -247,10 +247,10 @@ export default class LanguageSwitcher extends Widget {
       }
     } else if (
       node &&
-      propertyName === ProperyNames.LanguageSwitcherOpenAtStart
+      propertyName === PropertyNames.LanguageSwitcherOpenAtStart
     ) {
       node.expanded = languageSwitcherOpenAtStart;
-    } else if (node && propertyName === ProperyNames.LanguageSwitcherPosition) {
+    } else if (node && propertyName === PropertyNames.LanguageSwitcherPosition) {
       if (this.expandGroup) node.group = this.expandGroup;
       this.view.ui.move(node, languageSwitcherPosition ?? Defaults.Position);
     }

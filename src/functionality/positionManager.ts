@@ -1,4 +1,4 @@
-import { watch, when } from "esri/core/reactiveUtils";
+import { watch, when } from "@arcgis/core/core/reactiveUtils";
 import { debounce } from "./debounce";
 import { getPosition } from "./esriWidgetUtils";
 
@@ -36,7 +36,7 @@ const serializePosition = ({ position, index }: IWidgetPosition = { position: "m
  * @param debug
  */
 export function assertWidgetOrdering(
-  view: __esri.View,
+  view: __esri.MapView | __esri.SceneView,
   config: any,
   positionKeyLookup: Map<string, string>,
   debug?: boolean
@@ -210,7 +210,7 @@ function extractPositionAndIndex(
 }
 
 function getWidget(
-  view: __esri.View,
+  view: __esri.MapView | __esri.SceneView,
   element: __esri.Widget | HTMLElement | string
 ): __esri.Widget | HTMLElement {
   if (typeof element === "string") {

@@ -1,5 +1,5 @@
-import Collection from "esri/core/Collection";
-import { eachAlways } from "esri/core/promiseUtils";
+import Collection from "@arcgis/core/core/Collection";
+import { eachAlways } from "@arcgis/core/core/promiseUtils";
 
 // Note: "group" is good enough because there are no Requirements to check for any app templates that function with groups
 export type ResourceForCheck = __esri.WebMap | __esri.WebScene | "group";
@@ -14,6 +14,7 @@ export enum EAppTemplateType {
   Charts = "/apps/instant/charts/index.html",
   Compare = "/apps/instant/compare/index.html",
   Countdown = "/apps/instant/countdown/index.html",
+  DataExplorer = "/apps/instant/dataexplorer/index.html",
   Exhibit = "/apps/instant/exhibit/index.html",
   General = "/apps/instant/general/index.html",
   Insets = "/apps/instant/insets/index.html",
@@ -63,6 +64,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Atlas,
     EAppTemplateType.CategoryGallery,
     EAppTemplateType.Charts,
+    EAppTemplateType.DataExplorer,
     EAppTemplateType.General,
     EAppTemplateType.ImageryApp,
     EAppTemplateType.Insets,
@@ -84,6 +86,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Charts,
     EAppTemplateType.Compare,
     EAppTemplateType.Countdown,
+    EAppTemplateType.DataExplorer,
     EAppTemplateType.Exhibit,
     EAppTemplateType.General,
     EAppTemplateType.ImageryApp,
@@ -180,6 +183,7 @@ export class CompatibilityChecker {
       [EAppTemplateType.Charts]: resourceMessages.Webmap,
       [EAppTemplateType.Compare]: resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.Countdown]: resourceMessages.WebmapOrWebscene,
+      [EAppTemplateType.DataExplorer]: resourceMessages.Webmap,
       [EAppTemplateType.Exhibit]: resourceMessages.WebmapOrWebscene,
       [EAppTemplateType.General]: resourceMessages.Webmap,
       [EAppTemplateType.ImageryApp]: resourceMessages.Webmap,
@@ -318,16 +322,17 @@ export class CompatibilityChecker {
       let isLayerRendererSupported: boolean = true;
 
       // PROPS SET BY ARCADE
-      const field2 = featureLayer?.renderer?.get("field2");
-      const field3 = featureLayer?.renderer?.get("field3");
-      const fieldDelimiter = featureLayer?.renderer?.get("fieldDelimiter");
+      const renderer = featureLayer?.renderer as __esri.UniqueValueRenderer;
+      const field2 = renderer?.field2;
+      const field3 = renderer?.field3;
+      const fieldDelimiter = renderer?.fieldDelimiter;
       if ((field2 || field3) && fieldDelimiter) {
         isLayerRendererSupported = false;
       }
 
       if (
-        featureLayer?.renderer?.type === "unique-value" ||
-        featureLayer?.renderer?.type === "class-breaks"
+        renderer?.type === "unique-value" ||
+        renderer?.type === "class-breaks"
       ) {
         // CHECK VISUAL VARIABLES for color ramp, size ramp, opacity ramp
         const renderer = featureLayer.renderer as any;
@@ -409,8 +414,8 @@ export class CompatibilityChecker {
     webmap: __esri.WebMap
   ): ERequirementType | null {
     let atLeastOneEditableLayer: boolean = webmap?.allLayers
-      ?.map((layer) => {
-        return layer.get("editingEnabled") as boolean;
+      ?.map((layer: __esri.FeatureLayer) => {
+        return layer.editingEnabled;
       })
       .reduce((acc: boolean, curr: boolean) => {
         return acc || curr;
@@ -460,8 +465,8 @@ export class CompatibilityChecker {
       webmap?.allLayers
         .filter((layer) => layer.type === "feature")
         .some((flayer: __esri.FeatureLayer) => {
-          const flayerWithCharts = flayer.get("charts");
-          return flayerWithCharts;
+          const flayerWithCharts = flayer.charts;
+          return flayerWithCharts?.length > 0;
         }) ||
       webmap?.allTables
         .filter((table) => table.type === "feature")
@@ -491,7 +496,7 @@ export class CompatibilityChecker {
         return !excludeTypes.includes(layer.type);
       })
       .map((layer) => {
-        return layer.get("popupEnabled") as boolean;
+        return "popupEnabled" in layer && layer.popupEnabled;
       })
       .reduce((acc: boolean, curr: boolean) => {
         return acc || curr;

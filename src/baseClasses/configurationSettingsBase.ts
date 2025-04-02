@@ -1,5 +1,5 @@
-import Accessor from "esri/core/Accessor";
-import { property } from "esri/core/accessorSupport/decorators";
+import Accessor from "@arcgis/core/core/Accessor";
+import { property } from "@arcgis/core/core/accessorSupport/decorators";
 import { isWithinConfigurationExperience } from "../functionality/configurationSettings";
 
 /**

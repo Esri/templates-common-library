@@ -20,14 +20,14 @@
   limitations under the License.​
 */
 
-import Camera from "esri/Camera";
+import Camera from "@arcgis/core/Camera";
 
-import Extent from "esri/geometry/Extent";
-import Point from "esri/geometry/Point";
-import { PictureMarkerSymbol, SimpleMarkerSymbol } from "esri/symbols";
-import { eachAlways } from "esri/core/promiseUtils";
+import Extent from "@arcgis/core/geometry/Extent";
+import Point from "@arcgis/core/geometry/Point";
+import { PictureMarkerSymbol, SimpleMarkerSymbol } from "@arcgis/core/symbols";
+import { eachAlways } from "@arcgis/core/core/promiseUtils";
 import esri = __esri;
-import Basemap from "esri/Basemap";
+import Basemap from "@arcgis/core/Basemap";
 
 interface CameraProperties {
   heading?: number;
@@ -162,12 +162,11 @@ export async function parseMarker(marker: string): Promise<esri.Graphic | {}> {
 
   const markerArray = _splitURLString(marker);
   const markerLength = markerArray.length;
-
   if (markerLength < 2) {
     return Promise.reject();
   }
 
-  const modules = await eachAlways([import("esri/Graphic"), import("esri/PopupTemplate"), import("esri/symbols/PictureMarkerSymbol"), import("esri/symbols/SimpleMarkerSymbol")]);
+  const modules = await eachAlways([import("@arcgis/core/Graphic"), import("@arcgis/core/PopupTemplate"), import("@arcgis/core/symbols/PictureMarkerSymbol"), import("@arcgis/core/symbols/SimpleMarkerSymbol")]);
   const [Graphic, PopupTemplate, PictureMarkerSymbol, SimpleMarkerSymbol] = modules.map((module) => module.value);
 
   const x = parseFloat(markerArray[0]);
@@ -297,7 +296,7 @@ function _getBasemap(basemapUrl, basemapReferenceUrl): Promise<Basemap> {
   if (!basemapUrl) {
     return;
   }
-  return eachAlways([import("esri/layers/Layer"), import("esri/Basemap")]).then((modules) => {
+  return eachAlways([import("@arcgis/core/layers/Layer"), import("@arcgis/core/Basemap")]).then((modules) => {
     modules = modules.map((module) => module.value);
     const [Layer, Basemap] = modules;
 
