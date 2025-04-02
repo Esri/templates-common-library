@@ -1257,7 +1257,7 @@ export function addShadowCast(props: esriSceneWidgetProps) {
   if (propertyName === "shadowCastPosition" && expandNode) {
     if (propertyName === "shadowCastPosition") {
       expandNode.collapseTooltip = tip;
-      expandNode.expandTooltip = tip
+      expandNode.expandTooltip = tip;
       expandNode.group = group;
       view.ui.move(expandNode, shadowCastPosition);
     }
