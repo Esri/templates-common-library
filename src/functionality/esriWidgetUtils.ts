@@ -1325,6 +1325,7 @@ export function addViewshed(props: esriSceneWidgetProps) {
       mode: "auto",
       expandTooltip: tip,
       collapseTooltip: tip,
+      expanded,
       view
     });
 
