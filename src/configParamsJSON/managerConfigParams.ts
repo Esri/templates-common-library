@@ -241,6 +241,12 @@ export default {
               "content": [
                 {
                   "type": "setting",
+                  "id": "featureSelectionMode",
+                  "express": false,
+                  "defaultValue": "multiple"
+                },
+                {
+                  "type": "setting",
                   "id": "mapItemLayerSelector",
                   "express": false,
                   "config": {
