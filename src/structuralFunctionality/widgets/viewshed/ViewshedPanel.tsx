@@ -15,13 +15,13 @@
  *   limitations under the License.
  */
 
-import { subclass, property } from "esri/core/accessorSupport/decorators";
-import Widget from "esri/widgets/Widget";
+import { subclass, property } from "@arcgis/core/core/accessorSupport/decorators";
+import Widget from "@arcgis/core/widgets/Widget";
 import { ApplicationConfig } from "../../../interfaces/applicationBase";
-import { tsx, messageBundle } from "esri/widgets/support/widget";
-import Viewshed from "esri/analysis/Viewshed";
-import ViewshedAnalysis from "esri/analysis/ViewshedAnalysis";
-import ViewshedAnalysisView3D from "esri/views/3d/analysis/ViewshedAnalysisView3D";
+import { tsx, messageBundle } from "@arcgis/core/widgets/support/widget";
+import Viewshed from "@arcgis/core/analysis/Viewshed";
+import ViewshedAnalysis from "@arcgis/core/analysis/ViewshedAnalysis";
+import ViewshedAnalysisView3D from "@arcgis/core/views/3d/analysis/ViewshedAnalysisView3D";
 
 interface ViewshedPanelProps extends __esri.WidgetProperties {
   config: ApplicationConfig;

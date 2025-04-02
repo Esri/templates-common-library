@@ -15,11 +15,11 @@
  *   limitations under the License.
  */
 
-import { subclass, property } from "esri/core/accessorSupport/decorators";
-import { watch } from "esri/core/reactiveUtils";
-import Widget from "esri/widgets/Widget";
-import { tsx, messageBundle } from "esri/widgets/support/widget";
-import Slice from "esri/widgets/Slice";
+import { subclass, property } from "@arcgis/core/core/accessorSupport/decorators";
+import { watch } from "@arcgis/core/core/reactiveUtils";
+import Widget from "@arcgis/core/widgets/Widget";
+import { tsx, messageBundle } from "@arcgis/core/widgets/support/widget";
+import Slice from "@arcgis/core/widgets/Slice";
 import { ApplicationConfig } from "../../../interfaces/applicationBase";
 
 interface SliceProps extends __esri.WidgetProperties {

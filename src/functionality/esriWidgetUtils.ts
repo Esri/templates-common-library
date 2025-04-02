@@ -907,7 +907,9 @@ export function addBuildingExplorer(props: esriSceneWidgetProps) {
         return (l as __esri.GroupLayer)?.layers?.some((subLayer) => {
           if (subLayer?.type === "building-scene") {
             buildingLayers.push(subLayer);
+            return true;
           }
+          return false;
         });
       } else {
         if (l?.type === "building-scene") {
