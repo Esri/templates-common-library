@@ -1223,7 +1223,6 @@ function createShadowCastContent(view: __esri.SceneView, commonMessages: any): H
     innerHTML: commonMessages?.applyAnalysis,
     onClick: () => {
       shadowCast.viewModel.start();
-      view.extent = view.extent;
     }
   });
 
