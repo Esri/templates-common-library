@@ -4,7 +4,7 @@ export default {
       type: "section",
       id: "map",
       config: {
-        itemTypes: ["2d", "3d", "weblinkchart"],
+        itemTypes: ["2d"],
       },
       content: [
         {
@@ -105,20 +105,6 @@ export default {
                 },
               ],
             },
-            {
-              type: "setting",
-              id: "popupFixed",
-              express: true,
-              defaultValue: false,
-              content: [
-                {
-                  type: "setting",
-                  id: "popupFixedPosition",
-                  express: true,
-                  defaultValue: "bottom-right",
-                },
-              ],
-            },
           ],
         },
         {
@@ -148,6 +134,66 @@ export default {
             },
           ],
         },
+        {
+          type: "subsection",
+          id: "coverPageSettings",
+          content: [
+            {
+              type: "group",
+              id: "coverPage",
+              content: [
+                {
+                  type: "setting",
+                  id: "landingPage",
+                  express: false,
+                  defaultValue: false,
+                  content: [
+                    {
+                      type: "setting",
+                      id: "landingPageConfig",
+                      express: false,
+                      defaultValue: {
+                        titleText: "",
+                        subtitleText: "",
+                        descriptionText: "",
+                        entryButtonText: "",
+                        alignment: "center",
+                        backgroundType: "color",
+                        textColor: "#FFFFFF",
+                        entryButtonColor: "#0079C1",
+                        backgroundColor: "#0079C1",
+                        iconImage: null,
+                        iconImageScale: "m",
+                        backgroundImageSrc: null,
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: "section",
+      id: "dataExplorer",
+      content: [
+        {
+          type: "subsection",
+          id: "aiLayerOptions",
+          content: [],
+        },
+        {
+          type: "subsection",
+          id: "chatText",
+          content: [
+            {
+              type: "setting",
+              id: "promptItemCreatorConfig",
+            },
+          ],
+        },
       ],
     },
     {
@@ -164,15 +210,15 @@ export default {
               content: [
                 {
                   type: "setting",
-                  id: "bookmarks",
-                  defaultValue: true,
+                  id: "home",
                   express: false,
+                  defaultValue: true,
                   content: [
                     {
                       type: "setting",
-                      id: "bookmarksPosition",
+                      id: "homePosition",
                       defaultValue: {
-                        position: "top-right",
+                        position: "top-left",
                         index: 0,
                       },
                     },
@@ -194,66 +240,12 @@ export default {
                     },
                   ],
                 },
-                {
-                  type: "setting",
-                  id: "home",
-                  express: false,
-                  defaultValue: true,
-                  content: [
-                    {
-                      type: "setting",
-                      id: "homePosition",
-                      defaultValue: {
-                        position: "top-left",
-                        index: 0,
-                      },
-                    },
-                  ],
-                },
-                {
-                  type: "setting",
-                  id: "compassWidget",
-                  express: false,
-                  defaultValue: false,
-                  content: [
-                    {
-                      type: "setting",
-                      id: "compassWidgetPosition",
-                      defaultValue: {
-                        position: "top-left",
-                        index: 1,
-                      },
-                    },
-                  ],
-                },
-                {
-                  type: "setting",
-                  id: "locateWidget",
-                  express: false,
-                  defaultValue: false,
-                  content: [
-                    {
-                      type: "setting",
-                      id: "locateWidgetPosition",
-                      defaultValue: {
-                        position: "top-right",
-                        index: 0,
-                      },
-                    },
-                  ],
-                },
               ],
             },
             {
               type: "group",
               id: "navigate",
               content: [
-                {
-                  type: "setting",
-                  id: "disableScroll",
-                  defaultValue: false,
-                  express: true,
-                },
                 {
                   type: "setting",
                   id: "scalebar",
@@ -330,6 +322,36 @@ export default {
                   express: false,
                   defaultValue: "default",
                 },
+                {
+                  type: "setting",
+                  id: "layerListAddZoom",
+                  defaultValue: false,
+                  express: false,
+                },
+                {
+                  type: "setting",
+                  id: "layerListLegend",
+                  defaultValue: false,
+                  express: false,
+                },
+                {
+                  type: "setting",
+                  id: "layerListAddTable",
+                  defaultValue: false,
+                  express: false,
+                },
+                {
+                  type: "setting",
+                  id: "selectedLayers",
+                  express: true,
+                  config: {
+                    layerSelectionMode: "multiple",
+                    supportedLayerTypes: "*",
+                    supportedGeometryTypes: "*",
+                    supportsFieldSelection: false,
+                  },
+                  defaultValue: null,
+                },
               ],
             },
           ],
@@ -361,37 +383,6 @@ export default {
                 },
               ],
               defaultValue: false,
-            },
-            {
-              type: "setting",
-              id: "exportToPDF",
-              express: true,
-              defaultValue: false,
-              content: [
-                {
-                  type: "setting",
-                  id: "exportButtonIcon",
-                  express: false,
-                  defaultValue: "export",
-                  config: {
-                    iconList: [
-                      "export",
-                      "file-pdf",
-                      "print",
-                      "print-preview",
-                      "images",
-                    ],
-                  },
-                },
-                {
-                  type: "setting",
-                  id: "exportToPDFPosition",
-                  defaultValue: {
-                    position: "top-left",
-                    index: 0,
-                  },
-                },
-              ],
             },
           ],
         },
@@ -489,41 +480,6 @@ export default {
               id: "positionManager",
               express: true,
               defaultValue: null,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      type: "section",
-      id: "languageSwitcher",
-      express: true,
-      content: [
-        {
-          type: "setting",
-          id: "languageSwitcher",
-          express: true,
-          defaultValue: false,
-          content: [
-            {
-              type: "setting",
-              id: "languageSwitcherOpenAtStart",
-              express: false,
-              defaultValue: false,
-            },
-            {
-              type: "setting",
-              id: "languageSwitcherConfig",
-              express: true,
-              defaultValue: null,
-            },
-            {
-              type: "setting",
-              id: "languageSwitcherPosition",
-              defaultValue: {
-                position: "top-right",
-                index: 5,
-              },
             },
           ],
         },
