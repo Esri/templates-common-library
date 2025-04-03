@@ -193,9 +193,9 @@ export default {
                 },
                 {
                   "type": "setting",
-                  "id": "exportCSV",
-                  "express": true,
-                  "defaultValue": true
+                  "id": "featureSelectionMode",
+                  "express": false,
+                  "defaultValue": "multiple"
                 },
                 {
                   "type": "setting",
@@ -239,12 +239,6 @@ export default {
               "id": "tableVisibility",
               "express": false,
               "content": [
-                {
-                  "type": "setting",
-                  "id": "featureSelectionMode",
-                  "express": false,
-                  "defaultValue": "multiple"
-                },
                 {
                   "type": "setting",
                   "id": "mapItemLayerSelector",
@@ -304,6 +298,12 @@ export default {
                   ],
                   "defaultValue": false,
                   "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "exportCSV",
+                  "express": true,
+                  "defaultValue": true
                 }
               ]
             }
