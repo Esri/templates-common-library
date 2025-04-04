@@ -1,4 +1,4 @@
-// Copyright 2022 Esri
+// Copyright 2025 Esri
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,23 +12,40 @@
 import { when } from "@arcgis/core/core/reactiveUtils";
 import BasemapToggle from "@arcgis/core/widgets/BasemapToggle";
 import Bookmarks from "@arcgis/core/widgets/Bookmarks";
+import BuildingExplorer from "@arcgis/core/widgets/BuildingExplorer";
 import Compass from "@arcgis/core/widgets/Compass";
+import Daylight from "@arcgis/core/widgets/Daylight";
 import Expand from "@arcgis/core/widgets/Expand";
 import FloorFilter from "@arcgis/core/widgets/FloorFilter";
 import FullScreen from "@arcgis/core/widgets/Fullscreen";
 import Home from "@arcgis/core/widgets/Home";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import Legend from "@arcgis/core/widgets/Legend";
+import LineOfSight from "@arcgis/core/widgets/LineOfSight";
 import Locate from "@arcgis/core/widgets/Locate";
 import Scalebar from "@arcgis/core/widgets/ScaleBar";
+import ShadowCast from "@arcgis/core/widgets/ShadowCast";
+import Slice from "@arcgis/core/widgets/Slice";
 import Viewpoint from "@arcgis/core/Viewpoint";
+import Weather from "@arcgis/core/widgets/Weather";
 import Zoom from "@arcgis/core/widgets/Zoom";
+
+import SlicePanel from "../structuralFunctionality/widgets/slice/SlicePanel";
+import ViewshedPanel from "../structuralFunctionality/widgets/viewshed/ViewshedPanel";
 
 import { getBasemaps, resetBasemapsInToggle } from "./basemapToggle";
 import { checkForElement } from "./generalUtils";
 import { createSearch, handleSearchExtent } from "./search";
 import ApplicationBase from "../baseClasses/ApplicationBase";
 import { ApplicationConfig } from "../interfaces/applicationBase";
+import Widget from "@arcgis/core/widgets/Widget";
+
+interface esriSceneWidgetProps {
+  config: ApplicationConfig;
+  view: __esri.SceneView;
+  commonMessages: any;
+  propertyName: string;
+}
 
 /**
  * Enforces deprecated widget property rules
@@ -701,30 +718,48 @@ export async function addMeasurementTools(
 /**
  * Watch for changes in floorFilter, floorFilterPosition
  */
-export function addFloorFilter(
-  config: ApplicationConfig,
-  view: __esri.MapView | __esri.SceneView
-): void {
+export function addFloorFilter(props: esriSceneWidgetProps): void {
+  if (!FloorFilter) return;
+  const { config, view, commonMessages, propertyName } = props;
   const { floorFilter, floorFilterPosition } = config;
-  const uniqueId = "esri-floor-filter";
-  const node = view.ui.find(uniqueId) as __esri.FloorFilter;
+
+  const expandId = "esri-floor-filterExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+  const widgetId = "esri-floor-filter";
 
   if (!floorFilter) {
-    if (node) view.ui.remove(node);
+    if (expandNode) view.ui.remove(expandNode);
     return;
   }
 
-  if (node) {
-    view.ui.move(node, floorFilterPosition);
-  } else {
-    view.ui.add(
-      new FloorFilter({
-        id: uniqueId,
-        view,
-        headingLevel: 3,
-      }),
-      floorFilterPosition
-    );
+  const group = getPosition(floorFilterPosition);
+  const tip = commonMessages?.tools?.floorFilter;
+
+  if (propertyName === "floorFilterPosition" && expandNode) {
+    if (propertyName === "floorFilterPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, floorFilterPosition);
+    }
+  } else if (propertyName === "floorFilter") {
+    const content = new FloorFilter({
+      id: widgetId,
+      view
+    });
+
+    const floorFilterExpand = new Expand({
+      id: expandId,
+      view,
+      content,
+      mode: "floating",
+      group,
+      collapseTooltip: tip,
+      expandTooltip: tip,
+      expandIcon: "urban-model",
+    });
+
+    view.ui.add(floorFilterExpand, floorFilterPosition);
   }
 }
 
@@ -838,4 +873,462 @@ function updateListItemLegend(
   layerList?.operationalItems?.forEach((item) => {
     configureListItemPanelLegend(item, layerListLegend);
   });
+}
+
+/**
+ * Watch for changes in buildingExplorer, buildingExplorerPosition
+ */
+export function addBuildingExplorer(props: esriSceneWidgetProps) {
+  if (!BuildingExplorer) return;
+  const { config, view, commonMessages, propertyName } = props;
+  const { buildingExplorer, buildingExplorerPosition } = config;
+  const expandId = "esri-building-explorerExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+
+  if (!buildingExplorer) {
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  const group = getPosition(buildingExplorerPosition);
+  const tip = commonMessages?.tools?.buildingExplorer;
+
+  if (propertyName === "buildingExplorerPosition" && expandNode) {
+    expandNode.collapseTooltip = tip;
+    expandNode.expandTooltip = tip;
+    expandNode.group = group;
+    view.ui.move(expandNode, buildingExplorerPosition);
+  }
+  else if (propertyName === "buildingExplorer") {
+    if (expandNode) return;
+    const buildingLayers = [];
+    view.map.layers?.filter((l) => {
+      if (l?.type === "group") {
+        return (l as __esri.GroupLayer)?.layers?.some((subLayer) => {
+          if (subLayer?.type === "building-scene") {
+            buildingLayers.push(subLayer);
+            return true;
+          }
+          return false;
+        });
+      } else {
+        if (l?.type === "building-scene") {
+          buildingLayers.push(l);
+        }
+      }
+    });
+
+    const buildingExplorerWidget = new BuildingExplorer({ view, layers: buildingLayers });
+    const buildingExplorerExpand = new Expand({
+      id: expandId,
+      view,
+      mode: "auto",
+      group,
+      collapseTooltip: tip,
+      expandTooltip: tip,
+      content: buildingExplorerWidget
+    });
+
+    view.ui.add(buildingExplorerExpand, buildingExplorerPosition);
+  }
+}
+
+/**
+ * Watch for changes in showWeather, weatherPosition
+ */
+export function addWeather(props: esriSceneWidgetProps) {
+  if(!Weather) return;
+  const { config, view, commonMessages, propertyName } = props;
+  const { showWeather, weatherPosition } = config;
+  const expandId = "esri-weatherExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+
+  if (!showWeather) {
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  const group = getPosition(weatherPosition);
+  const tip = commonMessages?.tools?.weather;
+
+  if (propertyName === "weatherPosition" && expandNode) {
+    expandNode.collapseTooltip = tip;
+    expandNode.expandTooltip = tip;
+    expandNode.group = group;
+    view.ui.move(expandNode, weatherPosition);
+  } else if (propertyName === "showWeather") {
+    if (expandNode) return;
+    const content = new Weather({ view });
+    const weatherExpand = new Expand({
+      id: expandId,
+      content,
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      group,
+      expandIcon: "rain-snow",
+      view
+    });
+
+    view.ui.add(weatherExpand, weatherPosition);
+  }
+}
+
+function containsExpandedComponent(position, view): boolean {
+  let group = position;
+  if (position === "mobile-top" || position === "mobile-bottom") {
+    group = position === "mobile-top" ? ["top-right", "top-left"] : ["bottom-right", "bottom-left"];
+  }
+  return view?.ui?.getComponents(group)?.some((c) => {
+    return c?.expanded;
+  });
+}
+
+/**
+ * Watch for changes in daylight, daylightPosition, daylightShadows, daylightDate, daylightTime, daylightDateOrSeason, daylightOpenAtStart
+ */
+export function addDaylight(props: esriSceneWidgetProps) {
+  if (!Daylight) return;
+  const { view, config, commonMessages, propertyName } = props;
+  const {
+    daylight,
+    daylightShadows,
+    daylightPosition,
+    daylightTime,
+    daylightDate,
+    daylightDateOrSeason,
+    daylightOpenAtStart
+  } = config;
+  const expandId = "esri-daylightExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+
+  if (!daylight) {
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  const sv = view as __esri.SceneView;
+  const group = getPosition(daylightPosition);
+  const tip = commonMessages?.tools?.daylight;
+  const expanded = daylightOpenAtStart && !containsExpandedComponent(group, view);
+
+  if (
+    (propertyName === "daylightDate" ||
+      propertyName === "daylightTime" ||
+      propertyName === "daylightDateOrSeason" ||
+      propertyName === "daylightPosition" ||
+      propertyName === "daylightOpenAtStart" ||
+      propertyName === "daylightShadows") &&
+      expandNode
+  ) {
+    if (propertyName === "daylightOpenAtStart") {
+      expanded ? expandNode.expand() : expandNode.collapse();
+    }
+    if (propertyName === "daylightShadows") {
+      sv.environment.lighting.directShadowsEnabled = daylightShadows;
+    }
+    if (
+      (propertyName === "daylightDate" && daylightDate && daylightDate !== "") ||
+      (propertyName === "daylightTime" && daylightTime)
+    ) {
+      let date;
+      if (daylightTime && daylightDate) {
+        date = new Date(`${daylightDate}T${daylightTime}Z`);
+      }
+      const lighting = sv.environment.lighting as __esri.SunLighting;
+      lighting.date = date;
+    }
+
+    if (propertyName === "daylightDateOrSeason") {
+      const content = expandNode.content as any;
+      content.dateOrSeason = daylightDateOrSeason;
+    }
+    if (propertyName === "daylightPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, daylightPosition);
+    }
+  } else if (propertyName === "daylight") {
+    sv.environment.lighting.directShadowsEnabled = daylightShadows;
+    const content = new Daylight({
+      view,
+      dateOrSeason: daylightDateOrSeason
+    });
+
+    const daylightExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      expandIcon: "brightness",
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      view,
+      expanded
+    });
+
+    view.ui.add(daylightExpand, daylightPosition);
+  }
+}
+
+/**
+ * Watch for changes in slice, slicePosition, sliceOpenAtStart
+ */
+export function addSlice(props: esriSceneWidgetProps) {
+  if (!Slice) return;
+  const { view, config, commonMessages, propertyName } = props;
+  const { slice, slicePosition, sliceOpenAtStart } = config;
+  const sceneView = view as __esri.SceneView;
+
+  const expandId = "esri-sliceExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+  if (!slice) {
+    if (expandNode) {
+      const slicePanel = expandNode?.content as Widget;
+      if (slicePanel) slicePanel.destroy();
+      view.ui.remove(expandNode);
+    }
+    return;
+  }
+
+  const group = getPosition(slicePosition);
+  const expanded = sliceOpenAtStart && !containsExpandedComponent(group, view);
+  const tip = commonMessages?.tools?.slice;
+
+  if ((propertyName === "slicePosition" || propertyName === "sliceOpenAtStart") && expandNode) {
+    if (propertyName === "sliceOpenAtStart") {
+      expanded ? expandNode.expand() : expandNode.collapse();
+    }
+    if (propertyName === "slicePosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, slicePosition);
+    }
+  } else if (propertyName === "slice") {
+    const content = new SlicePanel({
+      config,
+      view: sceneView
+    });
+
+    const sliceExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      expandIcon: "slice",
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      expanded,
+      view
+    });
+
+    view.ui.add(sliceExpand, slicePosition);
+  }
+}
+
+/**
+ * Watch for changes in lineOfSight, lineOfSightPosition, lineOfSightOpenAtStart
+ */
+export function addLineOfSight(props: esriSceneWidgetProps) {
+  if (!LineOfSight) return;
+  const { view, config, commonMessages, propertyName } = props;
+  const { lineOfSight, lineOfSightPosition, lineOfSightOpenAtStart } = config;
+
+  const expandId = "esri-line-of-sightExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+
+  if (!lineOfSight) {
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  const group = getPosition(lineOfSightPosition);
+  const expanded = lineOfSightOpenAtStart && !containsExpandedComponent(group, view);
+  const tip = commonMessages?.tools?.los;
+
+  if ((propertyName === "lineOfSightPosition" || propertyName === "lineOfSightOpenAtStart") && expandNode) {
+    if (propertyName === "lineOfSightOpenAtStart") {
+      expanded ? expandNode.expand() : expandNode.collapse();
+    }
+
+    if (propertyName === "lineOfSightPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, lineOfSightPosition);
+    }
+  } else if (propertyName === "lineOfSight") {
+    const content = new LineOfSight({
+      view
+    });
+
+    const lineOfSightExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      expandIcon: "line-of-sight",
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      view,
+      expanded
+    });
+
+    view.ui.add(lineOfSightExpand, lineOfSightPosition);
+  }
+}
+
+function createWidgetActionButton(props: {
+  appearance: string;
+  classes?: string[];
+  id: string;
+  innerHTML: string;
+  onClick: Function;
+}): HTMLButtonElement {
+  const {
+    appearance,
+    classes = ["esri-button", "esri-themed-button"],
+    id,
+    innerHTML,
+    onClick
+  } = props;
+  const button = document.createElement("calcite-button") as any;
+
+  button.id = id;
+  button.classList.add(...classes);
+  button.appearance = appearance;
+  button.innerHTML = innerHTML;
+  button.addEventListener("click", onClick);
+  return button;
+}
+
+function createShadowCastContent(view: __esri.SceneView, commonMessages: any): HTMLDivElement {
+  const content = document.createElement("div");
+  const shadowCast = new ShadowCast({ view, container: document.createElement("div") });
+  const buttonContainer = document.createElement("div");
+  const clearButton: HTMLButtonElement = createWidgetActionButton({
+    appearance: "outline-fill",
+    id: "clearShadows",
+    innerHTML: commonMessages?.clear,
+    onClick: () => {
+      shadowCast.viewModel.stop();
+    }
+  });
+
+  const applyShadowButton: HTMLButtonElement = createWidgetActionButton({
+    appearance: "solid",
+    id: "applyShadows",
+    innerHTML: commonMessages?.applyAnalysis,
+    onClick: () => {
+      shadowCast.viewModel.start();
+    }
+  });
+
+  shadowCast.viewModel.stop();
+  buttonContainer.append(applyShadowButton, clearButton);
+  content.append(shadowCast.container, buttonContainer);
+
+  return content;
+}
+
+/**
+ * Watch for changes in shadowCastOpenAtStart, shadowCast, shadowCastPosition
+ */
+export function addShadowCast(props: esriSceneWidgetProps) {
+  if (!ShadowCast) return;
+  const { view, config, commonMessages, propertyName } = props;
+  const { shadowCastOpenAtStart, shadowCast, shadowCastPosition } = config;
+
+  const expandId = "esri-shadow-castExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+  if (!shadowCast) {
+    const btn = document.getElementById("clearShadows");
+    btn?.click();
+    if (expandNode) view.ui.remove(expandNode);
+    return;
+  }
+
+  const group = getPosition(shadowCastPosition);
+  const expanded = shadowCastOpenAtStart && !containsExpandedComponent(group, view);
+  const tip = commonMessages?.tools?.shadowCast;
+
+  if (propertyName === "shadowCastPosition" && expandNode) {
+    if (propertyName === "shadowCastPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, shadowCastPosition);
+    }
+  } else if (propertyName === "shadowCastOpenAtStart" && expandNode) {
+    expandNode.expanded = expanded;
+  } else if (propertyName === "shadowCast") {
+    const content: HTMLDivElement = createShadowCastContent(view, commonMessages);
+    const shadowCastExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      mode: "floating",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      expandIcon: "measure-building-height-shadow",
+      view,
+      expanded
+    });
+
+    view.ui.add(shadowCastExpand, shadowCastPosition);
+  }
+}
+
+/**
+ * Watch for changes in viewshed, viewshedPosition
+ */
+export function addViewshed(props: esriSceneWidgetProps) {
+  const { view, config, commonMessages, propertyName } = props;
+  const sceneView = view as __esri.SceneView;
+  const { viewshed, viewshedPosition } = config;
+
+  const expandId = "esri-viewshedExpand";
+  const expandNode = view.ui.find(expandId) as __esri.Expand;
+  if (!viewshed) {
+    if (expandNode) {
+      const panel = expandNode?.content as ViewshedPanel;
+      if (panel) panel.destroy();
+      view.ui.remove(expandNode);
+    }
+    return;
+  }
+
+  const group = getPosition(viewshedPosition);
+  const expanded = !containsExpandedComponent(group, view);
+  const tip = commonMessages?.tools?.viewshed.expand;
+
+  if (propertyName === "viewshedPosition" && expandNode) {
+    if (propertyName === "viewshedPosition") {
+      expandNode.collapseTooltip = tip;
+      expandNode.expandTooltip = tip;
+      expandNode.group = group;
+      view.ui.move(expandNode, viewshedPosition);
+    }
+  } else if (propertyName === "viewshed") {
+    const content = new ViewshedPanel({
+      config: config,
+      view: sceneView
+    });
+
+    const viewshedExpand = new Expand({
+      id: expandId,
+      content,
+      group,
+      expandIcon: "viewshed",
+      mode: "auto",
+      expandTooltip: tip,
+      collapseTooltip: tip,
+      expanded,
+      view
+    });
+
+    view.ui.add(viewshedExpand, viewshedPosition);
+  }
 }
