@@ -232,7 +232,7 @@ export default {
         },
         {
           "type": "subsection",
-          "id": "layerOptions",
+          "id": "tableOptions",
           "content": [
             {
               "type": "group",
