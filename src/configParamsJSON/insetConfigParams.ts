@@ -550,14 +550,6 @@ export default {
               "id": "languageSwitcherConfig",
               "express": true,
               "defaultValue": null
-            },
-            {
-              "type": "setting",
-              "id": "languageSwitcherPosition",
-              "defaultValue": {
-                "position": "top-right",
-                "index": 1
-              }
             }
           ]
         }

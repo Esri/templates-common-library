@@ -1,4 +1,4 @@
-import Color from "esri/Color";
+import Color from "@arcgis/core/Color";
 
 import { HighlightConfig } from "../interfaces/commonInterfaces";
 
@@ -7,8 +7,6 @@ export function handleHighlightColors(
   view: __esri.MapView | __esri.SceneView
 ): void {
   if (!view) return;
-
-  const { highlightOptions } = view;
   const {
     enableHighlightColor,
     highlightColor,
@@ -33,11 +31,14 @@ export function handleHighlightColors(
   const color = new Color(colorValue);
   const haloColor = haloColorValue ? new Color(haloColorValue) : null;
 
-  view.highlightOptions = {
-    ...highlightOptions,
-    color, // jsapi default value is `#00ffff`
-    haloColor, // jsapi default value is `null`, which sets halo to default Cyan color (#00ffff)
-    haloOpacity: !highlightHaloHexColor && haloColor?.a ? haloColor.a : 1, // jsapi default value is 1
-    fillOpacity: !highlightHexColor && color?.a ? color.a : 0.25, // jsapi default value is 0.25
-  };
+  const defaultHighlightOptions = view.highlights.find((h) => h.name === "default");
+
+  if (defaultHighlightOptions) {
+    defaultHighlightOptions.color = color; // jsapi default value is `#00ffff`
+    defaultHighlightOptions.haloColor = haloColor; // jsapi default value is `null`, which sets halo to default Cyan color (#00ffff)
+    defaultHighlightOptions.haloOpacity =
+      !highlightHaloHexColor && haloColor?.a ? haloColor.a : 1; // jsapi default value is 1
+    defaultHighlightOptions.fillOpacity =
+      !highlightHexColor && color?.a ? color.a : 0.25; // jsapi default value is 0.25
+  }
 }

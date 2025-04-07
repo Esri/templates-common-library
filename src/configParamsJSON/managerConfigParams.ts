@@ -193,9 +193,9 @@ export default {
                 },
                 {
                   "type": "setting",
-                  "id": "exportCSV",
-                  "express": true,
-                  "defaultValue": true
+                  "id": "featureSelectionMode",
+                  "express": false,
+                  "defaultValue": "multiple"
                 },
                 {
                   "type": "setting",
@@ -232,7 +232,7 @@ export default {
         },
         {
           "type": "subsection",
-          "id": "layerOptions",
+          "id": "tableOptions",
           "content": [
             {
               "type": "group",
@@ -298,6 +298,12 @@ export default {
                   ],
                   "defaultValue": false,
                   "express": true
+                },
+                {
+                  "type": "setting",
+                  "id": "exportCSV",
+                  "express": true,
+                  "defaultValue": true
                 }
               ]
             }

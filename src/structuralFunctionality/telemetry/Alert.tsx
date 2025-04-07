@@ -20,9 +20,9 @@
   limitations under the License.​
 */
 
-import { subclass, property } from "esri/core/accessorSupport/decorators";
-import Widget from "esri/widgets/Widget";
-import { storeNode, tsx } from "esri/widgets/support/widget";
+import { subclass, property } from "@arcgis/core/core/accessorSupport/decorators";
+import Widget from "@arcgis/core/widgets/Widget";
+import { storeNode, tsx } from "@arcgis/core/widgets/support/widget";
 import { TelemetrySettings } from "./telemetry";
 
 const CSS = {

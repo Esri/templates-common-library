@@ -1,4 +1,4 @@
-import { setLocale, prefersRTL, normalizeMessageBundleLocale } from "esri/intl";
+import { setLocale, prefersRTL, normalizeMessageBundleLocale } from "@arcgis/core/intl";
 import {
   setPageDirection,
   setPageLocale,

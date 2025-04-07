@@ -20,13 +20,13 @@
   limitations under the License.​
 */
 
-import Accessor from "esri/core/Accessor";
-import { property, subclass } from "esri/core/accessorSupport/decorators";
+import Accessor from "@arcgis/core/core/Accessor";
+import { property, subclass } from "@arcgis/core/core/accessorSupport/decorators";
 
-import { whenOnce } from "esri/core/reactiveUtils";
+import { whenOnce } from "@arcgis/core/core/reactiveUtils";
 import Alert from "./Alert";
 import { addAdobeScripts } from "./AppMeasurement";
-import ArcGISTelemetry from "./telemetry.dojo.min";
+import ArcGISTelemetry from "./telemetry.min";
 
 export interface TelemetryInstance {
   startWorkflow: (name: string, payload?: WorkflowPayload) => any;

@@ -1,4 +1,4 @@
-declare module "esri/layers/effects/jsonUtils" {
+declare module "@arcgis/core/layers/effects/jsonUtils" {
   const effectsUtils: {
     toJSON(effect: any);
     fromJSON(json: any);

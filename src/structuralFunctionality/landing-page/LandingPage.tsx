@@ -9,12 +9,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.​
 
-import Handles from "esri/core/Handles";
-import { property, subclass } from "esri/core/accessorSupport/decorators";
-import { watch } from "esri/core/reactiveUtils";
-import Widget from "esri/widgets/Widget";
+import Handles from "@arcgis/core/core/Handles";
+import { property, subclass } from "@arcgis/core/core/accessorSupport/decorators";
+import { watch } from "@arcgis/core/core/reactiveUtils";
+import Widget from "@arcgis/core/widgets/Widget";
 
-import { storeNode, tsx } from "esri/widgets/support/widget";
+import { storeNode, tsx } from "@arcgis/core/widgets/support/widget";
 import { isWithinConfigurationExperience } from "../../functionality/configurationSettings";
 import ApplicationBase from "../../baseClasses/ApplicationBase";
 import { getLandingPageValues } from "../../functionality/coverPage";

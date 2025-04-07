@@ -1,7 +1,7 @@
-import Portal from "esri/portal/Portal";
-import PortalItem from "esri/portal/PortalItem";
-import PortalQueryResult from "esri/portal/PortalQueryResult";
-import PortalQueryParams from "esri/portal/PortalQueryParams";
+import Portal from "@arcgis/core/portal/Portal";
+import PortalItem from "@arcgis/core/portal/PortalItem";
+import PortalQueryResult from "@arcgis/core/portal/PortalQueryResult";
+import PortalQueryParams from "@arcgis/core/portal/PortalQueryParams";
 
 export type Direction = "ltr" | "rtl";
 
