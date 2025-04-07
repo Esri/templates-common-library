@@ -23,6 +23,7 @@ import Sidebar from "../../configParamsJSON/sidebarConfigParams";
 import Slider from "../../configParamsJSON/dataSliderConfigParams";
 import Streamflow from "../../configParamsJSON/streamflowConfigParams";
 import ThreeDViewer from "../../configParamsJSON/3dViewerConfigParams";
+import WebEditor from "../../configParamsJSON/webEditorConfigParams";
 import ZoneLookup from "../../configParamsJSON/lookupConfigParams";
 
 import { EAppTemplateType } from "../CompatibilityChecker";
@@ -53,6 +54,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Slider]: Slider,
   [EAppTemplateType.Streamflow]: Streamflow,
   [EAppTemplateType.ThreeDViewer]: ThreeDViewer,
+  [EAppTemplateType.WebEditor]: WebEditor,
   [EAppTemplateType.ZoneLookup]: ZoneLookup,
 };
 
