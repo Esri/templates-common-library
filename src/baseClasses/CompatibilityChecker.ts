@@ -79,6 +79,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Sidebar,
     EAppTemplateType.Slider,
     EAppTemplateType.Streamflow,
+    EAppTemplateType.WebEditor,
     EAppTemplateType.ZoneLookup,
   ],
   [EResourceType.Group]: [
@@ -105,6 +106,7 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Slider,
     EAppTemplateType.Streamflow,
     EAppTemplateType.ThreeDViewer,
+    EAppTemplateType.WebEditor,
     EAppTemplateType.ZoneLookup,
   ],
 };
@@ -153,6 +155,7 @@ export class CompatibilityChecker {
     [EAppTemplateType.Manager]: this._testEditableFeatures,
     [EAppTemplateType.Nearby]: this._testPopupDisabled,
     [EAppTemplateType.Reporter]: this._testEditableFeatures,
+    [EAppTemplateType.WebEditor]: this._testEditableFeatures,
     [EAppTemplateType.ZoneLookup]: this._testPopupDisabled,
   };
 
@@ -202,6 +205,7 @@ export class CompatibilityChecker {
       [EAppTemplateType.Slider]: resourceMessages.Webmap,
       [EAppTemplateType.Streamflow]: resourceMessages.Webmap,
       [EAppTemplateType.ThreeDViewer]: resourceMessages.Webscene,
+      [EAppTemplateType.WebEditor]: resourceMessages.Webmap,
       [EAppTemplateType.ZoneLookup]: resourceMessages.Webmap,
     };
   }
