@@ -718,48 +718,30 @@ export async function addMeasurementTools(
 /**
  * Watch for changes in floorFilter, floorFilterPosition
  */
-export function addFloorFilter(props: esriSceneWidgetProps): void {
-  if (!FloorFilter) return;
-  const { config, view, commonMessages, propertyName } = props;
+export function addFloorFilter(
+  config: ApplicationConfig,
+  view: __esri.MapView | __esri.SceneView
+): void {
   const { floorFilter, floorFilterPosition } = config;
-
-  const expandId = "esri-floor-filterExpand";
-  const expandNode = view.ui.find(expandId) as __esri.Expand;
-  const widgetId = "esri-floor-filter";
+  const uniqueId = "esri-floor-filter";
+  const node = view.ui.find(uniqueId) as __esri.FloorFilter;
 
   if (!floorFilter) {
-    if (expandNode) view.ui.remove(expandNode);
+    if (node) view.ui.remove(node);
     return;
   }
 
-  const group = getPosition(floorFilterPosition);
-  const tip = commonMessages?.tools?.floorFilter;
-
-  if (propertyName === "floorFilterPosition" && expandNode) {
-    if (propertyName === "floorFilterPosition") {
-      expandNode.collapseTooltip = tip;
-      expandNode.expandTooltip = tip;
-      expandNode.group = group;
-      view.ui.move(expandNode, floorFilterPosition);
-    }
-  } else if (propertyName === "floorFilter") {
-    const content = new FloorFilter({
-      id: widgetId,
-      view
-    });
-
-    const floorFilterExpand = new Expand({
-      id: expandId,
-      view,
-      content,
-      mode: "floating",
-      group,
-      collapseTooltip: tip,
-      expandTooltip: tip,
-      expandIcon: "urban-model",
-    });
-
-    view.ui.add(floorFilterExpand, floorFilterPosition);
+  if (node) {
+    view.ui.move(node, floorFilterPosition);
+  } else {
+    view.ui.add(
+      new FloorFilter({
+        id: uniqueId,
+        view,
+        headingLevel: 3,
+      }),
+      floorFilterPosition
+    );
   }
 }
 
