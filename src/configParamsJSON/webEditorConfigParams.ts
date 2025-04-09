@@ -252,5 +252,40 @@ export default {
         },
       ],
     },
+    {
+      type: "section",
+      id: "languageSwitcher",
+      express: true,
+      content: [
+        {
+          type: "setting",
+          id: "languageSwitcher",
+          express: true,
+          defaultValue: false,
+          content: [
+            {
+              type: "setting",
+              id: "languageSwitcherOpenAtStart",
+              express: false,
+              defaultValue: false,
+            },
+            {
+              type: "setting",
+              id: "languageSwitcherConfig",
+              express: true,
+              defaultValue: null,
+            },
+            {
+              type: "setting",
+              id: "languageSwitcherPosition",
+              defaultValue: {
+                position: "top-right",
+                index: 5,
+              },
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
