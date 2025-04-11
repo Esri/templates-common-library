@@ -287,89 +287,97 @@ export default {
           "content": [
             {
               "type": "setting",
-              "id": "showBasemap",
+              "id": "listConfigurerConfig",
               "express": false,
-              "defaultValue": true
-            },
-            {
-              "type": "setting",
-              "id": "showOpenMap",
-              "express": false,
-              "defaultValue": true
-            },
-            {
-              "type": "setting",
-              "id": "showMapLayers",
-              "express": false,
-              "defaultValue": true
-            },
-            {
-              "type": "setting",
-              "id": "showAddLayer",
-              "express": false,
-              "defaultValue": true
-            },
-            {
-              "type": "setting",
-              "id": "showLegend",
-              "express": false,
-              "defaultValue": true,
+              "defaultValue": null,
               "content": [
                 {
                   "type": "setting",
-                  "id": "legendType",
-                  "defaultValue": "standard"
-                }
-              ]
-            },
-            {
-              "type": "setting",
-              "id": "showMeasure",
-              "express": false,
-              "defaultValue": true
-            },
-            {
-              "type": "setting",
-              "id": "showSketch",
-              "express": false,
-              "defaultValue": true
-            },
-            {
-              "type": "setting",
-              "id": "show2D3D",
-              "express": false,
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
-              "id": "showBookmarks",
-              "express": false,
-              "defaultValue": false
-            },
-            {
-              "type": "setting",
-              "id": "showSave",
-              "express": false,
-              "defaultValue": true,
-              "content": [
-                {
-                  "type": "setting",
-                  "id": "showCreate",
+                  "id": "showBasemap",
                   "express": false,
-                  "defaultValue": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "showOpenMap",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "showMapLayers",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "showAddLayer",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "showLegend",
+                  "express": false,
+                  "defaultValue": true,
                   "content": [
                     {
                       "type": "setting",
-                      "id": "createOptions",
+                      "id": "legendType",
+                      "defaultValue": "standard"
+                    }
+                  ]
+                },
+                {
+                  "type": "setting",
+                  "id": "showMeasure",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "showSketch",
+                  "express": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "setting",
+                  "id": "show2D3D",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "showBookmarks",
+                  "express": false,
+                  "defaultValue": false
+                },
+                {
+                  "type": "setting",
+                  "id": "showSave",
+                  "express": false,
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "showCreate",
                       "express": false,
-                      "defaultValue": [
-                        "map-viewer",
-                        "story-maps",
-                        "instant-apps"
+                      "defaultValue": false,
+                      "content": [
+                        {
+                          "type": "setting",
+                          "id": "createOptions",
+                          "express": false,
+                          "defaultValue": [
+                            "map-viewer",
+                            "story-maps",
+                            "instant-apps"
+                          ]
+                        }
                       ]
                     }
                   ]
-                }
+                },
               ]
             },
             {
