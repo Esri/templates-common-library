@@ -412,7 +412,6 @@ export default {
                   "defaultValue": null,
                   "config": {
                     "numOfSections": 1,
-                    "headerOnly": true,
                     "fontAlwaysEditable": true
                   }
                 }
