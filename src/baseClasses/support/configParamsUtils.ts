@@ -7,6 +7,7 @@ import Compare from "../../configParamsJSON/compareConfigParams";
 import Countdown from "../../configParamsJSON/countdownConfigParams";
 import DataExplorer from "../../configParamsJSON/dataExplorerConfigParams";
 import Exhibit from "../../configParamsJSON/exhibitConfigParams";
+import Gallery from "../../configParamsJSON/galleryConfigParams";
 import General from "../../configParamsJSON/generalConfigParams";
 import Imagery from "../../configParamsJSON/imageryViewerConfig";
 import Insets from "../../configParamsJSON/insetConfigParams";
@@ -38,6 +39,7 @@ const INSTANT_APPS_CONFIG_PARAMS_MAP = {
   [EAppTemplateType.Countdown]: Countdown,
   [EAppTemplateType.DataExplorer]: DataExplorer,
   [EAppTemplateType.Exhibit]: Exhibit,
+  [EAppTemplateType.Gallery]: Gallery,
   [EAppTemplateType.General]: General,
   [EAppTemplateType.ImageryApp]: Imagery,
   [EAppTemplateType.InteractiveLegend]: InteractiveLegend,
