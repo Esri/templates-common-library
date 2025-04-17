@@ -331,6 +331,12 @@ export default {
             },
             {
               "type": "setting",
+              "id": "compareBorder",
+              "defaultValue": "1px",
+              "express": false
+            },
+            {
+              "type": "setting",
               "id": "expandMap",
               "defaultValue": false,
               "express": true,
