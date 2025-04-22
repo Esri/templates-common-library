@@ -360,6 +360,12 @@ export default {
                   "content": [
                     {
                       "type": "setting",
+                      "id": "showSaveMap",
+                      "express": false,
+                      "defaultValue": true
+                    },
+                    {
+                      "type": "setting",
                       "id": "showCreate",
                       "express": false,
                       "defaultValue": false,
