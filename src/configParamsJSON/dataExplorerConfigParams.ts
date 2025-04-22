@@ -28,112 +28,125 @@ export default {
       id: "about",
       content: [
         {
-          type: "group",
+          type: "subsection",
           id: "appComprehension",
           content: [
             {
-              type: "setting",
-              id: "splash",
-              express: false,
-              defaultValue: false,
+              type: "group",
+              id: "appComprehension",
               content: [
                 {
                   type: "setting",
-                  id: "splashTitle",
-                  defaultValue: "",
+                  id: "splash",
+                  express: false,
+                  defaultValue: false,
+                  content: [
+                    {
+                      type: "setting",
+                      id: "splashTitle",
+                      defaultValue: "",
+                    },
+                    {
+                      type: "setting",
+                      id: "splashContent",
+                      defaultValue: "",
+                      config: {
+                        imageUpload: true,
+                      },
+                    },
+                    {
+                      type: "setting",
+                      id: "splashButtonText",
+                      defaultValue: "",
+                    },
+                    {
+                      type: "setting",
+                      id: "splashButtonPosition",
+                      defaultValue: {
+                        position: "top-right",
+                        index: 0,
+                      },
+                    },
+                  ],
                 },
+              ],
+            },
+            {
+              type: "setting",
+              id: "header",
+              defaultValue: true,
+              express: true,
+              content: [
                 {
                   type: "setting",
-                  id: "splashContent",
+                  id: "title",
                   defaultValue: "",
-                  config: {
-                    imageUpload: true,
-                  },
-                },
-                {
-                  type: "setting",
-                  id: "splashButtonText",
-                  defaultValue: "",
-                },
-                {
-                  type: "setting",
-                  id: "splashButtonPosition",
-                  defaultValue: {
-                    position: "top-right",
-                    index: 0,
-                  },
                 },
               ],
             },
           ],
         },
         {
-          type: "setting",
-          id: "header",
-          defaultValue: false,
-          express: true,
-          content: [
-            {
-              type: "setting",
-              id: "title",
-              defaultValue: "",
-            },
-          ],
-        },
-        {
-          type: "group",
+          type: "subsection",
           id: "featureComprehension",
           content: [
             {
-              type: "setting",
-              id: "legend",
-              express: true,
-              defaultValue: true,
+              type: "group",
+              id: "featureComprehension",
               content: [
                 {
                   type: "setting",
-                  id: "legendPosition",
-                  defaultValue: {
-                    position: "top-right",
-                    index: 0,
-                  },
+                  id: "legend",
+                  express: true,
+                  defaultValue: true,
+                  content: [
+                    {
+                      type: "setting",
+                      id: "legendPosition",
+                      defaultValue: {
+                        position: "top-right",
+                        index: 0,
+                      },
+                    },
+                    {
+                      type: "setting",
+                      id: "legendOpenAtStart",
+                      defaultValue: false,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "group",
+              id: "mapA11y",
+              content: [
+                {
+                  type: "setting",
+                  id: "mapA11yDesc",
+                  express: true,
                 },
                 {
                   type: "setting",
-                  id: "legendOpenAtStart",
+                  id: "keyboardShortcuts",
+                  express: true,
                   defaultValue: false,
+                  content: [
+                    {
+                      type: "setting",
+                      id: "keyboardShortcutsPosition",
+                      defaultValue: {
+                        position: "top-left",
+                        index: 0,
+                      },
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
-        {
-          type: "group",
-          id: "mapA11y",
-          content: [
-            {
-              type: "setting",
-              id: "mapA11yDesc",
-              express: true,
-            },
-            {
-              type: "setting",
-              id: "keyboardShortcuts",
-              express: true,
-              defaultValue: false,
-              content: [
-                {
-                  type: "setting",
-                  id: "keyboardShortcutsPosition",
-                  defaultValue: {
-                    position: "top-left",
-                    index: 0,
-                  },
-                },
-              ],
-            },
-          ],
-        },
+
         {
           type: "subsection",
           id: "coverPageSettings",
