@@ -307,7 +307,15 @@ export default {
                   "type": "setting",
                   "id": "showMapLayers",
                   "express": false,
-                  "defaultValue": true
+                  "defaultValue": true,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "showLayerTools",
+                      "express": false,
+                      "defaultValue": true
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
@@ -344,7 +352,15 @@ export default {
                   "type": "setting",
                   "id": "show2D3D",
                   "express": false,
-                  "defaultValue": false
+                  "defaultValue": false,
+                  "content": [
+                    {
+                      "type": "setting",
+                      "id": "show3DTools",
+                      "express": false,
+                      "defaultValue": true
+                    }
+                  ]
                 },
                 {
                   "type": "setting",
@@ -383,7 +399,7 @@ export default {
                       ]
                     }
                   ]
-                },
+                }
               ]
             },
             {
