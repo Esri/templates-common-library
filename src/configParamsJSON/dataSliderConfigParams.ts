@@ -797,6 +797,12 @@ export default {
                 "disabledDependentField": "dataSliderPositionOptions"
               },
               "defaultValue": null
+            },
+            {
+              "type": "setting",
+              "id": "openAtStartManager",
+              "express": false,
+              "defaultValue": null
             }
           ]
         }
