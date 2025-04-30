@@ -454,6 +454,14 @@ export default {
                 "position": "top-left",
                 "index": 11
               }
+            },
+            {
+              "type": "setting",
+              "id": "layerListPosition",
+              "defaultValue": {
+                "position": "top-right",
+                "index": 0
+              }
             }
           ]
         }
