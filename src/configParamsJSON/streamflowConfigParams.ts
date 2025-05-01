@@ -218,9 +218,91 @@ export default {
           "id": "streamflowServiceType",
           "express": true,
           "config": {
-            "branches": []
+            "branches": [
+              [
+                "globalFilter1",
+                "globalFilter2",
+                "globalFilter3"
+              ],
+              [
+                "localFilter1",
+                "localFilter2"
+              ]
+            ]
           },
-          "content": [],
+          "content": [
+            {
+              "type": "setting",
+              "id": "globalFilter1",
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "riverCountry",
+                  "express": true,
+                  "defaultValue": null
+                },
+                {
+                  "type": "setting",
+                  "id": "outletCountry",
+                  "express": true,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "globalFilter2",
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "streamOrder",
+                  "express": true,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "globalFilter3",
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "streamflow",
+                  "express": true,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "localFilter1",
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "streamOrder",
+                  "express": true,
+                  "defaultValue": null
+                }
+              ]
+            },
+            {
+              "type": "setting",
+              "id": "localFilter2",
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "streamflow",
+                  "express": true,
+                  "defaultValue": null
+                }
+              ]
+            }
+          ],
           "defaultValue": {
             "branchValue": "global"
           }
