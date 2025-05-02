@@ -802,7 +802,10 @@ export default {
               "type": "setting",
               "id": "openAtStartManager",
               "express": false,
-              "defaultValue": null
+              "defaultValue": null,
+              "config": {
+                "mobileSetting": true
+              }
             }
           ]
         }
