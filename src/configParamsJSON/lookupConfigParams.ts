@@ -110,24 +110,7 @@ export default {
               express: false,
               defaultValue: false,
             },
-            {
-              type: "setting",
-              id: "startupLocation",
-              express: false,
-              defaultValue: false,
-            },
-            {
-              type: "setting",
-              id: "infoIncludeSearch",
-              express: false,
-              defaultValue: false,
-            },
-            {
-              type: "setting",
-              id: "infoIncludeDirections",
-              express: false,
-              defaultValue: false,
-            },
+
             {
               type: "group",
               id: "mapA11y",
@@ -368,6 +351,12 @@ export default {
                       defaultValue: true,
                     },
                   ],
+                },
+                {
+                  type: "setting",
+                  id: "startupLocation",
+                  express: false,
+                  defaultValue: false,
                 },
                 {
                   type: "setting",
