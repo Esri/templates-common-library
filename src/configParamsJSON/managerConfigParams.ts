@@ -244,7 +244,7 @@ export default {
                   "id": "mapItemLayerSelector",
                   "express": false,
                   "config": {
-                    "layerSelectionMode": "none",
+                    "layerSelectionMode": "multiple",
                     "mapsFieldName": "mapItemCollection",
                     "supportedCapabilityTypes": [
                       "editable"
