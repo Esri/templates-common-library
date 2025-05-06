@@ -105,7 +105,6 @@ export default {
               ],
             },
             {
-              // move this setting then update to TCL?
               type: "setting",
               id: "infoIncludeLocation",
               express: false,
