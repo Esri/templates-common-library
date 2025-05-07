@@ -12,81 +12,120 @@ export default {
       "id": "about",
       "content": [
         {
-          "type": "setting",
-          "id": "header",
-          "express": true,
-          "defaultValue": true,
+          "type": "subsection",
+          "id": "appComprehension",
           "content": [
             {
               "type": "setting",
-              "id": "title",
+              "id": "header",
               "express": true,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "type": "setting",
-          "id": "detailsTool",
-          "express": true,
-          "defaultValue": false,
-          "content": [
-            {
-              "type": "setting",
-              "id": "introductionTitle",
-              "express": true,
-              "defaultValue": ""
+              "defaultValue": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "title",
+                  "express": true,
+                  "defaultValue": "",
+                },
+              ],
             },
             {
               "type": "setting",
-              "id": "detailsContent",
+              "id": "detailsTool",
               "express": true,
-              "defaultValue": null
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "introductionTitle",
+                  "express": true,
+                  "defaultValue": "",
+                },
+                {
+                  "type": "setting",
+                  "id": "detailsContent",
+                  "express": true,
+                  "defaultValue": null,
+                },
+                {
+                  "type": "setting",
+                  "id": "detailsOpenAtStart",
+                  "express": true,
+                  "defaultValue": false,
+                },
+                {
+                  "type": "setting",
+                  "id": "detailsToolPosition",
+                  "defaultValue": {
+                    "position": "bottom-right",
+                    "index": 0,
+                  },
+                },
+              ],
             },
             {
               "type": "setting",
-              "id": "detailsOpenAtStart",
-              "express": true,
-              "defaultValue": false
+              "id": "legend",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "legendPosition",
+                  "defaultValue": {
+                    "position": "bottom-left",
+                    "index": 0,
+                  },
+                },
+              ],
             },
             {
-              "type": "setting",
-              "id": "detailsToolPosition",
-              "defaultValue": {
-                "position": "bottom-right",
-                "index": 0
-              }
-            }
-          ]
+              "type": "group",
+              "id": "mapA11y",
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "mapA11yDesc",
+                  "express": true,
+                },
+              ],
+            },
+          ],
         },
         {
-          "type": "setting",
-          "id": "legend",
-          "express": false,
-          "defaultValue": false,
+          "type": "subsection",
+          "id": "coverPageSettings",
           "content": [
             {
               "type": "setting",
-              "id": "legendPosition",
-              "defaultValue": {
-                "position": "bottom-left",
-                "index": 0
-              }
-            }
-          ]
+              "id": "landingPage",
+              "express": false,
+              "defaultValue": false,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "landingPageConfig",
+                  "express": false,
+                  "defaultValue": {
+                    "titleText": "",
+                    "subtitleText": "",
+                    "descriptionText": "",
+                    "entryButtonText": "",
+                    "alignment": "center",
+                    "backgroundType": "color",
+                    "textColor": "#FFFFFF",
+                    "entryButtonColor": "#0079C1",
+                    "backgroundColor": "#0079C1",
+                    "iconImage": null,
+                    "iconImageScale": "m",
+                    "backgroundImageSrc": null,
+                  },
+                },
+              ],
+            },
+          ],
         },
-        {
-          "type": "group",
-          "id": "mapA11y",
-          "content": [
-            {
-              "type": "setting",
-              "id": "mapA11yDesc",
-              "express": true
-            }
-          ]
-        }
-      ]
+      ],
     },
     {
       "type": "section",
