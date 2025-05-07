@@ -618,14 +618,6 @@ export const LANGUAGE_DATA = {
       language: "Northern Sami",
       translated: "Davvisámegiella",
     },
-    nb: {
-      language: "Norwegian",
-      translated: "Bokmål",
-    },
-    nn: {
-      language: "Norwegian",
-      translated: "Nynorsk nynorsk",
-    },
     ii: {
       language: "Nuosu",
       translated: "ꆈꌠ꒿ Nuosuhxop",
