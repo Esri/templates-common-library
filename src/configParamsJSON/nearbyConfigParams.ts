@@ -318,21 +318,13 @@ export default {
                   type: "setting",
                   id: "startupLocation",
                   express: false,
-                  defaultValue: "false",
+                  defaultValue: false,
                 },
                 {
                   type: "setting",
                   id: "showAll",
                   express: false,
                   defaultValue: false,
-                  content: [
-                    {
-                      type: "setting",
-                      id: "startupLocation",
-                      express: false,
-                      defaultValue: "false",
-                    },
-                  ],
                 },
               ],
               defaultValue: {
