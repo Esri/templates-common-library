@@ -175,7 +175,10 @@ export default {
                     {
                       "type": "setting",
                       "id": "basemapGalleryConfig",
-                      "defaultValue": null
+                      "defaultValue": null,
+                      "config":{
+                        "is3d": true
+                      }
                     }
                   ]
                 },
