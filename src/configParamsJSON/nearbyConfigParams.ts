@@ -232,7 +232,7 @@ export default {
               express: true,
               config: {
                 branches: [
-                  ["showAll", "enableSearchScale"],
+                  ["showAll", "startupLocation", "enableSearchScale"],
                   [
                     "sliderRange",
                     "precision",
@@ -381,6 +381,27 @@ export default {
                   id: "mapPinLabelSize",
                   express: false,
                   defaultValue: 12,
+                },
+                {
+                  type: "setting",
+                  id: "hideXYLabel",
+                  express: false,
+                  defaultValue: false,
+                  content: [
+                    {
+                      type: "setting",
+                      id: "labelLayer",
+                      express: false,
+                      config: {
+                        layerSelectionMode: "single",
+                        supportedLayerTypes: ["feature"],
+                        supportedGeometryTypes: "*",
+                        supportsFieldSelection: true,
+                        fieldSelectionMode: "single",
+                        supportedFieldTypes: "*",
+                      },
+                    },
+                  ],
                 },
               ],
             },
