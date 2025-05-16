@@ -194,12 +194,13 @@ export default {
               express: true,
               config: {
                 branches: [
-                  ["zoneLookupLayers"],
+                  ["zoneLookupLayers", "mapClickLocation"],
                   [
                     "searchLayer",
                     "lookupLayers",
                     "showDirections",
                     "spatialRelationship",
+                    "mapClickLocation",
                   ],
                 ],
               },
@@ -215,6 +216,12 @@ export default {
                     supportsFieldSelection: false,
                   },
                   defaultValue: null,
+                },
+                {
+                  type: "setting",
+                  id: "mapClickLocation",
+                  defaultValue: true,
+                  express: false,
                 },
                 {
                   type: "setting",
@@ -516,7 +523,7 @@ export default {
                     },
                     {
                       type: "setting",
-                      id: "hideXYLabel",
+                      id: "hideClosestAddressLabel",
                       express: false,
                       defaultValue: false,
                       content: [
@@ -527,7 +534,7 @@ export default {
                           config: {
                             layerSelectionMode: "single",
                             supportedLayerTypes: ["feature"],
-                            supportedGeometryTypes: "*",
+                            supportedGeometryTypes: ["esriGeometryPolygon"],
                             supportsFieldSelection: true,
                             fieldSelectionMode: "single",
                             supportedFieldTypes: "*",
