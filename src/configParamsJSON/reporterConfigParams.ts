@@ -187,7 +187,7 @@ export default {
                 "supportedLayerTypes": ["feature"],
                 "supportedGeometryTypes": "*",
                 "supportsFieldSelection": false,
-                "supportedCapabilityTypes": ["editable"],
+                "supportedCapabilityTypes": ["editableSupportsAdd"],
                 "hideNestedSections": true,
                 "reporterApp": true
               },
@@ -213,9 +213,29 @@ export default {
             },
             {
               "type": "setting",
+              "id": "showFullCommentTitle",
+              "defaultValue": true,
+              "express": true
+            },
+            {
+              "type": "setting",
               "id": "sortOption",
               "defaultValue": "newest",
               "express": true
+            },
+            {
+              "type": "setting",
+              "id": "reportingArea",
+              "defaultValue": false,
+              "express": true,
+              "content": [
+                {
+                  "type": "setting",
+                  "id": "reportingAreaLayer",
+                  "defaultValue": null,
+                  "express": true
+                }
+              ]
             }
           ]
         },
@@ -251,6 +271,12 @@ export default {
               "type": "setting",
               "id": "commentButtonText",
               "defaultValue": "Comment",
+              "express": true
+            },
+            {
+              "type": "setting",
+              "id": "reportingAreaMessage",
+              "defaultValue": "The location is outside the reporting area. Please provide a valid location.",
               "express": true
             }
           ]
