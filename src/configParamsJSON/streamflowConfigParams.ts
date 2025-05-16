@@ -215,13 +215,8 @@ export default {
           express: true,
           config: {
             branches: [
-              [
-                "streamflowFilterLabel",
-                "globalFilter1",
-                "globalFilter2",
-                "globalFilter3",
-              ],
-              ["streamflowFilterLabel", "localFilter1", "localFilter2"],
+              ["streamflowFilterLabel", "globalFilter1", "globalFilter2"],
+              ["streamflowFilterLabel", "localFilter1"],
             ],
           },
           content: [
