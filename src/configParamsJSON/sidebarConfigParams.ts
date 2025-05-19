@@ -8,6 +8,7 @@ export default {
           type: "setting",
           id: "mapArea",
           express: false,
+          defaultValue: false,
           content: [
             {
               type: "setting",
@@ -16,7 +17,6 @@ export default {
               defaultValue: null,
             },
           ],
-          defaultValue: false,
         },
       ],
     },
