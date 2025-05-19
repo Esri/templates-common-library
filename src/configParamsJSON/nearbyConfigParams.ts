@@ -237,6 +237,7 @@ export default {
                     "sliderRange",
                     "precision",
                     "inputsEnabled",
+                    "mapClickLocation",
                     "enableBufferColor",
                     "enableSearchScale",
                     "startupLocation",
@@ -261,6 +262,12 @@ export default {
                     includeDefaultValInput: true,
                     defaultDefaultVal: 1,
                   },
+                },
+                {
+                  type: "setting",
+                  id: "mapClickLocation",
+                  defaultValue: true,
+                  express: false,
                 },
                 {
                   type: "setting",
@@ -386,24 +393,9 @@ export default {
                 },
                 {
                   type: "setting",
-                  id: "hideXYLabel",
+                  id: "hideClosestAddressLabel",
                   express: false,
                   defaultValue: false,
-                  content: [
-                    {
-                      type: "setting",
-                      id: "labelLayer",
-                      express: false,
-                      config: {
-                        layerSelectionMode: "single",
-                        supportedLayerTypes: ["feature"],
-                        supportedGeometryTypes: "*",
-                        supportsFieldSelection: true,
-                        fieldSelectionMode: "single",
-                        supportedFieldTypes: "*",
-                      },
-                    },
-                  ],
                 },
               ],
             },
