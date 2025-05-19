@@ -232,11 +232,12 @@ export default {
               express: true,
               config: {
                 branches: [
-                  ["showAll", "enableSearchScale"],
+                  ["showAll", "startupLocation", "enableSearchScale"],
                   [
                     "sliderRange",
                     "precision",
                     "inputsEnabled",
+                    "mapClickLocation",
                     "enableBufferColor",
                     "enableSearchScale",
                     "startupLocation",
@@ -261,6 +262,12 @@ export default {
                     includeDefaultValInput: true,
                     defaultDefaultVal: 1,
                   },
+                },
+                {
+                  type: "setting",
+                  id: "mapClickLocation",
+                  defaultValue: true,
+                  express: false,
                 },
                 {
                   type: "setting",
@@ -316,12 +323,6 @@ export default {
                 },
                 {
                   type: "setting",
-                  id: "startupLocation",
-                  express: false,
-                  defaultValue: "false",
-                },
-                {
-                  type: "setting",
                   id: "showAll",
                   express: false,
                   defaultValue: false,
@@ -330,7 +331,7 @@ export default {
                       type: "setting",
                       id: "startupLocation",
                       express: false,
-                      defaultValue: "false",
+                      defaultValue: false,
                     },
                   ],
                 },
@@ -389,6 +390,12 @@ export default {
                   id: "mapPinLabelSize",
                   express: false,
                   defaultValue: 12,
+                },
+                {
+                  type: "setting",
+                  id: "hideClosestAddressLabel",
+                  express: false,
+                  defaultValue: false,
                 },
               ],
             },

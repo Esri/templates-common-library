@@ -110,7 +110,6 @@ export default {
               express: false,
               defaultValue: false,
             },
-
             {
               type: "group",
               id: "mapA11y",
@@ -195,12 +194,13 @@ export default {
               express: true,
               config: {
                 branches: [
-                  ["zoneLookupLayers"],
+                  ["zoneLookupLayers", "mapClickLocation"],
                   [
                     "searchLayer",
                     "lookupLayers",
                     "showDirections",
                     "spatialRelationship",
+                    "mapClickLocation",
                   ],
                 ],
               },
@@ -216,6 +216,12 @@ export default {
                     supportsFieldSelection: false,
                   },
                   defaultValue: null,
+                },
+                {
+                  type: "setting",
+                  id: "mapClickLocation",
+                  defaultValue: true,
+                  express: false,
                 },
                 {
                   type: "setting",
@@ -514,6 +520,27 @@ export default {
                       id: "mapPinLabelSize",
                       express: false,
                       defaultValue: 12,
+                    },
+                    {
+                      type: "setting",
+                      id: "hideClosestAddressLabel",
+                      express: false,
+                      defaultValue: false,
+                      content: [
+                        {
+                          type: "setting",
+                          id: "labelLayer",
+                          express: false,
+                          config: {
+                            layerSelectionMode: "single",
+                            supportedLayerTypes: ["feature"],
+                            supportedGeometryTypes: ["esriGeometryPolygon"],
+                            supportsFieldSelection: true,
+                            fieldSelectionMode: "single",
+                            supportedFieldTypes: "*",
+                          },
+                        },
+                      ],
                     },
                   ],
                 },
