@@ -59,14 +59,6 @@ export default {
                       id: "splashButtonText",
                       defaultValue: "",
                     },
-                    {
-                      type: "setting",
-                      id: "splashButtonPosition",
-                      defaultValue: {
-                        position: "top-right",
-                        index: 0,
-                      },
-                    },
                   ],
                 },
               ],
@@ -292,22 +284,24 @@ export default {
           content: [
             {
               type: "setting",
-              id: "basemapToggle",
-              express: false,
+              id: "basemapGallery",
               defaultValue: false,
               content: [
                 {
                   type: "setting",
-                  id: "basemapTogglePosition",
-                  defaultValue: {
-                    position: "bottom-left",
-                    index: 0,
+                  id: "basemapGalleryConfig",
+                  defaultValue: null,
+                  config: {
+                    is3d: true,
                   },
                 },
                 {
                   type: "setting",
-                  id: "basemapSelector",
-                  defaultValue: "streets-vector",
+                  id: "basemapGalleryPosition",
+                  defaultValue: {
+                    position: "top-right",
+                    index: 0,
+                  },
                 },
               ],
             },
@@ -369,19 +363,14 @@ export default {
                 {
                   type: "setting",
                   id: "shareIncludeEmbed",
-                  defaultValue: false,
                   express: false,
+                  defaultValue: false,
                 },
                 {
                   type: "setting",
                   id: "shareIncludeSocial",
                   defaultValue: true,
                   express: false,
-                },
-                {
-                  type: "setting",
-                  id: "sharePosition",
-                  defaultValue: "top-right",
                 },
               ],
               defaultValue: false,
