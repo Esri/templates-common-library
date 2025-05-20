@@ -266,7 +266,7 @@ export default {
                 {
                   type: "setting",
                   id: "mapClickLocation",
-                  defaultValue: true,
+                  defaultValue: false,
                   express: false,
                 },
                 {
