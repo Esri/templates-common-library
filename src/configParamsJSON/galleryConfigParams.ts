@@ -41,14 +41,6 @@ export default {
               "express": false
             }
           ]
-        },
-        {
-          "type": "setting",
-          "id": "headHTML",
-          "defaultValue": "",
-          "config": {
-            "imageUpload": true
-          }
         }
       ]
     },
