@@ -475,6 +475,12 @@ export default {
                         "position": "top-left",
                         "index": 0
                       }
+                    },
+										{
+                      "type": "setting",
+                      "id": "visibilityIcon",
+                      "express": false,
+                      "defaultValue": "default"
                     }
                   ]
                 },
