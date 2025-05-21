@@ -267,6 +267,14 @@ export default {
                       id: "layerListAddTable",
                       defaultValue: false,
                       express: false,
+                      content: [
+                        {
+                          type: "setting",
+                          id: "attributeEditing",
+                          defaultValue: false,
+                          express: false,
+                        },
+                      ],
                     },
                     {
                       type: "setting",
@@ -712,6 +720,42 @@ export default {
                   id: "basemapSelector",
                   express: false,
                   defaultValue: "streets-vector",
+                },
+              ],
+            },
+            {
+              type: "setting",
+              id: "sketchTools",
+              express: false,
+              defaultValue: false,
+              content: [
+                {
+                  type: "setting",
+                  id: "sketchToolsPosition",
+                  defaultValue: {
+                    position: "top-right",
+                    index: 0,
+                  },
+                },
+                {
+                  type: "setting",
+                  id: "sketchMarkerColor",
+                  defaultValue: "#fff",
+                },
+                {
+                  type: "setting",
+                  id: "sketchMarkerPin",
+                  defaultValue: "esri-pin-1",
+                },
+                {
+                  type: "setting",
+                  id: "sketchOutlineColor",
+                  defaultValue: "#323232",
+                },
+                {
+                  type: "setting",
+                  id: "sketchFillColor",
+                  defaultValue: "#828282",
                 },
               ],
             },
