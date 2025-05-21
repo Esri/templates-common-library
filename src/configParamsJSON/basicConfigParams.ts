@@ -575,6 +575,42 @@ export default {
             },
             {
               type: "setting",
+              id: "sketchTools",
+              express: false,
+              defaultValue: false,
+              content: [
+                {
+                  type: "setting",
+                  id: "sketchToolsPosition",
+                  defaultValue: {
+                    position: "top-right",
+                    index: 0,
+                  },
+                },
+                {
+                  type: "setting",
+                  id: "sketchMarkerColor",
+                  defaultValue: "#fff",
+                },
+                {
+                  type: "setting",
+                  id: "sketchMarkerPin",
+                  defaultValue: "esri-pin-1",
+                },
+                {
+                  type: "setting",
+                  id: "sketchOutlineColor",
+                  defaultValue: "#323232",
+                },
+                {
+                  type: "setting",
+                  id: "sketchFillColor",
+                  defaultValue: "#828282",
+                },
+              ],
+            },
+            {
+              type: "setting",
               id: "layerList",
               defaultValue: false,
               content: [
