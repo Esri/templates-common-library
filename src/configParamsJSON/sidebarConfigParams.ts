@@ -267,6 +267,14 @@ export default {
                       id: "layerListAddTable",
                       defaultValue: false,
                       express: false,
+                      content: [
+                        {
+                          type: "setting",
+                          id: "attributeEditing",
+                          defaultValue: false,
+                          express: false,
+                        },
+                      ],
                     },
                     {
                       type: "setting",
