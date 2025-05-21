@@ -211,12 +211,6 @@ export default {
                   "content": [
                     {
                       "type": "setting",
-                      "id": "expandFilters",
-                      "defaultValue": false,
-                      "express": false
-                    },
-                    {
-                      "type": "setting",
                       "id": "mapItemFilterConfig",
                       "express": false,
                       "defaultValue": null,
