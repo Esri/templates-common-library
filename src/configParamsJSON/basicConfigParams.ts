@@ -3,6 +3,9 @@ export default {
     {
       type: "section",
       id: "map",
+      config: {
+        itemTypes: ["2d", "3d", "weblinkchart"],
+      },
       content: [
         {
           type: "setting",
