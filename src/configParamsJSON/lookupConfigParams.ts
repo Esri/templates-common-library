@@ -220,7 +220,7 @@ export default {
                 {
                   type: "setting",
                   id: "mapClickLocation",
-                  defaultValue: true,
+                  defaultValue: false,
                   express: false,
                 },
                 {
@@ -612,12 +612,6 @@ export default {
               express: false,
               defaultValue: false,
               content: [
-                {
-                  type: "setting",
-                  id: "expandFilters",
-                  defaultValue: false,
-                  express: false,
-                },
                 {
                   type: "setting",
                   id: "filterConfig",

@@ -431,12 +431,6 @@ export default {
                   content: [
                     {
                       type: "setting",
-                      id: "expandFilters",
-                      defaultValue: false,
-                      express: false,
-                    },
-                    {
-                      type: "setting",
                       id: "filterConfig",
                       express: false,
                       defaultValue: null,
