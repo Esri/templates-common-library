@@ -93,7 +93,6 @@ const EResourceType_to_AppType_Mapping = {
     EAppTemplateType.Countdown,
     EAppTemplateType.DataExplorer,
     EAppTemplateType.Exhibit,
-    EAppTemplateType.Gallery,
     EAppTemplateType.General,
     EAppTemplateType.ImageryApp,
     EAppTemplateType.Insets,
