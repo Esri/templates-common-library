@@ -46,6 +46,19 @@ interface SearchConfiguration {
   sources?: Array<LocatorSourceConfigItem | LayerSourceConfigItem>;
 }
 
+/**
+ * Creates and configures an ArcGIS Search widget for a given view and portal.
+ *
+ * This function sets up the search sources based on the provided configuration,
+ * handling both locator and layer sources. It also manages placeholder localization,
+ * popup focus behavior, and default source inclusion.
+ *
+ * @param view - The MapView or SceneView instance to associate with the Search widget.
+ * @param portal - The ArcGIS Portal instance for context.
+ * @param searchConfiguration - The configuration object specifying search sources and options.
+ * @param popupHover - Optional. If true, enables popup on hover and manages focus between popup and search box.
+ * @returns The configured Search widget.
+ */
 export function createSearch(
   view: __esri.MapView | __esri.SceneView,
   portal: Portal,
