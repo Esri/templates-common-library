@@ -440,6 +440,12 @@ export default {
                   express: false,
                   defaultValue: false,
                 },
+              ],
+            },
+            {
+              type: "group",
+              id: "export",
+              content: [
                 {
                   type: "setting",
                   id: "exportToPDF",
