@@ -184,7 +184,7 @@ export default {
                   defaultValue: true,
                   config: {
                     layerSelectionMode: "multiple",
-                    supportedLayerTypes: "*",
+                    supportedLayerTypes: ["feature"],
                     supportedGeometryTypes: "*",
                     selectAllEnabled: true
                   }
@@ -306,7 +306,7 @@ export default {
                       express: true,
                       config: {
                         layerSelectionMode: "multiple",
-                        supportedLayerTypes: "*",
+                        supportedLayerTypes: ["feature"],
                         supportedGeometryTypes: "*",
                         selectAllEnabled: true
                       }
