@@ -231,7 +231,7 @@ export default {
             },
             {
               type: "setting",
-              id: "verticies",
+              id: "vertices",
               defaultValue: true,
               express: true
             },
