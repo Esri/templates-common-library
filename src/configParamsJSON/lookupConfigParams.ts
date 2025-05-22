@@ -444,7 +444,7 @@ export default {
             },
             {
               type: "group",
-              id: "export",
+              id: "exportOptions",
               content: [
                 {
                   type: "setting",
