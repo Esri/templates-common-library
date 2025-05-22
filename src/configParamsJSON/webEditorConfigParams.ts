@@ -621,7 +621,9 @@ export default {
                   express: true,
                   defaultValue: null,
                   config: {
-                    singleFont: false
+                    numOfSections: 1,
+                    singleFont: false,
+                    hideLogoScale: true
                   }
                 },
                 {
