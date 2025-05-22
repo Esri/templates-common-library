@@ -49,7 +49,8 @@ interface SearchConfiguration {
 export function createSearch(
   view: __esri.MapView | __esri.SceneView,
   portal: Portal,
-  searchConfiguration: SearchConfiguration
+  searchConfiguration: SearchConfiguration,
+  popupHover?: boolean
 ): Search {
   const DEFAULT_PLACEHOLDER = "Find address or place";
   const INCLUDE_DEFAULT_SOURCES = "includeDefaultSources";
@@ -126,6 +127,29 @@ export function createSearch(
     },
     { once: true, initial: true }
   );
+
+  searchWidget.on("search-complete", () => {
+    if (searchWidget.popupEnabled) {
+      // Handle setting focus on popup and then back
+      // to search box
+      if (popupHover) view.popupEnabled = true;
+      when(
+        () => view?.popup?.viewModel?.active === true,
+        () => {
+          view.popup.focus();
+          when(
+            () => view?.popup?.visible === false,
+            () => {
+              searchWidget.focus();
+              if (popupHover) view.popupEnabled = false;
+            },
+            { initial: true, once: true }
+          );
+        },
+        { initial: true, once: true }
+      );
+    }
+  });
 
   return searchWidget;
 }

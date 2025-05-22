@@ -494,29 +494,7 @@ export function addSearch(
   const map = view.map as __esri.WebMap | __esri.WebScene;
   const portal = map.portalItem?.portal;
   const tmpSearchConfig = JSON.parse(JSON.stringify(searchConfiguration));
-  const searchWidget = createSearch(view, portal, tmpSearchConfig);
-  searchWidget.on("search-complete", () => {
-    if (searchWidget.popupEnabled) {
-      // Handle setting focus on popup and then back
-      // to search box
-      if (popupHover) view.popupEnabled = true;
-      when(
-        () => view?.popup?.viewModel?.active === true,
-        () => {
-          view.popup.focus();
-          when(
-            () => view?.popup?.visible === false,
-            () => {
-              searchWidget.focus();
-              if (popupHover) view.popupEnabled = false;
-            },
-            { initial: true, once: true }
-          );
-        },
-        { initial: true, once: true }
-      );
-    }
-  });
+  const searchWidget = createSearch(view, portal, tmpSearchConfig, popupHover);
   node = new Expand({
     view,
     content: searchWidget,
