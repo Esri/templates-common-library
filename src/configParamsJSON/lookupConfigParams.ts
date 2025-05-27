@@ -334,18 +334,6 @@ export default {
               content: [
                 {
                   type: "setting",
-                  id: "groupResultsByLayer",
-                  express: false,
-                  defaultValue: false,
-                },
-                {
-                  type: "setting",
-                  id: "collapseIndividualResults",
-                  express: false,
-                  defaultValue: false,
-                },
-                {
-                  type: "setting",
                   id: "clearResultsButton",
                   express: false,
                   defaultValue: true,
@@ -360,12 +348,6 @@ export default {
                 },
                 {
                   type: "setting",
-                  id: "startupLocation",
-                  express: false,
-                  defaultValue: false,
-                },
-                {
-                  type: "setting",
                   id: "showPopupsOnZoom",
                   express: false,
                   defaultValue: true,
@@ -376,6 +358,94 @@ export default {
                   express: false,
                   defaultValue: false,
                 },
+              ],
+            },
+          ],
+        },
+        {
+          type: "subsection",
+          id: "resultsMap",
+          content: [
+            {
+              type: "group",
+              id: "mapResults",
+              content: [
+                {
+                  type: "setting",
+                  id: "applyLayerEffects",
+                  express: true,
+                  content: [
+                    {
+                      type: "setting",
+                      id: "presetLayerEffects",
+                      express: true,
+                      defaultValue: {
+                        id: "lift-1",
+                        data: {
+                          includedEffect: "drop-shadow(4px, 4px, 4px, #000000)",
+                          excludedEffect: "",
+                        },
+                      },
+                    },
+                  ],
+                  defaultValue: false,
+                },
+                {
+                  type: "setting",
+                  id: "enableSearchScale",
+                  express: false,
+                  content: [
+                    {
+                      type: "setting",
+                      id: "searchScale",
+                      express: false,
+                      defaultValue: 10000,
+                    },
+                  ],
+                  defaultValue: false,
+                },
+                {
+                  type: "setting",
+                  id: "hideLayers",
+                  express: false,
+                  defaultValue: false,
+                },
+                {
+                  type: "setting",
+                  id: "interactiveResults",
+                  express: false,
+                  defaultValue: true,
+                },
+              ],
+            },
+            {
+              type: "group",
+              id: "panelResults",
+              content: [
+                {
+                  type: "setting",
+                  id: "groupResultsByLayer",
+                  express: false,
+                  defaultValue: false,
+                },
+                {
+                  type: "setting",
+                  id: "collapseIndividualResults",
+                  express: false,
+                  defaultValue: false,
+                },
+                {
+                  type: "setting",
+                  id: "startupLocation",
+                  express: false,
+                  defaultValue: false,
+                },
+              ],
+            },
+            {
+              type: "group",
+              id: "exportOptions",
+              content: [
                 {
                   type: "setting",
                   id: "exportToPDF",
@@ -404,66 +474,6 @@ export default {
                   id: "exportCSV",
                   express: false,
                   defaultValue: false,
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "subsection",
-          id: "resultsMap",
-          content: [
-            {
-              type: "setting",
-              id: "applyLayerEffects",
-              express: true,
-              content: [
-                {
-                  type: "setting",
-                  id: "presetLayerEffects",
-                  express: true,
-                  defaultValue: {
-                    id: "lift-1",
-                    data: {
-                      includedEffect: "drop-shadow(4px, 4px, 4px, #000000)",
-                      excludedEffect: "",
-                    },
-                  },
-                },
-              ],
-              defaultValue: false,
-            },
-            {
-              type: "setting",
-              id: "enableSearchScale",
-              express: false,
-              content: [
-                {
-                  type: "setting",
-                  id: "searchScale",
-                  express: false,
-                  defaultValue: 10000,
-                },
-              ],
-              defaultValue: false,
-            },
-            {
-              type: "setting",
-              id: "hideLayers",
-              express: false,
-              defaultValue: false,
-            },
-            {
-              type: "setting",
-              id: "interactiveResults",
-              express: false,
-              defaultValue: true,
-              content: [
-                {
-                  type: "setting",
-                  id: "showSelectedOnly",
-                  defaultValue: false,
-                  express: false,
                 },
               ],
             },

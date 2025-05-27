@@ -187,7 +187,7 @@ export default {
                 "supportedLayerTypes": ["feature"],
                 "supportedGeometryTypes": "*",
                 "supportsFieldSelection": false,
-                "supportedCapabilityTypes": ["editableSupportsAdd"],
+                "supportedCapabilityTypes": ["editable"],
                 "hideNestedSections": true,
                 "reporterApp": true
               },

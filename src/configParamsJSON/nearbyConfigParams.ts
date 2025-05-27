@@ -391,12 +391,6 @@ export default {
                   express: false,
                   defaultValue: 12,
                 },
-                {
-                  type: "setting",
-                  id: "hideClosestAddressLabel",
-                  express: false,
-                  defaultValue: false,
-                },
               ],
             },
             {
