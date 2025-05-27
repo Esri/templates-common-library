@@ -3,22 +3,6 @@ export default {
     {
       type: "section",
       id: "map",
-      content: [
-        {
-          type: "setting",
-          id: "mapArea",
-          express: false,
-          content: [
-            {
-              type: "setting",
-              id: "mapAreaConfig",
-              express: false,
-              defaultValue: null
-            }
-          ],
-          defaultValue: false
-        }
-      ]
     },
     {
       type: "section",
@@ -116,45 +100,6 @@ export default {
                   type: "setting",
                   id: "mapA11yDesc",
                   express: true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          type: "subsection",
-          id: "coverPageSettings",
-          content: [
-            {
-              type: "group",
-              id: "coverPage",
-              content: [
-                {
-                  type: "setting",
-                  id: "landingPage",
-                  express: false,
-                  defaultValue: false,
-                  content: [
-                    {
-                      type: "setting",
-                      id: "landingPageConfig",
-                      express: false,
-                      defaultValue: {
-                        titleText: "",
-                        subtitleText: "",
-                        descriptionText: "",
-                        entryButtonText: "",
-                        alignment: "center",
-                        backgroundType: "color",
-                        textColor: "#FFFFFF",
-                        entryButtonColor: "#0079C1",
-                        backgroundColor: "#0079C1",
-                        iconImage: null,
-                        iconImageScale: "m",
-                        backgroundImageSrc: null
-                      }
-                    }
-                  ]
                 }
               ]
             }
@@ -391,22 +336,6 @@ export default {
                       defaultValue: {
                         position: "bottom-right",
                         index: 2
-                      }
-                    }
-                  ]
-                },
-                {
-                  type: "setting",
-                  id: "fullScreen",
-                  express: false,
-                  defaultValue: false,
-                  content: [
-                    {
-                      type: "setting",
-                      id: "fullScreenPosition",
-                      defaultValue: {
-                        position: "bottom-right",
-                        index: 0
                       }
                     }
                   ]
