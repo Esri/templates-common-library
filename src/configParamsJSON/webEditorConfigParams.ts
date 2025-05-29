@@ -2,7 +2,7 @@ export default {
   config: [
     {
       type: "section",
-      id: "map",
+      id: "map"
     },
     {
       type: "section",
@@ -24,16 +24,15 @@ export default {
                 },
                 {
                   type: "setting",
-                  id: "customHeader",
-                  defaultValue: false,
+                  id: "header",
+                  express: true,
+                  defaultValue: true,
                   content: [
                     {
                       type: "setting",
-                      id: "customHeaderHTML",
-                      defaultValue: "",
-                      config: {
-                        imageUpload: true
-                      }
+                      id: "title",
+                      express: true,
+                      defaultValue: ""
                     }
                   ]
                 },
@@ -520,51 +519,29 @@ export default {
       content: [
         {
           type: "subsection",
-          id: "layout",
-          content: [
-            {
-              type: "setting",
-              id: "panelSize",
-              express: false,
-              defaultValue: "m"
-            }
-          ]
-        },
-        {
-          type: "subsection",
           id: "theme",
           content: [
             {
               type: "group",
-              id: "theme",
+              id: "headerTheme",
               content: [
                 {
                   type: "setting",
                   id: "theme",
-                  defaultValue: "dark",
+                  defaultValue: "light",
                   express: true
                 },
                 {
                   type: "setting",
                   id: "customTheme",
                   express: true,
-                  defaultValue: null,
                   config: {
                     numOfSections: 1,
-                    singleFont: false,
+                    headerOnly: true,
+                    singleFont: true,
                     hideLogoScale: true
-                  }
-                },
-                {
-                  type: "group",
-                  id: "additionalOptions",
-                  content: [
-                    {
-                      type: "setting",
-                      id: "customCSS",
-                      defaultValue: ""
-                    }
-                  ]
+                  },
+                  defaultValue: null
                 }
               ]
             }
