@@ -308,6 +308,12 @@ export default {
                 },
                 {
                   type: "setting",
+                  id: "spatialRelationship",
+                  express: false,
+                  defaultValue: "contains",
+                },
+                {
+                  type: "setting",
                   id: "enableBufferColor",
                   express: false,
                   defaultValue: false,
