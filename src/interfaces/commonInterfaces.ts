@@ -51,6 +51,7 @@ export interface ICustomTheme {
   logoLink?: string;
   logoScale?: "s" | "m" | "l";
   logoSource?: "upload" | "url";
+  logoAltText?: string;
   logoUrl?: string;
   preset?: string;
   themes: {

@@ -114,17 +114,17 @@ export default {
         {
           type: "subsection",
           id: "selection",
-          express: true,
+          express: false,
           content: [
             {
               type: "group",
               id: "selectableLayers",
-              express: true,
+              express: false,
               content: [
                 {
                   type: "setting",
                   id: "webEditorSelectedLayers",
-                  express: true,
+                  express: false,
                   defaultValue: true,
                   config: {
                     layerSelectionMode: "multiple",
@@ -144,13 +144,13 @@ export default {
             {
               type: "group",
               id: "selectByAttributes",
-              express: true,
+              express: false,
               content: [
                 {
                   type: "setting",
                   id: "enableSelectByattributes",
                   defaultValue: true,
-                  express: true
+                  express: false
                 }
               ]
             }
@@ -213,7 +213,7 @@ export default {
               type: "setting",
               id: "undoRedo",
               defaultValue: true,
-              express: true
+              express: false
             }
           ]
         },
@@ -229,25 +229,19 @@ export default {
                   type: "setting",
                   id: "enableTooltips",
                   defaultValue: true,
-                  express: true
+                  express: false
                 },
                 {
                   type: "setting",
                   id: "enableSnapping",
                   defaultValue: true,
-                  express: true,
+                  express: false,
                   content: [
-                    {
-                      type: "setting",
-                      id: "enableUserControlSnappingGeomertyFeaures",
-                      defaultValue: true,
-                      express: false
-                    },
                     {
                       type: "setting",
                       id: "chooseLayersInSnapping",
                       defaultValue: true,
-                      express: true,
+                      express: false,
                       config: {
                         layerSelectionMode: "multiple",
                         supportedLayerTypes: ["feature"],
@@ -269,13 +263,13 @@ export default {
               type: "group",
               id: "gridTools",
               defaultValue: true,
-              express: true,
+              express: false,
               content: [
                 {
                   type: "setting",
                   id: "showGridTools",
                   defaultValue: true,
-                  express: true,
+                  express: false,
                   content: [
                     {
                       type: "setting",
