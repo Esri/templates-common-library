@@ -223,6 +223,7 @@ export default {
             {
               type: "setting",
               id: "streamflowFilterLabel",
+              express: true,
             },
             {
               type: "setting",

@@ -310,6 +310,12 @@ export default {
                   "content": [
                     {
                       "type": "setting",
+                      "id": "searchOpenAtStart",
+                      "express": true,
+                      "defaultValue": false
+                    },
+                    {
+                      "type": "setting",
                       "id": "searchConfiguration",
                       "express": true,
                       "defaultValue": null
