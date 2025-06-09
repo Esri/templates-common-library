@@ -232,7 +232,7 @@ export default {
               express: true,
               config: {
                 branches: [
-                  ["showAll", "startupLocation", "enableSearchScale"],
+                  ["showAll", "enableSearchScale"],
                   [
                     "sliderRange",
                     "precision",
