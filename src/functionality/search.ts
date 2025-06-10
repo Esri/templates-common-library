@@ -79,7 +79,10 @@ export function createSearch(
         const { id, url } = layerSource.layer || {};
         const layerFromMap = id ? view.map.findLayerById(id) : null;
 
-        if (layerSource.popupTemplate) {
+        if (
+          layerSource.popupTemplate &&
+          layerSource?.popupTemplate?.declaredClass !== "esri.PopupTemplate"
+        ) {
           layerSource.popupTemplate = PopupTemplate.fromJSON(
             layerSource.popupTemplate
           );
