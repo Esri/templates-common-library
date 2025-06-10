@@ -5,6 +5,7 @@ import { fromJSON } from "@arcgis/core/geometry/support/jsonUtils";
 import { when } from "@arcgis/core/core/reactiveUtils";
 
 import Portal from "@arcgis/core/portal/Portal";
+import PopupTemplate from "@arcgis/core/PopupTemplate";
 
 interface SearchSourceConfigItem {
   maxResults: number;
@@ -73,16 +74,22 @@ export function createSearch(
     searchConfiguration[INCLUDE_DEFAULT_SOURCES] = false;
 
     sources.forEach((source) => {
-      const isLayerSource = source.hasOwnProperty("layer");
-      if (isLayerSource) {
+      if ("layer" in source) {
         const layerSource = source as LayerSourceConfigItem;
-        const layerId = layerSource.layer?.id;
-        const layerFromMap = layerId ? view.map.findLayerById(layerId) : null;
-        const layerUrl = layerSource?.layer?.url;
+        const { id, url } = layerSource.layer || {};
+        const layerFromMap = id ? view.map.findLayerById(id) : null;
+
+        if (layerSource.popupTemplate) {
+          layerSource.popupTemplate = PopupTemplate.fromJSON(
+            layerSource.popupTemplate
+          );
+        }
+
         if (layerFromMap) {
           layerSource.layer = layerFromMap as FeatureLayer;
-        } else if (layerUrl) {
-          layerSource.layer = new FeatureLayer(layerUrl as any);
+        } else if (url) {
+          layerSource.layer =
+            typeof url === "string" ? new FeatureLayer({ url }) : url;
         }
       } else {
         const locatorSource = source as LocatorSourceConfigItem;
@@ -95,7 +102,7 @@ export function createSearch(
             "Addr_type",
             "Match_addr",
             "StAddr",
-            "City"
+            "City",
           ];
           locatorSource.outFields = outFields;
           locatorSource.singleLineFieldName = "SingleLine";
@@ -108,14 +115,14 @@ export function createSearch(
   } else {
     searchConfiguration = {
       ...searchConfiguration,
-      includeDefaultSources: true
+      includeDefaultSources: true,
     };
   }
 
   const searchWidget = new Search({
     view,
     portal,
-    ...searchConfiguration
+    ...searchConfiguration,
   });
 
   when(
@@ -188,7 +195,7 @@ export function handleSearchExtent(
     searchWidget.sources.forEach((source) => {
       if (extent) {
         source.filter = {
-          geometry: extent
+          geometry: extent,
         };
       } else {
         source.filter = null as any;
