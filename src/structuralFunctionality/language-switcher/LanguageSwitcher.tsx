@@ -186,7 +186,7 @@ export default class LanguageSwitcher extends Widget {
     const locales = config?.locales;
     const defaultLocale = config?.defaultLocale ?? null;
     return (
-      <div>
+      <div id={NODE_ID}>
         <instant-apps-language-switcher
           bind={this}
           afterCreate={storeNode}
