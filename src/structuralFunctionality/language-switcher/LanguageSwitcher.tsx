@@ -11,7 +11,10 @@
   limitations under the License.​
 */
 
-import { property, subclass } from "@arcgis/core/core/accessorSupport/decorators";
+import {
+  property,
+  subclass,
+} from "@arcgis/core/core/accessorSupport/decorators";
 import { tsx, storeNode } from "@arcgis/core/widgets/support/widget";
 import Handles from "@arcgis/core/core/Handles";
 import Widget from "@arcgis/core/widgets/Widget";
@@ -183,18 +186,20 @@ export default class LanguageSwitcher extends Widget {
     const locales = config?.locales;
     const defaultLocale = config?.defaultLocale ?? null;
     return (
-      <instant-apps-language-switcher
-        bind={this}
-        afterCreate={storeNode}
-        class={CSS.base}
-        icon={icon}
-        locales={locales}
-        portalItem={_portalItem}
-        defaultLocale={defaultLocale}
-        onselectedLanguageUpdated={this.handleSelection}
-        view={this.view}
-        data-node-ref="langSwitcherNode"
-      />
+      <div>
+        <instant-apps-language-switcher
+          bind={this}
+          afterCreate={storeNode}
+          class={CSS.base}
+          icon={icon}
+          locales={locales}
+          portalItem={_portalItem}
+          defaultLocale={defaultLocale}
+          onselectedLanguageUpdated={this.handleSelection}
+          view={this.view}
+          data-node-ref="langSwitcherNode"
+        />
+      </div>
     );
   }
 
@@ -250,7 +255,10 @@ export default class LanguageSwitcher extends Widget {
       propertyName === PropertyNames.LanguageSwitcherOpenAtStart
     ) {
       node.expanded = languageSwitcherOpenAtStart;
-    } else if (node && propertyName === PropertyNames.LanguageSwitcherPosition) {
+    } else if (
+      node &&
+      propertyName === PropertyNames.LanguageSwitcherPosition
+    ) {
       if (this.expandGroup) node.group = this.expandGroup;
       this.view.ui.move(node, languageSwitcherPosition ?? Defaults.Position);
     }
