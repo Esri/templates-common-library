@@ -18,12 +18,6 @@ export default {
               content: [
                 {
                   type: "setting",
-                  id: "title",
-                  defaultValue: "",
-                  express: true
-                },
-                {
-                  type: "setting",
                   id: "header",
                   express: true,
                   defaultValue: true,
