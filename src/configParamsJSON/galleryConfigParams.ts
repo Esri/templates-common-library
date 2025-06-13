@@ -125,7 +125,10 @@ export default {
                   "type": "setting",
                   "id": "useOrgCategories",
                   "express": true,
-                  "defaultValue": "group"
+                  "defaultValue": false,
+                  "config": {
+                    "categorySettingType": "radio"
+                  }
                 }
               ]
             }
