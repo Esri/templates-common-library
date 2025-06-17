@@ -574,17 +574,26 @@ export default {
               type: "setting",
               id: "noResultsMessage",
               defaultValue: "",
+              config: {
+                imageUpload: true,
+              },
               express: true,
             },
             {
               type: "setting",
               id: "resultsPanelPreText",
               express: false,
+              config: {
+                imageUpload: true,
+              },
               defaultValue: null,
             },
             {
               type: "setting",
               id: "resultsPanelPostText",
+              config: {
+                imageUpload: true,
+              },
               express: false,
               defaultValue: null,
             },

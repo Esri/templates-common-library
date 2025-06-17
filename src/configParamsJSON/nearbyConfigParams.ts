@@ -607,18 +607,27 @@ export default {
             {
               type: "setting",
               id: "noResultsMessage",
+              config: {
+                imageUpload: true,
+              },
               defaultValue: "No results found that meet the search criteria",
               express: true,
             },
             {
               type: "setting",
               id: "resultsPanelPreText",
+              config: {
+                imageUpload: true,
+              },
               express: false,
               defaultValue: null,
             },
             {
               type: "setting",
               id: "resultsPanelPostText",
+              config: {
+                imageUpload: true,
+              },
               express: false,
               defaultValue: null,
             },
