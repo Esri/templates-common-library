@@ -222,6 +222,29 @@ export default {
                   id: "mapClickLocation",
                   defaultValue: false,
                   express: false,
+                  content: [
+                    {
+                      type: "setting",
+                      id: "hideClosestAddressLabel",
+                      express: false,
+                      defaultValue: false,
+                      content: [
+                        {
+                          type: "setting",
+                          id: "labelLayer",
+                          express: false,
+                          config: {
+                            layerSelectionMode: "single",
+                            supportedLayerTypes: ["feature"],
+                            supportedGeometryTypes: ["esriGeometryPolygon"],
+                            supportsFieldSelection: true,
+                            fieldSelectionMode: "single",
+                            supportedFieldTypes: "*",
+                          },
+                        },
+                      ],
+                    },
+                  ],
                 },
                 {
                   type: "setting",
@@ -536,27 +559,6 @@ export default {
                       id: "mapPinLabelSize",
                       express: false,
                       defaultValue: 12,
-                    },
-                    {
-                      type: "setting",
-                      id: "hideClosestAddressLabel",
-                      express: false,
-                      defaultValue: false,
-                      content: [
-                        {
-                          type: "setting",
-                          id: "labelLayer",
-                          express: false,
-                          config: {
-                            layerSelectionMode: "single",
-                            supportedLayerTypes: ["feature"],
-                            supportedGeometryTypes: ["esriGeometryPolygon"],
-                            supportsFieldSelection: true,
-                            fieldSelectionMode: "single",
-                            supportedFieldTypes: "*",
-                          },
-                        },
-                      ],
                     },
                   ],
                 },
