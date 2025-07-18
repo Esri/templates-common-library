@@ -444,6 +444,14 @@ export default {
                   id: "interactiveResults",
                   express: false,
                   defaultValue: true,
+                  content: [
+                    {
+                      type: "setting",
+                      id: "showSelectedOnly",
+                      defaultValue: false,
+                      express: false,
+                    },
+                  ],
                 },
               ],
             },
