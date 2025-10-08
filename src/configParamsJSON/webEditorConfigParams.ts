@@ -451,6 +451,12 @@ export default {
                 },
                 {
                   type: "setting",
+                  id: "allowUserAddTempLayers",
+                  express: true,
+                  defaultValue: true,
+                },
+                {
+                  type: "setting",
                   id: "showDPad",
                   express: false,
                   defaultValue: true,
